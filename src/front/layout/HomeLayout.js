@@ -23,7 +23,7 @@ export default class FrontHomePagesLayoutCtrl extends Component{
                 
                 <HomeTopbarHeaderComponent {...this.props} />
 
-                <div className="front_pages_content_body_wrapper bg_white_smoke">
+                <div className="front_pages_content_body_wrapper">
                     <this.props.children {...this.props} />
                 </div>
                 

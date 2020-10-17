@@ -1,6 +1,7 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import {Navbar,Nav, Row, Col} from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+
 
 // Assets Include
 import '../topbar/topbar.scss';
@@ -14,14 +15,20 @@ import FrontSideBarMenu from '../sidebar';
 
 
 function HomeTopbarHeaderComponent(){
-
-
     
+    const [scroll, setScroll] = useState(false);
+    useEffect(() => {
+    window.addEventListener("scroll", () => {
+        setScroll(window.scrollY > 250);
+    });
+    }, []);
+
+
     return(
         <>
-            <Navbar sticky="top">
+            <Navbar sticky="top" className={scroll ? "add_search" : "remove_search"}>
                 <div className="nav_container">
-                    <Row className="align-items-center">
+                    <Row className="align-items-center justify-content-between">
                         <Col md={3} lg={4} className="text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">
                                 <img width="100%" src={logo} />
@@ -31,7 +38,7 @@ function HomeTopbarHeaderComponent(){
                             </span>
                         </Col>
                         <Col md={5} lg={4}>
-                            <Nav className="top_search mx-auto justify-content-center my-sm-2">
+                            <Nav className="top_search mx-auto justify-content-center">
                                 <SearchComponent/>
                             </Nav>
                         </Col>

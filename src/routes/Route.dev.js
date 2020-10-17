@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter,Switch,Route} from 'react-router-dom';
-import FrontHomePagesLayoutCtrl from '../front/layout/PageLayout';
-import FrontPagesLayoutCtrl from '../front/layout/HomeLayout';
+import FrontHomePagesLayoutCtrl from '../front/layout/HomeLayout';
+import FrontPagesLayoutCtrl from '../front/layout/PageLayout';
 import FrontHomeCtrl from '../front/pages/home';
 import FrontAboutCtrl from '../front/pages/about';
 import FrontFaqsCtrl from '../front/pages/faqs';
@@ -16,7 +16,7 @@ const Root = () =>(
         <Switch>
             <Route exact path="/" render={(props)=> (<FrontHomePagesLayoutCtrl children={FrontHomeCtrl} {...props} />)} />
             <Route exact path="/search" render={FrontSearchListCtrl } />
-            <Route exact path="/about" render={(props)=> (< FrontPagesLayoutCtrl children={FrontAboutCtrl} {...props} />)} />
+            <Route exact path="/about" render={(props)=> (<FrontPagesLayoutCtrl  children={FrontAboutCtrl} {...props} />)} />
             <Route exact path="/search-details" render={(props)=> (< FrontPagesLayoutCtrl children={FrontSearchDetailsCtrl} {...props} />)} />
             <Route exact path="/FAQS" render={(props)=> (< FrontPagesLayoutCtrl children={FrontFaqsCtrl} {...props} />)} />
             <Route exact path="/sitemap" render={(props)=> (< FrontPagesLayoutCtrl children={FrontSitemapCtrl} {...props} />)} />

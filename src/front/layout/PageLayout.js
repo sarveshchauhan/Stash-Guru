@@ -17,8 +17,8 @@ export default class fixedTopbarHeaderComponent extends Component{
             <>
                 
                 <PageTopbarHeaderComponent {...this.props} />
-
-                <div className="front_pages_content_body_wrapper">
+                
+                <div className="front_pages_content_body_wrapper bg_white_smoke">
                     <this.props.children {...this.props} />
                 </div>
                 
