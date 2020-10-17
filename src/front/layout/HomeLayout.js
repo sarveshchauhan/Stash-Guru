@@ -10,6 +10,7 @@ import '../../assets/front/scss/style.scss';
 
 
 
+
 export default class FrontHomePagesLayoutCtrl extends Component{
     constructor(props) {
         super(props);

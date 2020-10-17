@@ -1,5 +1,7 @@
+@import '../../../App.scss';
+
 .SearchListFilter{
-    box-shadow: 0px 10px 10px -5px #9c9c9c;
+    box-shadow: 0px 10px 10px -5px $nobel_color;
     margin-right: -15px;
     margin-left: -15px;
 }
@@ -7,8 +9,8 @@
     border-radius: 15px;
     padding: 2px 5px;
     font-size: 12px;
-    border: 1px solid #34D789;
-    color: #34D789;
+    border: 1px solid $shamrock_color;
+    color: $shamrock_color;
     margin-top: 20px;
     margin-right: 3px;
 }
@@ -18,20 +20,20 @@
 
 
 .SearchListFilter_Buttons .btn.btn-outline-success:hover{
-    background: #34D789;
-    color: #ffffff;
+    background: $shamrock_color;
+    color: $milky_color;
 }
 .SearchListFilter_Buttons .btn.btn-outline-warning{
     border-radius: 15px;
     padding: 2px 5px;
     font-size: 12px;
-    border: 1px solid #FF5757;
-    color: #FF5757;
+    border: 1px solid $tomato_color;
+    color: $tomato_color;
     margin-top: 20px;
 }
 .SearchListFilter_Buttons .btn.btn-outline-warning:hover{
-    background: #FF5757;
-    color: #ffffff;
+    background: $tomato_color;
+    color: $milky_color;
 }
 
 
@@ -80,7 +82,7 @@
 }
 
 .SearchListPlace_card{
-    background: #ffffff;
+    background: $milky_color;
     border: 1px solid #70707085;
     border-radius: 5px;
     margin-top: 5px;
@@ -121,13 +123,13 @@
     border-radius: 20px;
     padding: 0px 3px;
     background: transparent;
-    border: 1px solid #1BBDF6;
-    color: #1BBDF6;
+    border: 1px solid $deep_sky_color;
+    color: $deep_sky_color;
 }
 .SearchListPlaceAreaPlace button:hover{
-    background: #1BBDF6;;
-    border: 1px solid #1BBDF6;
-    color: #ffffff;
+    background: $deep_sky_color;;
+    border: 1px solid $deep_sky_color;
+    color: $milky_color;
 }
 .SearchListPlaceAreaPlace span{
     font-size: 10px;
@@ -142,12 +144,12 @@
     margin-bottom: 5px;
 }
 .SearchListPlaceAreaCost strong{
-    color: #34D789;
+    color: $shamrock_color;
     font-size: 15px;
     margin-right: 10px;
 }
 .SearchListPlaceAreaCost span{
-    color: #34D789;
+    color: $shamrock_color;
     font-size: 15px;
     font-weight: 700;
     position: relative;
@@ -159,7 +161,7 @@
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: #34D789;
+    background: $shamrock_color;
     left: 2px;
     bottom: 7px;
 }
@@ -261,17 +263,17 @@
     width: 20px;
     left: 2px;
     bottom: 2px;
-    background-color: #ffffff;
+    background-color: $milky_color;
     -webkit-transition: .4s;
     transition: .4s;
   }
   
   input:checked + .slider {
-    background-color: #34d789;
+    background-color: $shamrock_color;
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px #34d789;
+    box-shadow: 0 0 1px $shamrock_color;
   }
   
   input:checked + .slider:before {

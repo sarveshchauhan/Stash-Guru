@@ -1,13 +1,7 @@
 // banner section style start here
 
 
-
-$milky_color: #ffffff;
-$shamrock_color: #34D789;
-$zambezi_color: #595959;
-$deep_sky_color: #1BBDF6;
-$alice_blue_color: #e4faef;
-
+@import '../../../App.scss';
 
 .text_color_deep_skyi{
     color: $deep_sky_color;
