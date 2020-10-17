@@ -1,0 +1,156 @@
+
+.mob_toggler{
+    display: block;
+}
+.menu_hidden_sm_screen{
+    display: none;
+}
+@media (min-width: 992px)
+{
+    .mob_toggler{
+        display: none;
+    }
+    .menu_hidden_sm_screen{
+        display: block;
+    }
+}
+
+@media (min-width: 576px)
+{
+    .nav_container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px)
+{
+    .nav_container {
+        max-width: 720px;
+    }
+}
+@media (min-width: 992px)
+{
+    .nav_container {
+        max-width: 960px;
+    }
+}
+@media (min-width: 1200px)
+{
+    .nav_container {
+        max-width: 1140px;
+    }
+}
+.nav_container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.navbar{
+    background-color: #ffffff;
+}
+.add_search.navbar.sticky-top,
+.remove_search.navbar.sticky-top{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    // box-shadow: 0px 0px 10px 0px #34d789;
+}
+
+
+.add_search.navbar.sticky-top{
+    background-color: #f3fcff;
+    box-shadow: 0px 0px 10px 0px #34d789;
+}
+.remove_search.navbar.sticky-top{
+    background-color: #ffffff;
+}
+.add_search.navbar.sticky-top .top_search{
+    display: block;
+}
+// @media (min-width: 1199px){
+// .add_search.navbar.sticky-top .top_search{
+//     width: 400px;
+// }
+// }
+
+
+
+.remove_search.navbar.sticky-top .top_search{
+    display: none;
+}
+
+.top_search .input-group-text{
+    background-color: #ffffff;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: #1BBDF6;
+    border-color: #34D789;
+}
+.top_search input.form-control{
+    background-color: #ffffff;
+    border-left: 0px;
+    border-color: #34D789;
+    box-shadow:  none !important;
+    outline: none !important;
+}
+
+
+
+
+.navbar-brand img{
+    max-width: 250px;
+}
+
+.list_your_space,
+.login_signup_btn{
+    height: 48px;
+    border-radius: 25px;
+    padding: 0px 40px;
+    display: inline-block;
+    line-height: 48px;
+    margin-left: 10px;
+    border-width: 1px;
+    border-style: solid;
+    width: 140px;
+    text-align: center;
+    font-size: 15px ;
+}
+
+@media (max-width: 908px){
+.list_your_space,
+.login_signup_btn{
+    height: 30px;
+    border-radius: 15px;
+    padding: 0px 10px !important;
+    line-height: 28px;
+    border-width: 1px;
+    width: auto;
+    font-size: 12px;
+}
+.top_search .input-group-text{
+    height: 30px;
+}
+.top_search input.form-control{
+    height: 30px;
+    font-size: 12px;
+}
+.top_search .btn{
+    height: 30px;
+    font-size: 12px;
+    line-height: 0px;
+    padding: 0px 5px;
+}
+.top_search .btn i.fa{
+    font-size: 12px;
+}
+}
+
+
+.list_your_space{
+    background: #34D789;
+    border-color: #34D789;
+    color: #ffffff !important;
+}
+.login_signup_btn{
+    color: #22BFF6 !important;
+    border-color: #22BFF6;
+}

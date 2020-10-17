@@ -1,0 +1,648 @@
+// banner section style start here
+
+
+
+$milky_color: #ffffff;
+$shamrock_color: #34D789;
+$zambezi_color: #595959;
+$deep_sky_color: #1BBDF6;
+$alice_blue_color: #F3FCFF;
+
+
+.text_color_deep_skyi{
+    color: $deep_sky_color;
+}
+.text_color_zambezi{
+    color: $zambezi_color;
+}
+.text_color_shamrock{
+    color: $shamrock_color;
+}
+.btn.btn-success{
+    background-color: $shamrock_color;
+    border-color: $shamrock_color;
+}
+
+img{
+    max-width: 100%;
+    width: 100%;
+}
+.home_banner{
+    background-image: url('../images/bg/banner_bg_img.svg');
+    background-size: cover;
+    padding-top: 100px;
+}
+.home_banner img{
+    padding-top: 50px;
+}
+.home_banner_content h2{
+    font-weight: 900;
+    font-size: 50px;
+}
+.home_banner_content p{
+    font-size: 25px;
+    color: $zambezi_color;
+}
+.location_search_bar .input-group-text{
+    background-color: transparent;
+    border-right: 0px;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
+    color: $deep_sky_color;
+    border-color: $shamrock_color;
+    font-size: 25px;
+    padding-left: 20px;
+}
+.location_search_bar .form-control{
+    border-left: 0px;
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: $shamrock_color;
+    height: 48px;
+}
+.location_search_bar .input-group{
+    box-shadow: 0px 0px 10px 0px #79e4b0d2;
+    border-radius: 30px;
+}
+.input-group>.input-group-append>.btn, 
+.input-group>.input-group-append>.input-group-text, 
+.input-group>.input-group-prepend:first-child>.btn:not(:first-child), 
+.input-group>.input-group-prepend:first-child>.input-group-text:not(:first-child), 
+.input-group>.input-group-prepend:not(:first-child)>.btn, 
+.input-group>.input-group-prepend:not(:first-child)>.input-group-text{
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    border-color: $shamrock_color;
+    box-shadow: none !important;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+}
+.location_search_bar.input-group > .input-group-append > .btn{
+    padding: 0px 15px;
+}
+
+
+
+// Browse Connect Store style here
+
+.after_banner_strip{
+    background-color: $alice_blue_color;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.ab_strip_card{
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+.ab_strip_card_icon{
+    width: 90px;
+    height: 90px;
+    line-height: 90px;
+    background-color: #c7f4e4;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+}
+.ab_strip_card_icon img{
+    max-width: 40px;
+}
+.ab_strip_card_content{
+    width: calc(100% - 90px);
+    padding-left: 20px;
+}
+.ab_strip_card_content h4{
+    font-size: 25px;
+    font-weight: 700;
+    margin: 0px;
+    color: #32D78A;
+}
+.ab_strip_card_content p{
+    font-size: 14px;
+    margin: 0px;
+    color: #8E8E8E;
+}
+
+
+
+
+
+// Connecting People Style here
+
+.stash_hdng{
+    position: relative;
+    padding-left: 10px;
+}
+.stash_hdng::after{
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 55px;
+    background-color: $shamrock_color;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.stash_hdng h3{
+    margin: 0px;
+    font-size: 35px;
+    font-weight: 700;
+    color: #333333;
+}
+@media (max-width: 768px){
+    .stash_hdng h3{
+        font-size: 25px;
+    }
+}
+.stash_hdng small{
+    margin: 0px;
+    display: block;
+}
+
+
+.stash_hdng.milky h3,
+.stash_hdng.milky small{
+    color: $milky_color;
+}
+.stash_hdng.milky::after{
+    background-color: $milky_color;
+}
+
+
+
+
+
+
+.connecting_people .stash_hdng{
+    margin-bottom: 70px;
+}
+
+.connecting_people{
+    position: relative;
+    padding: 150px 0px 150px 0px;
+    overflow: hidden;
+}
+.connecting_people::after{
+    content: '';
+    position: absolute;
+    background-image: url('../images/bg/polygon.svg');
+    background-size: 900px 900px;
+    background-repeat: no-repeat;
+    background-position:  100px 0px;
+    top: -100px;
+    right: -150px;
+    width: 1000px;
+    height: 1000px;
+}
+.connecting_people_polygon_img img{
+    max-width: 450px;
+    width: 100%;
+    margin-left: auto;
+    display: block;
+}
+
+
+
+
+.connecting_people_card{
+    display: flex;
+    align-items: flex-start;
+    margin-top: 50px;
+    max-width: 350px;
+}
+.connecting_people_img{
+    width: 60px;
+    height: 60px;
+    text-align: center;
+}
+.connecting_people_img img{
+    max-width: 60px;
+}
+.connecting_people_text{
+    margin-left: 20px;
+}
+.connecting_people_text h6{
+    margin: 0px;
+}
+.connecting_people_text p{
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+// Get Some Empty Space? style here
+.Left_hf_sky_blue_card{
+    background-color: $alice_blue_color;
+    position: relative;
+    padding: 200px 0px 200px 0px;
+    overflow: hidden;
+    color: #fff;
+}
+.Left_hf_sky_blue_card::after{
+    content: '';
+    position: absolute;
+    background-image: url('../images/bg/polygon.svg');
+    background-size: 900px 900px;
+    background-repeat: no-repeat;
+    background-position:  100px 0px;
+    top: -120px;
+    right: -50px;
+    width: 1000px;
+    height: 1000px;
+}
+.Left_hf_sky_blue_card::before{
+    content: '';
+    position: absolute;
+    background-color: $deep_sky_color;
+    background-repeat: no-repeat;
+    background-position:  100px 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0px;
+    width: 50%;
+    height: 350px;
+}
+
+.some_empty_space_text{
+    background-color: $deep_sky_color;
+    color: #ffffff;
+    max-width: 450px;
+}
+.some_empty_space_text h3{
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+}
+.some_empty_space_text p{
+    line-height: 1.7;
+    display: block;
+}
+
+.some_empty_space_text .btn.btn_milky{
+    background: $milky_color;
+    width: 150px;
+    color: $shamrock_color;
+    border-color: $milky_color;
+}
+.some_empty_space_text .btn.btn_success{
+    background: $shamrock_color;
+    width: 150px;
+    color: $milky_color;
+    border-color: $milky_color;
+}
+.some_empty_space_text .btn{
+    border-radius: 20px;
+    margin-right: 20px;
+}
+.some_empty_space_polygon_img img{
+    max-width: 450px;
+    width: 100%;
+    margin-left: auto;
+    display: block;
+}
+
+
+
+
+
+
+// Our Space Types style here
+.our_space_types{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.our_space_types_card{
+    margin-bottom: 30px;
+}
+.our_space_types_card span{
+    background-color: $shamrock_color;
+    color: #ffffff;
+    padding: 2px 20px;
+    min-width: 120px;
+    display: inline-block;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.our_space_types_card span::after{
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 5px;
+    background: $shamrock_color;
+    left: 10px;
+    bottom: -20px;
+}
+
+
+// Why stash.guru? style here
+.why_stash_guru{
+    background-color: $shamrock_color;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+.why_stash_guru_card{
+    background: $milky_color;
+    padding: 20px;
+    border-radius: 5px;
+    min-height: 210px;
+    margin-top: 30px;
+    text-align: center;
+}
+.why_stash_guru_card img{
+    max-height: 60px;
+    width: auto;
+}
+.why_stash_guru_card h5{
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    color: $zambezi_color;
+}
+.why_stash_guru_card p{
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    color: $zambezi_color;
+}
+.why_stash_guru_card p br{
+    display: none;
+}
+@media (min-width: 1199px){
+    .why_stash_guru_card p br{
+        display: block;
+    }
+    
+}
+
+
+// Featured Storages Cities style here
+.featured_storages_cities{
+    background-image: url('../images//bg/featured_storages_cities_bg.png');
+    background-size: cover;
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+.featured_storages_cities .btn{
+    border-radius: 30px;
+    margin: 10px;
+    min-width: 130px;
+    background-color: $milky_color;
+    color: $zambezi_color;
+    font-size: 17px;
+}
+    
+
+
+
+// Connecting people slider style here
+.connecting_people_slider{
+    background-color: $alice_blue_color;
+    background-image: url('../images/bg/connecting_people_slider.svg');
+    background-size: contain;
+    padding-top: 70px;
+    padding-bottom: 150px;
+}
+
+.connecting_people_slider .carousel-indicators{
+    bottom: -50px;
+}
+.connecting_people_slider .carousel-indicators li{
+    background-color: $milky_color;
+    height: 12px;
+    width: 12px;
+    border-radius: 10px !important;
+    border: 1px solid $shamrock_color;
+    opacity: 1;
+}
+.connecting_people_slider .carousel-indicators li.active{
+    background-color: $shamrock_color;
+    width: 30px;
+}
+.connecting_people_slider .carousel-item{
+    text-align: center;
+}
+
+.connecting_people_slider .carousel-item img{
+    width: 150px !important;
+    height: 150px !important;
+    // border: 2px solid $shamrock_color;
+    border-radius: 50%;
+    margin: 10px auto;
+}
+
+.connecting_people_slider .carousel-item h3{
+    color: $shamrock_color;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 25px;
+}
+.connecting_people_slider .carousel-item b{
+    color: $zambezi_color;
+    font-size: 15px;
+}
+.connecting_people_slider .carousel-item p{
+    color: $zambezi_color;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// We're here to help you at every step along the way style here
+
+.right_hf_sky_blue_card{
+    background-color: $milky_color;
+    position: relative;
+    padding: 200px 0px 200px 0px;
+    overflow: hidden;
+}
+.right_hf_sky_blue_card::after{
+    content: '';
+    position: absolute;
+    background-image: url('../images/bg/polygon.svg');
+    background-size: 1000px 1000px;
+    background-repeat: no-repeat;
+    background-position:  100px 0px;
+    top: -120px;
+    left: -200px;
+    width: 1000px;
+    height: 1000px;
+}
+.right_hf_sky_blue_card::before{
+    content: '';
+    position: absolute;
+    background-color: $deep_sky_color;
+    background-repeat: no-repeat;
+    background-position:  100px 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0px;
+    width: 50%;
+    height: 350px;
+}
+
+.here_to_help_you{
+    background-color: $deep_sky_color;
+    color: #ffffff;
+    max-width: 650px;
+    padding-left: 30px;
+    position: relative;
+    z-index: +99;
+}
+.here_to_help_you h3{
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+}
+.here_to_help_you p{
+    line-height: 1.7;
+    display: block;
+}
+
+.here_to_help_you .input-group-text{
+    background-color: $milky_color;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    color: $deep_sky_color;
+}
+.here_to_help_you input.form-control{
+    height: 45px;
+    box-shadow: none !important;
+    outline: none !important;
+    border-left: 0px;
+}
+.input-group > .input-group-append > .btn, 
+.input-group > .input-group-append > .input-group-text, 
+.input-group > .input-group-prepend:first-child > .btn:not(:first-child), 
+.input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child), 
+.input-group > .input-group-prepend:not(:first-child) > .btn, 
+.input-group > .input-group-prepend:not(:first-child) > .input-group-text
+.here_to_help_you .btn{
+    padding: 0px 10px;
+    box-shadow: none !important;
+    outline: none !important;
+}
+.here_to_help_you_polygon_img img{
+    max-width: 450px;
+    margin-right: auto;
+    display: block;
+}
+.here_to_help_you a.nav-link{
+    color: $milky_color;
+    padding: 5px 0px;
+}
+
+.here_to_help_you .btn-outline-light{
+    background: $milky_color;
+    border-radius: 30px;
+    color:$shamrock_color;
+    padding: 0px 20px;
+    height: 45px;
+}
+.here_to_help_you .btn-outline-light i.fa{
+    transform: scaleX(1) skew(-22deg, -11deg);
+    padding-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1024px){
+    .connecting_people,
+    .right_hf_sky_blue_card{
+        padding: 50px 0px 50px 0px;
+    }
+    .Left_hf_sky_blue_card::before,
+    .Left_hf_sky_blue_card::after,
+    .right_hf_sky_blue_card::after,
+    .right_hf_sky_blue_card::before{
+        display: none;
+    }
+    .some_empty_space_text,
+    .here_to_help_you{
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px){
+    .home_banner{
+        padding-top: 50px;
+    }
+    .home_banner_content h2{
+        font-size: 25px;
+    }
+    .home_banner_content p{
+        font-size: 15px;
+    }
+    .connecting_people_slider .carousel-item h3,
+    .some_empty_space_text h3,
+    .here_to_help_you h3{
+        font-size: 20px;
+    }
+}
+
+
+
+
+
+
+.details_content label{
+    font-size: 15px;
+}
+.details_content b{
+    font-size: 15px;
+}
+.sm2_hdng{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+
+
+.details_content .form-control{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
