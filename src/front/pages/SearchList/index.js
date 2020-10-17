@@ -24,23 +24,36 @@ function FrontSearchListCtrl(){
     return(
         <>
             <Navbar className="SearchListNavbar">
-                <Container fluid className="align-items-center justify-content-between">
-                    <Col md={3} lg={4} className="text-center text-lg-left align-items-center d-flex justify-content-between">
-                        <NavLink className="navbar-brand" to="/">
-                            <img width="100%" src={logo} />
-                        </NavLink>
-                        <span  className="mob_toggler">
-                            <FrontSideBarMenu />
-                        </span>
-                    </Col>
-                    <Col md={4} lg={4} className="menu_hidden_sm_screen my-2">
-                        <Nav className="justify-content-md-end justify-content-center align-items-center">
-                            <NavLink className="nav-link list_your_space" to="/">List your space</NavLink>
-                            <NavLink className="nav-link login_signup_btn" to="/">Login/SignUp</NavLink>
-                            <FrontSideBarMenu/>
-                        </Nav>
-                    </Col>
-                </Container>
+                
+            <div className="nav_container lg_screen_menu">
+                    <Row className="align-items-center justify-content-between">
+                        <div className="col-3 text-center text-lg-left align-items-center d-flex justify-content-between">
+                            <NavLink className="navbar-brand" to="/">
+                                <img width="100%" src={logo} />
+                            </NavLink>
+                        </div>
+                        <div className="col-4 my-2">
+                            <Nav className="justify-content-md-end justify-content-center align-items-center">
+                                <NavLink className="nav-link list_your_space" to="/">List your space</NavLink>
+                                <NavLink className="nav-link login_signup_btn" to="/">Login/SignUp</NavLink>
+                                <FrontSideBarMenu/>
+                            </Nav>
+                        </div>
+                    </Row>
+                </div>
+
+                <div className="nav_container sm_screen_menu">
+                    <Row className="align-items-center justify-content-between">
+                        <Col className="col-12 text-center text-lg-left align-items-center d-flex justify-content-between">
+                            <NavLink className="navbar-brand" to="/">
+                                <img width="100%" src={logo} />
+                            </NavLink>
+                            <span  className="mob_toggler">
+                                <FrontSideBarMenu />
+                            </span>
+                        </Col>
+                    </Row>
+                </div>
             </Navbar>
 
             <Container fluid>
