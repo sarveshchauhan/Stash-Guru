@@ -19,9 +19,32 @@ function PageTopbarHeaderComponent(){
     return(
         <>
             <Navbar sticky="top">
-                <div className="nav_container">
-                    <Row className="align-items-center">
-                        <Col md={3} lg={4} className="text-center text-lg-left align-items-center d-flex justify-content-between">
+                <div className="nav_container lg_screen_menu">
+                    <Row className="align-items-center justify-content-between">
+                        <div className="col-3 text-center text-lg-left align-items-center d-flex justify-content-between">
+                            <NavLink className="navbar-brand" to="/">
+                                <img width="100%" src={logo} />
+                            </NavLink>
+                        </div>
+                        <div className="col-5 top_search mx-auto justify-content-center">
+                            <Nav>
+                                <SearchComponent/>
+                            </Nav>
+                        </div>
+                        <div className="col-4 my-2">
+                            <Nav className="justify-content-md-end justify-content-center align-items-center">
+                                <NavLink className="nav-link list_your_space" to="/">List your space</NavLink>
+                                <NavLink className="nav-link login_signup_btn" to="/">Login/SignUp</NavLink>
+                                <FrontSideBarMenu/>
+                            </Nav>
+                        </div>
+                    </Row>
+                </div>
+
+
+                <div className="nav_container sm_screen_menu">
+                    <Row className="align-items-center justify-content-between">
+                        <Col className="col-12 text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">
                                 <img width="100%" src={logo} />
                             </NavLink>
@@ -29,20 +52,16 @@ function PageTopbarHeaderComponent(){
                                 <FrontSideBarMenu />
                             </span>
                         </Col>
-                        <Col md={5} lg={4}>
-                            <Nav className="top_search mx-auto justify-content-center my-sm-2">
+                        <div className="col-12 top_search mx-auto justify-content-center">
+                            <Nav>
                                 <SearchComponent/>
                             </Nav>
-                        </Col>
-                        <Col md={4} lg={4} className="menu_hidden_sm_screen my-2">
-                            <Nav className="justify-content-md-end justify-content-center align-items-center">
-                                <NavLink className="nav-link list_your_space" to="/">List your space</NavLink>
-                                <NavLink className="nav-link login_signup_btn" to="/">Login/SignUp</NavLink>
-                                <FrontSideBarMenu/>
-                            </Nav>
-                        </Col>
+                        </div>
                     </Row>
                 </div>
+
+
+
             </Navbar>
         </>
     )

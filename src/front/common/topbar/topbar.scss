@@ -1,19 +1,17 @@
 
-.mob_toggler{
-    display: block;
-}
-.menu_hidden_sm_screen{
-    display: none;
-}
-@media (min-width: 992px)
-{
-    .mob_toggler{
-        display: none;
-    }
-    .menu_hidden_sm_screen{
-        display: block;
-    }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (min-width: 576px)
 {
@@ -115,7 +113,41 @@
     font-size: 15px ;
 }
 
-@media (max-width: 908px){
+
+
+.list_your_space{
+    background: #34D789;
+    border-color: #34D789;
+    color: #ffffff !important;
+}
+.login_signup_btn{
+    color: #22BFF6 !important;
+    border-color: #22BFF6;
+}
+
+
+
+
+
+
+
+@media (min-width: 1200px)
+{
+.sm_screen_menu{
+    display: none;
+}
+.lg_screen_menu{
+    display: block;
+}
+}
+
+@media (max-width: 1199px){
+.sm_screen_menu{
+    display: block;
+}
+.lg_screen_menu{
+    display: none;
+}
 .list_your_space,
 .login_signup_btn{
     height: 30px;
@@ -142,15 +174,4 @@
 .top_search .btn i.fa{
     font-size: 12px;
 }
-}
-
-
-.list_your_space{
-    background: #34D789;
-    border-color: #34D789;
-    color: #ffffff !important;
-}
-.login_signup_btn{
-    color: #22BFF6 !important;
-    border-color: #22BFF6;
 }
