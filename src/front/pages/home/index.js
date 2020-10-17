@@ -154,7 +154,7 @@ function FrontHomeCtrl(){
             <section className="Left_hf_sky_blue_card">
                 <Container>
                     <Row className="justify-content-center align-items-center">
-                        <Col md={6}>
+                        <Col md={6} style={{position:'relative',zIndex:'+9'}}>
                             <div className="some_empty_space_text">
                                 <h3>Get Some Empty Space?</h3>
                                 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,

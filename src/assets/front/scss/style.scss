@@ -6,7 +6,7 @@ $milky_color: #ffffff;
 $shamrock_color: #34D789;
 $zambezi_color: #595959;
 $deep_sky_color: #1BBDF6;
-$alice_blue_color: #F3FCFF;
+$alice_blue_color: #e4faef;
 
 
 .text_color_deep_skyi{
@@ -202,6 +202,8 @@ img{
     width: 100%;
     margin-left: auto;
     display: block;
+    position: relative;
+    z-index: +1;
 }
 
 
@@ -260,6 +262,7 @@ img{
     right: -50px;
     width: 1000px;
     height: 1000px;
+    z-index: +1;
 }
 .Left_hf_sky_blue_card::before{
     content: '';
@@ -272,6 +275,7 @@ img{
     left: 0px;
     width: 50%;
     height: 350px;
+    z-index: +9;
 }
 
 .some_empty_space_text{
