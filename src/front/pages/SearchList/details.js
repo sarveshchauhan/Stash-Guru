@@ -23,6 +23,21 @@ import IDChecks from '../../../assets/front/images/icons/id-card.png';
 import Support from '../../../assets/front/images/icons/support.png';
 
 import some_empty_space from '../../../assets/front/images/img/some_empty_space.svg';
+
+import door_lock from '../../../assets/front/images/icons/list-details/door-lock.png';
+import alarm from '../../../assets/front/images/icons/list-details/alarm.png';
+import cctv_camera from '../../../assets/front/images/icons/list-details/cctv_camera.png';
+import light_bulb from '../../../assets/front/images/icons/list-details/light_bulb.png';
+import file_alarm from '../../../assets/front/images/icons/list-details/file_alarm.png';
+import electric_plug from '../../../assets/front/images/icons/list-details/electric_plug.png';
+import heating from '../../../assets/front/images/icons/list-details/heating.png';
+import water_drop from '../../../assets/front/images/icons/list-details/water_drop.png';
+
+import open_box from '../../../assets/front/images/icons/list-details/open_box.png';
+import time from '../../../assets/front/images/icons/list-details/time.png';
+import blow_ground from '../../../assets/front/images/icons/list-details/blow_ground.png';
+import key from '../../../assets/front/images/icons/list-details/key.png';
+
 // Assets Include End
 
 
@@ -150,50 +165,50 @@ function FrontSearchDetailsCtrl(){
                             <Row>
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={flexible}/>
+                                    <img src={door_lock}/>
                                         <p>Lockable <br/> Door</p>
                                     </div>
                                 </Col>
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={flexible}/>
+                                        <img src={alarm}/>
                                         <p>Security <br/> Alarm</p>
                                     </div>
                                 </Col>
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={flexible}/>
+                                        <img src={cctv_camera}/>
                                         <p>CCTV</p>
                                     </div>
                                 </Col>
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={flexible}/>
+                                        <img src={light_bulb}/>
                                         <p>Lighitng</p>
                                     </div>
                                 </Col>
 
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={flexible}/>
+                                        <img src={file_alarm}/>
                                         <p>Fire <br/> Alarm</p>
                                     </div>
                                 </Col>
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={flexible}/>
+                                        <img src={electric_plug}/>
                                         <p>Electricity <br/> Points</p>
                                     </div>
                                 </Col>
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={flexible}/>
+                                        <img src={heating}/>
                                         <p>Heating</p>
                                     </div>
                                 </Col>
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={flexible}/>
+                                        <img src={water_drop}/>
                                         <p>Water <br/> Supply</p>
                                     </div>
                                 </Col>
@@ -207,7 +222,7 @@ function FrontSearchDetailsCtrl(){
                             <Row>
                                 <Col  sm={6}>
                                     <div className="access_card">
-                                        <img src={flexible}/>
+                                        <img src={open_box}/>
                                         <div className="access_card_text">
                                             <strong>Full Space</strong>
                                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</p>
@@ -216,7 +231,7 @@ function FrontSearchDetailsCtrl(){
                                 </Col>
                                 <Col  sm={6}>
                                     <div className="access_card">
-                                        <img src={flexible}/>
+                                        <img src={time}/>
                                         <div className="access_card_text">
                                             <strong>Any Time</strong>
                                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</p>
@@ -225,7 +240,7 @@ function FrontSearchDetailsCtrl(){
                                 </Col>
                                 <Col  sm={6}>
                                     <div className="access_card">
-                                        <img src={flexible}/>
+                                        <img src={blow_ground}/>
                                         <div className="access_card_text">
                                             <strong>Below Ground</strong>
                                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</p>
@@ -234,7 +249,7 @@ function FrontSearchDetailsCtrl(){
                                 </Col>
                                 <Col  sm={6}>
                                     <div className="access_card">
-                                        <img src={flexible}/>
+                                        <img src={key}/>
                                         <div className="access_card_text">
                                             <strong>Key Provided</strong>
                                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</p>
