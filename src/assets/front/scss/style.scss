@@ -21,6 +21,32 @@ img{
     max-width: 100%;
     width: 100%;
 }
+.btn{
+    border-radius: 25px;
+}
+
+.btn.btn_milky{
+    background: $milky_color;
+    color: $shamrock_color;
+    border-color: $milky_color;
+}
+.btn.btn_success{
+    background: $shamrock_color;
+    color: $milky_color;
+    border-color: $shamrock_color;
+}
+.btn_trans{
+    background: transparent;
+    color: $milky_color;
+    border-color: $milky_color;
+}
+.section_padding{
+    padding: 50px 0px;
+}
+
+
+
+
 .home_banner{
     background-image: url('../images/bg/banner_bg_img.svg');
     background-size: cover;
@@ -643,4 +669,33 @@ img{
 .details_content .form-control{
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+}
+
+
+
+
+
+
+.about_stash{
+    background-color: #1BBDF6;
+    position: relative;
+    overflow: hidden;
+}
+
+// .about_stash::after{
+//     content: '';
+//     position: absolute;
+//     background-image: url('../images/bg/polygon.svg');
+//     background-size: 900px 900px;
+//     background-repeat: no-repeat;
+//     background-position:  100px 0px;
+//     top: -120px;
+//     right: -50px;
+//     width: 1000px;
+//     height: 1000px;
+//     z-index: +1;
+// }
+.about_stash_content p{
+    font-size: 15px;
+    opacity: 0.8;
 }
