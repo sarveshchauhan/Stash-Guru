@@ -18,7 +18,7 @@ function PageTopbarHeaderComponent(){
     
     return(
         <>
-            <Navbar sticky="top">
+            <Navbar sticky="top" style={{borderBottom: '2px solid #00000008'}}>
                 <div className="nav_container lg_screen_menu">
                     <Row className="align-items-center justify-content-between">
                         <div className="col-3 text-center text-lg-left align-items-center d-flex justify-content-between">
@@ -34,7 +34,7 @@ function PageTopbarHeaderComponent(){
                         <div className="col-4 my-2">
                             <Nav className="justify-content-md-end justify-content-center align-items-center">
                                 <NavLink className="nav-link list_your_space" to="/">List your space</NavLink>
-                                <NavLink className="nav-link login_signup_btn" to="/">Login/SignUp</NavLink>
+                                <NavLink className="nav-link login_signup_btn" to="/login">Login/SignUp</NavLink>
                                 <FrontSideBarMenu/>
                             </Nav>
                         </div>

@@ -38,6 +38,11 @@ import time from '../../../assets/front/images/icons/list-details/time.png';
 import blow_ground from '../../../assets/front/images/icons/list-details/blow_ground.png';
 import key from '../../../assets/front/images/icons/list-details/key.png';
 
+import helping from '../../../assets/front/images/icons/helping.png';
+import support from '../../../assets/front/images/icons/support.png';
+import secure_payment from '../../../assets/front/images/icons/list-details/secure-payment.png';
+import agreement from '../../../assets/front/images/icons/list-details/agreement.png';
+
 // Assets Include End
 
 
@@ -52,7 +57,7 @@ function FrontSearchDetailsCtrl(){
     return(
         <>
         <section className="py-4">
-            <Container >
+            <Container className="">
                 <Row>
                     <Col md={8}>
                         <Carousel activeIndex={index} onSelect={handleSelect} indicators={true}>
@@ -325,6 +330,54 @@ function FrontSearchDetailsCtrl(){
                             </Row>
                         </div>
 
+                    </Col>
+
+
+
+                    <Col sm={4}>
+                        <div className="book_space_card">
+                            <div className="book_space_card_body">
+                                <Button variant="outline-info">Warehouse </Button>
+
+                                <div className="d-flex user_area align-items-center">
+                                    <img width="30" height="30" src={user_r1}/>
+                                    <div className="">
+                                        <strong className="d-block">Mary Ann Wagner</strong>
+                                        <small className="d-block">Verified Host</small>
+                                    </div>
+                                </div>
+                                <small>
+                                    <i className="fa fa-map-marker mr-3"></i> 
+                                    California | 1 Miles
+                                </small>
+                                <div class="SearchListPlaceAreaCost justify-content-between">
+                                    <strong>$45.00/Month </strong>
+                                    <span>25x25</span>
+                                </div>
+                                <Button variant="success" className="btn-block">Book Space</Button>
+                            </div>
+                            <div className="book_space_card_footer">
+                                <div className="d-flex justify-content-center align-items-center">
+                                    <img className="mr-3" src={helping}/>
+                                    <p className="m-0">$400 insurance included</p>
+                                </div>
+                                
+                                <div className="d-flex justify-content-center align-items-center">
+                                    <img className="mr-3" src={support}/>
+                                    <p className="m-0">$400 insurance included</p>
+                                </div>
+                                
+                                <div className="d-flex justify-content-center align-items-center">
+                                    <img className="mr-3" src={secure_payment}/>
+                                    <p className="m-0">$400 insurance included</p>
+                                </div>
+                                
+                                <div className="d-flex justify-content-center align-items-center">
+                                    <img className="mr-3" src={agreement}/>
+                                    <p className="m-0">$400 insurance included</p>
+                                </div>
+                            </div>
+                        </div>
                     </Col>
                 </Row>
             </Container>

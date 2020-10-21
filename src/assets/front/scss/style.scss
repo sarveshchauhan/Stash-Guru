@@ -19,7 +19,6 @@
 
 img{
     max-width: 100%;
-    width: 100%;
 }
 .btn{
     border-radius: 25px;
@@ -40,8 +39,67 @@ img{
     color: $milky_color;
     border-color: $milky_color;
 }
+.btn-outline-info{
+    border-color: $deep_sky_color;
+    color: $deep_sky_color;
+    background: transparent;
+}
+.btn-outline-info:hover{
+    border-color: $deep_sky_color;
+    color: $milky_color;
+    background-color: $deep_sky_color;
+}
+select.form-control,
+input.form-control{
+    border-radius: 25px;
+    height: 40px;
+}
+
+.custom_select {
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    overflow: -moz-hidden-unscrollable;
+    background: url('../images/icons/dropdown.png');
+    border: 1px solid #ced4da;
+    background-size: 12px;
+    background-position: 97% 15px;
+    background-repeat: no-repeat;
+    border-radius: 25px;
+    display: inline-block;
+    position: relative;
+  }
+  
+  .custom_select select.form-control {
+    background: transparent;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 40px;
+    border: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+
+
 .section_padding{
     padding: 50px 0px;
+}
+.user_area{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.user_area img{
+    margin-right: 10px;
+}
+.user_area strong{
+    font-size: 13px;
+    margin: 0px;
+}
+.user_area small{
+    font-size: 10px;
+    margin: 0px;
 }
 
 
@@ -151,7 +209,17 @@ img{
 
 
 // Connecting People Style here
-
+.clr_bg_stash_hdng{
+    font-size: 40px;
+    font-weight: 700;
+}
+.clr_bg_stash_hdng span{
+    color: $shamrock_color;
+}
+.pg_bg_hdng{
+    font-size: 35px;
+    font-weight: 700;
+}
 .stash_hdng{
     position: relative;
     padding-left: 10px;
@@ -698,4 +766,90 @@ img{
 .about_stash_content p{
     font-size: 15px;
     opacity: 0.8;
+}
+
+
+
+
+
+
+
+
+.hf_bg_list_your_space{
+    background-image: linear-gradient(to right, $milky_color 50%, $shamrock_color 50%);
+    padding: 50px 0px;
+}
+@media (max-width: 767px){
+    .hf_bg_list_your_space{
+        background-image: linear-gradient(to bottom, $milky_color 50%, $shamrock_color 50%);
+        padding: 0px 0px;
+    }
+}
+.clr_bg_stash_form_card{
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 50px 20px;
+}
+.t_card_list_section{
+    padding: 30px 0px;
+}
+.t_card_list{
+    display: flex;
+    align-items: center;
+}
+.t_card_list span{
+    background-color: rgba(50, 215, 138,0.2);
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+    margin-right: 20px;
+}
+.t_card_list span img{
+   max-width: 40px;
+}
+.t_card_list h5{
+    margin-bottom: 3px;
+    font-size: 18px;
+    font-weight: 700;
+}
+.t_card_list p{
+    font-size: 13px;
+    margin: 0;
+}
+
+
+.what_need_card{
+    background-color: $milky_color;
+    margin-top: 30px;;
+}
+.what_need_card_header{
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #34d78924;
+}
+.what_need_card_header img.lg_img{
+    max-height: 100px;
+}
+
+.what_need_card_header img.sm_img{
+    max-height: 40px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+}
+.what_need_card_footer{
+    padding: 20px;
+}
+.what_need_card_footer h5{
+    font-size: 20px;
+    font-weight: 700;
+    color: $zambezi_color;
+}
+.what_need_card_footer p{
+    font-size: 15px;
+    color: $zambezi_color;
 }

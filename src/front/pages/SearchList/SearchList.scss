@@ -409,3 +409,34 @@
     display: block;
     color: $tomato_color;
 }
+.book_space_card{
+    background: #ffffff;
+    box-shadow: 0px 0px 10px 0px #7c7c7c;
+    min-height: 500px;
+    border-radius: 5px;
+}
+.book_space_card_body,
+.book_space_card_footer{
+    padding: 25px;
+}
+.book_space_card_footer{
+    border-top: 1px dashed #70707033;
+}
+.book_space_card .SearchListPlaceAreaCost{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.book_space_card .SearchListPlaceAreaCost *{
+    font-size: 22px;
+    font-weight: 900;
+}
+.book_space_card_footer .d-flex{
+    margin-top: 10px;
+}
+.book_space_card_footer .d-flex img{
+    max-width: 25px;
+}
+.book_space_card_footer .d-flex p{
+    color: #595959;
+    font-weight: 300;
+}
