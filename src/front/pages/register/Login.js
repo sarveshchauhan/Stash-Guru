@@ -71,7 +71,7 @@ function LoginComponentCtrl(){
                                     
                                     <Row className="text-center">
                                         <Col sm={12} className="mt-4">
-                                            <NavLink to="/" className="" style={{color:'#1BBDF6'}}>I don't have an account</NavLink>
+                                            <NavLink to="/signup" className="" style={{color:'#1BBDF6'}}>I don't have an account</NavLink>
                                         </Col>
                                         <Col sm={12} className="mt-4">
                                             <NavLink to="/" className="link_text">I Forgot My Password</NavLink>

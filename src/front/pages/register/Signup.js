@@ -77,7 +77,7 @@ function SignUpComponentCtrl(){
                                     
                                     <Row className="text-center">
                                         <Col sm={12} className="mt-4">
-                                            <NavLink to="/" className="" style={{color:'#1BBDF6'}}>I Already have an account</NavLink>
+                                            <NavLink to="/login" className="" style={{color:'#1BBDF6'}}>I Already have an account</NavLink>
                                         </Col>
                                     </Row>
                                 </Col>

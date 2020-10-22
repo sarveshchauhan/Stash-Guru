@@ -33,7 +33,7 @@ function PageTopbarHeaderComponent(){
                         </div>
                         <div className="col-4 my-2">
                             <Nav className="justify-content-md-end justify-content-center align-items-center">
-                                <NavLink className="nav-link list_your_space" to="/">List your space</NavLink>
+                                <NavLink className="nav-link list_your_space" to="/list-your-space">List your space</NavLink>
                                 <NavLink className="nav-link login_signup_btn" to="/login">Login/SignUp</NavLink>
                                 <FrontSideBarMenu/>
                             </Nav>

@@ -260,7 +260,7 @@ function FrontHomeCtrl(){
                     </Row>
                     <Row className="mt-5">                        
                         <Col md={4}>
-                            <div className="why_stash_guru_card">
+                            <div className="stash_guru_card_a">
                                 <img src={Local} />
                                 <h5>Local</h5>
                                 <p>There are hundreds of local storage <br/> Hosts to choose from</p>
@@ -268,7 +268,7 @@ function FrontHomeCtrl(){
                         </Col>
 
                         <Col md={4}>
-                            <div className="why_stash_guru_card">
+                            <div className="stash_guru_card_a">
                                 <img src={Affordable} />
                                 <h5>Affordable</h5>
                                 <p>Save on average 50% on your<br/> storage bill</p>
@@ -276,7 +276,7 @@ function FrontHomeCtrl(){
                         </Col>
 
                         <Col md={4}>
-                            <div className="why_stash_guru_card">
+                            <div className="stash_guru_card_a">
                                 <img src={Flexible} />
                                 <h5>Flexible</h5>
                                 <p>Clear contracts, no hidden charges<br/> or fees</p>
@@ -284,7 +284,7 @@ function FrontHomeCtrl(){
                         </Col>
 
                         <Col md={4}>
-                            <div className="why_stash_guru_card">
+                            <div className="stash_guru_card_a">
                                 <img src={Vetted} />
                                 <h5>Vetted</h5>
                                 <p>Spaces are quality controlled and<br/> approved by stash.guru</p>
@@ -292,7 +292,7 @@ function FrontHomeCtrl(){
                         </Col>
 
                         <Col md={4}>
-                            <div className="why_stash_guru_card">
+                            <div className="stash_guru_card_a">
                                 <img src={IDChecks} />
                                 <h5>ID Checks</h5>
                                 <p>All self storage hosts have their identity verified<br/>
@@ -302,7 +302,7 @@ function FrontHomeCtrl(){
                         </Col>
 
                         <Col md={4}>
-                            <div className="why_stash_guru_card">
+                            <div className="stash_guru_card_a">
                                 <img src={Support} />
                                 <h5>stash.guru Support</h5>
                                 <p>Our team is here to help Guests and Hosts if any<br/>
@@ -374,7 +374,7 @@ function FrontHomeCtrl(){
                 </Container>
             </section>
 
-            <section className="connecting_people_slider">
+            <section className="connecting_people_slider stash_guru_user_slider">
                 <Container>
                     <Row className="justify-content-center">
                         <Col md={12}>
