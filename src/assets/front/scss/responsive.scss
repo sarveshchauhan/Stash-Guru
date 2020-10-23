@@ -14,5 +14,26 @@
     font-size: 12px;
     padding-bottom: 10px;
 }
+.location_search_bar .input-group-text,
+.location_search_bar .form-control,
+.location_search_bar.input-group > .input-group-append > .btn{
+    height: 35px !important;
+    font-size: 15px !important;
+}
+
+.here_to_help_you .location_search_bar .input-group-text,
+.here_to_help_you .location_search_bar .form-control,
+.here_to_help_you .location_search_bar.input-group > .input-group-append > .btn{
+    height: 45px !important;
+    font-size: 1rem !important;
+}
+}
+@media (max-width: 450px){
+    .location_search_bar .input-group-text,
+    .location_search_bar .form-control,
+    .location_search_bar.input-group > .input-group-append > .btn{
+        height: 30px !important;
+        font-size: 12px !important;
+    }
 }
 
