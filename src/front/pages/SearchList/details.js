@@ -50,17 +50,38 @@ import agreement from '../../../assets/front/images/icons/list-details/agreement
 
 
 function FrontSearchDetailsCtrl(){
+
+    
+
+    // Back to Top
+    const [showScroll, setShowScroll] = useState(false)
+    const checkScrollTop = () => {
+    if (!showScroll && window.pageYOffset > 400){
+        setShowScroll(true)
+        } else if (showScroll && window.pageYOffset <= 400){
+            setShowScroll(false)
+        }
+    };
+    const scrollTop = () =>{
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    };
+    window.addEventListener('scroll', checkScrollTop);
+    //////////// 
+
+
+    // Search Details Slider
     const [index, setIndex] = useState(0);
-    const handleSelect = (selectedIndex, e) => {
+    const search_Details_handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
+    /////////
     return(
         <>
         <section className="py-4">
             <Container className="">
                 <Row>
                     <Col md={8}>
-                        <Carousel activeIndex={index} onSelect={handleSelect} indicators={true}>
+                        <Carousel activeIndex={index} onSelect={search_Details_handleSelect} indicators={true}>
                             <Carousel.Item>
                                 <img className="d-block w-100" src={SearchList1} alt="First slide" />
                             </Carousel.Item>
@@ -492,7 +513,7 @@ function FrontSearchDetailsCtrl(){
                             <p className="text-white"> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
                             <Button variant="" className="btn_milky"> <i className="fa fa-phone mr-2"></i>Contact Us</Button>
                             
-                            <Button variant="" className="btn_trans ml-2"> <i className="fa fa-angle-up mr-2"></i>Back to Top</Button>
+                            <Button variant="" className="btn_trans ml-2" onClick={scrollTop}> <i className="fa fa-angle-up mr-2"></i>Back to Top</Button>
                         </Col>
                         <Col md={6}>
                             <div className="some_empty_space_polygon_img">

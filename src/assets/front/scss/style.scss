@@ -29,14 +29,30 @@ img{
     color: $shamrock_color;
     border-color: $milky_color;
 }
+.btn.btn_milky:hover{
+    background: $milky_color;
+    color: $shamrock_color;
+    border-color: $milky_color;
+}
 .btn.btn_success{
     background: $shamrock_color;
     color: $milky_color;
     border-color: $shamrock_color;
 }
+.btn_success:hover{
+    border-color: $shamrock_color;
+    color: $shamrock_color;
+    background-color: transparent;
+}
+
 .btn_trans{
     background: transparent;
     color: $milky_color;
+    border-color: $milky_color;
+}
+.btn_trans:hover{
+    background: $milky_color;;
+    color: $zambezi_color;
     border-color: $milky_color;
 }
 .btn-outline-info{
@@ -47,8 +63,20 @@ img{
 .btn-outline-info:hover{
     border-color: $deep_sky_color;
     color: $milky_color;
-    background-color: $deep_sky_color;
+    background: $deep_sky_color;;
 }
+
+.btn-outline-success{
+    border-color: $shamrock_color;
+    color: $milky_color;
+    background: transparent;
+}
+.btn-outline-success:hover{
+    border-color: $shamrock_color;
+    color: $milky_color;
+    background: $shamrock_color;;
+}
+
 select.form-control,
 input.form-control{
     border-radius: 25px;
@@ -527,6 +555,10 @@ input.form-control{
     color: $zambezi_color;
     font-size: 17px;
 }
+.featured_storages_cities .btn:hover{
+    background-color: $shamrock_color;
+    color: $milky_color;
+}
     
 
 
@@ -691,6 +723,11 @@ input.form-control{
     color:$shamrock_color;
     padding: 0px 20px;
     height: 45px;
+}
+.here_to_help_you .btn-outline-light:hover{
+    background: $shamrock_color;
+    color: $milky_color;
+    border-color:$shamrock_color;
 }
 .here_to_help_you .btn-outline-light i.fa{
     transform: scaleX(1) skew(-22deg, -11deg);

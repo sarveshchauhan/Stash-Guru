@@ -17,6 +17,10 @@ footer{
     padding: 3px 0px 3px 0px;
     color: $milky_color;
     font-weight: 300;
+    transition-duration: 300ms;;
+}
+.footer_links a.nav-link:hover{
+    text-decoration: line-through;
 }
 .social_links{
     margin-top: 10px;
