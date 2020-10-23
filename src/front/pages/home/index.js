@@ -184,57 +184,57 @@ function FrontHomeCtrl(){
                     </Row>
 
                     <Row className="justify-content-center align-items-center mt-5">
-                        <Col md={10}>
+                        <Col sm={12} xl={10}>
                             <Row className="justify-content-center align-items-center">
-                                <Col md={4}>
+                                <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Garage</Button>
                                         <img src={Garage} />
                                     </div>
                                 </Col>
-                                <Col md={4}>
+                                <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Warehouse</Button>
                                         <img src={Warehouse} />
                                     </div>
                                 </Col>
-                                <Col md={4}>
+                                <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Lock Ups</Button>
                                         <img src={LockUps} />
                                     </div>
                                 </Col>
-                                <Col md={4}>
+                                <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Parking Space</Button>
                                         <img src={ParkingSpace} />
                                     </div>
                                 </Col>
-                                <Col md={4}>
+                                <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Out housed</Button>
                                         <img src={OutHoused} />
                                     </div>
                                 </Col>
-                                <Col md={4}>
+                                <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Spare rooms</Button>
                                         <img src={SpareRooms} />
                                     </div>
                                 </Col>
-                                <Col md={4}>
+                                <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Basement</Button>
                                         <img src={Basements} />
                                     </div>
                                 </Col>
-                                <Col md={4}>
+                                <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Lofts</Button>
                                         <img src={Lofts} />
                                     </div>
                                 </Col>
-                                <Col md={4}>
+                                <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Container</Button>
                                         <img src={ContainerImg} />
@@ -259,39 +259,39 @@ function FrontHomeCtrl(){
                         </Col>
                     </Row>
                     <Row className="mt-5">                        
-                        <Col md={4}>
+                        <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
                                 <img src={Local} />
                                 <h5>Local</h5>
                                 <p>There are hundreds of local storage <br/> Hosts to choose from</p>
                             </div>
                         </Col>
-
-                        <Col md={4}>
+                        
+                        <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
                                 <img src={Affordable} />
                                 <h5>Affordable</h5>
                                 <p>Save on average 50% on your<br/> storage bill</p>
                             </div>
                         </Col>
-
-                        <Col md={4}>
+                        
+                        <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
                                 <img src={Flexible} />
                                 <h5>Flexible</h5>
                                 <p>Clear contracts, no hidden charges<br/> or fees</p>
                             </div>
                         </Col>
-
-                        <Col md={4}>
+                        
+                        <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
                                 <img src={Vetted} />
                                 <h5>Vetted</h5>
                                 <p>Spaces are quality controlled and<br/> approved by stash.guru</p>
                             </div>
                         </Col>
-
-                        <Col md={4}>
+                        
+                        <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
                                 <img src={IDChecks} />
                                 <h5>ID Checks</h5>
@@ -300,8 +300,8 @@ function FrontHomeCtrl(){
                                   are nice, safe and secure.</p>
                             </div>
                         </Col>
-
-                        <Col md={4}>
+                        
+                        <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
                                 <img src={Support} />
                                 <h5>stash.guru Support</h5>
