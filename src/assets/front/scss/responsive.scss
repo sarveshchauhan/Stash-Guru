@@ -19,6 +19,7 @@
 .location_search_bar.input-group > .input-group-append > .btn{
     height: 35px !important;
     font-size: 15px !important;
+    line-height: 35px;
 }
 
 .here_to_help_you .location_search_bar .input-group-text,
@@ -26,6 +27,7 @@
 .here_to_help_you .location_search_bar.input-group > .input-group-append > .btn{
     height: 45px !important;
     font-size: 1rem !important;
+    line-height: 45px;
 }
 }
 @media (max-width: 450px){
@@ -34,6 +36,7 @@
     .location_search_bar.input-group > .input-group-append > .btn{
         height: 30px !important;
         font-size: 12px !important;
+        line-height: 35px;
     }
 }
 
