@@ -135,11 +135,18 @@ input.form-control{
 .location_search_bar .form-control,
 .location_search_bar.input-group > .input-group-append > .btn{
     height: 48px;
+    border: 0px;
 }
 .here_to_help_you .location_search_bar .input-group-text,
 .here_to_help_you .location_search_bar .form-control,
 .here_to_help_you .location_search_bar.input-group > .input-group-append > .btn{
     height: 45px;
+    border: 0px;
+}
+.here_to_help_you .location_search_bar .input-group,
+.location_search_bar.input-group{
+    border: 1px solid $shamrock_color;
+    border-radius: 25px;
 }
 .location_search_bar .form-control{
     border-left: 0px;
