@@ -270,10 +270,10 @@ function FrontSearchDetailsCtrl(){
                             <Row>
                                 <Col  sm={6}>
                                     <div className="SearchListPlace_card">
-                                        <img src={SearchList1} />
+                                        <img width="100%" src={SearchList1} />
                                         <div className="SearchListPlace_card_body">
                                             <div className="SearchListPlaceUserArea">
-                                                <img className="profileImg" src={user_r1} />
+                                                <img width="100%" className="profileImg" src={user_r1} />
                                                 <span className="profileName">Mary Ann Wagner</span>
                                             </div>
 
@@ -291,7 +291,7 @@ function FrontSearchDetailsCtrl(){
                                 </Col>
                                 <Col  sm={6}>
                                     <div className="SearchListPlace_card">
-                                        <img src={SearchList2} />
+                                        <img width="100%" src={SearchList2} />
                                         <div className="SearchListPlace_card_body">
                                             <div className="SearchListPlaceUserArea">
                                                 <img className="profileImg" src={user_r1} />

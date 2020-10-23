@@ -5,6 +5,7 @@ import HomeTopbarHeaderComponent from '../common/topbar/HomeTopbar';
 import FooterComponent from '../common/footer';
 import './layout.scss';
 import '../../assets/front/scss/style.scss';
+import '../../assets/front/scss/responsive.scss';
 
 
 

@@ -122,14 +122,24 @@ input.form-control{
     color: $zambezi_color;
 }
 .location_search_bar .input-group-text{
-    background-color: transparent;
+    background-color: $milky_color;
     border-right: 0px;
     border-bottom-left-radius: 25px;
     border-top-left-radius: 25px;
     color: $deep_sky_color;
     border-color: $shamrock_color;
-    font-size: 25px;
+    font-size: 20px;
     padding-left: 20px;
+}
+.location_search_bar .input-group-text,
+.location_search_bar .form-control,
+.location_search_bar.input-group > .input-group-append > .btn{
+    height: 48px;
+}
+.here_to_help_you .location_search_bar .input-group-text,
+.here_to_help_you .location_search_bar .form-control,
+.here_to_help_you .location_search_bar.input-group > .input-group-append > .btn{
+    height: 45px;
 }
 .location_search_bar .form-control{
     border-left: 0px;
@@ -532,7 +542,7 @@ input.form-control{
 }
 .stash_guru_user_slider .carousel-indicators li.active{
     background-color: $shamrock_color;
-    width: 30px;
+    width: 12px;
 }
 .stash_guru_user_slider .carousel-item{
     text-align: center;
@@ -651,6 +661,7 @@ input.form-control{
 }
 .here_to_help_you_polygon_img img{
     max-width: 450px;
+    width: 100%;
     margin-right: auto;
     display: block;
 }

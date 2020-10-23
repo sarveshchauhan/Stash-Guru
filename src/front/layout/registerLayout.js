@@ -4,6 +4,7 @@ import React ,{Component} from 'react';
 import RegisterTopbarHeaderComponent from '../common/topbar/RegisterTopbar';
 import './layout.scss';
 import '../../assets/front/scss/style.scss';
+import '../../assets/front/scss/responsive.scss';
 
 
 

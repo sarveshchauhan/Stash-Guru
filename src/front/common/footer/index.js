@@ -96,11 +96,11 @@ function FooterComponent(){
             <Container className="copyright_section">
                 <hr/>
                 <Row className="align-items-center">
-                    <Col sm={6}>
+                    <Col lg={6} className="text-center text-lg-left">
                     Copyright © stash.guru 2018. All Rights Reserved.
                     </Col>
-                    <Col sm={6}>
-                        <Nav className="justify-content-end">
+                    <Col lg={6}>
+                        <Nav className="justify-content-center justify-content-lg-end">
                             <Nav.Item as="li">
                                 <NavLink className="nav-link" to="/">Terms of use</NavLink>
                             </Nav.Item>

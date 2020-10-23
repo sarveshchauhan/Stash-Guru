@@ -4,6 +4,7 @@ import PageTopbarHeaderComponent from '../common/topbar/PageTopbar';
 import FooterComponent from '../common/footer';
 import './layout.scss';
 import '../../assets/front/scss/style.scss';
+import '../../assets/front/scss/responsive.scss';
 
 export default class fixedTopbarHeaderComponent extends Component{
     constructor(props) {
