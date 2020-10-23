@@ -188,55 +188,55 @@ function FrontHomeCtrl(){
                             <Row className="justify-content-center align-items-center">
                                 <Col md={4}>
                                     <div className="our_space_types_card">
-                                        <span>Garage</span>
+                                        <Button variant="success" >Garage</Button>
                                         <img src={Garage} />
                                     </div>
                                 </Col>
                                 <Col md={4}>
                                     <div className="our_space_types_card">
-                                        <span>Warehouse</span>
+                                        <Button variant="success" >Warehouse</Button>
                                         <img src={Warehouse} />
                                     </div>
                                 </Col>
                                 <Col md={4}>
                                     <div className="our_space_types_card">
-                                        <span>Lock Ups</span>
+                                        <Button variant="success" >Lock Ups</Button>
                                         <img src={LockUps} />
                                     </div>
                                 </Col>
                                 <Col md={4}>
                                     <div className="our_space_types_card">
-                                        <span>Parking Space</span>
+                                        <Button variant="success" >Parking Space</Button>
                                         <img src={ParkingSpace} />
                                     </div>
                                 </Col>
                                 <Col md={4}>
                                     <div className="our_space_types_card">
-                                        <span>Out housed</span>
+                                        <Button variant="success" >Out housed</Button>
                                         <img src={OutHoused} />
                                     </div>
                                 </Col>
                                 <Col md={4}>
                                     <div className="our_space_types_card">
-                                        <span>Spare rooms</span>
+                                        <Button variant="success" >Spare rooms</Button>
                                         <img src={SpareRooms} />
                                     </div>
                                 </Col>
                                 <Col md={4}>
                                     <div className="our_space_types_card">
-                                        <span>Basement</span>
+                                        <Button variant="success" >Basement</Button>
                                         <img src={Basements} />
                                     </div>
                                 </Col>
                                 <Col md={4}>
                                     <div className="our_space_types_card">
-                                        <span>Lofts</span>
+                                        <Button variant="success" >Lofts</Button>
                                         <img src={Lofts} />
                                     </div>
                                 </Col>
                                 <Col md={4}>
                                     <div className="our_space_types_card">
-                                        <span>Container</span>
+                                        <Button variant="success" >Container</Button>
                                         <img src={ContainerImg} />
                                     </div>
                                 </Col>

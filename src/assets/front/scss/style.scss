@@ -441,24 +441,32 @@ input.form-control{
 .our_space_types_card{
     margin-bottom: 30px;
 }
-.our_space_types_card span{
+.our_space_types_card button{
     background-color: $shamrock_color;
+    border: 4px solid $shamrock_color;
     color: #ffffff;
     padding: 2px 20px;
     min-width: 120px;
     display: inline-block;
     margin-bottom: 20px;
     position: relative;
+    border-radius: 0px;
 }
 
-.our_space_types_card span::after{
+.our_space_types_card button:hover{
+    background-color: $milky_color;
+    color: $shamrock_color;
+}
+
+.our_space_types_card button::after{
     content: '';
     position: absolute;
-    height: 20px;
+    height: 30px;
     width: 5px;
     background: $shamrock_color;
     left: 10px;
-    bottom: -20px;
+    bottom: -25px;
+    z-index: -1;
 }
 
 
