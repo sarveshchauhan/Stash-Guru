@@ -12,11 +12,14 @@ $zambezi_color: #595959;
 $dark_gray_color: #aaaaaa;
 $nobel_color: #9c9c9c;
 
-
+.w-100{
+    width: 100%;
+}
 .bg_milky{
     background: $milky_color;
 }
 .white_smoke_color{
     background: $white_smoke_color;
 }
+
 // sass color code End

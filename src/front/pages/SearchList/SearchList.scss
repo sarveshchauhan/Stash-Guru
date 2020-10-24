@@ -192,12 +192,13 @@
 
 
 
-
+.dropdown-menu {
+    top: calc(100% + 10px);
+}
 
 
 .dropdown-menu.switch_dropdown_menu {
     box-shadow: 0px 0px 10px 0px #7c7c7c;
-    top: 55px;
 }
 
 .switch_dropdown_row{

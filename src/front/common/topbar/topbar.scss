@@ -140,7 +140,14 @@
 
 
 
-
+@media (max-width: 1199px){
+    .sm_screen_menu{
+        display: block;
+    }
+    .lg_screen_menu{
+        display: none;
+    }
+}
 @media (min-width: 1200px)
 {
 .sm_screen_menu{
@@ -152,12 +159,6 @@
 }
 
 @media (max-width: 1199px){
-.sm_screen_menu{
-    display: block;
-}
-.lg_screen_menu{
-    display: none;
-}
 .list_your_space,
 .login_signup_btn{
     height: 30px;

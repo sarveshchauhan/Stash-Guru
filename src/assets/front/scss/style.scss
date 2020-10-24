@@ -149,6 +149,14 @@ input.form-control{
     font-size: 25px;
     color: $zambezi_color;
 }
+
+
+
+
+
+
+
+
 .location_search_bar .input-group-text{
     background-color: $milky_color;
     border-right: 0px;
@@ -164,31 +172,22 @@ input.form-control{
     outline: none !important;
     box-shadow: none !important;
     border-color: $shamrock_color;
-    height: 48px;
 }
 .location_search_bar .input-group{
-    box-shadow: 0px 0px 10px 0px #79e4b0d2;
+    box-shadow: none;
     border-radius: 30px;
 }
 .location_search_bar .input-group-text,
 .location_search_bar .form-control,
 .location_search_bar.input-group > .input-group-append > .btn{
     height: 48px;
-    border: 0px;
-    line-height: 48px;
 }
-.here_to_help_you .location_search_bar .input-group-text,
-.here_to_help_you .location_search_bar .form-control,
-.here_to_help_you .location_search_bar.input-group > .input-group-append > .btn{
-    height: 45px;
-    border: 0px;
-    line-height: 48px;
-}
-.here_to_help_you .location_search_bar .input-group,
-.location_search_bar.input-group{
-    border: 1px solid $shamrock_color;
-    border-radius: 25px;
-}
+
+// .here_to_help_you .location_search_bar.input-group,
+// .location_search_bar.input-group{
+//     border: 1px solid $shamrock_color;
+//     border-radius: 25px;
+// }
 .input-group>.input-group-append>.btn, 
 .input-group>.input-group-append>.input-group-text, 
 .input-group>.input-group-prepend:first-child>.btn:not(:first-child), 
@@ -685,18 +684,7 @@ input.form-control{
     display: block;
 }
 
-.here_to_help_you .input-group-text{
-    background-color: $milky_color;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    color: $deep_sky_color;
-}
-.here_to_help_you input.form-control{
-    height: 45px;
-    box-shadow: none !important;
-    outline: none !important;
-    border-left: 0px;
-}
+
 .input-group > .input-group-append > .btn, 
 .input-group > .input-group-append > .input-group-text, 
 .input-group > .input-group-prepend:first-child > .btn:not(:first-child), 
@@ -719,12 +707,9 @@ input.form-control{
     padding: 5px 0px;
 }
 
-.here_to_help_you .btn-outline-light{
-    background: $milky_color;
-    border-radius: 30px;
-    color:$shamrock_color;
-    padding: 0px 20px;
-    height: 45px;
+.here_to_help_you .input-group-text{
+    background-color: $milky_color;
+    color: $deep_sky_color;
 }
 .here_to_help_you .btn-outline-light:hover{
     background: $shamrock_color;
@@ -739,6 +724,24 @@ input.form-control{
 
 
 
+.here_to_help_you .location_search_bar .input-group-prepend,
+.here_to_help_you .location_search_bar .input-group-text,
+.here_to_help_you .location_search_bar .form-control,
+.here_to_help_you .location_search_bar.input-group > .input-group-append > .btn{
+    border: 0px;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+
+
+.here_to_help_you .btn-outline-light{
+    background: $milky_color;
+    border-radius: 30px;
+    color:$shamrock_color;
+    padding: 0px 20px;
+    height: 45px;
+}
 
 
 

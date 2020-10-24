@@ -449,7 +449,7 @@ function FrontSearchDetailsCtrl(){
                     <h4 className="sm2_hdng">Why stash.guru?</h4>
                     <Row className="">                        
                         <Col md={4}>
-                            <div className="why_stash_guru_card">
+                            <div className="stash_guru_card_a">
                                 <img src={Local} alt=""  />
                                 <h5>Local</h5>
                                 <p>There are hundreds of local storage <br/> Hosts to choose from</p>
@@ -457,7 +457,7 @@ function FrontSearchDetailsCtrl(){
                         </Col>
 
                         <Col md={4}>
-                            <div className="why_stash_guru_card">
+                            <div className="stash_guru_card_a">
                                 <img src={Affordable} alt=""  />
                                 <h5>Affordable</h5>
                                 <p>Save on average 50% on your<br/> storage bill</p>
@@ -465,7 +465,7 @@ function FrontSearchDetailsCtrl(){
                         </Col>
 
                         <Col md={4}>
-                            <div className="why_stash_guru_card">
+                            <div className="stash_guru_card_a">
                                 <img src={Flexible} alt=""  />
                                 <h5>Flexible</h5>
                                 <p>Clear contracts, no hidden charges<br/> or fees</p>
@@ -473,7 +473,7 @@ function FrontSearchDetailsCtrl(){
                         </Col>
 
                         <Col md={4}>
-                            <div className="why_stash_guru_card">
+                            <div className="stash_guru_card_a">
                                 <img src={Vetted} alt=""  />
                                 <h5>Vetted</h5>
                                 <p>Spaces are quality controlled and<br/> approved by stash.guru</p>
@@ -481,7 +481,7 @@ function FrontSearchDetailsCtrl(){
                         </Col>
 
                         <Col md={4}>
-                            <div className="why_stash_guru_card">
+                            <div className="stash_guru_card_a">
                                 <img src={IDChecks} alt=""  />
                                 <h5>ID Checks</h5>
                                 <p>All self storage hosts have their identity verified<br/>
@@ -491,7 +491,7 @@ function FrontSearchDetailsCtrl(){
                         </Col>
 
                         <Col md={4}>
-                            <div className="why_stash_guru_card">
+                            <div className="stash_guru_card_a">
                                 <img src={Support} alt=""  />
                                 <h5>stash.guru Support</h5>
                                 <p>Our team is here to help Guests and Hosts if any<br/>
