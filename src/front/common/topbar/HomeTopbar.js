@@ -31,7 +31,7 @@ function HomeTopbarHeaderComponent(){
                     <Row className="align-items-center justify-content-between">
                         <div className="col-3 text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">
-                                <img width="100%" src={logo} />
+                                <img width="100%" src={logo}  alt="" />
                             </NavLink>
                         </div>
                         <div className="col-5 top_search mx-auto justify-content-center">
@@ -54,7 +54,7 @@ function HomeTopbarHeaderComponent(){
                     <Row className="align-items-center justify-content-between">
                         <Col className="col-12 text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">
-                                <img width="100%" src={logo} />
+                                <img width="100%" src={logo} alt=""  />
                             </NavLink>
                             <span  className="mob_toggler">
                                 <FrontSideBarMenu />

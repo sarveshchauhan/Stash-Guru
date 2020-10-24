@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 import {Navbar,Nav, Row, Col} from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ function RegisterTopbarHeaderComponent(){
                     <Row className="align-items-center justify-content-between">
                         <div className="col-3 text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">
-                                <img width="100%" src={logo} />
+                                <img width="100%" src={logo} alt=""  />
                             </NavLink>
                         </div>
                         <div className="col-4 my-2">
@@ -40,7 +40,7 @@ function RegisterTopbarHeaderComponent(){
                     <Row className="align-items-center justify-content-between">
                         <Col className="col-12 text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">
-                                <img width="100%" src={logo} />
+                                <img width="100%" src={logo} alt=""  />
                             </NavLink>
                             <span  className="mob_toggler">
                                 <FrontSideBarMenu />

@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Col, Container, Row ,InputGroup,Button,FormControl,Carousel,Nav} from 'react-bootstrap';
+import { Col, Container, Row ,Button,Carousel,Nav} from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import banner_img from '../../../assets/front/images/img/banner_img.svg';
 
@@ -55,7 +55,7 @@ function FrontHomeCtrl(){
                             </div>
                         </Col>
                         <Col lg={6}>
-                            <img src={banner_img} />
+                            <img src={banner_img}  alt="" />
                         </Col>
                     </Row>
                 </Container>
@@ -69,7 +69,7 @@ function FrontHomeCtrl(){
                         <Col md={4}>
                             <div className="ab_strip_card">
                                 <div className="ab_strip_card_icon">
-                                    <img src={browse} />
+                                    <img src={browse} alt=""  />
                                 </div>
                                 <div className="ab_strip_card_content">
                                     <h4>Browse</h4>
@@ -80,7 +80,7 @@ function FrontHomeCtrl(){
                         <Col md={4}>
                             <div className="ab_strip_card">
                                 <div className="ab_strip_card_icon">
-                                    <img src={connect} />
+                                    <img src={connect} alt=""  />
                                 </div>
                                 <div className="ab_strip_card_content">
                                     <h4>Connect</h4>
@@ -91,7 +91,7 @@ function FrontHomeCtrl(){
                         <Col md={4}>
                             <div className="ab_strip_card">
                                 <div className="ab_strip_card_icon">
-                                    <img src={store} />
+                                    <img src={store}  alt="" />
                                 </div>
                                 <div className="ab_strip_card_content">
                                     <h4>Store</h4>
@@ -116,7 +116,7 @@ function FrontHomeCtrl(){
                             </div>
                             <div className="connecting_people_card">
                                 <div className="connecting_people_img">
-                                    <img src={boy} />
+                                    <img src={boy}  alt="" />
                                 </div>
                                 <div className="connecting_people_text">
                                     <h6>
@@ -129,7 +129,7 @@ function FrontHomeCtrl(){
                             
                             <div className="connecting_people_card">
                                 <div className="connecting_people_img">
-                                    <img src={girl} />
+                                    <img src={girl}  alt="" />
                                 </div>
                                 <div className="connecting_people_text">
                                     <h6>
@@ -142,7 +142,7 @@ function FrontHomeCtrl(){
                         </Col>
                         <Col md={6}>
                             <div className="connecting_people_polygon_img">
-                                <img src={connecting_people} />
+                                <img src={connecting_people}  alt="" />
                             </div>
                         </Col>
                     </Row>
@@ -165,7 +165,7 @@ function FrontHomeCtrl(){
                         </Col>
                         <Col md={6}>
                             <div className="some_empty_space_polygon_img">
-                                <img src={some_empty_space} />
+                                <img src={some_empty_space} alt=""  />
                             </div>
                         </Col>
                     </Row>
@@ -189,55 +189,55 @@ function FrontHomeCtrl(){
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Garage</Button>
-                                        <img src={Garage} />
+                                        <img src={Garage} alt=""  />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Warehouse</Button>
-                                        <img src={Warehouse} />
+                                        <img src={Warehouse} alt=""  />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Lock Ups</Button>
-                                        <img src={LockUps} />
+                                        <img src={LockUps} alt=""  />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Parking Space</Button>
-                                        <img src={ParkingSpace} />
+                                        <img src={ParkingSpace} alt=""  />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Out housed</Button>
-                                        <img src={OutHoused} />
+                                        <img src={OutHoused} alt=""  />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Spare rooms</Button>
-                                        <img src={SpareRooms} />
+                                        <img src={SpareRooms}  alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Basement</Button>
-                                        <img src={Basements} />
+                                        <img src={Basements} alt=""  />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Lofts</Button>
-                                        <img src={Lofts} />
+                                        <img src={Lofts}  alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Container</Button>
-                                        <img src={ContainerImg} />
+                                        <img src={ContainerImg} alt=""  />
                                     </div>
                                 </Col>
                                 
@@ -261,7 +261,7 @@ function FrontHomeCtrl(){
                     <Row className="mt-5">                        
                         <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
-                                <img src={Local} />
+                                <img src={Local} alt=""  />
                                 <h5>Local</h5>
                                 <p>There are hundreds of local storage <br/> Hosts to choose from</p>
                             </div>
@@ -269,7 +269,7 @@ function FrontHomeCtrl(){
                         
                         <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
-                                <img src={Affordable} />
+                                <img src={Affordable} alt=""  />
                                 <h5>Affordable</h5>
                                 <p>Save on average 50% on your<br/> storage bill</p>
                             </div>
@@ -277,7 +277,7 @@ function FrontHomeCtrl(){
                         
                         <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
-                                <img src={Flexible} />
+                                <img src={Flexible} alt=""  />
                                 <h5>Flexible</h5>
                                 <p>Clear contracts, no hidden charges<br/> or fees</p>
                             </div>
@@ -285,7 +285,7 @@ function FrontHomeCtrl(){
                         
                         <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
-                                <img src={Vetted} />
+                                <img src={Vetted}  alt="" />
                                 <h5>Vetted</h5>
                                 <p>Spaces are quality controlled and<br/> approved by stash.guru</p>
                             </div>
@@ -293,7 +293,7 @@ function FrontHomeCtrl(){
                         
                         <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
-                                <img src={IDChecks} />
+                                <img src={IDChecks}  alt="" />
                                 <h5>ID Checks</h5>
                                 <p>All self storage hosts have their identity verified<br/>
                                  by an independent third party to ensure things<br/>
@@ -303,7 +303,7 @@ function FrontHomeCtrl(){
                         
                         <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
-                                <img src={Support} />
+                                <img src={Support} alt=""  />
                                 <h5>stash.guru Support</h5>
                                 <p>Our team is here to help Guests and Hosts if any<br/>
                                  questions or issues arise with storage</p>
@@ -447,7 +447,7 @@ function FrontHomeCtrl(){
                     <Row className="justify-content-center align-items-center">
                         <Col md={6}>
                             <div className="here_to_help_you_polygon_img">
-                                <img src={some_empty_space} />
+                                <img src={some_empty_space} alt=""  />
                             </div>
                         </Col>
                         <Col md={6}>

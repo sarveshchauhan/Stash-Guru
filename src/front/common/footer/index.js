@@ -13,7 +13,7 @@ function FooterComponent(){
                     <Col lg={4}>
                         <div className="footer_links">
                             <NavLink to="/" className="mt-3">
-                                <img className="brand_logo" src={Logo} />
+                                <img className="brand_logo" src={Logo} alt=""  />
                             </NavLink>
                                 <h4 className="mt-3">Contact</h4>
                                 <Nav className="flex-column">

@@ -84,7 +84,7 @@ function ListYourSpaceComponentCtrl(){
                         <Col lg={4}>
                             <div className="t_card_list">
                                 <span>
-                                    <img src={to_do_list} />
+                                    <img src={to_do_list} alt=""  />
                                 </span>
                                 <div>
                                     <h5>List for free</h5>
@@ -95,7 +95,7 @@ function ListYourSpaceComponentCtrl(){
                         <Col lg={4}>
                             <div className="t_card_list">
                                 <span>
-                                    <img src={renters} />
+                                    <img src={renters} alt=""  />
                                 </span>
                                 <div>
                                     <h5>Respond to renters</h5>
@@ -106,7 +106,7 @@ function ListYourSpaceComponentCtrl(){
                         <Col lg={4}>
                             <div className="t_card_list">
                                 <span>
-                                    <img src={money} />
+                                    <img src={money}  alt="" />
                                 </span>
                                 <div>
                                     <h5>Make money</h5>
@@ -132,8 +132,8 @@ function ListYourSpaceComponentCtrl(){
                                 <Col lg={4}>
                                     <div className="what_need_card">
                                         <div className="what_need_card_header">
-                                            <img className="lg_img" src={gr_camera} />
-                                            <img className="sm_img" src={camera} />
+                                            <img className="lg_img" src={gr_camera} alt=""  />
+                                            <img className="sm_img" src={camera} alt=""  />
                                         </div>
                                         <div className="what_need_card_footer">
                                             <h5>Photo</h5>
@@ -144,8 +144,8 @@ function ListYourSpaceComponentCtrl(){
                                 <Col lg={4}>
                                     <div className="what_need_card">
                                         <div className="what_need_card_header">
-                                            <img className="lg_img" src={gr_dimension} />
-                                            <img className="sm_img" src={dimension} />
+                                            <img className="lg_img" src={gr_dimension} alt=""  />
+                                            <img className="sm_img" src={dimension}  alt="" />
                                         </div>
                                         <div className="what_need_card_footer">
                                             <h5>Dimensions</h5>
@@ -156,8 +156,8 @@ function ListYourSpaceComponentCtrl(){
                                 <Col lg={4}>
                                     <div className="what_need_card">
                                         <div className="what_need_card_header">
-                                            <img className="lg_img" src={gr_location} />
-                                            <img className="sm_img" src={location} />
+                                            <img className="lg_img" src={gr_location} alt=""  />
+                                            <img className="sm_img" src={location}  alt="" />
                                         </div>
                                         <div className="what_need_card_footer">
                                             <h5>Address</h5>
@@ -176,7 +176,7 @@ function ListYourSpaceComponentCtrl(){
                     <Row className="justify-content-center">
                         <Col sm={8}>
                             <div className="videos_play">
-                                <img src={video_bg} />
+                                <img src={video_bg} alt=""  />
                                 <span className="video_icon">
                                     <i className="fa fa-play" aria-hidden="true"></i>
                                 </span>
@@ -196,7 +196,7 @@ function ListYourSpaceComponentCtrl(){
                     <Row>                        
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={verify} />
+                                <img src={verify} alt=""  />
                                 <h5>Verified Guests</h5>
                                 <p>There are hundreds of local storage <br/> Hosts to choose from</p>
                             </div>
@@ -204,7 +204,7 @@ function ListYourSpaceComponentCtrl(){
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={Affordable} />
+                                <img src={Affordable} alt=""  />
                                 <h5>Smooth Payments</h5>
                                 <p>Save on average 50% on your<br/> storage bill</p>
                             </div>
@@ -212,7 +212,7 @@ function ListYourSpaceComponentCtrl(){
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={dashboard} />
+                                <img src={dashboard}  alt="" />
                                 <h5>Booking Dashboard</h5>
                                 <p>Clear contracts, no hidden charges<br/> or fees</p>
                             </div>
@@ -220,7 +220,7 @@ function ListYourSpaceComponentCtrl(){
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={stamp} />
+                                <img src={stamp}  alt="" />
                                 <h5>Legal Framework</h5>
                                 <p>Spaces are quality controlled and<br/> approved by stash.guru</p>
                             </div>
@@ -228,7 +228,7 @@ function ListYourSpaceComponentCtrl(){
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={helping} />
+                                <img src={helping} alt=""  />
                                 <h5>Guest Insurance</h5>
                                 <p>All self storage hosts have their identity verified<br/>
                                  by an independent third party to ensure things<br/>
@@ -238,7 +238,7 @@ function ListYourSpaceComponentCtrl(){
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={Support} />
+                                <img src={Support} alt=""  />
                                 <h5>stash.guru Support</h5>
                                 <p>Our team is here to help Guests and Hosts if any<br/>
                                  questions or issues arise with storage</p>

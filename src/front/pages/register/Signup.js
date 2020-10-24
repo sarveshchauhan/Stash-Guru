@@ -17,7 +17,7 @@ function SignUpComponentCtrl(){
             <Container>
                 <Row className="align-items-center">
                     <Col sm={4} className="my-2">
-                        <img src={catoons} />
+                        <img src={catoons}  alt="" />
                     </Col>
                     <Col sm={4} className="my-2">
                         <div className="register_card">
@@ -65,12 +65,12 @@ function SignUpComponentCtrl(){
                                     <Row>
                                         <Col sm={12} className="mt-2">
                                             <Button className="btn-block sign_with_google_btn">
-                                                <img src={GoogleLogo}/> Sign In With Google
+                                                <img src={GoogleLogo} alt="" /> Sign In With Google
                                             </Button>
                                         </Col>
                                         <Col sm={12} className="mt-4">
                                             <Button className="btn-block sign_with_fb_btn">
-                                            <img src={facebook}/> Sign In With Facebook
+                                            <img src={facebook} alt="" /> Sign In With Facebook
                                         </Button>
                                         </Col>
                                     </Row>
@@ -84,7 +84,7 @@ function SignUpComponentCtrl(){
                             </Row>
                         </div>
                     </Col><Col sm={4} className="my-2">
-                        <img src={family} />
+                        <img src={family} alt=""  />
                     </Col>
                 </Row>
             </Container>

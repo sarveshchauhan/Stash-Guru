@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Col, Container, Row ,Form} from 'react-bootstrap';
 import GoogleLogo from '../../../assets/front/images/icons/GoogleLogo.png';
 import facebook from '../../../assets/front/images/icons/facebook.png';
@@ -45,7 +45,7 @@ class LoginComponentCtrl extends React.Component{
                 <Container>
                     <Row className="align-items-center">
                         <Col sm={4} className="my-2">
-                            <img src={catoons} />
+                            <img src={catoons}  alt="" />
                         </Col>
                         <Col sm={4} className="my-2">
                             <div className="register_card">
@@ -87,12 +87,12 @@ class LoginComponentCtrl extends React.Component{
                                         <Row>
                                             <Col sm={12} className="mt-2">
                                                 <Button className="btn-block sign_with_google_btn">
-                                                    <img src={GoogleLogo}/> Sign In With Google
+                                                    <img src={GoogleLogo} alt="" /> Sign In With Google
                                                 </Button>
                                             </Col>
                                             <Col sm={12} className="mt-4">
                                                 <Button className="btn-block sign_with_fb_btn">
-                                                <img src={facebook}/> Sign In With Facebook
+                                                <img src={facebook} alt="" /> Sign In With Facebook
                                             </Button>
                                             </Col>
                                         </Row>
@@ -109,7 +109,7 @@ class LoginComponentCtrl extends React.Component{
                                 </Row>
                             </div>
                         </Col><Col sm={4} className="my-2">
-                            <img src={family} />
+                            <img src={family} alt=""  />
                         </Col>
                     </Row>
                 </Container>

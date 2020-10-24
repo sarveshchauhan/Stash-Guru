@@ -29,7 +29,7 @@ function FrontSearchListCtrl(){
                     <Row className="align-items-center justify-content-between">
                         <div className="col-3 text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">
-                                <img width="100%" src={logo} />
+                                <img width="100%" src={logo}  alt="" />
                             </NavLink>
                         </div>
                         <div className="col-4 my-2">
@@ -46,7 +46,7 @@ function FrontSearchListCtrl(){
                     <Row className="align-items-center justify-content-between">
                         <Col className="col-12 text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">
-                                <img width="100%" src={logo} />
+                                <img width="100%" src={logo} alt=""  />
                             </NavLink>
                             <span  className="mob_toggler">
                                 <FrontSideBarMenu />
@@ -191,10 +191,10 @@ function FrontSearchListCtrl(){
                                 <div className="SearchListPlace_row">
                                     <div className="SearchListPlace_col">
                                         <div className="SearchListPlace_card">
-                                            <img src={SearchList1} />
+                                            <img src={SearchList1}  alt="" />
                                             <div className="SearchListPlace_card_body">
                                                 <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r1} />
+                                                    <img className="profileImg" src={user_r1} alt=""  />
                                                     <span className="profileName">Mary Ann Wagner</span>
                                                 </div>
 
@@ -215,10 +215,10 @@ function FrontSearchListCtrl(){
                                     
                                     <div className="SearchListPlace_col">
                                         <div className="SearchListPlace_card">
-                                            <img src={SearchList2} />
+                                            <img src={SearchList2}  alt="" />
                                             <div className="SearchListPlace_card_body">
                                                 <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r2} />
+                                                    <img className="profileImg" src={user_r2}  alt="" />
                                                     <span className="profileName">Chris Stewart</span>
                                                 </div>
 
@@ -239,10 +239,10 @@ function FrontSearchListCtrl(){
 
                                     <div className="SearchListPlace_col">
                                         <div className="SearchListPlace_card">
-                                            <img src={SearchList3} />
+                                            <img src={SearchList3}  alt="" />
                                             <div className="SearchListPlace_card_body">
                                                 <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r3} />
+                                                    <img className="profileImg" src={user_r3}  alt="" />
                                                     <span className="profileName">Bobby Wagner</span>
                                                 </div>
                                                 
@@ -263,10 +263,10 @@ function FrontSearchListCtrl(){
 
                                     <div className="SearchListPlace_col">
                                         <div className="SearchListPlace_card">
-                                            <img src={SearchList1} />
+                                            <img src={SearchList1}  alt="" />
                                             <div className="SearchListPlace_card_body">
                                                 <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r1} />
+                                                    <img className="profileImg" src={user_r1}  alt="" />
                                                     <span className="profileName">Mary Ann Wagner</span>
                                                 </div>
 
@@ -287,10 +287,10 @@ function FrontSearchListCtrl(){
                                     
                                     <div className="SearchListPlace_col">
                                         <div className="SearchListPlace_card">
-                                            <img src={SearchList2} />
+                                            <img src={SearchList2}  alt="" />
                                             <div className="SearchListPlace_card_body">
                                                 <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r2} />
+                                                    <img className="profileImg" src={user_r2}  alt="" />
                                                     <span className="profileName">Chris Stewart</span>
                                                 </div>
 
@@ -311,10 +311,10 @@ function FrontSearchListCtrl(){
 
                                     <div className="SearchListPlace_col">
                                         <div className="SearchListPlace_card">
-                                            <img src={SearchList3} />
+                                            <img src={SearchList3}  alt="" />
                                             <div className="SearchListPlace_card_body">
                                                 <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r3} />
+                                                    <img className="profileImg" src={user_r3}  alt="" />
                                                     <span className="profileName">Bobby Wagner</span>
                                                 </div>
                                                 
@@ -335,10 +335,10 @@ function FrontSearchListCtrl(){
                                     
                                     <div className="SearchListPlace_col">
                                         <div className="SearchListPlace_card">
-                                            <img src={SearchList1} />
+                                            <img src={SearchList1}  alt="" />
                                             <div className="SearchListPlace_card_body">
                                                 <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r1} />
+                                                    <img className="profileImg" src={user_r1}  alt="" />
                                                     <span className="profileName">Mary Ann Wagner</span>
                                                 </div>
 
@@ -359,10 +359,10 @@ function FrontSearchListCtrl(){
                                     
                                     <div className="SearchListPlace_col">
                                         <div className="SearchListPlace_card">
-                                            <img src={SearchList2} />
+                                            <img src={SearchList2}  alt="" />
                                             <div className="SearchListPlace_card_body">
                                                 <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r2} />
+                                                    <img className="profileImg" src={user_r2}  alt="" />
                                                     <span className="profileName">Chris Stewart</span>
                                                 </div>
 
@@ -383,10 +383,10 @@ function FrontSearchListCtrl(){
 
                                     <div className="SearchListPlace_col">
                                         <div className="SearchListPlace_card">
-                                            <img src={SearchList3} />
+                                            <img src={SearchList3}  alt="" />
                                             <div className="SearchListPlace_card_body">
                                                 <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r3} />
+                                                    <img className="profileImg" src={user_r3}  alt="" />
                                                     <span className="profileName">Bobby Wagner</span>
                                                 </div>
                                                 
@@ -410,7 +410,7 @@ function FrontSearchListCtrl(){
                     </Col>
                     <Col lg={6}>
                         <div className="map_area">
-                            <img src={map} />
+                            <img src={map}  alt="" />
                         </div>
                     </Col>
                 </Row>

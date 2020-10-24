@@ -11,7 +11,6 @@ import store from '../../../assets/front/images/icons/store.svg';
 import SearchList1 from '../../../assets/front/images/dummy/SearchList1.jpg';
 import SearchList2 from '../../../assets/front/images/dummy/SearchList2.jpg';
 import SearchList3 from '../../../assets/front/images/dummy/SearchList3.jpg';
-import flexible from '../../../assets/front/images/icons/flexible.png';
 import user_r_bg from '../../../assets/front/images/dummy/user_r_bg.jpg';
 import user_r1 from '../../../assets/front/images/dummy/user_r1.png';
 
@@ -179,7 +178,7 @@ function FrontSearchDetailsCtrl(){
                                 </Col>
                                 <Col sm={12}>
                                     <div className="details_your_location_map">
-                                        <img src={map} />
+                                        <img src={map} alt="" />
                                     </div>
                                 </Col>
                             </Row>
@@ -191,50 +190,50 @@ function FrontSearchDetailsCtrl(){
                             <Row>
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                    <img src={door_lock}/>
+                                    <img src={door_lock} alt="" />
                                         <p>Lockable <br/> Door</p>
                                     </div>
                                 </Col>
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={alarm}/>
+                                        <img src={alarm} alt="" />
                                         <p>Security <br/> Alarm</p>
                                     </div>
                                 </Col>
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={cctv_camera}/>
+                                        <img src={cctv_camera} alt="" />
                                         <p>CCTV</p>
                                     </div>
                                 </Col>
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={light_bulb}/>
+                                        <img src={light_bulb} alt="" />
                                         <p>Lighitng</p>
                                     </div>
                                 </Col>
 
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={file_alarm}/>
+                                        <img src={file_alarm} alt="" />
                                         <p>Fire <br/> Alarm</p>
                                     </div>
                                 </Col>
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={electric_plug}/>
+                                        <img src={electric_plug} alt="" />
                                         <p>Electricity <br/> Points</p>
                                     </div>
                                 </Col>
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={heating}/>
+                                        <img src={heating} alt="" />
                                         <p>Heating</p>
                                     </div>
                                 </Col>
                                 <Col  sm={3}>
                                     <div className="features_icon">
-                                        <img src={water_drop}/>
+                                        <img src={water_drop} alt="" />
                                         <p>Water <br/> Supply</p>
                                     </div>
                                 </Col>
@@ -248,7 +247,7 @@ function FrontSearchDetailsCtrl(){
                             <Row>
                                 <Col  sm={6}>
                                     <div className="access_card">
-                                        <img src={open_box}/>
+                                        <img src={open_box} alt="" />
                                         <div className="access_card_text">
                                             <strong>Full Space</strong>
                                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</p>
@@ -257,7 +256,7 @@ function FrontSearchDetailsCtrl(){
                                 </Col>
                                 <Col  sm={6}>
                                     <div className="access_card">
-                                        <img src={time}/>
+                                        <img src={time} alt="" />
                                         <div className="access_card_text">
                                             <strong>Any Time</strong>
                                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</p>
@@ -266,7 +265,7 @@ function FrontSearchDetailsCtrl(){
                                 </Col>
                                 <Col  sm={6}>
                                     <div className="access_card">
-                                        <img src={blow_ground}/>
+                                        <img src={blow_ground} alt="" />
                                         <div className="access_card_text">
                                             <strong>Below Ground</strong>
                                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</p>
@@ -275,7 +274,7 @@ function FrontSearchDetailsCtrl(){
                                 </Col>
                                 <Col  sm={6}>
                                     <div className="access_card">
-                                        <img src={key}/>
+                                        <img src={key} alt="" />
                                         <div className="access_card_text">
                                             <strong>Key Provided</strong>
                                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</p>
@@ -291,10 +290,10 @@ function FrontSearchDetailsCtrl(){
                             <Row>
                                 <Col  sm={6}>
                                     <div className="SearchListPlace_card">
-                                        <img width="100%" src={SearchList1} />
+                                        <img width="100%" src={SearchList1}  alt="" />
                                         <div className="SearchListPlace_card_body">
                                             <div className="SearchListPlaceUserArea">
-                                                <img width="100%" className="profileImg" src={user_r1} />
+                                                <img width="100%" className="profileImg" src={user_r1} alt=""  />
                                                 <span className="profileName">Mary Ann Wagner</span>
                                             </div>
 
@@ -312,10 +311,10 @@ function FrontSearchDetailsCtrl(){
                                 </Col>
                                 <Col  sm={6}>
                                     <div className="SearchListPlace_card">
-                                        <img width="100%" src={SearchList2} />
+                                        <img width="100%" src={SearchList2} alt=""  />
                                         <div className="SearchListPlace_card_body">
                                             <div className="SearchListPlaceUserArea">
-                                                <img className="profileImg" src={user_r1} />
+                                                <img className="profileImg" src={user_r1} alt=""  />
                                                 <span className="profileName">Mary Ann Wagner</span>
                                             </div>
 
@@ -340,7 +339,7 @@ function FrontSearchDetailsCtrl(){
                             <Row>
                                 <Col  sm={6}>
                                     <div className="host_card">
-                                        <img src={user_r_bg}/>
+                                        <img src={user_r_bg} alt="" />
                                         <div className="access_card_text">
                                             <h4>Mary Ann Wagner</h4>
                                             <small>No Verifie Host</small>
@@ -361,7 +360,7 @@ function FrontSearchDetailsCtrl(){
                                 <Button variant="outline-info">Warehouse </Button>
 
                                 <div className="d-flex user_area align-items-center">
-                                    <img width="30" height="30" src={user_r1}/>
+                                    <img width="30" height="30" src={user_r1} alt="" />
                                     <div className="">
                                         <strong className="d-block">Mary Ann Wagner</strong>
                                         <small className="d-block">Verified Host</small>
@@ -379,22 +378,22 @@ function FrontSearchDetailsCtrl(){
                             </div>
                             <div className="book_space_card_footer">
                                 <div className="d-flex justify-content-center align-items-center">
-                                    <img className="mr-3" src={helping}/>
+                                    <img className="mr-3" src={helping} alt="" />
                                     <p className="m-0">$400 insurance included</p>
                                 </div>
                                 
                                 <div className="d-flex justify-content-center align-items-center">
-                                    <img className="mr-3" src={support}/>
+                                    <img className="mr-3" src={support} alt="" />
                                     <p className="m-0">$400 insurance included</p>
                                 </div>
                                 
                                 <div className="d-flex justify-content-center align-items-center">
-                                    <img className="mr-3" src={secure_payment}/>
+                                    <img className="mr-3" src={secure_payment} alt="" />
                                     <p className="m-0">$400 insurance included</p>
                                 </div>
                                 
                                 <div className="d-flex justify-content-center align-items-center">
-                                    <img className="mr-3" src={agreement}/>
+                                    <img className="mr-3" src={agreement} alt="" />
                                     <p className="m-0">$400 insurance included</p>
                                 </div>
                             </div>
@@ -411,7 +410,7 @@ function FrontSearchDetailsCtrl(){
                         <Col md={4}>
                             <div className="ab_strip_card">
                                 <div className="ab_strip_card_icon">
-                                    <img src={browse} />
+                                    <img src={browse} alt="" />
                                 </div>
                                 <div className="ab_strip_card_content">
                                     <h4>Browse</h4>
@@ -422,7 +421,7 @@ function FrontSearchDetailsCtrl(){
                         <Col md={4}>
                             <div className="ab_strip_card">
                                 <div className="ab_strip_card_icon">
-                                    <img src={connect} />
+                                    <img src={connect} alt=""  />
                                 </div>
                                 <div className="ab_strip_card_content">
                                     <h4>Connect</h4>
@@ -433,7 +432,7 @@ function FrontSearchDetailsCtrl(){
                         <Col md={4}>
                             <div className="ab_strip_card">
                                 <div className="ab_strip_card_icon">
-                                    <img src={store} />
+                                    <img src={store} alt=""  />
                                 </div>
                                 <div className="ab_strip_card_content">
                                     <h4>Store</h4>
@@ -451,7 +450,7 @@ function FrontSearchDetailsCtrl(){
                     <Row className="">                        
                         <Col md={4}>
                             <div className="why_stash_guru_card">
-                                <img src={Local} />
+                                <img src={Local} alt=""  />
                                 <h5>Local</h5>
                                 <p>There are hundreds of local storage <br/> Hosts to choose from</p>
                             </div>
@@ -459,7 +458,7 @@ function FrontSearchDetailsCtrl(){
 
                         <Col md={4}>
                             <div className="why_stash_guru_card">
-                                <img src={Affordable} />
+                                <img src={Affordable} alt=""  />
                                 <h5>Affordable</h5>
                                 <p>Save on average 50% on your<br/> storage bill</p>
                             </div>
@@ -467,7 +466,7 @@ function FrontSearchDetailsCtrl(){
 
                         <Col md={4}>
                             <div className="why_stash_guru_card">
-                                <img src={Flexible} />
+                                <img src={Flexible} alt=""  />
                                 <h5>Flexible</h5>
                                 <p>Clear contracts, no hidden charges<br/> or fees</p>
                             </div>
@@ -475,7 +474,7 @@ function FrontSearchDetailsCtrl(){
 
                         <Col md={4}>
                             <div className="why_stash_guru_card">
-                                <img src={Vetted} />
+                                <img src={Vetted} alt=""  />
                                 <h5>Vetted</h5>
                                 <p>Spaces are quality controlled and<br/> approved by stash.guru</p>
                             </div>
@@ -483,7 +482,7 @@ function FrontSearchDetailsCtrl(){
 
                         <Col md={4}>
                             <div className="why_stash_guru_card">
-                                <img src={IDChecks} />
+                                <img src={IDChecks} alt=""  />
                                 <h5>ID Checks</h5>
                                 <p>All self storage hosts have their identity verified<br/>
                                  by an independent third party to ensure things<br/>
@@ -493,7 +492,7 @@ function FrontSearchDetailsCtrl(){
 
                         <Col md={4}>
                             <div className="why_stash_guru_card">
-                                <img src={Support} />
+                                <img src={Support} alt=""  />
                                 <h5>stash.guru Support</h5>
                                 <p>Our team is here to help Guests and Hosts if any<br/>
                                  questions or issues arise with storage</p>
@@ -517,7 +516,7 @@ function FrontSearchDetailsCtrl(){
                         </Col>
                         <Col md={6}>
                             <div className="some_empty_space_polygon_img">
-                                <img src={some_empty_space} />
+                                <img src={some_empty_space} alt=""  />
                             </div>
                         </Col>
                     </Row>
