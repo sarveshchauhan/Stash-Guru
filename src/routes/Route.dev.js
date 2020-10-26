@@ -23,8 +23,8 @@ import ListYourSpaceComponentCtrl from '../front/pages/ListYourSpace';
 const Root = () =>(
     <BrowserRouter>
         <Switch>
-            <PrivateRoute exact path="/login" parentComponent={RegisterPagesLayoutCtrl} childComponent={LoginComponentCtrl} />
-            {/* <Route exact path="/login" render={(props)=> (< RegisterPagesLayoutCtrl children={LoginComponentCtrl} {...props} />)} /> */}
+            {/* <PrivateRoute exact path="/login" parentComponent={RegisterPagesLayoutCtrl} childComponent={LoginComponentCtrl} /> */}
+            <Route exact path="/login" render={(props)=> (< RegisterPagesLayoutCtrl children={LoginComponentCtrl} {...props} />)} />
             <Route exact path="/signup" render={(props)=> (< RegisterPagesLayoutCtrl children={SignUpComponentCtrl} {...props} />)} />
 
             <Route exact path="/" render={(props)=> (<FrontHomePagesLayoutCtrl children={FrontHomeCtrl} {...props} />)} />
