@@ -1,20 +1,18 @@
-import React from 'react';
-import { Button, Col, Container, Row ,Form} from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Col, Container, Row ,Form, Message} from 'react-bootstrap';
 import GoogleLogo from '../../../assets/front/images/icons/GoogleLogo.png';
 import facebook from '../../../assets/front/images/icons/facebook.png';
 
 import catoons from '../../../assets/front/images/img/catoons.svg';
 import family from '../../../assets/front/images/img/family.svg';
 
+import {loginUser} from '../../../redux';
+import { connect } from 'react-redux';
+
 import './Register.scss';
 import { NavLink } from 'react-router-dom';
-// import { createStore } from 'redux';
-// import authApp from '../../../redux';
-// const store = createStore(authApp)
-
-// function LoginComponentCtrl(){
 class LoginComponentCtrl extends React.Component{
-
+    
     constructor(props) {
         super(props);
         this.state = {
@@ -33,8 +31,12 @@ class LoginComponentCtrl extends React.Component{
     }
 
     handleSubmit(event) {
-        console.log('A name was submitted: ' + this.state.email);
-        console.log('A name was submitted: ' + this.state.password);
+        let data = {
+            email: this.state.email,
+            password: this.state.password
+        };
+        const { loginUser, auth } = this.props;    
+        let test = loginUser(data);
         event.preventDefault();
     }
 
@@ -43,9 +45,11 @@ class LoginComponentCtrl extends React.Component{
             <>
             <section className="section_padding">
                 <Container>
+                
                     <Row className="align-items-center">
+                        
                         <Col sm={4} className="my-2">
-                            <img src={catoons}  alt="" />
+                            <img src={catoons} />
                         </Col>
                         <Col sm={4} className="my-2">
                             <div className="register_card">
@@ -56,6 +60,11 @@ class LoginComponentCtrl extends React.Component{
                                                 <span>Login</span> To Continue
                                             </h2>
                                         </div>
+                                    </Col>
+                                    <Col sm={12}>
+                                        {this.props.auth.auth.error &&
+                                            <span>{JSON.stringify(this.props.auth.auth.error)}</span>
+                                        }
                                     </Col>
                                     <Col sm={12}>
                                             <Form onSubmit={this.handleSubmit}>
@@ -87,12 +96,12 @@ class LoginComponentCtrl extends React.Component{
                                         <Row>
                                             <Col sm={12} className="mt-2">
                                                 <Button className="btn-block sign_with_google_btn">
-                                                    <img src={GoogleLogo} alt="" /> Sign In With Google
+                                                    <img src={GoogleLogo}/> Sign In With Google
                                                 </Button>
                                             </Col>
                                             <Col sm={12} className="mt-4">
                                                 <Button className="btn-block sign_with_fb_btn">
-                                                <img src={facebook} alt="" /> Sign In With Facebook
+                                                <img src={facebook}/> Sign In With Facebook
                                             </Button>
                                             </Col>
                                         </Row>
@@ -109,7 +118,7 @@ class LoginComponentCtrl extends React.Component{
                                 </Row>
                             </div>
                         </Col><Col sm={4} className="my-2">
-                            <img src={family} alt=""  />
+                            <img src={family} />
                         </Col>
                     </Row>
                 </Container>
@@ -118,4 +127,20 @@ class LoginComponentCtrl extends React.Component{
         )
     }
 }
-export default LoginComponentCtrl;
+const mapStateToProps = state => {
+
+    return {
+        auth: state
+    }
+
+}
+
+const mapDispatchToProps = dispatch => {
+
+    return {
+        loginUser: (user) => dispatch(loginUser(user))
+    }
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginComponentCtrl);

@@ -1,12 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-// import App from './App';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Root from './routes/Route.dev';
+import { Provider } from 'react-redux';
+import store from './redux/store'
+
+const rootElement = document.getElementById('root')
+ReactDOM.render(
+  <Provider store={store}>
+    <Root />
+  </Provider>,
+  rootElement
+)
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -16,7 +26,7 @@ import Root from './routes/Route.dev';
 // );
 
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+// ReactDOM.render(<Root />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

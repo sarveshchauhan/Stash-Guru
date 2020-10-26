@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, Col, Container, Row ,Form} from 'react-bootstrap';
+import React, { useState, useEffect }  from 'react';
+import { Button, Col, Container, Row ,Form, Alert} from 'react-bootstrap';
 import GoogleLogo from '../../../assets/front/images/icons/GoogleLogo.png';
 import facebook from '../../../assets/front/images/icons/facebook.png';
 
@@ -8,16 +8,72 @@ import family from '../../../assets/front/images/img/family.svg';
 
 import './Register.scss';
 import { NavLink } from 'react-router-dom';
-
+import {registerUser} from '../../../redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 
 function SignUpComponentCtrl(){
+
+    const dispatch = useDispatch();
+
+    const [fullname, setFullName] = useState("");
+    const [mobile, setMobile] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const { response, error, loading } = useSelector(state => state.register);
+
+    useEffect(() => {
+
+        setFullName("");
+        setMobile("");
+        setEmail("");
+        setPassword(""); 
+    }, [error]);
+
+    useEffect(() => {
+
+        setFullName("");
+        setMobile("");
+        setEmail("");
+        setPassword(""); 
+
+    }, [response]);
+
+    const handleFormField = (e) => {
+        switch (e.target.name){
+            case 'email':
+                setEmail(e.target.value);
+                break;
+            case 'mobile':
+                setMobile(e.target.value);
+                break;
+            case 'fullname':
+                setFullName(e.target.value);
+                break;
+            case 'password':
+                setPassword(e.target.value);
+                break;
+            default:
+                break;
+        }
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        let data = {
+            name: fullname,
+            mobile: mobile,
+            email: email,
+            password: password
+        };
+        dispatch(registerUser(data));
+    }
     return(
         <>
         <section className="section_padding">
             <Container>
                 <Row className="align-items-center">
                     <Col sm={4} className="my-2">
-                        <img src={catoons}  alt="" />
+                        <img src={catoons} />
                     </Col>
                     <Col sm={4} className="my-2">
                         <div className="register_card">
@@ -30,23 +86,43 @@ function SignUpComponentCtrl(){
                                     </div>
                                 </Col>
                                 <Col sm={12}>
-                                        <Form>
+                                {
+                                    response && (
+                                        <Alert variant="success">
+                                            {response}
+                                        </Alert>
+
+                                    )
+                                }
+                                </Col>
+                                <Col sm={12}>
+                                {
+                                    error && (
+                                        <Alert variant="danger">
+                                            {error}
+                                        </Alert>
+
+                                    )
+                                }
+                                </Col>
+                                <Col sm={12}>
+                                        <Form onSubmit={handleSubmit}>
                                             <Row className="my-2 pt-2">
                                                 <Col>
                                                     <Form.Group controlId="">
-                                                        <Form.Control type="email" placeholder="Email Address" />
+                                                        <Form.Control type="email" placeholder="Email Address" name="email" value={email} onChange={handleFormField} onBlur={handleFormField} />
                                                     </Form.Group>
 
                                                     <Form.Group controlId="">
-                                                        <Form.Control type="text" placeholder="Mobile NUmber" />
+                                                        <Form.Control type="text" placeholder="Mobile NUmber" name="mobile" value={mobile} onChange={handleFormField} onBlur={handleFormField} />
                                                     </Form.Group>
 
                                                     <Form.Group controlId="">
-                                                        <Form.Control type="text" placeholder="Full Name" />
+                                                        <Form.Control type="text" placeholder="Full Name" name="fullname" value={fullname} onChange={handleFormField} onBlur={handleFormField} />
                                                     </Form.Group>
 
                                                     <Form.Group controlId="">
-                                                        <Form.Control type="password" placeholder="Create password (min. 8 characters)" />
+                                                        <Form.Control type="password" placeholder="Create password (min. 8 characters)" name="password" value={password} onChange={handleFormField} onBlur={handleFormField} />
                                                     </Form.Group>
                                                 </Col>
                                             </Row>
@@ -65,12 +141,12 @@ function SignUpComponentCtrl(){
                                     <Row>
                                         <Col sm={12} className="mt-2">
                                             <Button className="btn-block sign_with_google_btn">
-                                                <img src={GoogleLogo} alt="" /> Sign In With Google
+                                                <img src={GoogleLogo}/> Sign In With Google
                                             </Button>
                                         </Col>
                                         <Col sm={12} className="mt-4">
                                             <Button className="btn-block sign_with_fb_btn">
-                                            <img src={facebook} alt="" /> Sign In With Facebook
+                                            <img src={facebook}/> Sign In With Facebook
                                         </Button>
                                         </Col>
                                     </Row>
@@ -84,7 +160,7 @@ function SignUpComponentCtrl(){
                             </Row>
                         </div>
                     </Col><Col sm={4} className="my-2">
-                        <img src={family} alt=""  />
+                        <img src={family} />
                     </Col>
                 </Row>
             </Container>

@@ -1,5 +1,7 @@
 import React from 'react';
 import {BrowserRouter,Switch,Route} from 'react-router-dom';
+import { PrivateRoute } from './PrivateRoute';
+
 import RegisterPagesLayoutCtrl from '../front/layout/registerLayout';
 import FrontHomePagesLayoutCtrl from '../front/layout/HomeLayout';
 import FrontPagesLayoutCtrl from '../front/layout/PageLayout';
@@ -21,7 +23,8 @@ import ListYourSpaceComponentCtrl from '../front/pages/ListYourSpace';
 const Root = () =>(
     <BrowserRouter>
         <Switch>
-            <Route exact path="/login" render={(props)=> (< RegisterPagesLayoutCtrl children={LoginComponentCtrl} {...props} />)} />
+            <PrivateRoute exact path="/login" parentComponent={LoginComponentCtrl} childComponent={RegisterPagesLayoutCtrl} />
+            {/* <Route exact path="/login" render={(props)=> (< RegisterPagesLayoutCtrl children={LoginComponentCtrl} {...props} />)} /> */}
             <Route exact path="/signup" render={(props)=> (< RegisterPagesLayoutCtrl children={SignUpComponentCtrl} {...props} />)} />
 
             <Route exact path="/" render={(props)=> (<FrontHomePagesLayoutCtrl children={FrontHomeCtrl} {...props} />)} />
