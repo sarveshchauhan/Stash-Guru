@@ -27,7 +27,7 @@ import Flexible from '../../../assets/front/images/icons/flexible.png';
 import Vetted from '../../../assets/front/images/icons/approved.png';
 import IDChecks from '../../../assets/front/images/icons/id-card.png';
 import Support from '../../../assets/front/images/icons/support.png';
-
+import ListYourSpace from '../../../assets/front/images/icons/list_your_space.png'
 
 
 import SearchComponent from '../../common/components/SearchCompo';
@@ -466,7 +466,7 @@ function FrontHomeCtrl(){
                                     </Col>
                                     <Col lg={5} className="mt-2">
                                         <Button className="btn-block btn-outline-light">
-                                            <i className="fa fa-map-marker"></i> List Your Space
+                                            <img width="15" className="mr-2" src={ListYourSpace} /> List Your Space
                                         </Button>
                                     </Col>
                                 </Row>

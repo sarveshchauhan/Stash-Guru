@@ -14,6 +14,20 @@ import SearchList3 from '../../../assets/front/images/dummy/SearchList3.jpg';
 import user_r1 from '../../../assets/front/images/dummy/user_r1.png';
 import user_r2 from '../../../assets/front/images/dummy/user_r2.png';
 import user_r3 from '../../../assets/front/images/dummy/user_r3.png';
+
+
+
+import b_garage from '../../../assets/front/images/icons/storage_type/b_garage.png';
+import b_basement from '../../../assets/front/images/icons/storage_type/b_basement.png';
+import b_container from '../../../assets/front/images/icons/storage_type/b_container.png';
+import b_house_lock from '../../../assets/front/images/icons/storage_type/b_house_lock.png';
+import b_lofts from '../../../assets/front/images/icons/storage_type/b_lofts.png';
+import b_outhoused from '../../../assets/front/images/icons/storage_type/b_outhoused.png';
+import b_parked_car from '../../../assets/front/images/icons/storage_type/b_parked_car.png';
+import b_spare_rooms from '../../../assets/front/images/icons/storage_type/b_spare_rooms.png';
+import b_warehouse from '../../../assets/front/images/icons/storage_type/b_warehouse.png';
+
+
 // Assets Include End
 
 
@@ -190,7 +204,7 @@ function FrontSearchListCtrl(){
                         <Row>
                             <Col lg={12} className="pt-3">
                                 <div className="SearchListPlace_row">
-                                    <div className="SearchListPlace_col">
+                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
                                         <div className="SearchListPlace_card">
                                             <img width="100%" src={SearchList1}  alt="" />
                                             <div className="SearchListPlace_card_body">
@@ -200,7 +214,9 @@ function FrontSearchListCtrl(){
                                                 </div>
 
                                                 <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">Garage</Button>
+                                                    <Button size="sm">
+                                                        <img width="100%" src={b_garage}  alt="" /> Garage
+                                                    </Button>
                                                     <span>California </span>
                                                     <span>|</span>
                                                     <span>1 Miles</span>
@@ -214,7 +230,7 @@ function FrontSearchListCtrl(){
                                         </div>
                                     </div>
                                     
-                                    <div className="SearchListPlace_col">
+                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
                                         <div className="SearchListPlace_card">
                                             <img width="100%" src={SearchList2}  alt="" />
                                             <div className="SearchListPlace_card_body">
@@ -224,7 +240,9 @@ function FrontSearchListCtrl(){
                                                 </div>
 
                                                 <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">Warehouse</Button>
+                                                    <Button size="sm">
+                                                        <img width="100%" src={b_warehouse}  alt="" /> Warehouse
+                                                    </Button>
                                                     <span>California </span>
                                                     <span>|</span>
                                                     <span>1 Miles</span>
@@ -238,7 +256,7 @@ function FrontSearchListCtrl(){
                                         </div>
                                     </div>
 
-                                    <div className="SearchListPlace_col">
+                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
                                         <div className="SearchListPlace_card">
                                             <img width="100%" src={SearchList3}  alt="" />
                                             <div className="SearchListPlace_card_body">
@@ -248,7 +266,9 @@ function FrontSearchListCtrl(){
                                                 </div>
                                                 
                                                 <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">Parking House</Button>
+                                                    <Button size="sm">
+                                                        <img width="100%" src={b_parked_car}  alt="" /> Parking House
+                                                    </Button>
                                                     <span>California </span>
                                                     <span>|</span>
                                                     <span>1 Miles</span>
@@ -262,7 +282,7 @@ function FrontSearchListCtrl(){
                                         </div>
                                     </div>
 
-                                    <div className="SearchListPlace_col">
+                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
                                         <div className="SearchListPlace_card">
                                             <img width="100%" src={SearchList1}  alt="" />
                                             <div className="SearchListPlace_card_body">
@@ -272,6 +292,9 @@ function FrontSearchListCtrl(){
                                                 </div>
 
                                                 <div className="SearchListPlaceAreaPlace">
+                                                    <Button size="sm">
+                                                        <img width="100%" src={b_outhoused}  alt="" /> Outhoused
+                                                    </Button>
                                                     <Button size="sm">Garage</Button>
                                                     <span>California </span>
                                                     <span>|</span>
@@ -286,7 +309,7 @@ function FrontSearchListCtrl(){
                                         </div>
                                     </div>
                                     
-                                    <div className="SearchListPlace_col">
+                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
                                         <div className="SearchListPlace_card">
                                             <img width="100%" src={SearchList2}  alt="" />
                                             <div className="SearchListPlace_card_body">
@@ -296,7 +319,9 @@ function FrontSearchListCtrl(){
                                                 </div>
 
                                                 <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">Warehouse</Button>
+                                                    <Button size="sm">
+                                                        <img width="100%" src={b_spare_rooms}  alt="" /> Spare Rooms
+                                                    </Button>
                                                     <span>California </span>
                                                     <span>|</span>
                                                     <span>1 Miles</span>
@@ -310,7 +335,7 @@ function FrontSearchListCtrl(){
                                         </div>
                                     </div>
 
-                                    <div className="SearchListPlace_col">
+                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
                                         <div className="SearchListPlace_card">
                                             <img width="100%" src={SearchList3}  alt="" />
                                             <div className="SearchListPlace_card_body">
@@ -320,7 +345,9 @@ function FrontSearchListCtrl(){
                                                 </div>
                                                 
                                                 <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">Parking House</Button>
+                                                    <Button size="sm">
+                                                        <img width="100%" src={b_lofts}  alt="" /> Lofts
+                                                    </Button>
                                                     <span>California </span>
                                                     <span>|</span>
                                                     <span>1 Miles</span>
@@ -334,7 +361,7 @@ function FrontSearchListCtrl(){
                                         </div>
                                     </div>
                                     
-                                    <div className="SearchListPlace_col">
+                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
                                         <div className="SearchListPlace_card">
                                             <img width="100%" src={SearchList1}  alt="" />
                                             <div className="SearchListPlace_card_body">
@@ -344,7 +371,9 @@ function FrontSearchListCtrl(){
                                                 </div>
 
                                                 <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">Garage</Button>
+                                                    <Button size="sm">
+                                                        <img width="100%" src={b_house_lock}  alt="" /> House Lock
+                                                    </Button>
                                                     <span>California </span>
                                                     <span>|</span>
                                                     <span>1 Miles</span>
@@ -358,7 +387,7 @@ function FrontSearchListCtrl(){
                                         </div>
                                     </div>
                                     
-                                    <div className="SearchListPlace_col">
+                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
                                         <div className="SearchListPlace_card">
                                             <img width="100%" src={SearchList2}  alt="" />
                                             <div className="SearchListPlace_card_body">
@@ -368,7 +397,9 @@ function FrontSearchListCtrl(){
                                                 </div>
 
                                                 <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">Warehouse</Button>
+                                                    <Button size="sm">
+                                                        <img width="100%" src={b_container}  alt="" /> Container
+                                                    </Button>
                                                     <span>California </span>
                                                     <span>|</span>
                                                     <span>1 Miles</span>
@@ -382,7 +413,7 @@ function FrontSearchListCtrl(){
                                         </div>
                                     </div>
 
-                                    <div className="SearchListPlace_col">
+                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
                                         <div className="SearchListPlace_card">
                                             <img width="100%" src={SearchList3}  alt="" />
                                             <div className="SearchListPlace_card_body">
@@ -392,7 +423,9 @@ function FrontSearchListCtrl(){
                                                 </div>
                                                 
                                                 <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">Parking House</Button>
+                                                    <Button size="sm">
+                                                        <img width="100%" src={b_basement}  alt="" /> Basement
+                                                    </Button>
                                                     <span>California </span>
                                                     <span>|</span>
                                                     <span>1 Miles</span>

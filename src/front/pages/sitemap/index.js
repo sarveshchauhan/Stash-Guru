@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 function FrontSitemapCtrl(){
     return(
         <>
-            <section style={{borderTop: '1px solid gray'}}>
+            <section>
                 <Container>
                     <h1>Sitemap</h1>
                 </Container>

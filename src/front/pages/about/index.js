@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 function FrontAboutCtrl(){
     return(
         <>
-            <section style={{borderTop: '1px solid gray'}}>
+            <section>
                 <Container>
                     <h1>About</h1>
                 </Container>

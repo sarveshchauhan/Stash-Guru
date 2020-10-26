@@ -711,16 +711,6 @@ input.form-control{
     background-color: $milky_color;
     color: $deep_sky_color;
 }
-.here_to_help_you .btn-outline-light:hover{
-    background: $shamrock_color;
-    color: $milky_color;
-    border-color:$shamrock_color;
-}
-.here_to_help_you .btn-outline-light i.fa{
-    transform: scaleX(1) skew(-22deg, -11deg);
-    padding-right: 10px;
-}
-
 
 
 
@@ -743,7 +733,17 @@ input.form-control{
     height: 45px;
 }
 
+// .here_to_help_you .btn-outline-light i.fa{
+//     transform: scaleX(1) skew(-22deg, -11deg);
+//     padding-right: 10px;
+// }
 
+
+// .here_to_help_you .btn-outline-light:hover{
+//     background: $shamrock_color;
+//     color: $milky_color;
+//     border-color:$shamrock_color;
+// }
 
 
 

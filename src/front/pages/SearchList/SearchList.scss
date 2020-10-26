@@ -126,11 +126,10 @@
     border: 1px solid $deep_sky_color;
     color: $deep_sky_color;
 }
-.SearchListPlaceAreaPlace button:hover{
-    background: $deep_sky_color;;
-    border: 1px solid $deep_sky_color;
-    color: $milky_color;
+.SearchListPlaceAreaPlace button img{
+    width: 8px;
 }
+
 .SearchListPlaceAreaPlace span{
     font-size: 10px;
     display: inline-block;
@@ -171,8 +170,6 @@
 
 
 .SearchListPlace_col{
-    flex: 0 0 100%;
-    max-width: 100%;
     padding-right: 5px;
     padding-left: 5px;
 }
@@ -180,8 +177,6 @@
 @media (min-width: 576px){
 
 .SearchListPlace_col{
-    flex: 0 0 33.333333%;
-    max-width: 33.333333%;
     padding-right: 5px;
     padding-left: 5px;
 }

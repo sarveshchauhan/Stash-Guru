@@ -79,7 +79,7 @@ function FrontSearchDetailsCtrl(){
         <section className="py-4">
             <Container className="">
                 <Row>
-                    <Col md={8}>
+                    <Col lg={8}>
                         <Carousel activeIndex={index} onSelect={search_Details_handleSelect} indicators={true}>
                             <Carousel.Item>
                                 <img className="d-block w-100" src={SearchList1} alt="First slide" />
@@ -354,7 +354,7 @@ function FrontSearchDetailsCtrl(){
 
 
 
-                    <Col sm={4}>
+                    <Col lg={4}>
                         <div className="book_space_card">
                             <div className="book_space_card_body">
                                 <Button variant="outline-info">Warehouse </Button>
@@ -370,7 +370,7 @@ function FrontSearchDetailsCtrl(){
                                     <i className="fa fa-map-marker mr-3"></i> 
                                     California | 1 Miles
                                 </small>
-                                <div class="SearchListPlaceAreaCost justify-content-between">
+                                <div className="SearchListPlaceAreaCost justify-content-between">
                                     <strong>$45.00/Month </strong>
                                     <span>25x25</span>
                                 </div>

@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 function FrontFaqsCtrl(){
     return(
         <>
-            <section style={{borderTop: '1px solid gray'}}>
+            <section>
                 <Container>
                     <h1>Faqs</h1>
                 </Container>
