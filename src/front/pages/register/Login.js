@@ -163,7 +163,7 @@ class LoginComponentCtrl extends React.Component{
                                                     appId="648585002686329"
                                                     fields="name,email,picture"
                                                     callback={(response)=> this.responseFacebook(response)}
-                                                    cssClass="my-facebook-button-class"
+                                                    cssClass="my-facebook-button-class btn-block sign_with_fb_btn btn"
                                                     icon="fa-facebook"
                                                 />
                                             </Col>

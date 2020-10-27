@@ -2,12 +2,15 @@ import React from 'react';
 import {BrowserRouter,Switch,Route} from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 
+
 import RegisterPagesLayoutCtrl from '../front/layout/registerLayout';
 import FrontHomePagesLayoutCtrl from '../front/layout/HomeLayout';
 import FrontPagesLayoutCtrl from '../front/layout/PageLayout';
 
+
 import LoginComponentCtrl from '../front/pages/register/Login';
 import SignUpComponentCtrl from '../front/pages/register/Signup';
+
 
 import FrontHomeCtrl from '../front/pages/home';
 import FrontAboutCtrl from '../front/pages/about';
@@ -39,8 +42,6 @@ const Root = () =>(
             <Route exact path="/sitemap" render={(props)=> (< FrontPagesLayoutCtrl children={FrontSitemapCtrl} {...props} />)} />
             <Route exact path="/refund-policy" render={(props)=> (< FrontPagesLayoutCtrl children={FrontRefundPolicyCtrl} {...props} />)} />
             <Route exact path="/help-center" render={(props)=> (< FrontPagesLayoutCtrl children={FrontHelpCenterCtrl} {...props} />)} />
-
-
 
             <Route exact path="/dashboard" render={(props)=> (<UserPagesLayoutCtrl children={UserHomeCtrl} {...props} />)} />
         </Switch>
