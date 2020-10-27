@@ -20,6 +20,10 @@ import FrontSearchDetailsCtrl from '../front/pages/SearchList/details';
 import ListYourSpaceComponentCtrl from '../front/pages/ListYourSpace';
 
 
+import UserPagesLayoutCtrl from '../users/layout/PageLayout';
+import UserHomeCtrl from '../users/pages/home';
+
+
 const Root = () =>(
     <BrowserRouter>
         <Switch>
@@ -35,6 +39,10 @@ const Root = () =>(
             <Route exact path="/sitemap" render={(props)=> (< FrontPagesLayoutCtrl children={FrontSitemapCtrl} {...props} />)} />
             <Route exact path="/refund-policy" render={(props)=> (< FrontPagesLayoutCtrl children={FrontRefundPolicyCtrl} {...props} />)} />
             <Route exact path="/help-center" render={(props)=> (< FrontPagesLayoutCtrl children={FrontHelpCenterCtrl} {...props} />)} />
+
+
+
+            <Route exact path="/dashboard" render={(props)=> (<UserPagesLayoutCtrl children={UserHomeCtrl} {...props} />)} />
         </Switch>
     </BrowserRouter>
 )

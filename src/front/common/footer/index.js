@@ -92,6 +92,8 @@ function FooterComponent(){
                                 </Col>
                             </Row>
                         </div>
+
+                        
                         <div className="hidden_lg_ftr_menu">
                             <Row>
                                 <Col sm={12} className="footer_links">

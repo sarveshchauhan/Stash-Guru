@@ -16,15 +16,23 @@
     padding: 30px 20px;
 }
 .sign_with_google_btn{
-    border-color: $shamrock_color;
-    background-color: transparent;
-    color: $zambezi_color;
-    box-shadow: 0px 19px 21px -15px $shamrock_color;
+    border-color: $shamrock_color !important;
+    background-color: transparent !important;
+    color: $zambezi_color !important;
+    box-shadow: 0px 19px 21px -15px $shamrock_color !important;
+    border-radius: 25px !important;
+    text-align: center !important;
+    justify-content: center;
 }
-.sign_with_google_btn:hover{
-    border-color: $shamrock_color;
-    background-color: transparent;
-    color: $zambezi_color;
+.sign_with_google_btn *{
+    text-align:  center !important;
+}
+.sign_with_google_btn > div{
+    padding: 8px !important;
+    margin-right: 5px !important;
+}
+.sign_with_google_btn span{
+    padding: 8px !important;
 }
 
 
