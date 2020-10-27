@@ -263,7 +263,7 @@ function SignUpComponentCtrl(){
                                                 appId="648585002686329"
                                                 fields="name,email,picture"
                                                 callback={responseFacebook}
-                                                cssClass="my-facebook-button-class"
+                                                cssClass="my-facebook-button-class btn-block sign_with_fb_btn btn"
                                                 icon="fa-facebook"
                                             />
                                         </Col>
