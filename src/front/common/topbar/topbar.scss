@@ -96,7 +96,12 @@
 .navbar-brand img{
     max-width: 250px;
 }
-
+@media (max-width: 500px)
+{
+    .navbar-brand img{
+        max-width: 150px;
+    }
+}
 .list_your_space,
 .login_signup_btn{
     height: 48px;
