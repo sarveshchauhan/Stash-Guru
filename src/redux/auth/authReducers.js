@@ -1,11 +1,14 @@
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE} from "./authTypes"
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE} from "./authTypes"
 
 const initialState = {
     loggedIn: false,
     loading:false,
     response: '',
     error: '',
-    tokenInfo: {}
+    tokenInfo: {},
+    googleLoginResponse: '',
+    googleLoginError: '',
+    googleLoginLoading: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -29,7 +32,6 @@ const reducer = (state = initialState, action) => {
                 tokenInfo: action.payload.tokenInfo
             }
 
-
         case LOGIN_USER_FAILURE:
             return {
                 loggedIn: false,
@@ -38,6 +40,35 @@ const reducer = (state = initialState, action) => {
                 error: action.payload,
                 tokenInfo: {}
             }
+
+            case GOOGLE_LOGIN_REQUEST:
+                return {
+                    ...state,
+                    googleLoginLoading: true,
+                    googleLoginError: '',
+                    googleLoginResponse: ''
+                }
+    
+    
+            case GOOGLE_LOGIN_SUCCESS:
+                return {
+                    ...state,
+                    loggedIn: true,
+                    googleLoginLoading: false,
+                    response: action.payload.response,
+                    error: '',
+                    tokenInfo: action.payload.tokenInfo
+                }
+    
+    
+            case GOOGLE_LOGIN_FAILURE:
+                return {
+                    loggedIn: false,
+                    loading: false,
+                    response: "",
+                    googleLoginError: action.payload,
+                    tokenInfo: {}
+                }
 
         default:
             return state;

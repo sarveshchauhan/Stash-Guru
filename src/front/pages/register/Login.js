@@ -6,8 +6,9 @@ import facebook from '../../../assets/front/images/icons/facebook.png';
 import catoons from '../../../assets/front/images/img/catoons.svg';
 import family from '../../../assets/front/images/img/family.svg';
 
-import {loginUser} from '../../../redux';
+import { loginUser, googleLogin } from '../../../redux';
 import { connect } from 'react-redux';
+import { GoogleLogin } from 'react-google-login';
 
 import './Register.scss';
 import { NavLink } from 'react-router-dom';
@@ -17,7 +18,12 @@ class LoginComponentCtrl extends React.Component{
         super(props);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            errors: {
+                email: '',
+                password: '',
+            },
+            loginBtn: true
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -25,19 +31,56 @@ class LoginComponentCtrl extends React.Component{
     }
     
     handleChange(event) {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
+        event.preventDefault();
+        const { name, value } = event.target;
+        let errors = this.state.errors;
+
+        switch (name) {
+            case 'email': 
+            errors.email = 
+                validEmailRegex.test(value)
+                ? ''
+                : 'Email is not valid!';
+            break;
+            case 'password': 
+            errors.password = 
+                value.length < 6
+                ? 'Password must be 6 characters long!'
+                : '';
+            break;
+            default:
+            break;
+        }
+
+        this.setState({errors, [name]: value}, ()=> {
+            
+            let validStatus = validateForm(this.state);
+            if(!this.state.errors.email && !this.state.errors.password && validStatus){
+                this.setState({loginBtn: false});
+            }
+            else{
+                this.setState({loginBtn: true});
+            }
+         })
     }
 
+    responseGoogle(response){
+        this.props.googleLogin(response.tokenId);
+     }
+
+
     handleSubmit(event) {
-        let data = {
-            email: this.state.email,
-            password: this.state.password
-        };
-        const { loginUser, auth } = this.props;    
-        let test = loginUser(data);
+        
         event.preventDefault();
+        if(validateForm(this.state)) {
+            let data = {
+                email: this.state.email,
+                password: this.state.password
+            };
+            const { loginUser, auth } = this.props;    
+            loginUser(data);
+        }
+
     }
 
     render() {
@@ -71,18 +114,20 @@ class LoginComponentCtrl extends React.Component{
                                                 <Row className="my-2 pt-2">
                                                     <Col>
                                                         <Form.Group controlId="">
-                                                            <Form.Control type="email" name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email Address" />
+                                                            <Form.Control type="email" name="email" isInvalid={this.state.errors.email} value={this.state.email} onChange={this.handleChange} placeholder="Email Address" />
+                                                            {this.state.errors.email.length > 0 && <span className='error'>{this.state.errors.email}</span>}
                                                         </Form.Group>
 
                                                         <Form.Group controlId="">
-                                                            <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
+                                                            <Form.Control type="password" name="password" isInvalid={this.state.errors.password} value={this.state.password} onChange={this.handleChange} placeholder="Password" />
+                                                            {this.state.errors.password.length > 0 && <span className='error'>{this.state.errors.password}</span>}
                                                         </Form.Group>
                                                     </Col>
                                                 </Row>
                                                 
                                                 <Row className="mb-2">
                                                     <Col sm={12}>
-                                                        <Button className="btn-success btn-block" type="submit">
+                                                        <Button className="btn-success btn-block" type="submit" name="loginBtn" disabled={this.state.loginBtn}>
                                                             Login
                                                         </Button>
                                                     </Col>
@@ -95,10 +140,19 @@ class LoginComponentCtrl extends React.Component{
                                             
                                         <Row>
                                             <Col sm={12} className="mt-2">
+                                                <GoogleLogin
+                                                    clientId="450430578559-00gdj07dktsen73dudn1cpcko05tb5qi.apps.googleusercontent.com"
+                                                    buttonText="Sign In With Google"
+                                                    onSuccess={(response)=> this.responseGoogle(response)}
+                                                    cookiePolicy={'single_host_origin'}
+                                                    className="btn-block sign_with_google_btn btn"
+                                                />
+                                            </Col>
+                                            {/* <Col sm={12} className="mt-2">
                                                 <Button className="btn-block sign_with_google_btn">
                                                     <img src={GoogleLogo}/> Sign In With Google
                                                 </Button>
-                                            </Col>
+                                            </Col> */}
                                             <Col sm={12} className="mt-4">
                                                 <Button className="btn-block sign_with_fb_btn">
                                                 <img src={facebook}/> Sign In With Facebook
@@ -127,6 +181,28 @@ class LoginComponentCtrl extends React.Component{
         )
     }
 }
+
+
+
+const validEmailRegex = RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+
+const validateForm = (val) => {
+
+    let valid = true;
+
+    if (!val.email) {
+        valid = false;
+        val.errors.email = "Emailid is required!";
+    }
+
+    if (!val.password) {
+        valid = false;
+        val.errors.password = "Password is required!";
+    }
+
+    return valid;
+}
+
 const mapStateToProps = state => {
 
     return {
@@ -138,7 +214,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 
     return {
-        loginUser: (user) => dispatch(loginUser(user))
+        loginUser: (user) => dispatch(loginUser(user)),
+        googleLogin: (token) => dispatch(googleLogin(token))
     }
 
 }

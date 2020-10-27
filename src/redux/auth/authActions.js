@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE} from "./authTypes"
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE} from "./authTypes"
 import { set_login_token } from "../../helpers/tokenHelpers";
 import { config } from '../../config/config';
 
@@ -23,12 +23,33 @@ const loginUserFailure = error => {
     }
 }
 
+export const googleLoginRequest = () => {
+    return {
+        type: GOOGLE_LOGIN_REQUEST
+    }
+}
+
+const googleLoginSuccess = response => {
+    return {
+        type: GOOGLE_LOGIN_SUCCESS,
+        payload: response
+    }
+}
+
+const googleLoginFailure = error => {
+    return {
+        type: GOOGLE_LOGIN_FAILURE,
+        payload: error
+    }
+}
+
 export const loginUser = (user) => {
 
     const requestConfig = {
         'Content-Type': 'application/json'
     };
-    return async function(dispatch) {
+
+    return async (dispatch) => {
         dispatch(loginUserRequest())
         await axios.post(`${config.apiUrl}/users/login`, user, requestConfig)
         .then(response => {
@@ -61,6 +82,55 @@ export const loginUser = (user) => {
             const errorMsg = error.message;
             dispatch(loginUserFailure(errorMsg));
 
+        });
+    }
+
+}
+
+export const googleLogin = (token) => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    console.log('test1');
+
+    return  (dispatch) => {
+        console.log('test');
+        dispatch(googleLoginRequest());
+        axios.post(`${config.apiUrl}/users/googleLogin`, { googleToken: token }, requestConfig)
+        .then(response => {
+
+            const loginResponse = response.data;
+
+            if (loginResponse.status) {
+
+                const response = {
+                    response: "User logged in successfully!",
+                    tokenInfo: loginResponse.token
+                };
+
+                dispatch(googleLoginSuccess(response));
+                
+                set_login_token(JSON.stringify(loginResponse.token));
+
+                const query = new URLSearchParams(window.location.search);
+
+                if (query.get('redirect_url')) {
+                    window.location.href = query.get('redirect_url');
+                }
+                else {
+                    window.location.href = '/';
+                }
+
+            }
+            else {
+                dispatch(googleLoginFailure(loginResponse.errors));
+            }
+
+        }).catch(error => {
+            const errorMsg = error.message;
+            dispatch(googleLoginFailure(errorMsg));
         });
     }
 
