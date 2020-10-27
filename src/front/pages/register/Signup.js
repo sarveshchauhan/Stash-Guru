@@ -2,6 +2,7 @@ import React, { useState, useEffect }  from 'react';
 import { Button, Col, Container, Row ,Form, Alert} from 'react-bootstrap';
 
 import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 import GoogleLogo from '../../../assets/front/images/icons/GoogleLogo.png';
 import facebook from '../../../assets/front/images/icons/facebook.png';
 
@@ -10,7 +11,7 @@ import family from '../../../assets/front/images/img/family.svg';
 
 import './Register.scss';
 import { NavLink } from 'react-router-dom';
-import {registerUser, googleRegisterUser} from '../../../redux';
+import {registerUser, googleRegisterUser, facebookRegisterUser} from '../../../redux';
 import { connect, useDispatch, useSelector } from 'react-redux';
 
 function SignUpComponentCtrl(){
@@ -140,6 +141,10 @@ function SignUpComponentCtrl(){
         dispatch(googleRegisterUser(response.tokenId));
     }
 
+    const responseFacebook = (response) => {
+        dispatch(facebookRegisterUser(response));
+    }
+
     return(
         <>
         <section className="section_padding">
@@ -247,10 +252,20 @@ function SignUpComponentCtrl(){
                                                 <img src={GoogleLogo}/> Sign In With Google
                                             </Button>
                                         </Col> */}
-                                        <Col sm={12} className="mt-4">
+                                        {/* <Col sm={12} className="mt-4">
                                             <Button className="btn-block sign_with_fb_btn">
                                             <img src={facebook}/> Sign In With Facebook
                                         </Button>
+                                        </Col> */}
+
+                                        <Col sm={12} className="mt-4">
+                                            <FacebookLogin
+                                                appId="648585002686329"
+                                                fields="name,email,picture"
+                                                callback={responseFacebook}
+                                                cssClass="my-facebook-button-class"
+                                                icon="fa-facebook"
+                                            />
                                         </Col>
                                     </Row>
                                     

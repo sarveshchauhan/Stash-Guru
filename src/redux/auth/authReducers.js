@@ -1,4 +1,4 @@
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE} from "./authTypes"
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE} from "./authTypes"
 
 const initialState = {
     loggedIn: false,
@@ -8,7 +8,10 @@ const initialState = {
     tokenInfo: {},
     googleLoginResponse: '',
     googleLoginError: '',
-    googleLoginLoading: false
+    googleLoginLoading: false,
+    facebookLoginResponse: '',
+    facebookLoginError: '',
+    facebookLoginLoading: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -41,34 +44,63 @@ const reducer = (state = initialState, action) => {
                 tokenInfo: {}
             }
 
-            case GOOGLE_LOGIN_REQUEST:
-                return {
-                    ...state,
-                    googleLoginLoading: true,
-                    googleLoginError: '',
-                    googleLoginResponse: ''
-                }
-    
-    
-            case GOOGLE_LOGIN_SUCCESS:
-                return {
-                    ...state,
-                    loggedIn: true,
-                    googleLoginLoading: false,
-                    response: action.payload.response,
-                    error: '',
-                    tokenInfo: action.payload.tokenInfo
-                }
-    
-    
-            case GOOGLE_LOGIN_FAILURE:
-                return {
-                    loggedIn: false,
-                    loading: false,
-                    response: "",
-                    googleLoginError: action.payload,
-                    tokenInfo: {}
-                }
+        case GOOGLE_LOGIN_REQUEST:
+            return {
+                ...state,
+                googleLoginLoading: true,
+                googleLoginError: '',
+                googleLoginResponse: ''
+            }
+
+
+        case GOOGLE_LOGIN_SUCCESS:
+            return {
+                ...state,
+                loggedIn: true,
+                googleLoginLoading: false,
+                response: action.payload.response,
+                error: '',
+                tokenInfo: action.payload.tokenInfo
+            }
+
+
+        case GOOGLE_LOGIN_FAILURE:
+            return {
+                loggedIn: false,
+                loading: false,
+                response: "",
+                googleLoginError: action.payload,
+                tokenInfo: {}
+            }
+
+        case FACEBOOK_LOGIN_REQUEST:
+            return {
+                ...state,
+                facebookLoginLoading: true,
+                facebookLoginError: '',
+                facebookLoginResponse: ''
+            }
+
+
+        case FACEBOOK_LOGIN_SUCCESS:
+            return {
+                ...state,
+                loggedIn: true,
+                facebookLoginLoading: false,
+                response: action.payload.response,
+                error: '',
+                tokenInfo: action.payload.tokenInfo
+            }
+
+
+        case FACEBOOK_LOGIN_FAILURE:
+            return {
+                loggedIn: false,
+                loading: false,
+                response: "",
+                facebookLoginError: action.payload,
+                tokenInfo: {}
+            }
 
         default:
             return state;

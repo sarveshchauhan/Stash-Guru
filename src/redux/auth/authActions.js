@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE} from "./authTypes"
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE} from "./authTypes"
 import { set_login_token } from "../../helpers/tokenHelpers";
 import { config } from '../../config/config';
 
@@ -39,6 +39,26 @@ const googleLoginSuccess = response => {
 const googleLoginFailure = error => {
     return {
         type: GOOGLE_LOGIN_FAILURE,
+        payload: error
+    }
+}
+
+export const facebookLoginRequest = () => {
+    return {
+        type: FACEBOOK_LOGIN_REQUEST
+    }
+}
+
+const facebookLoginSuccess = response => {
+    return {
+        type: FACEBOOK_LOGIN_SUCCESS,
+        payload: response
+    }
+}
+
+const facebookLoginFailure = error => {
+    return {
+        type: FACEBOOK_LOGIN_FAILURE,
         payload: error
     }
 }
@@ -93,10 +113,7 @@ export const googleLogin = (token) => {
         'Content-Type': 'application/json'
     };
 
-    console.log('test1');
-
     return  (dispatch) => {
-        console.log('test');
         dispatch(googleLoginRequest());
         axios.post(`${config.apiUrl}/users/googleLogin`, { googleToken: token }, requestConfig)
         .then(response => {
@@ -134,4 +151,48 @@ export const googleLogin = (token) => {
         });
     }
 
+}
+
+export const loginWithFaceBook = (data) => {
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return  (dispatch) => {
+        dispatch(facebookLoginRequest());
+        axios.post(`${config.apiUrl}/users/facebookLogin`, { fbdata: data }, requestConfig)
+        .then(response => {
+
+            const loginResponse = response.data;
+
+            if (loginResponse.status) {
+
+                const response = {
+                    response: "User logged in successfully!",
+                    tokenInfo: loginResponse.token
+                };
+
+                dispatch(facebookLoginSuccess(response));
+                
+                set_login_token(JSON.stringify(loginResponse.token));
+
+                const query = new URLSearchParams(window.location.search);
+
+                if (query.get('redirect_url')) {
+                    window.location.href = query.get('redirect_url');
+                }
+                else {
+                    window.location.href = '/';
+                }
+
+            }
+            else {
+                dispatch(facebookLoginFailure(loginResponse.errors));
+            }
+
+        }).catch(error => {
+            const errorMsg = error.message;
+            dispatch(facebookLoginFailure(errorMsg));
+        });
+    }
 }

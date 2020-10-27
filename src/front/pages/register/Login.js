@@ -6,9 +6,10 @@ import facebook from '../../../assets/front/images/icons/facebook.png';
 import catoons from '../../../assets/front/images/img/catoons.svg';
 import family from '../../../assets/front/images/img/family.svg';
 
-import { loginUser, googleLogin } from '../../../redux';
+import { loginUser, googleLogin, loginWithFaceBook } from '../../../redux';
 import { connect } from 'react-redux';
 import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 
 import './Register.scss';
 import { NavLink } from 'react-router-dom';
@@ -66,7 +67,11 @@ class LoginComponentCtrl extends React.Component{
 
     responseGoogle(response){
         this.props.googleLogin(response.tokenId);
-     }
+    }
+
+    responseFacebook(response){
+        this.props.loginWithFaceBook(response);
+    }
 
 
     handleSubmit(event) {
@@ -154,10 +159,19 @@ class LoginComponentCtrl extends React.Component{
                                                 </Button>
                                             </Col> */}
                                             <Col sm={12} className="mt-4">
+                                                <FacebookLogin
+                                                    appId="648585002686329"
+                                                    fields="name,email,picture"
+                                                    callback={(response)=> this.responseFacebook(response)}
+                                                    cssClass="my-facebook-button-class"
+                                                    icon="fa-facebook"
+                                                />
+                                            </Col>
+                                            {/* <Col sm={12} className="mt-4">
                                                 <Button className="btn-block sign_with_fb_btn">
                                                 <img src={facebook}/> Sign In With Facebook
                                             </Button>
-                                            </Col>
+                                            </Col> */}
                                         </Row>
                                         
                                         <Row className="text-center">
@@ -215,7 +229,8 @@ const mapDispatchToProps = dispatch => {
 
     return {
         loginUser: (user) => dispatch(loginUser(user)),
-        googleLogin: (token) => dispatch(googleLogin(token))
+        googleLogin: (token) => dispatch(googleLogin(token)),
+        loginWithFaceBook: (data) => dispatch(loginWithFaceBook(data))
     }
 
 }
