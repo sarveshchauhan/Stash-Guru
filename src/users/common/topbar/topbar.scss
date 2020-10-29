@@ -1,0 +1,52 @@
+.dash_avtar_user_list .dropdown-toggle.nav-link,
+.dash_avtar_user_list .dropdown-toggle.nav-link:hover,
+.dash_avtar_user_list .dropdown-toggle.nav-link.active,
+.dash_avtar_user_list .dropdown-toggle.nav-link:active,
+.dash_avtar_user_list .dropdown-toggle.nav-link:focus,
+.dash_avtar_user_list .dropdown-toggle.nav-link:focus-within,
+.dash_avtar_user_list .dropdown-toggle.nav-link:focus-visible{
+    background: #ffffff;
+    border: 1px solid #1BBDF6;
+    color: #1BBDF6;
+    border-radius: 25px;
+    position: relative;
+    padding: 11px 15px 11px 50px !important;
+}
+.dash_avtar_user_list .dropdown-toggle::after{
+    vertical-align: middle;
+}
+.dash_avtar_user_list{
+    position: relative;
+}
+img.dash_avtar_user{
+   position: absolute;
+   width: 35px;
+   height: 35px;
+   top: 50%;
+   transform: translateY(-50%);
+   left: 5px;
+   z-index: +1;
+   border-radius: 50%;
+}
+
+
+.dash_avtar_user_list .dropdown-item:hover,
+.dash_avtar_user_list .dropdown-item:hover,
+.dash_avtar_user_list .dropdown-item.active, 
+.dash_avtar_user_list .dropdown-item:active {
+    color: #34D789;
+    text-shadow: 0px 0px 0px #34D789;
+    background-color: transparent;
+}
+.dash_avtar_user_list .dropdown-item i.fa{
+    color: #000000;
+    margin-right: 10px;
+}
+.dash_avtar_user_list .dropdown-item.active i.fa,
+.dash_avtar_user_list .dropdown-item:active i.fa,
+.dash_avtar_user_list .dropdown-item:hover i.fa{
+    color: #34D789;
+}
+.dash_avtar_user_list .dropdown-menu{
+    border-color: #1BBDF6;
+}
