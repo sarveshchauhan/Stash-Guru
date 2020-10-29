@@ -80,7 +80,6 @@ function SignUpComponentCtrl(){
                 }
                 break;
             case 'password':
-                console.log(e.target.value.length);
                 setPassword(e.target.value);
                 if (!e.target.value) {
                     setPasswordError("Last Name is required!");

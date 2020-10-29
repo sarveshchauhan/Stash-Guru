@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE} from "./authTypes"
-import { set_login_token } from "../../helpers/tokenHelpers";
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS} from "./authTypes"
+import { set_login_token, remove_login_token } from "../../helpers/tokenHelpers";
 import { config } from '../../config/config';
 
 const loginUserRequest = () => {
@@ -20,6 +20,25 @@ const loginUserFailure = error => {
     return {
         type: LOGIN_USER_FAILURE,
         payload: error
+    }
+}
+
+const getUserRequest = () => {
+    return {
+        type: GET_USER_REQUEST
+    }
+}
+
+const getUserFailure = error => {
+    return {
+        type: GET_USER_FAILURE
+    }
+}
+
+const getUserSuccess = response => {
+    return {
+        type: GET_USER_SUCCESS,
+        payload: response
     }
 }
 
@@ -91,7 +110,7 @@ export const loginUser = (user) => {
                     window.location.href = query.get('redirect_url');
                 }
                 else {
-                    window.location.href = '/';
+                    window.location.href = '/dashboard';
                 }
             }
             else {
@@ -137,7 +156,7 @@ export const googleLogin = (token) => {
                     window.location.href = query.get('redirect_url');
                 }
                 else {
-                    window.location.href = '/';
+                    window.location.href = '/dashboard';
                 }
 
             }
@@ -182,7 +201,7 @@ export const loginWithFaceBook = (data) => {
                     window.location.href = query.get('redirect_url');
                 }
                 else {
-                    window.location.href = '/';
+                    window.location.href = '/dashboard';
                 }
 
             }
@@ -195,4 +214,48 @@ export const loginWithFaceBook = (data) => {
             dispatch(facebookLoginFailure(errorMsg));
         });
     }
+}
+
+export const getUsers = () => {
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(getUserRequest())
+        if(localStorage.getItem('stashGuruToken')){
+            await axios.post(`${config.apiUrl}/users/details`, { token: localStorage.getItem('stashGuruToken').replace(/["']/g, "") }, requestConfig)
+            .then(response => {
+
+                const usersResponse = response.data;
+
+                if (usersResponse.status) {
+
+                    const response = {
+                        users: {name: usersResponse.users.u_name}
+                    };
+
+                    dispatch(getUserSuccess(response));
+
+                }
+                else {
+                    remove_login_token();
+                    dispatch(getUserFailure());
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(getUserFailure(errorMsg));
+            });
+        }
+        else{
+            remove_login_token();
+            dispatch(getUserFailure());
+        }
+    }
+}
+
+export const logoutUser = () => {
+    remove_login_token();
+    window.location.href = '/';
 }

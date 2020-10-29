@@ -10,6 +10,7 @@ import logo from '../../../assets/front/images/colored_logo.svg';
 // Component Include
 import SearchComponent from '../components/SearchCompo';
 import FrontSideBarMenu from '../sidebar';
+import AuthComponent from '../components/AuthComponent';
 // Component Include End
 
 
@@ -34,7 +35,7 @@ function PageTopbarHeaderComponent(){
                         <div className="col-4 my-2">
                             <Nav className="justify-content-md-end justify-content-center align-items-center">
                                 <NavLink className="nav-link list_your_space" to="/list-your-space">List your space</NavLink>
-                                <NavLink className="nav-link login_signup_btn" to="/login">Login/SignUp</NavLink>
+                                <AuthComponent/>
                                 <FrontSideBarMenu/>
                             </Nav>
                         </div>

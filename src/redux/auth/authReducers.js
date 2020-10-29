@@ -1,4 +1,4 @@
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE} from "./authTypes"
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS} from "./authTypes"
 
 const initialState = {
     loggedIn: false,
@@ -11,7 +11,9 @@ const initialState = {
     googleLoginLoading: false,
     facebookLoginResponse: '',
     facebookLoginError: '',
-    facebookLoginLoading: false
+    facebookLoginLoading: false,
+    authResponse: {},
+    islogin: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -43,6 +45,23 @@ const reducer = (state = initialState, action) => {
                 error: action.payload,
                 tokenInfo: {}
             }
+        
+        case GET_USER_REQUEST:
+            return {
+                ...state
+            }
+
+        case GET_USER_SUCCESS:
+            return {
+                islogin: true,
+                authResponse: action.payload
+            }
+
+        case GET_USER_FAILURE:
+            return {
+                islogin: false,
+                authResponse: {}
+            }    
 
         case GOOGLE_LOGIN_REQUEST:
             return {

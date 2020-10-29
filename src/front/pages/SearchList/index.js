@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Container, Row, Col,Navbar,Nav,Button,Dropdown } from 'react-bootstrap';
+import {config} from '../../../config/config';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 // Assets Include
 import '../../common/topbar/topbar.scss';
@@ -28,56 +29,46 @@ import b_spare_rooms from '../../../assets/front/images/icons/storage_type/b_spa
 import b_warehouse from '../../../assets/front/images/icons/storage_type/b_warehouse.png';
 
 
+
 // Assets Include End
 
 
 
 import SearchComponent from '../../common/components/SearchCompo';
 import FrontSideBarMenu from '../../common/sidebar';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import {searchListing} from '../../../redux';
+const images = require.context('../../../assets/front/images/dummy', true);
 
 function FrontSearchListCtrl(){
+   
+    const { key } = useParams();
+    const [list, setList] = useState([]);
+    const dispatch = useDispatch();
+
+    const { response, error, loading } = useSelector(state => state.search);
+    
+    useEffect(() => {
+        dispatch(searchListing(key));
+    }, [key]);
+
+    useEffect(() => {
+        if(response.list){
+            setList(response.list);
+        }
+       
+    }, [response]);
+
     return(
         <>
-            <Navbar className="SearchListNavbar">
-                <div className="lg_screen_menu w-100">
-                    <Container fluid className="align-items-center justify-content-between px-0">
-                        <div className="col-3 text-center text-lg-left align-items-center d-flex justify-content-between">
-                            <NavLink className="navbar-brand" to="/">
-                                <img width="100%" src={logo}  alt="" />
-                            </NavLink>
-                        </div>
-                        <div className="col-4 my-2">
-                            <Nav className="justify-content-md-end justify-content-center align-items-center">
-                                <NavLink className="nav-link list_your_space" to="/list-your-space">List your space</NavLink>
-                                <NavLink className="nav-link login_signup_btn" to="/login">Login/SignUp</NavLink>
-                                <FrontSideBarMenu/>
-                            </Nav>
-                        </div>
-  
-                    </Container>
-                </div>
-
-                <div className="sm_screen_menu w-100">
-                    <Container fluid className="align-items-center justify-content-between px-0">
-                        <Col className="col-12 text-center text-lg-left align-items-center d-flex justify-content-between">
-                            <NavLink className="navbar-brand" to="/">
-                                <img width="100%" src={logo} alt=""  />
-                            </NavLink>
-                            <span  className="mob_toggler">
-                                <FrontSideBarMenu />
-                            </span>
-                        </Col>
-                    </Container>
-                </div>
-            </Navbar>
-
+            
             <Container fluid>
                 <Row>
                     <Col lg={6} className="">
                         <Navbar sticky="top" className="SearchListFilter">
                             <Row>
                                 <Col sm={12}>
-                                    <SearchComponent/>
+                                    <SearchComponent />
                                 </Col>
                                 <Col sm={8} className="SearchListFilter_Buttons">
                                 <Dropdown className="d-inline-block">
@@ -195,7 +186,7 @@ function FrontSearchListCtrl(){
                                 <Button variant="outline-warning" size="sm">Reset Filters</Button>{' '}
                                 </Col>
                                 <Col sm={4} className="text--center text-md-right" style={{fontSize:'14px'}}>
-                                    <small className="mx-2 mt-4 d-inline-block">Showing 45 Results</small>
+                                    <small className="mx-2 mt-4 d-inline-block">Showing {list.length} Results</small>
                                     <Button variant="link" className="p-0" style={{fontSize:'14px',color:'#000',textDecoration:'none'}}><b>Nearest <i className="fa fa-sort" aria-hidden="true"></i></b></Button>
                                 </Col>
                             </Row>
@@ -204,240 +195,33 @@ function FrontSearchListCtrl(){
                         <Row>
                             <Col lg={12} className="pt-3">
                                 <div className="SearchListPlace_row">
-                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
-                                        <div className="SearchListPlace_card">
-                                            <img width="100%" src={SearchList1}  alt="" />
-                                            <div className="SearchListPlace_card_body">
-                                                <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r1} alt=""  />
-                                                    <span className="profileName">Mary Ann Wagner</span>
-                                                </div>
+                                    {list.map(details =>
+                                        <div className="col-sm-6 col-xl-4 SearchListPlace_col">
+                                            <div className="SearchListPlace_card">
+                                                <img width="100%" src={images(`./${details.store_pic}`)}  alt="" />
+                                                <div className="SearchListPlace_card_body">
+                                                    <div className="SearchListPlaceUserArea">
+                                                        <img className="profileImg" src={details.u_pic} alt=""  />
+                                                        <span className="profileName">{details.u_name}</span>
+                                                    </div>
 
-                                                <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">
-                                                        <img width="100%" src={b_garage}  alt="" /> Garage
-                                                    </Button>
-                                                    <span>California </span>
-                                                    <span>|</span>
-                                                    <span>1 Miles</span>
-                                                </div>
+                                                    <div className="SearchListPlaceAreaPlace">
+                                                        <Button size="sm">
+                                                            <img width="100%" src={b_garage}  alt="" /> {details.store_type}
+                                                        </Button>
+                                                        <span>{details.store_location} </span>
+                                                        <span>|</span>
+                                                        <span>1 Miles</span>
+                                                    </div>
 
-                                                <div className="SearchListPlaceAreaCost">
-                                                    <strong>$45.00/Month </strong>
-                                                    <span>20x25</span>
+                                                    <div className="SearchListPlaceAreaCost">
+                                                        <strong>${details.store_cost}/Month </strong>
+                                                        <span>{details.store_size}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    
-                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
-                                        <div className="SearchListPlace_card">
-                                            <img width="100%" src={SearchList2}  alt="" />
-                                            <div className="SearchListPlace_card_body">
-                                                <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r2}  alt="" />
-                                                    <span className="profileName">Chris Stewart</span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">
-                                                        <img width="100%" src={b_warehouse}  alt="" /> Warehouse
-                                                    </Button>
-                                                    <span>California </span>
-                                                    <span>|</span>
-                                                    <span>1 Miles</span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaCost">
-                                                    <strong>$45.00/Month </strong>
-                                                    <span>100x25</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
-                                        <div className="SearchListPlace_card">
-                                            <img width="100%" src={SearchList3}  alt="" />
-                                            <div className="SearchListPlace_card_body">
-                                                <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r3}  alt="" />
-                                                    <span className="profileName">Bobby Wagner</span>
-                                                </div>
-                                                
-                                                <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">
-                                                        <img width="100%" src={b_parked_car}  alt="" /> Parking House
-                                                    </Button>
-                                                    <span>California </span>
-                                                    <span>|</span>
-                                                    <span>1 Miles</span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaCost">
-                                                    <strong>$45.00/Month </strong>
-                                                    <span>25x25</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
-                                        <div className="SearchListPlace_card">
-                                            <img width="100%" src={SearchList1}  alt="" />
-                                            <div className="SearchListPlace_card_body">
-                                                <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r1}  alt="" />
-                                                    <span className="profileName">Mary Ann Wagner</span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">
-                                                        <img width="100%" src={b_outhoused}  alt="" /> Outhoused
-                                                    </Button>
-                                                    <Button size="sm">Garage</Button>
-                                                    <span>California </span>
-                                                    <span>|</span>
-                                                    <span>1 Miles</span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaCost">
-                                                    <strong>$45.00/Month </strong>
-                                                    <span>20x25</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
-                                        <div className="SearchListPlace_card">
-                                            <img width="100%" src={SearchList2}  alt="" />
-                                            <div className="SearchListPlace_card_body">
-                                                <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r2}  alt="" />
-                                                    <span className="profileName">Chris Stewart</span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">
-                                                        <img width="100%" src={b_spare_rooms}  alt="" /> Spare Rooms
-                                                    </Button>
-                                                    <span>California </span>
-                                                    <span>|</span>
-                                                    <span>1 Miles</span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaCost">
-                                                    <strong>$45.00/Month </strong>
-                                                    <span>100x25</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
-                                        <div className="SearchListPlace_card">
-                                            <img width="100%" src={SearchList3}  alt="" />
-                                            <div className="SearchListPlace_card_body">
-                                                <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r3}  alt="" />
-                                                    <span className="profileName">Bobby Wagner</span>
-                                                </div>
-                                                
-                                                <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">
-                                                        <img width="100%" src={b_lofts}  alt="" /> Lofts
-                                                    </Button>
-                                                    <span>California </span>
-                                                    <span>|</span>
-                                                    <span>1 Miles</span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaCost">
-                                                    <strong>$45.00/Month </strong>
-                                                    <span>25x25</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
-                                        <div className="SearchListPlace_card">
-                                            <img width="100%" src={SearchList1}  alt="" />
-                                            <div className="SearchListPlace_card_body">
-                                                <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r1}  alt="" />
-                                                    <span className="profileName">Mary Ann Wagner</span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">
-                                                        <img width="100%" src={b_house_lock}  alt="" /> House Lock
-                                                    </Button>
-                                                    <span>California </span>
-                                                    <span>|</span>
-                                                    <span>1 Miles</span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaCost">
-                                                    <strong>$45.00/Month </strong>
-                                                    <span>20x25</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
-                                        <div className="SearchListPlace_card">
-                                            <img width="100%" src={SearchList2}  alt="" />
-                                            <div className="SearchListPlace_card_body">
-                                                <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r2}  alt="" />
-                                                    <span className="profileName">Chris Stewart</span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">
-                                                        <img width="100%" src={b_container}  alt="" /> Container
-                                                    </Button>
-                                                    <span>California </span>
-                                                    <span>|</span>
-                                                    <span>1 Miles</span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaCost">
-                                                    <strong>$45.00/Month </strong>
-                                                    <span>100x25</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="col-sm-6 col-xl-4 SearchListPlace_col">
-                                        <div className="SearchListPlace_card">
-                                            <img width="100%" src={SearchList3}  alt="" />
-                                            <div className="SearchListPlace_card_body">
-                                                <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r3}  alt="" />
-                                                    <span className="profileName">Bobby Wagner</span>
-                                                </div>
-                                                
-                                                <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">
-                                                        <img width="100%" src={b_basement}  alt="" /> Basement
-                                                    </Button>
-                                                    <span>California </span>
-                                                    <span>|</span>
-                                                    <span>1 Miles</span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaCost">
-                                                    <strong>$45.00/Month </strong>
-                                                    <span>25x25</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    )}
                                 </div>
                             </Col>
                         </Row>

@@ -123,7 +123,7 @@ export const googleRegisterUser = (token) => {
                         window.location.href = query.get('redirect_url');
                     }
                     else {
-                        window.location.href = '/';
+                        window.location.href = '/dashboard';
                     }
 
                 }
@@ -171,7 +171,7 @@ export const facebookRegisterUser = (data) => {
                         window.location.href = query.get('redirect_url');
                     }
                     else {
-                        window.location.href = '/';
+                        window.location.href = '/dashboard';
                     }
 
                 }

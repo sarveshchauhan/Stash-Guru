@@ -6,6 +6,7 @@ import { PrivateRoute } from './PrivateRoute';
 import RegisterPagesLayoutCtrl from '../front/layout/registerLayout';
 import FrontHomePagesLayoutCtrl from '../front/layout/HomeLayout';
 import FrontPagesLayoutCtrl from '../front/layout/PageLayout';
+import FrontPagesMaxLayoutCtrl from '../front/layout/PageLayoutMax';
 
 
 import LoginComponentCtrl from '../front/pages/register/Login';
@@ -34,7 +35,8 @@ const Root = () =>(
             <Route exact path="/signup" render={(props)=> (< RegisterPagesLayoutCtrl children={SignUpComponentCtrl} {...props} />)} />
 
             <Route exact path="/" render={(props)=> (<FrontHomePagesLayoutCtrl children={FrontHomeCtrl} {...props} />)} />
-            <Route exact path="/search" render={FrontSearchListCtrl } />
+            {/* <Route exact path="/search/:key"  render={FrontSearchListCtrl } /> */}
+            <Route exact path="/search/:key" render={(props)=> (< FrontPagesMaxLayoutCtrl children={FrontSearchListCtrl} {...props} />)} />
             <Route exact path="/list-your-space" render={(props)=> (<FrontPagesLayoutCtrl  children={ListYourSpaceComponentCtrl} {...props} />)} />
             <Route exact path="/about" render={(props)=> (<FrontPagesLayoutCtrl  children={FrontAboutCtrl} {...props} />)} />
             <Route exact path="/search-details" render={(props)=> (< FrontPagesLayoutCtrl children={FrontSearchDetailsCtrl} {...props} />)} />
@@ -43,7 +45,8 @@ const Root = () =>(
             <Route exact path="/refund-policy" render={(props)=> (< FrontPagesLayoutCtrl children={FrontRefundPolicyCtrl} {...props} />)} />
             <Route exact path="/help-center" render={(props)=> (< FrontPagesLayoutCtrl children={FrontHelpCenterCtrl} {...props} />)} />
 
-            <Route exact path="/dashboard" render={(props)=> (<UserPagesLayoutCtrl children={UserHomeCtrl} {...props} />)} />
+            <PrivateRoute exact path="/dashboard" parentComponent={UserPagesLayoutCtrl} childComponent={UserHomeCtrl} />
+            {/* <Route exact path="/dashboard" render={(props)=> (<UserPagesLayoutCtrl children={UserHomeCtrl} {...props} />)} /> */}
         </Switch>
     </BrowserRouter>
 )

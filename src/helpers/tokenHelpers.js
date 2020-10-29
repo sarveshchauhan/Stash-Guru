@@ -1,4 +1,3 @@
-
 export const get_login_token = () => {
     return localStorage.getItem('stashGuruToken');
 }

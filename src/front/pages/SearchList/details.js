@@ -46,8 +46,6 @@ import agreement from '../../../assets/front/images/icons/list-details/agreement
 
 
 
-
-
 function FrontSearchDetailsCtrl(){
 
     
