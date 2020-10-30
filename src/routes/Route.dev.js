@@ -25,6 +25,7 @@ import ListYourSpaceComponentCtrl from '../front/pages/ListYourSpace';
 
 
 import UserPagesLayoutCtrl from '../users/layout/PageLayout';
+import SideMenuPageLayoutCtrl from '../users/layout/SideMenuLayout';
 import UserHomeCtrl from '../users/pages/home';
 
 
@@ -45,7 +46,8 @@ const Root = () =>(
             <Route exact path="/refund-policy" render={(props)=> (< FrontPagesLayoutCtrl children={FrontRefundPolicyCtrl} {...props} />)} />
             <Route exact path="/help-center" render={(props)=> (< FrontPagesLayoutCtrl children={FrontHelpCenterCtrl} {...props} />)} />
 
-            <PrivateRoute exact path="/dashboard" parentComponent={UserPagesLayoutCtrl} childComponent={UserHomeCtrl} />
+            {/* <PrivateRoute exact path="/dashboard" parentComponent={SideMenuLayoutCtrl} childComponent={UserHomeCtrl} /> */}
+            <PrivateRoute exact path="/dashboard" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserHomeCtrl} />
             {/* <Route exact path="/dashboard" render={(props)=> (<UserPagesLayoutCtrl children={UserHomeCtrl} {...props} />)} /> */}
         </Switch>
     </BrowserRouter>

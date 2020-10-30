@@ -1,1 +1,99 @@
 @import '../../../App.scss';
+
+.dash_hm_card_a{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 2px 40px #0000001A;
+    border-radius: 18px;
+    position: relative;
+    margin-top: 40px;
+    border: 0px;
+}
+.dash_hm_card_a_cntr{
+    display: block;
+    width: 130px;
+    margin: 0 auto;
+    padding-left: 20px;
+    color: $zambezi_color;
+}
+.dash_hm_card_a_cntr p{
+    font-size: 15px;
+    margin: 0px;
+    font-weight: 500;
+}
+.dash_hm_card_a_cntr h4{
+    margin-top: 5px;
+    font-size: 30px;
+}
+.dash_hm_card_a_cntr small{
+    display: block;
+    font-size: 10px;
+    margin-top: 5px;
+}
+.dash_hm_card_a_cntr b{
+    display: block;
+    font-weight: 900;
+}
+.icn_crd_img{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    display: block;
+    left: -20px;
+    top: -30px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 12px 18px 19px #34D7894D;
+}
+.icn_crd_img img{
+    max-width: 40px;
+    width: 100%;
+}
+.dash_hm_card_a:hover{
+    cursor: pointer;
+}
+.dash_hm_card_a:hover .icn_crd_img{
+    box-shadow: 12px 18px 19px #1BBDF633;
+}
+
+
+.dash_hm_card_a .icn_crd_img img.img_active,
+.dash_hm_card_a:hover .icn_crd_img img.img_deactive{
+    display: inline-block;
+}
+.dash_hm_card_a .icn_crd_img img.img_deactive,
+.dash_hm_card_a:hover .icn_crd_img img.img_active{
+    display: none;
+}
+
+
+.dash_hm_card_b{
+    padding: 15px;
+    min-height: 250px;
+    margin-top: 30px;
+    border-radius: 18px;
+    background: transparent linear-gradient(236deg, $pacific_blue_color 0%, $deep_sky_color 100%) 0% 0% no-repeat padding-box;
+}
+.dash_hm_card_b_bg_img{
+    position: absolute;
+    // height: 130px;
+    width: auto;
+    right: 10px;
+    bottom: 0px;
+}
+.dash_hm_card_b_bg_img img{
+    max-height: 130px;
+}
+.dash_hm_card_b .card-body h4{
+    color: #FFFFFF;
+    font-size: 30px;
+}
+.dash_hm_card_b .card-body p{
+    color: #FFFFFF;
+    font-size: 15px;
+}
+.dash_hm_card_b .btn_milky_bl,
+.dash_hm_card_b .btn_milky_grn{
+   min-width: 150px;
+}

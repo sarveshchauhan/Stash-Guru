@@ -7,6 +7,30 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 
 import avtar from '../../../assets/users/images/dummy/avtar.jpg';
 
+import B_home from '../../../assets/users/images/icons/menu/B_home.png';
+import G_home from '../../../assets/users/images/icons/menu/G_home.png';
+
+import B_hand from '../../../assets/users/images/icons/menu/B_hand.png';
+import G_hand from '../../../assets/users/images/icons/menu/G_hand.png';
+
+import B_listing from '../../../assets/users/images/icons/menu/B_listing.png';
+import G_listing from '../../../assets/users/images/icons/menu/G_listing.png';
+
+import B_verify from '../../../assets/users/images/icons/menu/B_verify.png';
+import G_verify from '../../../assets/users/images/icons/menu/G_verify.png';
+
+import B_noVerify from '../../../assets/users/images/icons/menu/B_noVerify.png';
+import G_noVerify from '../../../assets/users/images/icons/menu/G_noVerify.png';
+
+import B_profile from '../../../assets/users/images/icons/menu/B_profile.png';
+import G_profile from '../../../assets/users/images/icons/menu/G_profile.png';
+
+import B_share from '../../../assets/users/images/icons/menu/B_share.png';
+import G_share from '../../../assets/users/images/icons/menu/G_share.png';
+
+import B_logout from '../../../assets/users/images/icons/menu/B_logout.png';
+import G_logout from '../../../assets/users/images/icons/menu/G_logout.png';
+
 function AuthComponent(){
 
     const dispatch = useDispatch();
@@ -38,13 +62,46 @@ function AuthComponent(){
                     <Nav.Item className="dash_avtar_user_list">
                         <img className="dash_avtar_user" src={avtar} />
                         <NavDropdown title={dispName}  id="collasible-nav-dropdown">
-                            <NavLink className="dropdown-item" to="/dashboard"><i className="fa fa-home" aria-hidden="true"></i> Dashboard</NavLink>
-                            <NavLink className="dropdown-item" to="/booking"><i className="fa fa-hand-pointer-o" aria-hidden="true"></i> Booking</NavLink>
-                            <NavLink className="dropdown-item" to="/listing"><i className="fa fa-map-marker" aria-hidden="true"></i> Listing</NavLink>
-                            <NavLink className="dropdown-item" to="/verification"><i className="fa fa-shield" aria-hidden="true"></i> Verification</NavLink>
-                            <NavLink className="dropdown-item" to="/profile"><i className="fa fa-user-o" aria-hidden="true"></i> Profile</NavLink>
-                            <NavLink className="dropdown-item" to="/referrals"><i className="fa fa-share-alt" aria-hidden="true"></i> Referrals</NavLink>
-                            <NavLink className="dropdown-item" to="/logout" onClick={logoutHandle}><i className="fa fa-sign-out" aria-hidden="true"></i> Logout</NavLink>
+                        <NavLink className="dropdown-item" to="/dashboard">
+                            <img className="img_deactive" src={B_home} />
+                            <img className="img_active" src={G_home} />
+                            Dashboard
+                        </NavLink>
+
+                        <NavLink className="dropdown-item" to="/booking">
+                            <img className="img_deactive" src={B_hand} />
+                            <img className="img_active" src={G_hand} />
+                            Booking
+                        </NavLink>
+                        
+                        <NavLink className="dropdown-item" to="/listing">
+                            <img className="img_deactive" src={B_listing} />
+                            <img className="img_active" src={G_listing} />
+                            Listing
+                        </NavLink>
+                        
+                        <NavLink className="dropdown-item" to="/verification">
+                            <img className="img_deactive" src={B_verify} />
+                            <img className="img_active" src={G_verify} />
+                            Verification
+                        </NavLink>
+                        
+                        <NavLink className="dropdown-item" to="/profile">
+                            <img className="img_deactive" src={B_profile} />
+                            <img className="img_active" src={G_profile} />
+                            Profile
+                        </NavLink>
+                        
+                        <NavLink className="dropdown-item" to="/referrals">
+                            <img className="img_deactive" src={B_share} />
+                            <img className="img_active" src={G_share} />
+                            Referrals
+                        </NavLink>
+                        <NavLink className="dropdown-item" to="/logout" onClick={logoutHandle}>
+                            <img className="img_deactive" src={B_logout} />
+                            <img className="img_active" src={G_logout} />
+                                Logout
+                        </NavLink>
                         </NavDropdown>
                     </Nav.Item>
                 </Nav>

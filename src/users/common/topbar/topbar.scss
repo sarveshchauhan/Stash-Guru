@@ -30,6 +30,46 @@ img.dash_avtar_user{
 }
 
 
+
+
+
+.dash_menu_list .nav-link img.img_deactive,
+.dash_menu_list .nav-link img.img_active ,
+
+.dash_avtar_user_list .dropdown-item img.img_deactive,
+.dash_avtar_user_list .dropdown-item img.img_active {
+    max-width: 15px;
+    margin-right: 10px;
+}
+.dash_menu_list .nav-link:hover img.img_deactive,
+.dash_menu_list .nav-link:active img.img_deactive,
+.dash_menu_list .nav-link.active img.img_deactive,
+.dash_avtar_user_list .dropdown-item:hover img.img_deactive,
+.dash_avtar_user_list .dropdown-item:active img.img_deactive,
+.dash_avtar_user_list .dropdown-item.active img.img_deactive,
+
+.dash_menu_list .nav-link img.img_active,
+.dash_avtar_user_list .dropdown-item img.img_active {
+    display: none;
+}
+.dash_menu_list .nav-link:hover img.img_active,
+.dash_menu_list .nav-link:active img.img_active,
+.dash_menu_list .nav-link.active img.img_active,
+
+.dash_avtar_user_list .dropdown-item:hover img.img_active,
+.dash_avtar_user_list .dropdown-item:active img.img_active,
+.dash_avtar_user_list .dropdown-item.active img.img_active,
+
+.dash_menu_list .nav-link img.img_deactive,
+.dash_avtar_user_list .dropdown-item img.img_deactive {
+    display: inline-block;
+}
+
+.dash_menu_list .nav-link:hover,
+.dash_menu_list .nav-link:hover,
+.dash_menu_list .nav-link.active, 
+.dash_menu_list .nav-link:active ,
+
 .dash_avtar_user_list .dropdown-item:hover,
 .dash_avtar_user_list .dropdown-item:hover,
 .dash_avtar_user_list .dropdown-item.active, 
@@ -38,10 +78,15 @@ img.dash_avtar_user{
     text-shadow: 0px 0px 0px #34D789;
     background-color: transparent;
 }
+.dash_menu_list .nav-link i.fa,
 .dash_avtar_user_list .dropdown-item i.fa{
     color: #000000;
     margin-right: 10px;
 }
+.dash_menu_list .nav-link.active i.fa,
+.dash_menu_list .nav-link:active i.fa,
+.dash_menu_list .nav-link:hover i.fa,
+
 .dash_avtar_user_list .dropdown-item.active i.fa,
 .dash_avtar_user_list .dropdown-item:active i.fa,
 .dash_avtar_user_list .dropdown-item:hover i.fa{
@@ -49,4 +94,17 @@ img.dash_avtar_user{
 }
 .dash_avtar_user_list .dropdown-menu{
     border-color: #1BBDF6;
+}
+
+.dash_menu_list{
+    padding: 30px 5px;    
+    width: 100%;
+    display: block;
+}
+.dash_menu_list .nav-link{
+    padding: 5px 0px 5px 0px;
+    border-right: 1px solid #5c5c5c38;
+    width: 100%;
+    display: block;
+    color: #5c5c5c;
 }

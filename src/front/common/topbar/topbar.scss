@@ -1,17 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 @import '../../../App.scss';
 @media (min-width: 576px)
 {
@@ -112,7 +100,7 @@
     margin-left: 10px;
     border-width: 1px;
     border-style: solid;
-    width: 140px;
+    min-width: 140px;
     text-align: center;
     font-size: 15px ;
 }
