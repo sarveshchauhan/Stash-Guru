@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{ useState, useEffect } from 'react';
 import { Col, Container, Row,Carousel, InputGroup ,FormControl,Button} from 'react-bootstrap';
 
 
@@ -23,15 +23,6 @@ import Support from '../../../assets/front/images/icons/support.png';
 
 import some_empty_space from '../../../assets/front/images/img/some_empty_space.svg';
 
-import door_lock from '../../../assets/front/images/icons/list-details/door-lock.png';
-import alarm from '../../../assets/front/images/icons/list-details/alarm.png';
-import cctv_camera from '../../../assets/front/images/icons/list-details/cctv_camera.png';
-import light_bulb from '../../../assets/front/images/icons/list-details/light_bulb.png';
-import file_alarm from '../../../assets/front/images/icons/list-details/file_alarm.png';
-import electric_plug from '../../../assets/front/images/icons/list-details/electric_plug.png';
-import heating from '../../../assets/front/images/icons/list-details/heating.png';
-import water_drop from '../../../assets/front/images/icons/list-details/water_drop.png';
-
 import open_box from '../../../assets/front/images/icons/list-details/open_box.png';
 import time from '../../../assets/front/images/icons/list-details/time.png';
 import blow_ground from '../../../assets/front/images/icons/list-details/blow_ground.png';
@@ -42,13 +33,36 @@ import support from '../../../assets/front/images/icons/support.png';
 import secure_payment from '../../../assets/front/images/icons/list-details/secure-payment.png';
 import agreement from '../../../assets/front/images/icons/list-details/agreement.png';
 
-// Assets Include End
 
+
+// Assets Include End
+import { useDispatch, useSelector } from 'react-redux';
+import { searchDetails } from '../../../redux';
+import { useParams } from 'react-router-dom';
+import { verify } from 'jsonwebtoken';
+const images = require.context('../../../assets/front/images/icons/list-details', true);
 
 
 function FrontSearchDetailsCtrl(){
 
+    const { searchId } = useParams();
+    const [details, setDetails] = useState([]);
+    const [verifyStatus, setVerifyStatus] = useState('No Verify Host');
+    const dispatch = useDispatch();
+
+    const { schDetails, detailsResponse, vat, features, access } = useSelector(state => state.search);
     
+    useEffect(() => {
+        dispatch(searchDetails(searchId));
+    }, [searchId]);
+
+    useEffect(() => {
+        setDetails(schDetails);
+        if(schDetails && schDetails.u_verify == 'Yes'){
+            setVerifyStatus('Verified Host');
+        }
+    }, [detailsResponse]);
+
 
     // Back to Top
     const [showScroll, setShowScroll] = useState(false)
@@ -91,8 +105,8 @@ function FrontSearchDetailsCtrl(){
                         </Carousel>
                             
                         <div>
-                            <h3 className="my-4">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</h3>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsu.</p>
+                            <h3 className="my-4">{ details && details.store_title}</h3>
+                            <p>{details && details.store_description}</p>
                             <hr/>
                         </div>
 
@@ -103,24 +117,24 @@ function FrontSearchDetailsCtrl(){
                                     <label>Type</label>
                                 </Col>
                                 <Col className="col-9">
-                                    <b>Warehouse</b>
+                                    <b>{details && details.st_name}</b>
                                 </Col>
                             </Row>
-                            <Row className="mb-3">
+                            {/* <Row className="mb-3">
                                 <Col className="col-3">
                                     <label>Can Be Used For</label>
                                 </Col>
                                 <Col className="col-9">
                                     <b>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna</b>
                                 </Col>
-                            </Row>
+                            </Row> */}
                             <Row className="mb-3">
                                 <Col className="col-3">
                                     <label>Monthly Rental</label>
                                 </Col>
                                 <Col className="col-9">
-                                    <b>$245</b> <span>/ month ex. VAT</span><br/>
-                                    <b>$45 VAT</b> <span>/ month</span>
+                                    <b>${details && (parseInt(details.store_cost)+(parseInt(details.store_cost)*(parseInt(vat)/100))).toFixed(2)}</b> <span>/ month ex. VAT</span><br/>
+                                    <b>${((parseInt(details.store_cost)*(parseInt(vat)/100))).toFixed(2) } VAT</b> <span>/ month</span>
                                 </Col>
                             </Row>
                             <Row className="mb-3">
@@ -128,7 +142,7 @@ function FrontSearchDetailsCtrl(){
                                     <label>Annual Rental</label>
                                 </Col>
                                 <Col className="col-9">
-                                    <b>$5000</b> <span>/ year ex. VAT</span>
+                                    <b>${details && ((parseInt(details.store_cost)*12)+((parseInt(details.store_cost)*12)*(parseInt(vat)/100))).toFixed(2)}</b> <span>/ year ex. VAT</span>
                                 </Col>
                             </Row>
                             <Row className="mb-3">
@@ -136,7 +150,7 @@ function FrontSearchDetailsCtrl(){
                                     <label>Security Deposit</label>
                                 </Col>
                                 <Col className="col-9">
-                                    <b>$500</b>
+                                    <b>${details && details.store_security_deposit}</b>
                                 </Col>
                             </Row>
                             <Row className="mb-3">
@@ -144,7 +158,7 @@ function FrontSearchDetailsCtrl(){
                                     <label>Total Size</label>
                                 </Col>
                                 <Col className="col-9">
-                                    <b>450</b> <span>sq ft. (15 x 18 x 10)</span>
+                                    <b>{details && details.store_total_size}</b> <span>sq ft. ({details && details.store_size})</span>
                                 </Col>
                             </Row>
                             <Row className="mb-3">
@@ -152,7 +166,7 @@ function FrontSearchDetailsCtrl(){
                                     <label>Minimum Rental</label>
                                 </Col>
                                 <Col className="col-9">
-                                    <b>2</b> <span>Month</span>
+                                    <b>{details && details.store_minimum_rental}</b> <span>Month</span>
                                 </Col>
                             </Row>
                             <hr/>
@@ -186,55 +200,14 @@ function FrontSearchDetailsCtrl(){
                         <div className="details_content">
                             <h5 className="mt-4 sm2_hdng">Features</h5>
                             <Row>
-                                <Col  sm={3}>
-                                    <div className="features_icon">
-                                    <img src={door_lock} alt="" />
-                                        <p>Lockable <br/> Door</p>
-                                    </div>
-                                </Col>
-                                <Col  sm={3}>
-                                    <div className="features_icon">
-                                        <img src={alarm} alt="" />
-                                        <p>Security <br/> Alarm</p>
-                                    </div>
-                                </Col>
-                                <Col  sm={3}>
-                                    <div className="features_icon">
-                                        <img src={cctv_camera} alt="" />
-                                        <p>CCTV</p>
-                                    </div>
-                                </Col>
-                                <Col  sm={3}>
-                                    <div className="features_icon">
-                                        <img src={light_bulb} alt="" />
-                                        <p>Lighitng</p>
-                                    </div>
-                                </Col>
-
-                                <Col  sm={3}>
-                                    <div className="features_icon">
-                                        <img src={file_alarm} alt="" />
-                                        <p>Fire <br/> Alarm</p>
-                                    </div>
-                                </Col>
-                                <Col  sm={3}>
-                                    <div className="features_icon">
-                                        <img src={electric_plug} alt="" />
-                                        <p>Electricity <br/> Points</p>
-                                    </div>
-                                </Col>
-                                <Col  sm={3}>
-                                    <div className="features_icon">
-                                        <img src={heating} alt="" />
-                                        <p>Heating</p>
-                                    </div>
-                                </Col>
-                                <Col  sm={3}>
-                                    <div className="features_icon">
-                                        <img src={water_drop} alt="" />
-                                        <p>Water <br/> Supply</p>
-                                    </div>
-                                </Col>
+                                {features.map(details =>
+                                    <Col  sm={3}>
+                                        <div className="features_icon">
+                                        <img src={images(`./${details.fs_icon}`)} alt={details.fs_name} />
+                                            <p>{details.fs_name}</p>
+                                        </div>
+                                    </Col>
+                                )}
                             </Row>
                             <hr/>
                         </div>
@@ -243,42 +216,17 @@ function FrontSearchDetailsCtrl(){
                         <div className="details_content">
                             <h5 className="mt-4 sm2_hdng">Access</h5>
                             <Row>
-                                <Col  sm={6}>
-                                    <div className="access_card">
-                                        <img src={open_box} alt="" />
-                                        <div className="access_card_text">
-                                            <strong>Full Space</strong>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</p>
+                                {access.map(details =>
+                                    <Col  sm={6}>
+                                        <div className="access_card">
+                                            <img src={images(`./${details.as_icon}`)} alt={details.as_name} />
+                                            <div className="access_card_text">
+                                                <strong>{details.as_name}</strong>
+                                                <p>{details.as_description}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </Col>
-                                <Col  sm={6}>
-                                    <div className="access_card">
-                                        <img src={time} alt="" />
-                                        <div className="access_card_text">
-                                            <strong>Any Time</strong>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</p>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col  sm={6}>
-                                    <div className="access_card">
-                                        <img src={blow_ground} alt="" />
-                                        <div className="access_card_text">
-                                            <strong>Below Ground</strong>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</p>
-                                        </div>
-                                    </div>
-                                </Col>
-                                <Col  sm={6}>
-                                    <div className="access_card">
-                                        <img src={key} alt="" />
-                                        <div className="access_card_text">
-                                            <strong>Key Provided</strong>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed</p>
-                                        </div>
-                                    </div>
-                                </Col>
+                                    </Col>
+                                )}
                             </Row>
                             <hr/>
                         </div>
@@ -337,10 +285,10 @@ function FrontSearchDetailsCtrl(){
                             <Row>
                                 <Col  sm={6}>
                                     <div className="host_card">
-                                        <img src={user_r_bg} alt="" />
+                                        <img src={details && details.u_pic} alt="" />
                                         <div className="access_card_text">
-                                            <h4>Mary Ann Wagner</h4>
-                                            <small>No Verifie Host</small>
+                                            <h4>{details && details.u_name}</h4>
+                                            <small>{verifyStatus}</small>
                                             <Button variant="success">Message Mary Ann..</Button>
                                         </div>
                                     </div>
@@ -358,10 +306,10 @@ function FrontSearchDetailsCtrl(){
                                 <Button variant="outline-info">Warehouse </Button>
 
                                 <div className="d-flex user_area align-items-center">
-                                    <img width="30" height="30" src={user_r1} alt="" />
+                                    <img width="30" height="30" src={details && details.u_pic} alt="" />
                                     <div className="">
-                                        <strong className="d-block">Mary Ann Wagner</strong>
-                                        <small className="d-block">Verified Host</small>
+                                        <strong className="d-block">{details && details.u_name}</strong>
+                                        <small className="d-block">{verifyStatus}</small>
                                     </div>
                                 </div>
                                 <small>
@@ -369,8 +317,8 @@ function FrontSearchDetailsCtrl(){
                                     California | 1 Miles
                                 </small>
                                 <div className="SearchListPlaceAreaCost justify-content-between">
-                                    <strong>$45.00/Month </strong>
-                                    <span>25x25</span>
+                                    <strong>${details && (parseInt(details.store_cost)+(parseInt(details.store_cost)*(parseInt(vat)/100))).toFixed(2)}/Month </strong>
+                                    <span>{details && details.store_size}</span>
                                 </div>
                                 <Button variant="success" className="btn-block">Book Space</Button>
                             </div>

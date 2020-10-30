@@ -36,7 +36,7 @@ import b_warehouse from '../../../assets/front/images/icons/storage_type/b_wareh
 
 import SearchComponent from '../../common/components/SearchCompo';
 import FrontSideBarMenu from '../../common/sidebar';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {searchListing} from '../../../redux';
 const images = require.context('../../../assets/front/images/dummy', true);
 
@@ -46,18 +46,15 @@ function FrontSearchListCtrl(){
     const [list, setList] = useState([]);
     const dispatch = useDispatch();
 
-    const { response, error, loading } = useSelector(state => state.search);
+    const { searchList, vat } = useSelector(state => state.search);
     
     useEffect(() => {
         dispatch(searchListing(key));
     }, [key]);
 
     useEffect(() => {
-        if(response.list){
-            setList(response.list);
-        }
-       
-    }, [response]);
+        setList(searchList);
+    }, [searchList]);
 
     return(
         <>
@@ -198,8 +195,9 @@ function FrontSearchListCtrl(){
                                     {list.map(details =>
                                         <div className="col-sm-6 col-xl-4 SearchListPlace_col">
                                             <div className="SearchListPlace_card">
-                                                <img width="100%" src={images(`./${details.store_pic}`)}  alt="" />
-                                                <div className="SearchListPlace_card_body">
+                                                <a href={'/search-details/'+details.store_id} >
+                                                    <img width="100%" src={images(`./${details.store_pic}`)}  alt="" />
+                                                    <div className="SearchListPlace_card_body">
                                                     <div className="SearchListPlaceUserArea">
                                                         <img className="profileImg" src={details.u_pic} alt=""  />
                                                         <span className="profileName">{details.u_name}</span>
@@ -207,7 +205,7 @@ function FrontSearchListCtrl(){
 
                                                     <div className="SearchListPlaceAreaPlace">
                                                         <Button size="sm">
-                                                            <img width="100%" src={b_garage}  alt="" /> {details.store_type}
+                                                            <img width="100%" src={b_garage}  alt="" /> {details.st_name}
                                                         </Button>
                                                         <span>{details.store_location} </span>
                                                         <span>|</span>
@@ -215,10 +213,11 @@ function FrontSearchListCtrl(){
                                                     </div>
 
                                                     <div className="SearchListPlaceAreaCost">
-                                                        <strong>${details.store_cost}/Month </strong>
+                                                        <strong>${(parseInt(details.store_cost)+(parseInt(details.store_cost)*(parseInt(vat)/100))).toFixed(2)}/Month </strong>
                                                         <span>{details.store_size}</span>
                                                     </div>
                                                 </div>
+                                                </a>
                                             </div>
                                         </div>
                                     )}

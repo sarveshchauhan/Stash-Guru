@@ -43,7 +43,7 @@ const Root = () =>(
             <Route exact path="/search/:key" render={(props)=> (< FrontPagesMaxLayoutCtrl children={FrontSearchListCtrl} {...props} />)} />
             <Route exact path="/list-your-space" render={(props)=> (<FrontPagesLayoutCtrl  children={ListYourSpaceComponentCtrl} {...props} />)} />
             <Route exact path="/about" render={(props)=> (<FrontPagesLayoutCtrl  children={FrontAboutCtrl} {...props} />)} />
-            <Route exact path="/search-details" render={(props)=> (< FrontPagesLayoutCtrl children={FrontSearchDetailsCtrl} {...props} />)} />
+            <Route exact path="/search-details/:searchId" render={(props)=> (< FrontPagesLayoutCtrl children={FrontSearchDetailsCtrl} {...props} />)} />
             <Route exact path="/FAQS" render={(props)=> (< FrontPagesLayoutCtrl children={FrontFaqsCtrl} {...props} />)} />
             <Route exact path="/sitemap" render={(props)=> (< FrontPagesLayoutCtrl children={FrontSitemapCtrl} {...props} />)} />
             <Route exact path="/refund-policy" render={(props)=> (< FrontPagesLayoutCtrl children={FrontRefundPolicyCtrl} {...props} />)} />
