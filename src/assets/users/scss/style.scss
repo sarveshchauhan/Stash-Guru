@@ -97,3 +97,14 @@
 .dash_hm_card_b .btn_milky_grn{
    min-width: 150px;
 }
+
+.user_page_hdng{
+    display: flex;
+}
+.user_page_hdng_left{
+    display: inline-block;
+}
+
+select.form-control{
+    padding-left: 20px;
+}

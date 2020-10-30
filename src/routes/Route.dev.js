@@ -26,8 +26,11 @@ import ListYourSpaceComponentCtrl from '../front/pages/ListYourSpace';
 
 import UserPagesLayoutCtrl from '../users/layout/PageLayout';
 import SideMenuPageLayoutCtrl from '../users/layout/SideMenuLayout';
-import UserHomeCtrl from '../users/pages/home';
 
+// side menu bar layout
+import UserHomeCtrl from '../users/pages/home';
+import UserListingtrl from '../users/pages/listing';
+// side menu bar layout End
 
 const Root = () =>(
     <BrowserRouter>
@@ -48,6 +51,7 @@ const Root = () =>(
 
             {/* <PrivateRoute exact path="/dashboard" parentComponent={SideMenuLayoutCtrl} childComponent={UserHomeCtrl} /> */}
             <PrivateRoute exact path="/dashboard" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserHomeCtrl} />
+            <PrivateRoute exact path="/listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserListingtrl} />
             {/* <Route exact path="/dashboard" render={(props)=> (<UserPagesLayoutCtrl children={UserHomeCtrl} {...props} />)} /> */}
         </Switch>
     </BrowserRouter>
