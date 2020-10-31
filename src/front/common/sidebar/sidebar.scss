@@ -68,10 +68,13 @@ a.close_menu .fa.fa-times{
 }
 
 
-
+.sm_top_menu_btn {
+    display: none !important;
+}
 @media (max-width: 1199px){
-
-
+.sm_top_menu_btn {
+    display: block !important;
+}
 .sm_top_menu_btn .dropdown-toggle.nav-link{
     padding-top: 0px !important;
     padding-bottom: 0px !important;
