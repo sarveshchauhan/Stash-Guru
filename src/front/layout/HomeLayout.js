@@ -8,6 +8,7 @@ import '../../assets/front/scss/style.scss';
 import '../../assets/front/scss/responsive.scss';
 
 
+import LoaderCtrl from '../common/components/loader';
 
 
 
@@ -30,6 +31,7 @@ export default class FrontHomePagesLayoutCtrl extends Component{
                 </div>
                 
                 <FooterComponent {...this.props} />
+                <LoaderCtrl/>
             </>
         )
     }

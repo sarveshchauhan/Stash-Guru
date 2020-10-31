@@ -133,3 +133,31 @@ select.form-control{
     color: #FFFFFF;
 }
 
+.breadcrumb{
+    background-color: transparent;
+    margin-bottom: 0px;
+}
+.breadcrumb-item {
+    color: $zambezi_color;
+    display: inline-flex;
+    align-items: center;
+    height: 50px;
+    line-height: 50px;
+    font-weight: 700;
+    text-decoration: none !important;
+}
+.breadcrumb-item:hover{
+    color: $zambezi_color;
+}
+.breadcrumb-item.active {
+    color: $shamrock_color;
+}
+.breadcrumb-item img{
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+.bg_bld_txt{
+    font-weight: 900;
+    font-size: 50px;
+}

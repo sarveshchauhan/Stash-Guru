@@ -6,6 +6,7 @@ import '../../assets/users/scss/style.scss';
 
 import UserTopbarHeaderComponent from '../../users/common/topbar';
 import FooterComponent from '../../front/common/footer';
+import LoaderCtrl from '../../front/common/components/loader';
 
 export default class UserPagesLayoutCtrl extends Component{
     constructor(props) {
@@ -27,6 +28,9 @@ export default class UserPagesLayoutCtrl extends Component{
                     </Container>
                 </div>
                 <FooterComponent/>
+
+                
+                <LoaderCtrl/>
             </>
         )
     }
