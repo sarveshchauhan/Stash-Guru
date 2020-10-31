@@ -23,14 +23,19 @@ import FrontSearchListCtrl from '../front/pages/SearchList';
 import FrontSearchDetailsCtrl from '../front/pages/SearchList/details';
 import ListYourSpaceComponentCtrl from '../front/pages/ListYourSpace';
 
-
+// user layout
 import UserPagesLayoutCtrl from '../users/layout/PageLayout';
-import SideMenuPageLayoutCtrl from '../users/layout/SideMenuLayout';
+import UserCreateYourListCtrl from '../users/pages/create-your-list';
+// user layout end
+
 
 // side menu bar layout
+import SideMenuPageLayoutCtrl from '../users/layout/SideMenuLayout';
 import UserHomeCtrl from '../users/pages/home';
 import UserListingtrl from '../users/pages/listing';
+import UserBookingCtrl from '../users/pages/booking';
 // side menu bar layout End
+
 
 const Root = () =>(
     <BrowserRouter>
@@ -52,7 +57,9 @@ const Root = () =>(
             {/* <PrivateRoute exact path="/dashboard" parentComponent={SideMenuLayoutCtrl} childComponent={UserHomeCtrl} /> */}
             <PrivateRoute exact path="/dashboard" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserHomeCtrl} />
             <PrivateRoute exact path="/listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserListingtrl} />
+            <PrivateRoute exact path="/booking" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingCtrl} />
             {/* <Route exact path="/dashboard" render={(props)=> (<UserPagesLayoutCtrl children={UserHomeCtrl} {...props} />)} /> */}
+            <Route exact path="/create-your-list" render={(props)=> (<UserPagesLayoutCtrl children={UserCreateYourListCtrl} {...props} />)} />
         </Switch>
     </BrowserRouter>
 )
