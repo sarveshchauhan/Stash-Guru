@@ -26,18 +26,18 @@ class FrontSideBarMenu extends React.Component{
                 <Nav.Link className="close_menu" onClick={(e) => this.ChatSwitchToggle(e)}>
                     <i style={{fontSize:'30px'}} className="fa fa-times" aria-hidden="true"></i>
                 </Nav.Link>
-                <NavLink to="/">Post Property</NavLink>
-                <NavLink to="/">Buy Our Services</NavLink>
-                <NavLink to="/">Customer Service</NavLink>
-                <NavLink to="/">Builders in India</NavLink>
-                <NavLink to="/">Buy Our Services</NavLink>
-                <NavLink to="/">Customer Service</NavLink>
                 <NavLink className="nav-link sm_top_menu_btn" to="/list-your-space">
                     <Button variant="success">List your space</Button>
                 </NavLink>
                 <span className="nav-link sm_top_menu_btn">
                     <AuthComponent/>
                 </span>
+                <NavLink to="/">Post Property</NavLink>
+                <NavLink to="/">Buy Our Services</NavLink>
+                <NavLink to="/">Customer Service</NavLink>
+                <NavLink to="/">Builders in India</NavLink>
+                <NavLink to="/">Buy Our Services</NavLink>
+                <NavLink to="/">Customer Service</NavLink>
             </div>
             </>
         )
