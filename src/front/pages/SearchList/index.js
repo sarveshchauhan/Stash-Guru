@@ -16,6 +16,7 @@ import SearchComponent from '../../common/components/SearchCompo';
 import { useDispatch, useSelector } from 'react-redux';
 import {searchListing} from '../../../redux';
 const storeImages = require.context('../../../assets/front/images/store', true);
+const profileImages = require.context('../../../assets/users/images/profile', true);
 
 function FrontSearchListCtrl(){
    
@@ -176,7 +177,7 @@ function FrontSearchListCtrl(){
                                                     <img width="100%" src={storeImages(`./${details.si_path}`)}  alt="" />
                                                     <div className="SearchListPlace_card_body">
                                                     <div className="SearchListPlaceUserArea">
-                                                        <img className="profileImg" src={details.u_pic} alt=""  />
+                                                        <img className="profileImg" src={details.u_pic=='no_img.png' ? profileImages(`./${details.u_pic}`)  : details.u_pic} alt=""  />
                                                         <span className="profileName">{details.u_name}</span>
                                                     </div>
 

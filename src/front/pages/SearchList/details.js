@@ -26,14 +26,13 @@ import support from '../../../assets/front/images/icons/support.png';
 import secure_payment from '../../../assets/front/images/icons/list-details/secure-payment.png';
 import agreement from '../../../assets/front/images/icons/list-details/agreement.png';
 
-
-
 // Assets Include End
 import { useDispatch, useSelector } from 'react-redux';
 import { searchDetails } from '../../../redux';
 import { useParams } from 'react-router-dom';
 const iconImages = require.context('../../../assets/front/images/icons/list-details', true);
 const storeImages = require.context('../../../assets/front/images/store', true);
+const profileImages = require.context('../../../assets/users/images/profile', true);
 
 function FrontSearchDetailsCtrl(){
 
@@ -273,7 +272,7 @@ function FrontSearchDetailsCtrl(){
                             <Row>
                                 <Col  sm={6}>
                                     <div className="host_card">
-                                        <img src={details && details.u_pic} alt="" />
+                                        <img src={details && details.u_pic=='no_img.png' ? profileImages(`./${details.u_pic}`)  : details.u_pic} alt="" />
                                         <div className="access_card_text">
                                             <h4>{details && details.u_name}</h4>
                                             <small>{verifyStatus}</small>
@@ -294,7 +293,7 @@ function FrontSearchDetailsCtrl(){
                                 <Button variant="outline-info">Warehouse </Button>
 
                                 <div className="d-flex user_area align-items-center">
-                                    <img width="30" height="30" src={details && details.u_pic} alt="" />
+                                    <img width="30" height="30" src={details && details.u_pic=='no_img.png' ? profileImages(`./${details.u_pic}`)  : details.u_pic} alt="" />
                                     <div className="">
                                         <strong className="d-block">{details && details.u_name}</strong>
                                         <small className="d-block">{verifyStatus}</small>
