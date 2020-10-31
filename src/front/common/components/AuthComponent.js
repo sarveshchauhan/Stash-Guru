@@ -2,8 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
 import {NavDropdown,Nav} from 'react-bootstrap';
 import { getUsers, logoutUser } from '../../../redux';
-import { connect, useDispatch, useSelector } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
 
 import no_img from '../../../assets/users/images/profile/no_img.png';
 
@@ -19,9 +18,6 @@ import G_listing from '../../../assets/users/images/icons/menu/G_listing.png';
 import B_verify from '../../../assets/users/images/icons/menu/B_verify.png';
 import G_verify from '../../../assets/users/images/icons/menu/G_verify.png';
 
-import B_noVerify from '../../../assets/users/images/icons/menu/B_noVerify.png';
-import G_noVerify from '../../../assets/users/images/icons/menu/G_noVerify.png';
-
 import B_profile from '../../../assets/users/images/icons/menu/B_profile.png';
 import G_profile from '../../../assets/users/images/icons/menu/G_profile.png';
 
@@ -30,17 +26,20 @@ import G_share from '../../../assets/users/images/icons/menu/G_share.png';
 
 import B_logout from '../../../assets/users/images/icons/menu/B_logout.png';
 import G_logout from '../../../assets/users/images/icons/menu/G_logout.png';
+const profileImages = require.context('../../../assets/users/images/profile', true);
 
 function AuthComponent(){
 
     const dispatch = useDispatch();
     const { authResponse, islogin } = useSelector(state => state.auth);
     const [dispName, setDispName] = useState('');
+    const [dispImg, setDispImg] = useState('no_img.png');
     
     useEffect(() => {
         dispatch(getUsers());
         if(authResponse && authResponse.users){
             setDispName(authResponse.users.name);
+            setDispImg(authResponse.users.profile_pic);
         }
     }, [islogin]);
 
@@ -60,7 +59,7 @@ function AuthComponent(){
                 
                 <Nav className="ml-2 justify-content-end">
                     <Nav.Item className="dash_avtar_user_list">
-                        <img className="dash_avtar_user" src={no_img} />
+                        <img className="dash_avtar_user" src={dispImg=='no_img.png' ? profileImages(`./${dispImg}`)  : dispImg} />
                         <NavDropdown title={dispName}  id="collasible-nav-dropdown">
                         <NavLink className="dropdown-item" to="/dashboard">
                             <img className="img_deactive" src={B_home} />

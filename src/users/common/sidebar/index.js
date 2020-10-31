@@ -11,18 +11,13 @@ import G_listing from '../../../assets/users/images/icons/menu/G_listing.png';
 import B_verify from '../../../assets/users/images/icons/menu/B_verify.png';
 import G_verify from '../../../assets/users/images/icons/menu/G_verify.png';
 
-import B_noVerify from '../../../assets/users/images/icons/menu/B_noVerify.png';
-import G_noVerify from '../../../assets/users/images/icons/menu/G_noVerify.png';
-
 import B_profile from '../../../assets/users/images/icons/menu/B_profile.png';
 import G_profile from '../../../assets/users/images/icons/menu/G_profile.png';
 
 import B_share from '../../../assets/users/images/icons/menu/B_share.png';
 import G_share from '../../../assets/users/images/icons/menu/G_share.png';
 
-import B_logout from '../../../assets/users/images/icons/menu/B_logout.png';
-import G_logout from '../../../assets/users/images/icons/menu/G_logout.png';
-import { Col, Nav, Row } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 

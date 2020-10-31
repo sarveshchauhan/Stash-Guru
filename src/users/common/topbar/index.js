@@ -31,10 +31,12 @@ import B_logout from '../../../assets/users/images/icons/menu/B_logout.png';
 import G_logout from '../../../assets/users/images/icons/menu/G_logout.png';
 
 import { getUsers, logoutUser } from '../../../redux';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+const profileImages = require.context('../../../assets/users/images/profile', true);
 
 function UserTopbarHeaderComponent(){   
     const [dispName, setDispName] = useState('');
+    const [dispImg, setDispImg] = useState('no_img.png');
     const dispatch = useDispatch();
     const { authResponse, islogin } = useSelector(state => state.auth);
 
@@ -42,6 +44,7 @@ function UserTopbarHeaderComponent(){
         dispatch(getUsers());
         if(authResponse.users){
             setDispName(authResponse.users.name);
+            setDispImg(authResponse.users.profile_pic);
         }
     }, [islogin]);
 
@@ -62,7 +65,7 @@ function UserTopbarHeaderComponent(){
                         <div className="col-4 my-2">
                             <Nav className="ml-2 justify-content-end">
                                 <Nav.Item className="dash_avtar_user_list">
-                                    <img className="dash_avtar_user" src={no_img} />
+                                    <img className="dash_avtar_user" src={dispImg=='no_img.png' ? profileImages(`./${dispImg}`)  : dispImg} />
                                     <NavDropdown title={dispName}  id="collasible-nav-dropdown">
                                         <NavLink className="dropdown-item" to="/dashboard">
                                             <img className="img_deactive" src={B_home} />

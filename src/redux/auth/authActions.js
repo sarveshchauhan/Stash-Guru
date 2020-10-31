@@ -232,7 +232,7 @@ export const getUsers = () => {
                 if (usersResponse.status) {
 
                     const response = {
-                        users: {name: usersResponse.users.u_name}
+                        users: {name: usersResponse.users.u_name, profile_pic: usersResponse.users.u_pic}
                     };
 
                     dispatch(getUserSuccess(response));

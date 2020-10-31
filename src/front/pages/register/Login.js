@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { Button, Col, Container, Row ,Form, Message} from 'react-bootstrap';
-import GoogleLogo from '../../../assets/front/images/icons/GoogleLogo.png';
-import facebook from '../../../assets/front/images/icons/facebook.png';
+import React from 'react';
+import { Button, Col, Container, Row ,Form} from 'react-bootstrap';
 
 import catoons from '../../../assets/front/images/img/catoons.svg';
 import family from '../../../assets/front/images/img/family.svg';

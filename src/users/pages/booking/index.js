@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button,Form,Card } from 'react-bootstrap';
+import { Button,Form } from 'react-bootstrap';
 import './booking.scss';
 
 
