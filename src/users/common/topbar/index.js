@@ -3,7 +3,7 @@ import {Navbar,NavDropdown,Nav, Row} from 'react-bootstrap';
 import './topbar.scss';
 import { NavLink } from 'react-router-dom';
 import logo from '../../../assets/front/images/colored_logo.svg';
-import avtar from '../../../assets/users/images/dummy/avtar.jpg';
+import no_img from '../../../assets/users/images/profile/no_img.png';
 
 
 import B_home from '../../../assets/users/images/icons/menu/B_home.png';
@@ -62,7 +62,7 @@ function UserTopbarHeaderComponent(){
                         <div className="col-4 my-2">
                             <Nav className="ml-2 justify-content-end">
                                 <Nav.Item className="dash_avtar_user_list">
-                                    <img className="dash_avtar_user" src={avtar} />
+                                    <img className="dash_avtar_user" src={no_img} />
                                     <NavDropdown title={dispName}  id="collasible-nav-dropdown">
                                         <NavLink className="dropdown-item" to="/dashboard">
                                             <img className="img_deactive" src={B_home} />

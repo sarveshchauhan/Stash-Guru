@@ -5,7 +5,7 @@ import { getUsers, logoutUser } from '../../../redux';
 import { connect, useDispatch, useSelector } from 'react-redux';
 
 
-import avtar from '../../../assets/users/images/dummy/avtar.jpg';
+import no_img from '../../../assets/users/images/profile/no_img.png';
 
 import B_home from '../../../assets/users/images/icons/menu/B_home.png';
 import G_home from '../../../assets/users/images/icons/menu/G_home.png';
@@ -60,7 +60,7 @@ function AuthComponent(){
                 
                 <Nav className="ml-2 justify-content-end">
                     <Nav.Item className="dash_avtar_user_list">
-                        <img className="dash_avtar_user" src={avtar} />
+                        <img className="dash_avtar_user" src={no_img} />
                         <NavDropdown title={dispName}  id="collasible-nav-dropdown">
                         <NavLink className="dropdown-item" to="/dashboard">
                             <img className="img_deactive" src={B_home} />
