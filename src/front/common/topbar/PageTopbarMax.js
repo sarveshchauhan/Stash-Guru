@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Navbar, Nav, Row, Col} from 'react-bootstrap';
+import {Container, Navbar, Nav, Col} from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 // Assets Include
@@ -8,7 +8,6 @@ import logo from '../../../assets/front/images/colored_logo.svg';
 // Assets Include End
 
 // Component Include
-import SearchComponent from '../components/SearchCompo';
 import FrontSideBarMenu from '../sidebar';
 import AuthComponent from '../components/AuthComponent';
 // Component Include End

@@ -24,7 +24,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true,
-                error: ''
+                error: '',
+                islogin: false
             }
 
 
@@ -34,7 +35,8 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 response: action.payload.response,
                 error: '',
-                tokenInfo: action.payload.tokenInfo
+                tokenInfo: action.payload.tokenInfo,
+                islogin: true
             }
 
         case LOGIN_USER_FAILURE:
@@ -43,7 +45,8 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 response: "",
                 error: action.payload,
-                tokenInfo: {}
+                tokenInfo: {},
+                islogin: false
             }
         
         case GET_USER_REQUEST:

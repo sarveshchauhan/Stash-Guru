@@ -10,7 +10,8 @@ const initialState = {
     schDetails: {},
     features: [],
     access: [],
-    vat: 0
+    vat: 0,
+    images: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -58,7 +59,8 @@ const reducer = (state = initialState, action) => {
                 schDetails: action.payload.details,
                 vat: action.payload.vat,
                 features: action.payload.features,
-                access: action.payload.access
+                access: action.payload.access,
+                images: action.payload.images
             }
 
 

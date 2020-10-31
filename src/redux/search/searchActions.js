@@ -107,7 +107,8 @@ export const searchDetails = (id) => {
                     details: detailsResponse.details,
                     vat: vat,
                     features: detailsResponse.features,
-                    access: detailsResponse.access
+                    access: detailsResponse.access,
+                    images: detailsResponse.images
                 };
 
                 dispatch(searchDetailsSuccess(detailsData));

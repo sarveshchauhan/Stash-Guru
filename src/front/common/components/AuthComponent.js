@@ -39,7 +39,7 @@ function AuthComponent(){
     
     useEffect(() => {
         dispatch(getUsers());
-        if(authResponse.users){
+        if(authResponse && authResponse.users){
             setDispName(authResponse.users.name);
         }
     }, [islogin]);

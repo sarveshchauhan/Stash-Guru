@@ -1,44 +1,21 @@
 import React, {useState, useEffect} from 'react';
-import { Container, Row, Col,Navbar,Nav,Button,Dropdown } from 'react-bootstrap';
-import {config} from '../../../config/config';
+import { Container, Row, Col,Navbar,Button,Dropdown } from 'react-bootstrap';
 
-import { NavLink, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 // Assets Include
 import '../../common/topbar/topbar.scss';
 import './SearchList.scss';
-import logo from '../../../assets/front/images/colored_logo.svg';
 import map from '../../../assets/front/images/dummy/map.jpg';
-import SearchList1 from '../../../assets/front/images/dummy/SearchList1.jpg';
-import SearchList2 from '../../../assets/front/images/dummy/SearchList2.jpg';
-import SearchList3 from '../../../assets/front/images/dummy/SearchList3.jpg';
-import user_r1 from '../../../assets/front/images/dummy/user_r1.png';
-import user_r2 from '../../../assets/front/images/dummy/user_r2.png';
-import user_r3 from '../../../assets/front/images/dummy/user_r3.png';
-
-
 
 import b_garage from '../../../assets/front/images/icons/storage_type/b_garage.png';
-import b_basement from '../../../assets/front/images/icons/storage_type/b_basement.png';
-import b_container from '../../../assets/front/images/icons/storage_type/b_container.png';
-import b_house_lock from '../../../assets/front/images/icons/storage_type/b_house_lock.png';
-import b_lofts from '../../../assets/front/images/icons/storage_type/b_lofts.png';
-import b_outhoused from '../../../assets/front/images/icons/storage_type/b_outhoused.png';
-import b_parked_car from '../../../assets/front/images/icons/storage_type/b_parked_car.png';
-import b_spare_rooms from '../../../assets/front/images/icons/storage_type/b_spare_rooms.png';
-import b_warehouse from '../../../assets/front/images/icons/storage_type/b_warehouse.png';
-
-
 
 // Assets Include End
 
-
-
 import SearchComponent from '../../common/components/SearchCompo';
-import FrontSideBarMenu from '../../common/sidebar';
 import { useDispatch, useSelector } from 'react-redux';
 import {searchListing} from '../../../redux';
-const images = require.context('../../../assets/front/images/dummy', true);
+const storeImages = require.context('../../../assets/front/images/store', true);
 
 function FrontSearchListCtrl(){
    
@@ -196,7 +173,7 @@ function FrontSearchListCtrl(){
                                         <div className="col-sm-6 col-xl-4 SearchListPlace_col">
                                             <div className="SearchListPlace_card">
                                                 <a href={'/search-details/'+details.store_id} >
-                                                    <img width="100%" src={images(`./${details.store_pic}`)}  alt="" />
+                                                    <img width="100%" src={storeImages(`./${details.si_path}`)}  alt="" />
                                                     <div className="SearchListPlace_card_body">
                                                     <div className="SearchListPlaceUserArea">
                                                         <img className="profileImg" src={details.u_pic} alt=""  />
