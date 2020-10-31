@@ -15,9 +15,9 @@ function UserCreateYourListCtrl(){
                 </Breadcrumb>
                 <h2 className="bg_bld_txt zambezi_color">Create Your <span className="text_color_shamrock"> Listing</span> </h2>
                 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, <br/> sed diam nonumy eirmod.</p>
-                <Form>
-                <Form.Label><b>Add Your Location</b></Form.Label>
-                    <InputGroup className="location_search_bar mb-3">
+                <Form className="py-2">
+                    <Form.Label>Add Your Location</Form.Label>
+                    <InputGroup className="location_search_bar mb-2">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="">
                                 <i className="fa fa-map-marker"></i>
@@ -30,8 +30,8 @@ function UserCreateYourListCtrl(){
                             </Button>
                         </InputGroup.Append>
                     </InputGroup>
+                    <p>Can't find your address? <span className="text_color_shamrock">Enter it manually.</span></p>
                 </Form>
-                <p><b>Can't find your address? <span className="">Enter it manually.</span></b></p>
             </Col>
         </Row>
         </>
