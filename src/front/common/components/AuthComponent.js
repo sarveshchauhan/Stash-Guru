@@ -40,6 +40,9 @@ function AuthComponent(){
         if(authResponse && authResponse.users){
             setDispName(authResponse.users.name);
             setDispImg(authResponse.users.profile_pic);
+            if(window.location.pathname.replace(/[/]/g, "") == 'login'|| window.location.pathname.replace(/[/]/g, "") == 'signup'){
+                window.location.href = '/dashboard';
+            }
         }
     }, [islogin]);
 
