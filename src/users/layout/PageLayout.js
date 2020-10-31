@@ -27,9 +27,7 @@ export default class UserPagesLayoutCtrl extends Component{
                         <this.props.children {...this.props} />
                     </Container>
                 </div>
-                <FooterComponent/>
-
-                
+                <FooterComponent/>               
                 <LoaderCtrl/>
             </>
         )
