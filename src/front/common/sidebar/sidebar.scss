@@ -20,12 +20,13 @@
     display: block;
     border-bottom: 1px solid $whisper_color;
     text-align: left;
-    padding: 20px 25px;
+    padding:0px 25px 0px 25px;
     width: 100%;
     text-decoration: none;
     color: $black_color;
     font-size: 15px;
     height: 65px;
+    line-height: 65px;
     // background-color: $milky_color;
 }
 .side_menu a:hover{
@@ -68,4 +69,23 @@ a.close_menu .fa.fa-times{
 
 
 
+@media (max-width: 1199px){
 
+
+.sm_top_menu_btn .dropdown-toggle.nav-link{
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    width: 100%;
+}
+.sm_top_menu_btn .ml-2.justify-content-end.navbar-nav{
+    margin-left: 0px !important;
+    justify-content: start !important;
+}
+.side_menu .sm_top_menu_btn a{
+    height: 40px;
+    line-height: 40px;
+}
+.top_search form{
+    width: 100%;
+}
+}

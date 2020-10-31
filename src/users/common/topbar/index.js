@@ -55,15 +55,15 @@ function UserTopbarHeaderComponent(){
     return(
         <>
             <Navbar sticky="top" style={{borderBottom:'2px solid #00000008'}}>
-                <div className="nav_container lg_screen_menu">
-                    <Row className="align-items-center justify-content-between">
-                        <div className="col-3 text-center text-lg-left align-items-center d-flex justify-content-between">
+                <div className="nav_container ">
+                    <Row className="align-items-center  justify-content-sm-center justify-content-between">
+                        <div className="col-lg-6 col-md-6 col-sm-12 text-center text-lg-left text-md-left">
                             <NavLink className="navbar-brand" to="/">
                                 <img width="100%" src={logo} alt=""  />
                             </NavLink>
                         </div>
-                        <div className="col-4 my-2">
-                            <Nav className="ml-2 justify-content-end">
+                        <div className="col-lg-6 col-md-6 col-sm-12 my-2">
+                            <Nav className="ml-2 justify-content-center justify-content-lg-end justify-content-md-end">
                                 <Nav.Item className="dash_avtar_user_list">
                                     <img className="dash_avtar_user" src={dispImg=='no_img.png' ? profileImages(`./${dispImg}`)  : dispImg} />
                                     <NavDropdown title={dispName}  id="collasible-nav-dropdown">

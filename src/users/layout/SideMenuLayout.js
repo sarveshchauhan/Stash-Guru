@@ -25,7 +25,7 @@ export default class SideMenuPageLayoutCtrl extends Component{
                 <div className="user_pages_content_body_wrapper">
                     <Container>
                         <Row>
-                            <div className="PageSideMenu">
+                            <div className="PageSideMenu sm_user_side_menu_hide">
                                 <PageSideMenuCtrl/>
                             </div>
                             <div className="PageSideMenuBody">

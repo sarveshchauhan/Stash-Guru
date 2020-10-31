@@ -5,6 +5,11 @@
     margin-right: -15px;
     margin-left: -15px;
 }
+// .SearchListFilter_Buttons .btn,
+// .SearchListFilter_Buttons .btn{
+//     height: 25px !important;
+//     padding:0px 5px !important;
+// }
 .SearchListFilter_Buttons .btn.btn-outline-success{
     border-radius: 15px;
     padding: 2px 5px;
@@ -88,6 +93,9 @@
     margin-top: 5px;
     margin-bottom: 5px;
     overflow: hidden;
+}
+.SearchListPlace_card a:hover{
+    text-decoration: none;
 
 }
 .SearchListPlace_card_body{

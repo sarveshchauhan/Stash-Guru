@@ -23,9 +23,7 @@ export default class UserPagesLayoutCtrl extends Component{
             <>
                 <UserTopbarHeaderComponent/>
                 <div className="user_pages_content_body_wrapper">
-                    <Container>
-                        <this.props.children {...this.props} />
-                    </Container>
+                    <this.props.children {...this.props} />
                 </div>
                 <FooterComponent/>               
                 <LoaderCtrl/>

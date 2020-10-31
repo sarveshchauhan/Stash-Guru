@@ -8,3 +8,13 @@
     width: calc(100% - 170px);
     padding: 20px 0px 20px 30px;
 }
+
+@media (max-width: 1024px){
+    .sm_user_side_menu_hide{
+        display: none;
+    }
+    .PageSideMenuBody{
+        width: 100%;
+    }
+}
+

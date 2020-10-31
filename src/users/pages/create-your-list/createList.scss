@@ -1,0 +1,32 @@
+.create_your_list_area{
+    height: 650px;
+    width: 100%;
+}
+.create_your_list_map{
+    width: 50%;
+    height: 650px;
+    position: absolute;
+    top: 75px;
+    right: 0px;
+}
+
+.create_your_list_map img{
+    width: 100%;
+    height: 657px !important;
+}
+
+
+@media (max-width: 1199px){
+    .create_your_list_area{
+        height: auto;
+    }
+    .create_your_list_map{
+        width: 100%;
+        height: 650px;
+        position: relative;
+    }
+    .create_your_list_map img{
+        width: 100%;
+        height: 500px !important;
+    }
+}
