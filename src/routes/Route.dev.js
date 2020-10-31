@@ -23,8 +23,6 @@ import FrontSearchListCtrl from '../front/pages/SearchList';
 import FrontSearchDetailsCtrl from '../front/pages/SearchList/details';
 import ListYourSpaceComponentCtrl from '../front/pages/ListYourSpace';
 
-
-import UserPagesLayoutCtrl from '../users/layout/PageLayout';
 import SideMenuPageLayoutCtrl from '../users/layout/SideMenuLayout';
 
 // side menu bar layout

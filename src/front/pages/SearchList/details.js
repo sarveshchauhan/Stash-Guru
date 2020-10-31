@@ -10,8 +10,6 @@ import connect from '../../../assets/front/images/icons/connect.svg';
 import store from '../../../assets/front/images/icons/store.svg';
 import SearchList1 from '../../../assets/front/images/dummy/SearchList1.jpg';
 import SearchList2 from '../../../assets/front/images/dummy/SearchList2.jpg';
-import SearchList3 from '../../../assets/front/images/dummy/SearchList3.jpg';
-import user_r_bg from '../../../assets/front/images/dummy/user_r_bg.jpg';
 import user_r1 from '../../../assets/front/images/dummy/user_r1.png';
 
 import Local from '../../../assets/front/images/icons/localstorages.png';
@@ -22,11 +20,6 @@ import IDChecks from '../../../assets/front/images/icons/id-card.png';
 import Support from '../../../assets/front/images/icons/support.png';
 
 import some_empty_space from '../../../assets/front/images/img/some_empty_space.svg';
-
-import open_box from '../../../assets/front/images/icons/list-details/open_box.png';
-import time from '../../../assets/front/images/icons/list-details/time.png';
-import blow_ground from '../../../assets/front/images/icons/list-details/blow_ground.png';
-import key from '../../../assets/front/images/icons/list-details/key.png';
 
 import helping from '../../../assets/front/images/icons/helping.png';
 import support from '../../../assets/front/images/icons/support.png';
@@ -39,9 +32,8 @@ import agreement from '../../../assets/front/images/icons/list-details/agreement
 import { useDispatch, useSelector } from 'react-redux';
 import { searchDetails } from '../../../redux';
 import { useParams } from 'react-router-dom';
-import { verify } from 'jsonwebtoken';
-const images = require.context('../../../assets/front/images/icons/list-details', true);
-
+const iconImages = require.context('../../../assets/front/images/icons/list-details', true);
+const storeImages = require.context('../../../assets/front/images/store', true);
 
 function FrontSearchDetailsCtrl(){
 
@@ -50,7 +42,7 @@ function FrontSearchDetailsCtrl(){
     const [verifyStatus, setVerifyStatus] = useState('No Verify Host');
     const dispatch = useDispatch();
 
-    const { schDetails, detailsResponse, vat, features, access } = useSelector(state => state.search);
+    const { schDetails, detailsResponse, vat, features, access, images } = useSelector(state => state.search);
     
     useEffect(() => {
         dispatch(searchDetails(searchId));
@@ -93,15 +85,11 @@ function FrontSearchDetailsCtrl(){
                 <Row>
                     <Col lg={8}>
                         <Carousel activeIndex={index} onSelect={search_Details_handleSelect} indicators={true}>
-                            <Carousel.Item>
-                                <img className="d-block w-100" src={SearchList1} alt="First slide" />
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img className="d-block w-100" src={SearchList2} alt="Third slide" />
-                            </Carousel.Item>
-                            <Carousel.Item>
-                                <img className="d-block w-100" src={SearchList3} alt="Second slide" />
-                            </Carousel.Item>
+                            {images.map(details =>
+                                <Carousel.Item>
+                                    <img className="d-block w-100" src={storeImages(`./${details.si_path}`)} alt={details.si_name} />
+                                </Carousel.Item>
+                            )}
                         </Carousel>
                             
                         <div>
@@ -203,7 +191,7 @@ function FrontSearchDetailsCtrl(){
                                 {features.map(details =>
                                     <Col  sm={3}>
                                         <div className="features_icon">
-                                        <img src={images(`./${details.fs_icon}`)} alt={details.fs_name} />
+                                        <img src={iconImages(`./${details.fs_icon}`)} alt={details.fs_name} />
                                             <p>{details.fs_name}</p>
                                         </div>
                                     </Col>
@@ -219,7 +207,7 @@ function FrontSearchDetailsCtrl(){
                                 {access.map(details =>
                                     <Col  sm={6}>
                                         <div className="access_card">
-                                            <img src={images(`./${details.as_icon}`)} alt={details.as_name} />
+                                            <img src={iconImages(`./${details.as_icon}`)} alt={details.as_name} />
                                             <div className="access_card_text">
                                                 <strong>{details.as_name}</strong>
                                                 <p>{details.as_description}</p>

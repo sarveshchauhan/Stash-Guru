@@ -111,7 +111,7 @@ class LoginComponentCtrl extends React.Component{
                                     </Col>
                                     <Col sm={12}>
                                         {this.props.auth.auth.error &&
-                                            <span>{JSON.stringify(this.props.auth.auth.error)}</span>
+                                            <span>{JSON.stringify(this.props.auth.auth.error).replace(/["']/g, "")}</span>
                                         }
                                     </Col>
                                     <Col sm={12}>

@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import './user_pagelayout.scss';
 
 import UserTopbarHeaderComponent from '../../users/common/topbar';

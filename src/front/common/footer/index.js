@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Container, Row,Nav, Accordion, Card ,Button} from 'react-bootstrap';
+import { Col, Container, Row,Nav, Accordion} from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import './footer.scss';
 import Logo from '../../../assets/front/images/white_logo.png';
