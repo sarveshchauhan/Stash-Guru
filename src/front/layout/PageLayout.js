@@ -24,6 +24,7 @@ export default class fixedTopbarHeaderComponent extends Component{
                 </div>
                 
                 <FooterComponent {...this.props} />
+
             </>
         )
     }

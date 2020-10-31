@@ -13,6 +13,21 @@ $zambezi_color: #595959;
 $dark_gray_color: #aaaaaa;
 $nobel_color: #9c9c9c;
 
+.btn,
+.btn:focus{
+     box-shadow: none !important;
+     height: 40px;
+     padding-left: 20px;
+     padding-right: 20px;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active, 
+.btn-primary:not(:disabled):not(.disabled):active, 
+.show>.btn-primary.dropdown-toggle{
+    background-color: #22bff6;
+    border-color: #22bff6;
+}
+
 .w-100{
     width: 100%;
 }

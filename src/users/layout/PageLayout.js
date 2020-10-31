@@ -5,6 +5,7 @@ import './user_pagelayout.scss';
 import '../../assets/users/scss/style.scss';
 
 import UserTopbarHeaderComponent from '../../users/common/topbar';
+import FooterComponent from '../../front/common/footer';
 import PageSideMenuCtrl from '../common/sidebar';
 
 
@@ -27,6 +28,7 @@ export default class UserPagesLayoutCtrl extends Component{
                         <this.props.children {...this.props} />
                     </Container>
                 </div>
+                <FooterComponent/>
             </>
         )
     }

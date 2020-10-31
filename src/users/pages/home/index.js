@@ -63,8 +63,8 @@ function UserHomeCtrl(){
                 </Col>
             </Row>
 
-            <Row>
-                <Col sm={12} lg={6}>
+            <Row className="justify-content-center">
+                <Col sm={12} lg={5}>
                     <Card className="dash_hm_card_b">
                         <Card.Body>
                             <div className="">
@@ -78,7 +78,7 @@ function UserHomeCtrl(){
                         </span>
                     </Card>
                 </Col>
-                <Col sm={12} lg={6}>
+                <Col sm={12} lg={5}>
                     <Card className="dash_hm_card_b">
                         <Card.Body>
                             <div className="">

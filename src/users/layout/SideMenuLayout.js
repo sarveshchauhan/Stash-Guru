@@ -4,6 +4,7 @@ import './user_pagelayout.scss';
 
 import UserTopbarHeaderComponent from '../../users/common/topbar';
 import PageSideMenuCtrl from '../common/sidebar';
+import FooterComponent from '../../front/common/footer';
 
 
 export default class SideMenuPageLayoutCtrl extends Component{
@@ -31,6 +32,8 @@ export default class SideMenuPageLayoutCtrl extends Component{
                             </div>
                         </Row>
                     </Container>
+                    
+                <FooterComponent/>
                 </div>
             </>
         )
