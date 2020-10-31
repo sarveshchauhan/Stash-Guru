@@ -17,7 +17,7 @@ class FrontSideBarMenu extends React.Component{
     render(){
         return(
             <>
-            <Nav.Link className="py-0 pl-5" onClick={(e) => this.ChatSwitchToggle(e)} style={{lineHeight:'0px'}}>
+            <Nav.Link className="py-0 pl-4" onClick={(e) => this.ChatSwitchToggle(e)} style={{lineHeight:'0px'}}>
                 <i style={{fontSize:'30px'}} className="fa fa-bars" aria-hidden="true"></i>
             </Nav.Link>
             <div className={this.state.isChatUserActive ? "side_menu" : "side_menu open_side_menu"}>

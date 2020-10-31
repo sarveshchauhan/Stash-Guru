@@ -22,12 +22,12 @@ function PageTopbarHeaderComponent(){
             <Navbar sticky="top" style={{borderBottom: '2px solid #00000008'}}>
                 <div className="nav_container lg_screen_menu">
                     <Row className="align-items-center justify-content-between">
-                        <div className="col-3 text-center text-lg-left align-items-center d-flex justify-content-between">
+                        <div className="col-4 text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">
                                 <img width="100%" src={logo} alt=""  />
                             </NavLink>
                         </div>
-                        <div className="col-5 top_search mx-auto justify-content-center">
+                        <div className="col-4 top_search mx-auto justify-content-center">
                             <Nav>
                                 <SearchComponent/>
                             </Nav>
