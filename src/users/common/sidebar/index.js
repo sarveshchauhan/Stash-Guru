@@ -17,6 +17,9 @@ import G_profile from '../../../assets/users/images/icons/menu/G_profile.png';
 import B_share from '../../../assets/users/images/icons/menu/B_share.png';
 import G_share from '../../../assets/users/images/icons/menu/G_share.png';
 
+import B_payment from '../../../assets/users/images/icons/menu/B_payment.png';
+import G_payment from '../../../assets/users/images/icons/menu/G_payment.png';
+
 import { Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
@@ -60,6 +63,12 @@ function PageSideMenuCtrl(){
                         <img className="img_deactive" src={B_share} />
                         <img className="img_active" src={G_share} />
                         Referrals
+                    </NavLink>
+                    
+                    <NavLink className="nav-link" to="/referrals">
+                        <img className="img_deactive" src={B_payment} />
+                        <img className="img_active" src={G_payment} />
+                        Payment
                     </NavLink>
                 </Nav.Item>
             </Nav>

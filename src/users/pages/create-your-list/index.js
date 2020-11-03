@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Breadcrumb, Col, Form, Row,InputGroup,FormControl,Button, Container} from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import './createList.scss';
@@ -6,12 +6,13 @@ import B_home from '../../../assets/users/images/icons/menu/B_home.png';
 import map from '../../../assets/front/images/dummy/map.jpg';
 
 function UserCreateYourListCtrl(){
+    const [manually, setManually] = useState([!false]);
     return(
         <>
         <Container>
             <div className="create_your_list_area">
                 <Row>
-                    <Col sm={6}>
+                    <Col sm={5}>
                         <Breadcrumb>
                             <NavLink className="breadcrumb-item" to="/dashboard"><img src={B_home}/> Dashboard</NavLink>
                             <NavLink className="breadcrumb-item" to="/create-your-list"> Listing</NavLink>
@@ -33,9 +34,40 @@ function UserCreateYourListCtrl(){
                                     </Button>
                                 </InputGroup.Append>
                             </InputGroup>
-                            <p>Can't find your address? <a className="text_color_shamrock" href="#">Enter it manually.</a>
+
+                            <p>Can't find your address? 
+                                <span className="text_color_shamrock pl-2" style={{cursor:'pointer'}} onClick={() => setManually()}>Enter it manually.</span>
                             </p>
                         </Form>
+                        <div className={manually ? "d-none" : "d-block"}>
+                        <Form className="pb-5">
+                            <h2>Add Address</h2>
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Label>Street/House Number</Form.Label>
+                                <Form.Control type="text" placeholder="Enter Street/House Number" />
+                            </Form.Group>
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Label>Address1</Form.Label>
+                                <Form.Control type="text" placeholder="Enter Address1" />
+                            </Form.Group>
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Label>Address2</Form.Label>
+                                <Form.Control type="text" placeholder="Enter Address2" />
+                            </Form.Group>
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Label>City/Town</Form.Label>
+                                <Form.Control type="text" placeholder="Enter City/Town" />
+                            </Form.Group>
+
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Post Code</Form.Label>
+                                <Form.Control type="text" placeholder="Post Code" />
+                            </Form.Group>
+                            <Button variant="success" type="submit">
+                                Add Address
+                            </Button>
+                        </Form>
+                        </div>
                     </Col>
                 </Row>
                 <div className="create_your_list_map">

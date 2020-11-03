@@ -1,5 +1,8 @@
 @import '../../../App.scss';
-
+.SearchListPlace_row .btn,
+.SearchListFilter .btn{
+    min-height: auto !important;
+}
 .SearchListFilter{
     box-shadow: 0px 10px 10px -5px $nobel_color;
     margin-right: -15px;

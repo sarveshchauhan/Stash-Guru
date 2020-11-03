@@ -30,6 +30,7 @@ $nobel_color: #9c9c9c;
 
 .btn{
     border-radius: 25px;
+    min-height: 48px;
 }
 img{
     max-width: 100%;
@@ -99,8 +100,8 @@ img{
 .btn-primary:not(:disabled):not(.disabled).active, 
 .btn-primary:not(:disabled):not(.disabled):active, 
 .show>.btn-primary.dropdown-toggle{
-    background-color: #22bff6;
-    border-color: #22bff6;
+    background-color: $deep_sky_color;
+    border-color: $deep_sky_color;
 }
 
 .bg_milky{
@@ -122,6 +123,19 @@ img{
     border-color: $milky_color;
     background: $deep_sky_color;
 }
+
+.btn_outline_info{
+    border-color: $deep_sky_color;
+    color: $deep_sky_color;
+    background: transparent;
+}
+.btn_outline_info:hover{
+    border-color: $deep_sky_color;
+    color: $milky_color;
+    background: $deep_sky_color;;
+}
+
+
 .btn_milky_grn{
     color: $shamrock_color;
     border-color: $shamrock_color;
@@ -135,6 +149,17 @@ img{
     border-color: $milky_color;
     background: $shamrock_color;
 }
+.btn_outline_success{
+    border-color: $shamrock_color;
+    color: $shamrock_color;
+    background: transparent;
+}
+.btn_outline_success:hover{
+    border-color: $shamrock_color;
+    color: $milky_color;
+    background: $shamrock_color;;
+}
+
 .btn i.fa.fa-angle-right{
     margin-left: 10px;
 }
@@ -142,7 +167,7 @@ img{
 select.form-control,
 input.form-control{
     border-radius: 25px;
-    height: 40px;
+    min-height: 48px;
 }
 
 .custom_select {

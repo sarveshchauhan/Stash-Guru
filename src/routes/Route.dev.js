@@ -37,6 +37,9 @@ import UserBookingCtrl from '../users/pages/booking';
 // side menu bar layout End
 
 
+import CreateYourListStepThitdCtrl from '../users/pages/create-your-list/LYS_step3';
+import CreateYourListStepForthCtrl from '../users/pages/create-your-list/LYS_step4';
+
 const Root = () =>(
     <BrowserRouter>
         <Switch>
@@ -60,6 +63,8 @@ const Root = () =>(
             <PrivateRoute exact path="/booking" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingCtrl} />
             {/* <Route exact path="/dashboard" render={(props)=> (<UserPagesLayoutCtrl children={UserHomeCtrl} {...props} />)} /> */}
             <Route exact path="/create-your-list" render={(props)=> (<UserPagesLayoutCtrl children={UserCreateYourListCtrl} {...props} />)} />
+            <Route exact path="/create-your-list-step3" render={(props)=> (<UserPagesLayoutCtrl children={CreateYourListStepThitdCtrl} {...props} />)} />
+            <Route exact path="/create-your-list-step4" render={(props)=> (<UserPagesLayoutCtrl children={CreateYourListStepForthCtrl} {...props} />)} />
         </Switch>
     </BrowserRouter>
 )

@@ -24,6 +24,9 @@ import G_profile from '../../../assets/users/images/icons/menu/G_profile.png';
 import B_share from '../../../assets/users/images/icons/menu/B_share.png';
 import G_share from '../../../assets/users/images/icons/menu/G_share.png';
 
+import B_payment from '../../../assets/users/images/icons/menu/B_payment.png';
+import G_payment from '../../../assets/users/images/icons/menu/G_payment.png';
+
 import B_logout from '../../../assets/users/images/icons/menu/B_logout.png';
 import G_logout from '../../../assets/users/images/icons/menu/G_logout.png';
 const profileImages = require.context('../../../assets/users/images/profile', true);
@@ -99,6 +102,13 @@ function AuthComponent(){
                             <img className="img_active" src={G_share} />
                             Referrals
                         </NavLink>
+                        
+                        <NavLink className="dropdown-item" to="/referrals">
+                            <img className="img_deactive" src={B_payment} />
+                            <img className="img_active" src={G_payment} />
+                            Payment
+                        </NavLink>
+
                         <NavLink className="dropdown-item" to="/logout" onClick={logoutHandle}>
                             <img className="img_deactive" src={B_logout} />
                             <img className="img_active" src={G_logout} />
