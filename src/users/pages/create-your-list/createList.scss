@@ -102,3 +102,67 @@
 .step_nav_list li.completed span{
     background-color: $milky_color;
 }
+.wrapperClassName{
+    border: 1px solid #33333339;
+}
+.editorClassName{
+    min-height: 100px;
+    padding: 0px 15px;
+}
+
+
+.sizeSpaceRow{
+    display: flex;
+    width: 100%;
+}
+.sizeSpaceWidth{
+    width: 200px;
+    padding-right: 10px;
+}
+.sizeSpaceWidth .input-group-text{
+    background: $shamrock_color;
+    border-radius: 25px;
+    color: $milky_color;
+}
+.sizeSpaceWidthUnit{
+    width: 100px;
+}
+.PricingRow,
+.GetYourEarningsRow{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.PricingCol{
+    width: 150px;
+    padding-right: 10px;
+}
+.GetYourEarningsCol{
+    padding-right: 10px;
+}
+.PricingCol .input-group-text,
+.GetYourEarningsCol .input-group-text{
+    background: $shamrock_color;
+    border-radius: 25px;
+    color: $milky_color;
+}
+.GetYourEarningsCol .input-group-text{
+    border-color: $shamrock_color;
+}
+.GetYourEarningsCol .form-control{
+    background: $shamrock_color;
+    border-color: $shamrock_color;
+    color: $milky_color;
+    padding: 0px;
+    font-weight: 900;
+}
+.GetYourEarningsCol .btn{
+    background: $shamrock_color;
+    border-color: $shamrock_color;
+    color: $milky_color;
+    width: 150px;
+    font-weight: 900;
+}
+.sizeSpaceWidthUnit{
+    width: 100px;
+}

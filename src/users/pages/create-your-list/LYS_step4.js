@@ -1,12 +1,14 @@
 import React from 'react';
 import { Col, Container, Row,Breadcrumb, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
 
 import B_home from '../../../assets/users/images/icons/menu/B_home.png';
 import StepsNavListCtrl from './steps-nav-list';
 
 function CreateYourListStepForthCtrl(){
-
     return(
         <>
             <Container>
@@ -25,6 +27,7 @@ function CreateYourListStepForthCtrl(){
                     <Row className="justify-content-between">
                         <Col lg="5" md="6">
                             <h3 className="md_bld_txt mb-3">Description</h3>
+                            <Editor toolbarClassName="toolbarClassName" wrapperClassName="wrapperClassName" editorClassName="editorClassName" />
                         </Col>
                         <Col lg="4" md="5" className="offset-lg-1">
                             <h5 className=""><b>Lorem ipsum dolor sit</b></h5>

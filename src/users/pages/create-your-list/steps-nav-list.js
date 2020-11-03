@@ -55,8 +55,6 @@ function StepsNavListCtrl(){
                             <Row>
                                 <Col className="mt-2"><Button className="btn_milky_grn btn-block">Host Guide</Button></Col>
                             </Row>
-                            
-                            
                         </Col>
                     </Row>
                 </Container>

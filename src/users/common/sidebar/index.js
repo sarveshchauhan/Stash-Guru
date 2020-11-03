@@ -65,7 +65,7 @@ function PageSideMenuCtrl(){
                         Referrals
                     </NavLink>
                     
-                    <NavLink className="nav-link" to="/referrals">
+                    <NavLink className="nav-link" to="/payment">
                         <img className="img_deactive" src={B_payment} />
                         <img className="img_active" src={G_payment} />
                         Payment
