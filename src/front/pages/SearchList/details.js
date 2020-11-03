@@ -30,6 +30,7 @@ import agreement from '../../../assets/front/images/icons/list-details/agreement
 import { useDispatch, useSelector } from 'react-redux';
 import { searchDetails } from '../../../redux';
 import { useParams } from 'react-router-dom';
+import LoaderCtrl from '../../common/components/loader';
 const iconImages = require.context('../../../assets/front/images/icons/list-details', true);
 const storeImages = require.context('../../../assets/front/images/store', true);
 const profileImages = require.context('../../../assets/users/images/profile', true);
@@ -39,9 +40,10 @@ function FrontSearchDetailsCtrl(){
     const { searchId } = useParams();
     const [details, setDetails] = useState([]);
     const [verifyStatus, setVerifyStatus] = useState('No Verify Host');
+    const [loader, setLoader] = useState(false);
     const dispatch = useDispatch();
 
-    const { schDetails, detailsResponse, vat, features, access, images } = useSelector(state => state.search);
+    const { schDetails, detailsResponse, vat, features, access, images, loading } = useSelector(state => state.search);
     
     useEffect(() => {
         dispatch(searchDetails(searchId));
@@ -54,6 +56,9 @@ function FrontSearchDetailsCtrl(){
         }
     }, [detailsResponse]);
 
+    useEffect(() => {
+        setLoader(loading);
+    }, [loading]);
 
     // Back to Top
     const [showScroll, setShowScroll] = useState(false)
@@ -79,264 +84,265 @@ function FrontSearchDetailsCtrl(){
     /////////
     return(
         <>
-        <section className="py-4">
-            <Container className="">
-                <Row>
-                    <Col lg={8}>
-                        <Carousel activeIndex={index} onSelect={search_Details_handleSelect} indicators={true}>
-                            {images.map(details =>
-                                <Carousel.Item>
-                                    <img className="d-block w-100" src={storeImages(`./${details.si_path}`)} alt={details.si_name} />
-                                </Carousel.Item>
-                            )}
-                        </Carousel>
-                            
-                        <div>
-                            <h3 className="my-4">{ details && details.store_title}</h3>
-                            <p>{details && details.store_description}</p>
-                            <hr/>
-                        </div>
+            <LoaderCtrl loaderStatus={loader} />
+            <section className="py-4">
+                <Container className="">
+                    <Row>
+                        <Col lg={8}>
+                            <Carousel activeIndex={index} onSelect={search_Details_handleSelect} indicators={true}>
+                                {images.map(details =>
+                                    <Carousel.Item>
+                                        <img className="d-block w-100" src={storeImages(`./${details.si_path}`)} alt={details.si_name} />
+                                    </Carousel.Item>
+                                )}
+                            </Carousel>
+                                
+                            <div>
+                                <h3 className="my-4">{ details && details.store_title}</h3>
+                                <p>{details && details.store_description}</p>
+                                <hr/>
+                            </div>
 
-                        <div className="details_content">
-                            <h5 className="my-4 sm2_hdng">Details</h5>
-                            <Row className="mb-3">
-                                <Col className="col-3">
-                                    <label>Type</label>
-                                </Col>
-                                <Col className="col-9">
-                                    <b>{details && details.st_name}</b>
-                                </Col>
-                            </Row>
-                            {/* <Row className="mb-3">
-                                <Col className="col-3">
-                                    <label>Can Be Used For</label>
-                                </Col>
-                                <Col className="col-9">
-                                    <b>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna</b>
-                                </Col>
-                            </Row> */}
-                            <Row className="mb-3">
-                                <Col className="col-3">
-                                    <label>Monthly Rental</label>
-                                </Col>
-                                <Col className="col-9">
-                                    <b>${details && (parseInt(details.store_cost)+(parseInt(details.store_cost)*(parseInt(vat)/100))).toFixed(2)}</b> <span>/ month ex. VAT</span><br/>
-                                    <b>${((parseInt(details.store_cost)*(parseInt(vat)/100))).toFixed(2) } VAT</b> <span>/ month</span>
-                                </Col>
-                            </Row>
-                            <Row className="mb-3">
-                                <Col className="col-3">
-                                    <label>Annual Rental</label>
-                                </Col>
-                                <Col className="col-9">
-                                    <b>${details && ((parseInt(details.store_cost)*12)+((parseInt(details.store_cost)*12)*(parseInt(vat)/100))).toFixed(2)}</b> <span>/ year ex. VAT</span>
-                                </Col>
-                            </Row>
-                            <Row className="mb-3">
-                                <Col className="col-3">
-                                    <label>Security Deposit</label>
-                                </Col>
-                                <Col className="col-9">
-                                    <b>${details && details.store_security_deposit}</b>
-                                </Col>
-                            </Row>
-                            <Row className="mb-3">
-                                <Col className="col-3">
-                                    <label>Total Size</label>
-                                </Col>
-                                <Col className="col-9">
-                                    <b>{details && details.store_total_size}</b> <span>sq ft. ({details && details.store_size})</span>
-                                </Col>
-                            </Row>
-                            <Row className="mb-3">
-                                <Col className="col-3">
-                                    <label>Minimum Rental</label>
-                                </Col>
-                                <Col className="col-9">
-                                    <b>{details && details.store_minimum_rental}</b> <span>Month</span>
-                                </Col>
-                            </Row>
-                            <hr/>
-                        </div>
+                            <div className="details_content">
+                                <h5 className="my-4 sm2_hdng">Details</h5>
+                                <Row className="mb-3">
+                                    <Col className="col-3">
+                                        <label>Type</label>
+                                    </Col>
+                                    <Col className="col-9">
+                                        <b>{details && details.st_name}</b>
+                                    </Col>
+                                </Row>
+                                {/* <Row className="mb-3">
+                                    <Col className="col-3">
+                                        <label>Can Be Used For</label>
+                                    </Col>
+                                    <Col className="col-9">
+                                        <b>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna</b>
+                                    </Col>
+                                </Row> */}
+                                <Row className="mb-3">
+                                    <Col className="col-3">
+                                        <label>Monthly Rental</label>
+                                    </Col>
+                                    <Col className="col-9">
+                                        <b>${details && (parseInt(details.store_cost)+(parseInt(details.store_cost)*(parseInt(vat)/100))).toFixed(2)}</b> <span>/ month ex. VAT</span><br/>
+                                        <b>${((parseInt(details.store_cost)*(parseInt(vat)/100))).toFixed(2) } VAT</b> <span>/ month</span>
+                                    </Col>
+                                </Row>
+                                <Row className="mb-3">
+                                    <Col className="col-3">
+                                        <label>Annual Rental</label>
+                                    </Col>
+                                    <Col className="col-9">
+                                        <b>${details && ((parseInt(details.store_cost)*12)+((parseInt(details.store_cost)*12)*(parseInt(vat)/100))).toFixed(2)}</b> <span>/ year ex. VAT</span>
+                                    </Col>
+                                </Row>
+                                <Row className="mb-3">
+                                    <Col className="col-3">
+                                        <label>Security Deposit</label>
+                                    </Col>
+                                    <Col className="col-9">
+                                        <b>${details && details.store_security_deposit}</b>
+                                    </Col>
+                                </Row>
+                                <Row className="mb-3">
+                                    <Col className="col-3">
+                                        <label>Total Size</label>
+                                    </Col>
+                                    <Col className="col-9">
+                                        <b>{details && details.store_total_size}</b> <span>sq ft. ({details && details.store_size})</span>
+                                    </Col>
+                                </Row>
+                                <Row className="mb-3">
+                                    <Col className="col-3">
+                                        <label>Minimum Rental</label>
+                                    </Col>
+                                    <Col className="col-9">
+                                        <b>{details && details.store_minimum_rental}</b> <span>Month</span>
+                                    </Col>
+                                </Row>
+                                <hr/>
+                            </div>
 
-                        <div className="details_content choose_your_location">
-                            <h5 className="mt-4 sm2_hdng">Location</h5>
-                            <Row>
-                                <Col  sm={7}>
-                                    <b>9961 St Paul Ave. Oceanside, CA 92054</b>
-                                </Col>
-                                <Col  sm={5}>
-                                <InputGroup className="mb-3">
-                                    <FormControl placeholder="Your Location" aria-label="" />
-                                    <InputGroup.Append>
-                                        <InputGroup.Text className="your_location_icon">
-                                            <span></span>
-                                        </InputGroup.Text>
-                                    </InputGroup.Append>
-                                </InputGroup>
-                                </Col>
-                                <Col sm={12}>
-                                    <div className="details_your_location_map">
-                                        <img src={map} alt="" />
-                                    </div>
-                                </Col>
-                            </Row>
-                            <hr/>
-                        </div>
-
-                        <div className="details_content">
-                            <h5 className="mt-4 sm2_hdng">Features</h5>
-                            <Row>
-                                {features.map(details =>
-                                    <Col  sm={3}>
-                                        <div className="features_icon">
-                                        <img src={iconImages(`./${details.fs_icon}`)} alt={details.fs_name} />
-                                            <p>{details.fs_name}</p>
+                            <div className="details_content choose_your_location">
+                                <h5 className="mt-4 sm2_hdng">Location</h5>
+                                <Row>
+                                    <Col  sm={7}>
+                                        <b>9961 St Paul Ave. Oceanside, CA 92054</b>
+                                    </Col>
+                                    <Col  sm={5}>
+                                    <InputGroup className="mb-3">
+                                        <FormControl placeholder="Your Location" aria-label="" />
+                                        <InputGroup.Append>
+                                            <InputGroup.Text className="your_location_icon">
+                                                <span></span>
+                                            </InputGroup.Text>
+                                        </InputGroup.Append>
+                                    </InputGroup>
+                                    </Col>
+                                    <Col sm={12}>
+                                        <div className="details_your_location_map">
+                                            <img src={map} alt="" />
                                         </div>
                                     </Col>
-                                )}
-                            </Row>
-                            <hr/>
-                        </div>
+                                </Row>
+                                <hr/>
+                            </div>
+
+                            <div className="details_content">
+                                <h5 className="mt-4 sm2_hdng">Features</h5>
+                                <Row>
+                                    {features.map(details =>
+                                        <Col  sm={3}>
+                                            <div className="features_icon">
+                                            <img src={iconImages(`./${details.fs_icon}`)} alt={details.fs_name} />
+                                                <p>{details.fs_name}</p>
+                                            </div>
+                                        </Col>
+                                    )}
+                                </Row>
+                                <hr/>
+                            </div>
 
 
-                        <div className="details_content">
-                            <h5 className="mt-4 sm2_hdng">Access</h5>
-                            <Row>
-                                {access.map(details =>
+                            <div className="details_content">
+                                <h5 className="mt-4 sm2_hdng">Access</h5>
+                                <Row>
+                                    {access.map(details =>
+                                        <Col  sm={6}>
+                                            <div className="access_card">
+                                                <img src={iconImages(`./${details.as_icon}`)} alt={details.as_name} />
+                                                <div className="access_card_text">
+                                                    <strong>{details.as_name}</strong>
+                                                    <p>{details.as_description}</p>
+                                                </div>
+                                            </div>
+                                        </Col>
+                                    )}
+                                </Row>
+                                <hr/>
+                            </div>
+
+                            <div className="details_content">
+                                <h5 className="mt-4 sm2_hdng">Other Listings At This Location</h5>
+                                <Row>
                                     <Col  sm={6}>
-                                        <div className="access_card">
-                                            <img src={iconImages(`./${details.as_icon}`)} alt={details.as_name} />
-                                            <div className="access_card_text">
-                                                <strong>{details.as_name}</strong>
-                                                <p>{details.as_description}</p>
+                                        <div className="SearchListPlace_card">
+                                            <img width="100%" src={SearchList1}  alt="" />
+                                            <div className="SearchListPlace_card_body">
+                                                <div className="SearchListPlaceUserArea">
+                                                    <img width="100%" className="profileImg" src={user_r1} alt=""  />
+                                                    <span className="profileName">Mary Ann Wagner</span>
+                                                </div>
+
+                                                <div className="SearchListPlaceAreaPlace">
+                                                    <Button size="sm">Garage</Button>
+                                                    <span><i className="fa fa-map-marker"></i> California </span>
+                                                </div>
+
+                                                <div className="SearchListPlaceAreaCost">
+                                                    <strong>$45.00/Month </strong>
+                                                    <span>20x25</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </Col>
-                                )}
-                            </Row>
-                            <hr/>
-                        </div>
+                                    <Col  sm={6}>
+                                        <div className="SearchListPlace_card">
+                                            <img width="100%" src={SearchList2} alt=""  />
+                                            <div className="SearchListPlace_card_body">
+                                                <div className="SearchListPlaceUserArea">
+                                                    <img className="profileImg" src={user_r1} alt=""  />
+                                                    <span className="profileName">Mary Ann Wagner</span>
+                                                </div>
 
-                        <div className="details_content">
-                            <h5 className="mt-4 sm2_hdng">Other Listings At This Location</h5>
-                            <Row>
-                                <Col  sm={6}>
-                                    <div className="SearchListPlace_card">
-                                        <img width="100%" src={SearchList1}  alt="" />
-                                        <div className="SearchListPlace_card_body">
-                                            <div className="SearchListPlaceUserArea">
-                                                <img width="100%" className="profileImg" src={user_r1} alt=""  />
-                                                <span className="profileName">Mary Ann Wagner</span>
-                                            </div>
+                                                <div className="SearchListPlaceAreaPlace">
+                                                    <Button size="sm">Warehouse</Button>
+                                                    <span><i className="fa fa-map-marker"></i> California </span>
+                                                </div>
 
-                                            <div className="SearchListPlaceAreaPlace">
-                                                <Button size="sm">Garage</Button>
-                                                <span><i className="fa fa-map-marker"></i> California </span>
-                                            </div>
-
-                                            <div className="SearchListPlaceAreaCost">
-                                                <strong>$45.00/Month </strong>
-                                                <span>20x25</span>
+                                                <div className="SearchListPlaceAreaCost">
+                                                    <strong>$105.00/Month </strong>
+                                                    <span>100x25</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </Col>
-                                <Col  sm={6}>
-                                    <div className="SearchListPlace_card">
-                                        <img width="100%" src={SearchList2} alt=""  />
-                                        <div className="SearchListPlace_card_body">
-                                            <div className="SearchListPlaceUserArea">
-                                                <img className="profileImg" src={user_r1} alt=""  />
-                                                <span className="profileName">Mary Ann Wagner</span>
-                                            </div>
-
-                                            <div className="SearchListPlaceAreaPlace">
-                                                <Button size="sm">Warehouse</Button>
-                                                <span><i className="fa fa-map-marker"></i> California </span>
-                                            </div>
-
-                                            <div className="SearchListPlaceAreaCost">
-                                                <strong>$105.00/Month </strong>
-                                                <span>100x25</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Col>
-                            </Row>
-                            <hr/>
-                        </div>
-
-                        <div className="details_content">
-                            <h5 className="mt-4 sm2_hdng">Host</h5>
-                            <Row>
-                                <Col  sm={6}>
-                                    <div className="host_card">
-                                        <img src={details && details.u_pic=='no_img.png' ? profileImages(`./${details.u_pic}`)  : details.u_pic} alt="" />
-                                        <div className="access_card_text">
-                                            <h4>{details && details.u_name}</h4>
-                                            <small>{verifyStatus}</small>
-                                            <Button variant="success">Message Mary Ann..</Button>
-                                        </div>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </div>
-
-                    </Col>
-
-
-
-                    <Col lg={4}>
-                        <div className="book_space_card">
-                            <div className="book_space_card_body">
-                                <Button variant="outline-info">Warehouse </Button>
-
-                                <div className="d-flex user_area align-items-center">
-                                    <img width="30" height="30" src={details && details.u_pic=='no_img.png' ? profileImages(`./${details.u_pic}`)  : details.u_pic} alt="" />
-                                    <div className="">
-                                        <strong className="d-block">{details && details.u_name}</strong>
-                                        <small className="d-block">{verifyStatus}</small>
-                                    </div>
-                                </div>
-                                <small>
-                                    <i className="fa fa-map-marker mr-3"></i> 
-                                    California | 1 Miles
-                                </small>
-                                <div className="SearchListPlaceAreaCost justify-content-between">
-                                    <strong>${details && (parseInt(details.store_cost)+(parseInt(details.store_cost)*(parseInt(vat)/100))).toFixed(2)}/Month </strong>
-                                    <span>{details && details.store_size}</span>
-                                </div>
-                                <Button variant="success" className="btn-block">Book Space</Button>
+                                    </Col>
+                                </Row>
+                                <hr/>
                             </div>
-                            <div className="book_space_card_footer">
-                                <div className="d-flex justify-content-center align-items-center">
-                                    <img className="mr-3" src={helping} alt="" />
-                                    <p className="m-0">$400 insurance included</p>
+
+                            <div className="details_content">
+                                <h5 className="mt-4 sm2_hdng">Host</h5>
+                                <Row>
+                                    <Col  sm={6}>
+                                        <div className="host_card">
+                                            <img src={details && details.u_pic=='no_img.png' ? profileImages(`./${details.u_pic}`)  : details.u_pic} alt="" />
+                                            <div className="access_card_text">
+                                                <h4>{details && details.u_name}</h4>
+                                                <small>{verifyStatus}</small>
+                                                <Button variant="success">Message Mary Ann..</Button>
+                                            </div>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </div>
+
+                        </Col>
+
+
+
+                        <Col lg={4}>
+                            <div className="book_space_card">
+                                <div className="book_space_card_body">
+                                    <Button variant="outline-info">Warehouse </Button>
+
+                                    <div className="d-flex user_area align-items-center">
+                                        <img width="30" height="30" src={details && details.u_pic=='no_img.png' ? profileImages(`./${details.u_pic}`)  : details.u_pic} alt="" />
+                                        <div className="">
+                                            <strong className="d-block">{details && details.u_name}</strong>
+                                            <small className="d-block">{verifyStatus}</small>
+                                        </div>
+                                    </div>
+                                    <small>
+                                        <i className="fa fa-map-marker mr-3"></i> 
+                                        California | 1 Miles
+                                    </small>
+                                    <div className="SearchListPlaceAreaCost justify-content-between">
+                                        <strong>${details && (parseInt(details.store_cost)+(parseInt(details.store_cost)*(parseInt(vat)/100))).toFixed(2)}/Month </strong>
+                                        <span>{details && details.store_size}</span>
+                                    </div>
+                                    <Button variant="success" className="btn-block">Book Space</Button>
                                 </div>
-                                
-                                <div className="d-flex justify-content-center align-items-center">
-                                    <img className="mr-3" src={support} alt="" />
-                                    <p className="m-0">$400 insurance included</p>
-                                </div>
-                                
-                                <div className="d-flex justify-content-center align-items-center">
-                                    <img className="mr-3" src={secure_payment} alt="" />
-                                    <p className="m-0">$400 insurance included</p>
-                                </div>
-                                
-                                <div className="d-flex justify-content-center align-items-center">
-                                    <img className="mr-3" src={agreement} alt="" />
-                                    <p className="m-0">$400 insurance included</p>
+                                <div className="book_space_card_footer">
+                                    <div className="d-flex justify-content-center align-items-center">
+                                        <img className="mr-3" src={helping} alt="" />
+                                        <p className="m-0">$400 insurance included</p>
+                                    </div>
+                                    
+                                    <div className="d-flex justify-content-center align-items-center">
+                                        <img className="mr-3" src={support} alt="" />
+                                        <p className="m-0">$400 insurance included</p>
+                                    </div>
+                                    
+                                    <div className="d-flex justify-content-center align-items-center">
+                                        <img className="mr-3" src={secure_payment} alt="" />
+                                        <p className="m-0">$400 insurance included</p>
+                                    </div>
+                                    
+                                    <div className="d-flex justify-content-center align-items-center">
+                                        <img className="mr-3" src={agreement} alt="" />
+                                        <p className="m-0">$400 insurance included</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
-        
-        <section className="after_banner_strip">
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+            
+            <section className="after_banner_strip">
                 <Container>
                     <h4 className="my-4 sm2_hdng">How Does It Work ?</h4>
                     <Row className="justify-content-center">

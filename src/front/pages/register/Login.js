@@ -11,6 +11,7 @@ import FacebookLogin from 'react-facebook-login';
 
 import './Register.scss';
 import { NavLink } from 'react-router-dom';
+import LoaderCtrl from '../../common/components/loader';
 class LoginComponentCtrl extends React.Component{
     
     constructor(props) {
@@ -89,6 +90,7 @@ class LoginComponentCtrl extends React.Component{
     render() {
         return(
             <>
+            <LoaderCtrl loaderStatus={this.props.auth.auth.loading} {...this.props} />
             <section className="section_padding">
                 <Container>
                 

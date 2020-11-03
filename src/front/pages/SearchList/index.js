@@ -13,8 +13,10 @@ import b_garage from '../../../assets/front/images/icons/storage_type/b_garage.p
 // Assets Include End
 
 import SearchComponent from '../../common/components/SearchCompo';
+import MapContainer from '../../common/components/map';
 import { useDispatch, useSelector } from 'react-redux';
 import {searchListing} from '../../../redux';
+import LoaderCtrl from '../../common/components/loader';
 const storeImages = require.context('../../../assets/front/images/store', true);
 const profileImages = require.context('../../../assets/users/images/profile', true);
 
@@ -22,9 +24,10 @@ function FrontSearchListCtrl(){
    
     const { key } = useParams();
     const [list, setList] = useState([]);
+    const [loader, setLoader] = useState(false);
     const dispatch = useDispatch();
 
-    const { searchList, vat } = useSelector(state => state.search);
+    const { searchList, vat, loading } = useSelector(state => state.search);
     
     useEffect(() => {
         dispatch(searchListing(key));
@@ -34,9 +37,13 @@ function FrontSearchListCtrl(){
         setList(searchList);
     }, [searchList]);
 
+    useEffect(() => {
+        setLoader(loading);
+    }, [loading]);
+
     return(
         <>
-            
+            <LoaderCtrl loaderStatus={loader} />
             <Container fluid>
                 <Row>
                     <Col lg={6} className="">
@@ -204,9 +211,9 @@ function FrontSearchListCtrl(){
                         </Row>
                     </Col>
                     <Col lg={6}>
-                        <div className="map_area">
-                            <img src={map}  alt="" />
-                        </div>
+                        {/* <div className="map_area"> */}
+                            <MapContainer />
+                        {/* </div> */}
                     </Col>
                 </Row>
             </Container>

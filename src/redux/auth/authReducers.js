@@ -2,16 +2,14 @@ import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGI
 
 const initialState = {
     loggedIn: false,
-    loading:false,
+    loading: false,
     response: '',
     error: '',
     tokenInfo: {},
     googleLoginResponse: '',
     googleLoginError: '',
-    googleLoginLoading: false,
     facebookLoginResponse: '',
     facebookLoginError: '',
-    facebookLoginLoading: false,
     authResponse: {},
     islogin: false
 }
@@ -51,27 +49,30 @@ const reducer = (state = initialState, action) => {
         
         case GET_USER_REQUEST:
             return {
-                ...state
+                ...state,
+                loading: true
             }
 
         case GET_USER_SUCCESS:
             return {
                 islogin: true,
-                authResponse: action.payload
+                authResponse: action.payload,
+                loading: false
             }
 
         case GET_USER_FAILURE:
             return {
                 islogin: false,
-                authResponse: {}
+                authResponse: {},
+                loading: false
             }    
 
         case GOOGLE_LOGIN_REQUEST:
             return {
                 ...state,
-                googleLoginLoading: true,
                 googleLoginError: '',
-                googleLoginResponse: ''
+                googleLoginResponse: '',
+                loading: true
             }
 
 
@@ -79,28 +80,28 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loggedIn: true,
-                googleLoginLoading: false,
                 response: action.payload.response,
                 error: '',
-                tokenInfo: action.payload.tokenInfo
+                tokenInfo: action.payload.tokenInfo,
+                loading: false
             }
 
 
         case GOOGLE_LOGIN_FAILURE:
             return {
                 loggedIn: false,
-                loading: false,
                 response: "",
                 googleLoginError: action.payload,
-                tokenInfo: {}
+                tokenInfo: {},
+                loading: false
             }
 
         case FACEBOOK_LOGIN_REQUEST:
             return {
                 ...state,
-                facebookLoginLoading: true,
                 facebookLoginError: '',
-                facebookLoginResponse: ''
+                facebookLoginResponse: '',
+                loading: true
             }
 
 
@@ -108,20 +109,20 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loggedIn: true,
-                facebookLoginLoading: false,
                 response: action.payload.response,
                 error: '',
-                tokenInfo: action.payload.tokenInfo
+                tokenInfo: action.payload.tokenInfo,
+                loading: false
             }
 
 
         case FACEBOOK_LOGIN_FAILURE:
             return {
                 loggedIn: false,
-                loading: false,
                 response: "",
                 facebookLoginError: action.payload,
-                tokenInfo: {}
+                tokenInfo: {},
+                loading: false
             }
 
         default:

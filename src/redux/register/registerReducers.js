@@ -6,10 +6,8 @@ const initialState = {
     error: '',
     googleRegisterResponse: '',
     googleRegisterError: '',
-    googleRegisterLoading: false,
     facebookRegisterResponse: '',
-    facebookRegisterError: '',
-    facebookRegisterLoading: false
+    facebookRegisterError: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -40,7 +38,7 @@ const reducer = (state = initialState, action) => {
         case GOOGLE_REGISTER_REQUEST:
             return {
                 ...state,
-                googleRegisterLoading: true,
+                loading: true,
                 googleRegisterError: '',
                 googleRegisterResponse: ''
             }
@@ -69,7 +67,7 @@ const reducer = (state = initialState, action) => {
         case FACEBOOK_REGISTER_REQUEST:
             return {
                 ...state,
-                facebookRegisterLoading: true,
+                loading: true,
                 facebookRegisterError: '',
                 facebookRegisterResponse: ''
             }

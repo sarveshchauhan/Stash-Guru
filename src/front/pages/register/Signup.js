@@ -3,8 +3,6 @@ import { Button, Col, Container, Row ,Form, Alert} from 'react-bootstrap';
 
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
-import GoogleLogo from '../../../assets/front/images/icons/GoogleLogo.png';
-import facebook from '../../../assets/front/images/icons/facebook.png';
 
 import catoons from '../../../assets/front/images/img/catoons.svg';
 import family from '../../../assets/front/images/img/family.svg';
@@ -12,7 +10,8 @@ import family from '../../../assets/front/images/img/family.svg';
 import './Register.scss';
 import { NavLink } from 'react-router-dom';
 import {registerUser, googleRegisterUser, facebookRegisterUser} from '../../../redux';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import LoaderCtrl from '../../common/components/loader';
 
 function SignUpComponentCtrl(){
 
@@ -22,6 +21,7 @@ function SignUpComponentCtrl(){
     const [mobile, setMobile] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loader, setLoader] = useState(false);
 
     const [fullnameError, setFullNameError] = useState("");
     const [mobileError, setMobileError] = useState("");
@@ -43,6 +43,10 @@ function SignUpComponentCtrl(){
         setEmail("");
         setPassword(""); 
     }, [response]);
+
+    useEffect(() => {
+        setLoader(loading);
+    }, [loading]);
 
     const handleFormField = (e) => {
         switch (e.target.name){
@@ -146,6 +150,7 @@ function SignUpComponentCtrl(){
 
     return(
         <>
+        <LoaderCtrl loaderStatus={loader} />
         <section className="section_padding">
             <Container>
                 <Row className="align-items-center">
