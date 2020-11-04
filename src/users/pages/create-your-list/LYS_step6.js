@@ -1,28 +1,16 @@
 import React,{useCallback} from 'react';
-import { Col, Container, Row,Breadcrumb, Button } from 'react-bootstrap';
+import { Col, Container, Row, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 
 import Dropzone from 'react-dropzone'
 
-
-import B_home from '../../../assets/users/images/icons/menu/B_home.png';
 import img_icon from '../../../assets/users/images/icons/img_icon.png';
 import StepsNavListCtrl from './steps_nav_list';
 
 function CreateYourListStepSixthCtrl(){
     return(
         <>
-            <Container>
-                <Row>
-                    <Col>
-                        <Breadcrumb>
-                            <NavLink className="breadcrumb-item" to="/dashboard"><img src={B_home}/> Dashboard</NavLink>
-                            <NavLink className="breadcrumb-item" to="/create-your-list"> Listing</NavLink>
-                        </Breadcrumb>
-                    </Col>
-                </Row>
-            </Container>
             <StepsNavListCtrl/>
             <section className="my-5">
                 <Container>
