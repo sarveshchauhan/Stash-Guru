@@ -1,6 +1,21 @@
 import React from 'react';
 import { Button, Col, Container, Nav, Row } from 'react-bootstrap';
-import G_home from '../../../assets/users/images/icons/menu/B_home.png'
+
+import G_step1 from '../../../assets/users/images/icons/steps/G_step1.png';
+import G_step2 from '../../../assets/users/images/icons/steps/G_step2.png';
+import G_step3 from '../../../assets/users/images/icons/steps/G_step3.png';
+import G_step4 from '../../../assets/users/images/icons/steps/G_step4.png';
+import G_step5 from '../../../assets/users/images/icons/steps/G_step5.png';
+import G_step6 from '../../../assets/users/images/icons/steps/G_step6.png';
+import G_step7 from '../../../assets/users/images/icons/steps/G_step7.png';
+
+import B_step1 from '../../../assets/users/images/icons/steps/B_step1.png';
+import B_step2 from '../../../assets/users/images/icons/steps/B_step2.png';
+import B_step3 from '../../../assets/users/images/icons/steps/B_step3.png';
+import B_step4 from '../../../assets/users/images/icons/steps/B_step4.png';
+import B_step5 from '../../../assets/users/images/icons/steps/B_step5.png';
+import B_step6 from '../../../assets/users/images/icons/steps/B_step6.png';
+
 
 function StepsNavListCtrl(){
     return(
@@ -12,37 +27,44 @@ function StepsNavListCtrl(){
                             <Nav className="step_nav_list" fill defaultActiveKey="/home" as="ul">
                                 <Nav.Item as="li" className="completed">
                                     <span>
-                                        <img src={G_home} alt="" />
+                                        <img className="complete_step_img" src={G_step1} alt="" />
+                                        <img className="incomplete_step_img" src={B_step1} alt="" />
                                     </span>Overview
                                 </Nav.Item>
                                 <Nav.Item as="li" className="completed">
                                     <span>
-                                        <img src={G_home} alt="" />
+                                        <img className="complete_step_img" src={G_step2} alt="" />
+                                        <img className="incomplete_step_img" src={B_step2} alt="" />
                                     </span>Location
                                 </Nav.Item>
                                 <Nav.Item as="li" className="">
                                     <span>
-                                        <img src={G_home} alt="" />
+                                        <img className="complete_step_img" src={G_step3} alt="" />
+                                        <img className="incomplete_step_img" src={B_step3} alt="" />
                                     </span>Space Type
                                 </Nav.Item>
                                 <Nav.Item as="li" className="">
                                     <span>
-                                        <img src={G_home} alt="" />
+                                        <img className="complete_step_img" src={G_step4} alt="" />
+                                        <img className="incomplete_step_img" src={B_step4} alt="" />
                                     </span>Discription
                                 </Nav.Item>
                                 <Nav.Item as="li" className="">
                                     <span>
-                                        <img src={G_home} alt="" />
+                                        <img className="complete_step_img" src={G_step5} alt="" />
+                                        <img className="incomplete_step_img" src={B_step5} alt="" />
                                     </span>Size & Pricing
                                 </Nav.Item>
                                 <Nav.Item as="li" className="">
                                     <span>
-                                        <img src={G_home} alt="" />
+                                        <img className="complete_step_img" src={G_step6} alt="" />
+                                        <img className="incomplete_step_img" src={B_step6} alt="" />
                                     </span>Photos
                                 </Nav.Item>
                                 <Nav.Item as="li" className="">
                                     <span>
-                                        <img src={G_home} alt="" />
+                                        <img className="complete_step_img" src={G_step7} alt="" />
+                                        <img className="incomplete_step_img" src={G_step7} alt="" />
                                     </span>About You
                                 </Nav.Item>
                             </Nav>
@@ -62,5 +84,4 @@ function StepsNavListCtrl(){
         </>
     )
 }
-
 export default StepsNavListCtrl;

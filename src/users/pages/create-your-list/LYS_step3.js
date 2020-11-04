@@ -3,7 +3,7 @@ import { Col, Container, Row,Breadcrumb, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 import B_home from '../../../assets/users/images/icons/menu/B_home.png';
-import StepsNavListCtrl from './steps-nav-list';
+import StepsNavListCtrl from './steps_nav_list';
 
 function CreateYourListStepThitdCtrl(){
 

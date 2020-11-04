@@ -40,6 +40,8 @@ import UserBookingCtrl from '../users/pages/booking';
 import CreateYourListStepThitdCtrl from '../users/pages/create-your-list/LYS_step3';
 import CreateYourListStepForthCtrl from '../users/pages/create-your-list/LYS_step4';
 import CreateYourListStepFifthCtrl from '../users/pages/create-your-list/LYS_step5';
+import CreateYourListStepSixthCtrl from '../users/pages/create-your-list/LYS_step6';
+import CreateYourListStepSeventhCtrl from '../users/pages/create-your-list/LYS_step7';
 
 const Root = () =>(
     <BrowserRouter>
@@ -67,6 +69,8 @@ const Root = () =>(
             <Route exact path="/create-your-list-step3" render={(props)=> (<UserPagesLayoutCtrl children={CreateYourListStepThitdCtrl} {...props} />)} />
             <Route exact path="/create-your-list-step4" render={(props)=> (<UserPagesLayoutCtrl children={CreateYourListStepForthCtrl} {...props} />)} />
             <Route exact path="/create-your-list-step5" render={(props)=> (<UserPagesLayoutCtrl children={CreateYourListStepFifthCtrl} {...props} />)} />
+            <Route exact path="/create-your-list-step6" render={(props)=> (<UserPagesLayoutCtrl children={CreateYourListStepSixthCtrl} {...props} />)} />
+            <Route exact path="/create-your-list-step7" render={(props)=> (<UserPagesLayoutCtrl children={CreateYourListStepSeventhCtrl} {...props} />)} />
         </Switch>
     </BrowserRouter>
 )

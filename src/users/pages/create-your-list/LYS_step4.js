@@ -4,8 +4,9 @@ import { NavLink } from 'react-router-dom';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
+
 import B_home from '../../../assets/users/images/icons/menu/B_home.png';
-import StepsNavListCtrl from './steps-nav-list';
+import StepsNavListCtrl from './steps_nav_list';
 
 function CreateYourListStepForthCtrl(){
     return(
