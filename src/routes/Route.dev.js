@@ -43,9 +43,13 @@ import CreateYourListStepFifthCtrl from '../users/pages/create-your-list/LYS_ste
 import CreateYourListStepSixthCtrl from '../users/pages/create-your-list/LYS_step6';
 import CreateYourListStepSeventhCtrl from '../users/pages/create-your-list/LYS_step7';
 
+
+
+import ComingSoonCtrl from '../coming-soon'
 const Root = () =>(
     <BrowserRouter>
         <Switch>
+            <Route exact path="/comoing-soon" render={ComingSoonCtrl} />
             <PrivateRoute exact path="/login" parentComponent={RegisterPagesLayoutCtrl} childComponent={LoginComponentCtrl} />
             <Route exact path="/signup" render={(props)=> (< RegisterPagesLayoutCtrl children={SignUpComponentCtrl} {...props} />)} />
 
