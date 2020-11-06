@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, REGISTER_USER_FAILURE, GOOGLE_REGISTER_REQUEST, GOOGLE_REGISTER_SUCCESS, GOOGLE_REGISTER_FAILURE, FACEBOOK_REGISTER_REQUEST, FACEBOOK_REGISTER_SUCCESS, FACEBOOK_REGISTER_FAILURE} from "./registerTypes";
+import { REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, REGISTER_USER_FAILURE, GOOGLE_REGISTER_REQUEST, GOOGLE_REGISTER_SUCCESS, GOOGLE_REGISTER_FAILURE, FACEBOOK_REGISTER_REQUEST, FACEBOOK_REGISTER_SUCCESS, FACEBOOK_REGISTER_FAILURE, VERIFY_TOKEN_REQUEST, VERIFY_TOKEN_SUCCESS, VERIFY_TOKEN_FAILURE} from "./registerTypes";
 import { config } from '../../config/config';
 import { set_login_token } from "../../helpers/tokenHelpers";
 
@@ -59,6 +59,26 @@ const facebookRegisterSuccess = response => {
 const facebookRegisterFailure = error => {
     return {
         type: FACEBOOK_REGISTER_FAILURE,
+        payload: error
+    }
+}
+
+const verifyTokenRequest = () => {
+    return {
+        type: VERIFY_TOKEN_REQUEST
+    }
+}
+
+const verifyTokenSuccess = response => {
+    return {
+        type: VERIFY_TOKEN_SUCCESS,
+        payload: response
+    }
+}
+
+const verifyTokenFailure = error => {
+    return {
+        type: VERIFY_TOKEN_FAILURE,
         payload: error
     }
 }
@@ -187,5 +207,52 @@ export const facebookRegisterUser = (data) => {
 
             });
 
+    }
+}
+
+export const verifyToken = (token) => {
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+    
+    return async (dispatch) => {
+        dispatch(verifyTokenRequest());
+        axios.post(`${config.apiUrl}/users/verifyEmailToken`, { token: token }, requestConfig)
+            .then(response => {
+
+                const loginResponse = response.data;
+
+                if (loginResponse.status) {
+
+                    // const response = {
+                    //     response: "User logged in successfully!",
+                    //     tokenInfo: loginResponse.token
+                    // };
+
+                    // dispatch(verifyTokenSuccess(response));
+                    
+                    set_login_token(JSON.stringify(loginResponse.token));
+
+                    const query = new URLSearchParams(window.location.search);
+
+                    if (query.get('redirect_url')) {
+                        window.location.href = query.get('redirect_url');
+                    }
+                    else {
+                        window.location.href = '/dashboard';
+                    }
+
+                }
+                else {
+                    dispatch(verifyTokenFailure(loginResponse.message));
+                }
+
+            }).catch(error => {
+                // console.log("Come in error " + error);
+
+                const errorMsg = error.message;
+                dispatch(verifyTokenFailure(errorMsg));
+
+            });
     }
 }

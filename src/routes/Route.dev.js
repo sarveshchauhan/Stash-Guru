@@ -11,7 +11,7 @@ import FrontPagesMaxLayoutCtrl from '../front/layout/PageLayoutMax';
 
 import LoginComponentCtrl from '../front/pages/register/Login';
 import SignUpComponentCtrl from '../front/pages/register/Signup';
-
+import EmailVerifyCtrl from '../front/pages/register/verifyEmail';
 
 import FrontHomeCtrl from '../front/pages/home';
 import FrontAboutCtrl from '../front/pages/about';
@@ -49,6 +49,7 @@ const Root = () =>(
         <Switch>
             <PrivateRoute exact path="/login" parentComponent={RegisterPagesLayoutCtrl} childComponent={LoginComponentCtrl} />
             <Route exact path="/signup" render={(props)=> (< RegisterPagesLayoutCtrl children={SignUpComponentCtrl} {...props} />)} />
+            <Route exact path="/verifyEmail/:token" render={(props)=> (< RegisterPagesLayoutCtrl children={EmailVerifyCtrl} {...props} />)} />
 
             <Route exact path="/" render={(props)=> (<FrontHomePagesLayoutCtrl children={FrontHomeCtrl} {...props} />)} />
             {/* <Route exact path="/search/:key"  render={FrontSearchListCtrl } /> */}
