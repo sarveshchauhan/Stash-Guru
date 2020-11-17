@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS} from "./authTypes"
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILURE, FORGOT_PASSWORD_SUCCESS, CLEAR_FORGOT_PASSWORD_MESSAGE, CLEAR_RESET_PASSWORD_MESSAGE } from "./authTypes"
 import { set_login_token, remove_login_token } from "../../helpers/tokenHelpers";
 import { config } from '../../config/config';
 
@@ -91,37 +91,37 @@ export const loginUser = (user) => {
     return async (dispatch) => {
         dispatch(loginUserRequest())
         await axios.post(`${config.apiUrl}/users/login`, user, requestConfig)
-        .then(response => {
-            const loginResponse = response.data;
-            if (loginResponse.status) {
+            .then(response => {
+                const loginResponse = response.data;
+                if (loginResponse.status) {
 
-                const loginData = {
-                    response: "User logged in successfully!",
-                    tokenInfo: loginResponse.token
-                };
+                    const loginData = {
+                        response: "User logged in successfully!",
+                        tokenInfo: loginResponse.token
+                    };
 
-                dispatch(loginUserSuccess(loginData));
+                    dispatch(loginUserSuccess(loginData));
 
-                set_login_token(JSON.stringify(loginResponse.token));
+                    set_login_token(JSON.stringify(loginResponse.token));
 
-                const query = new URLSearchParams(window.location.search);
+                    const query = new URLSearchParams(window.location.search);
 
-                if (query.get('redirect_url')) {
-                    window.location.href = query.get('redirect_url');
+                    if (query.get('redirect_url')) {
+                        window.location.href = query.get('redirect_url');
+                    }
+                    else {
+                        window.location.href = '/dashboard';
+                    }
                 }
                 else {
-                    window.location.href = '/dashboard';
+                    dispatch(loginUserFailure(loginResponse.message));
                 }
-            }
-            else {
-                dispatch(loginUserFailure(loginResponse.message));        
-            }
 
-        }).catch(error => {
-            const errorMsg = error.message;
-            dispatch(loginUserFailure(errorMsg));
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(loginUserFailure(errorMsg));
 
-        });
+            });
     }
 
 }
@@ -132,42 +132,42 @@ export const googleLogin = (token) => {
         'Content-Type': 'application/json'
     };
 
-    return  (dispatch) => {
+    return (dispatch) => {
         dispatch(googleLoginRequest());
         axios.post(`${config.apiUrl}/users/googleLogin`, { googleToken: token }, requestConfig)
-        .then(response => {
+            .then(response => {
 
-            const loginResponse = response.data;
+                const loginResponse = response.data;
 
-            if (loginResponse.status) {
+                if (loginResponse.status) {
 
-                const response = {
-                    response: "User logged in successfully!",
-                    tokenInfo: loginResponse.token
-                };
+                    const response = {
+                        response: "User logged in successfully!",
+                        tokenInfo: loginResponse.token
+                    };
 
-                dispatch(googleLoginSuccess(response));
-                
-                set_login_token(JSON.stringify(loginResponse.token));
+                    dispatch(googleLoginSuccess(response));
 
-                const query = new URLSearchParams(window.location.search);
+                    set_login_token(JSON.stringify(loginResponse.token));
 
-                if (query.get('redirect_url')) {
-                    window.location.href = query.get('redirect_url');
+                    const query = new URLSearchParams(window.location.search);
+
+                    if (query.get('redirect_url')) {
+                        window.location.href = query.get('redirect_url');
+                    }
+                    else {
+                        window.location.href = '/dashboard';
+                    }
+
                 }
                 else {
-                    window.location.href = '/dashboard';
+                    dispatch(googleLoginFailure(loginResponse.errors));
                 }
 
-            }
-            else {
-                dispatch(googleLoginFailure(loginResponse.errors));
-            }
-
-        }).catch(error => {
-            const errorMsg = error.message;
-            dispatch(googleLoginFailure(errorMsg));
-        });
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(googleLoginFailure(errorMsg));
+            });
     }
 
 }
@@ -177,42 +177,42 @@ export const loginWithFaceBook = (data) => {
         'Content-Type': 'application/json'
     };
 
-    return  (dispatch) => {
+    return (dispatch) => {
         dispatch(facebookLoginRequest());
         axios.post(`${config.apiUrl}/users/facebookLogin`, { fbdata: data }, requestConfig)
-        .then(response => {
+            .then(response => {
 
-            const loginResponse = response.data;
+                const loginResponse = response.data;
 
-            if (loginResponse.status) {
+                if (loginResponse.status) {
 
-                const response = {
-                    response: "User logged in successfully!",
-                    tokenInfo: loginResponse.token
-                };
+                    const response = {
+                        response: "User logged in successfully!",
+                        tokenInfo: loginResponse.token
+                    };
 
-                dispatch(facebookLoginSuccess(response));
-                
-                set_login_token(JSON.stringify(loginResponse.token));
+                    dispatch(facebookLoginSuccess(response));
 
-                const query = new URLSearchParams(window.location.search);
+                    set_login_token(JSON.stringify(loginResponse.token));
 
-                if (query.get('redirect_url')) {
-                    window.location.href = query.get('redirect_url');
+                    const query = new URLSearchParams(window.location.search);
+
+                    if (query.get('redirect_url')) {
+                        window.location.href = query.get('redirect_url');
+                    }
+                    else {
+                        window.location.href = '/dashboard';
+                    }
+
                 }
                 else {
-                    window.location.href = '/dashboard';
+                    dispatch(facebookLoginFailure(loginResponse.errors));
                 }
 
-            }
-            else {
-                dispatch(facebookLoginFailure(loginResponse.errors));
-            }
-
-        }).catch(error => {
-            const errorMsg = error.message;
-            dispatch(facebookLoginFailure(errorMsg));
-        });
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(facebookLoginFailure(errorMsg));
+            });
     }
 }
 
@@ -223,32 +223,32 @@ export const getUsers = () => {
 
     return async (dispatch) => {
         dispatch(getUserRequest())
-        if(localStorage.getItem('stashGuruToken')){
+        if (localStorage.getItem('stashGuruToken')) {
             await axios.post(`${config.apiUrl}/users/details`, { token: localStorage.getItem('stashGuruToken').replace(/["']/g, "") }, requestConfig)
-            .then(response => {
+                .then(response => {
 
-                const usersResponse = response.data;
+                    const usersResponse = response.data;
 
-                if (usersResponse.status) {
+                    if (usersResponse.status) {
 
-                    const response = {
-                        users: {name: usersResponse.users.u_name, profile_pic: usersResponse.users.u_pic}
-                    };
+                        const response = {
+                            users: { name: usersResponse.users.u_name, profile_pic: usersResponse.users.u_pic }
+                        };
 
-                    dispatch(getUserSuccess(response));
+                        dispatch(getUserSuccess(response));
 
-                }
-                else {
-                    remove_login_token();
-                    dispatch(getUserFailure());
-                }
+                    }
+                    else {
+                        remove_login_token();
+                        dispatch(getUserFailure());
+                    }
 
-            }).catch(error => {
-                const errorMsg = error.message;
-                dispatch(getUserFailure(errorMsg));
-            });
+                }).catch(error => {
+                    const errorMsg = error.message;
+                    dispatch(getUserFailure(errorMsg));
+                });
         }
-        else{
+        else {
             remove_login_token();
             dispatch(getUserFailure());
         }
@@ -258,4 +258,142 @@ export const getUsers = () => {
 export const logoutUser = () => {
     remove_login_token();
     window.location.href = '/';
+}
+
+
+
+const forgotPasswordRequest = () => {
+
+    return {
+        type: FORGOT_PASSWORD_REQUEST
+    }
+
+}
+
+
+const forgotPasswordSuccess = (response) => {
+
+    return {
+        type: FORGOT_PASSWORD_SUCCESS,
+        payload: response
+    }
+
+}
+
+
+const forgotPasswordFailure = (response) => {
+
+    return {
+        type: FORGOT_PASSWORD_FAILURE,
+        payload: response
+    }
+
+}
+
+export const clearForgotPasswordMessage = () => {
+
+    return {
+        type: CLEAR_FORGOT_PASSWORD_MESSAGE
+    }
+
+}
+
+
+export const forgotPassword = (user) => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(forgotPasswordRequest())
+        await axios.post(`${config.apiUrl}/users/forgotpassword`, user, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status === 1) {
+
+                    let responseData = {
+                        data: serverResponse.data,
+                        message: serverResponse.message
+                    };
+
+                    dispatch(forgotPasswordSuccess(responseData));
+
+                }
+                else {
+                    dispatch(forgotPasswordFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(forgotPasswordFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+const resetPasswordRequest = () => {
+    return {
+        type: RESET_PASSWORD_REQUEST
+    }
+}
+
+const resetPasswordSuccess = (response) => {
+    return {
+        type: RESET_PASSWORD_SUCCESS,
+        payload: response
+    }
+}
+
+const resetPasswordFailure = (response) => {
+    return {
+        type: RESET_PASSWORD_FAILURE,
+        payload: response
+    }
+}
+
+export const clearResetPasswordMessage = (response) => {
+    return {
+        type: CLEAR_RESET_PASSWORD_MESSAGE,
+        payload: response
+    }
+}
+
+
+
+export const resetPassword = (resetData) => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(resetPasswordRequest())
+        await axios.post(`${config.apiUrl}/users/resetpassword`, resetData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status === 1) {
+
+                    let responseData = {
+                        data: serverResponse.data,
+                        message: serverResponse.message
+                    };
+
+                    dispatch(resetPasswordSuccess(responseData));
+
+                }
+                else {
+                    dispatch(resetPasswordFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(resetPasswordFailure(errorMsg));
+
+            });
+    }
+
 }

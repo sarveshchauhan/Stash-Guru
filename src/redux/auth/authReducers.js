@@ -1,4 +1,4 @@
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS} from "./authTypes"
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILURE, CLEAR_FORGOT_PASSWORD_MESSAGE, CLEAR_RESET_PASSWORD_MESSAGE } from "./authTypes"
 
 const initialState = {
     loggedIn: false,
@@ -11,7 +11,16 @@ const initialState = {
     facebookLoginResponse: '',
     facebookLoginError: '',
     authResponse: {},
-    islogin: false
+    islogin: false,
+
+    forgotPasswordLoading: false,
+    forgotPasswordSuccess: "",
+    forgotPasswordError: "",
+
+
+    resetPasswordLoading: false,
+    resetPasswordSuccess: "",
+    resetPasswordError: ""
 }
 
 const reducer = (state = initialState, action) => {
@@ -46,7 +55,7 @@ const reducer = (state = initialState, action) => {
                 tokenInfo: {},
                 islogin: false
             }
-        
+
         case GET_USER_REQUEST:
             return {
                 ...state,
@@ -65,7 +74,7 @@ const reducer = (state = initialState, action) => {
                 islogin: false,
                 authResponse: {},
                 loading: false
-            }    
+            }
 
         case GOOGLE_LOGIN_REQUEST:
             return {
@@ -123,6 +132,64 @@ const reducer = (state = initialState, action) => {
                 facebookLoginError: action.payload,
                 tokenInfo: {},
                 loading: false
+            }
+
+        case FORGOT_PASSWORD_REQUEST:
+            return {
+                ...state,
+                forgotPasswordLoading: true,
+                forgotPasswordSuccess: "",
+                forgotPasswordError: ""
+            }
+
+        case FORGOT_PASSWORD_SUCCESS:
+            return {
+                ...state,
+                forgotPasswordLoading: false,
+                forgotPasswordSuccess: action.payload.message
+            }
+
+        case FORGOT_PASSWORD_FAILURE:
+            return {
+                ...state,
+                forgotPasswordLoading: false,
+                forgotPasswordError: action.payload
+            }
+
+        case RESET_PASSWORD_REQUEST:
+            return {
+                ...state,
+                resetPasswordLoading: true,
+                resetPasswordError: "",
+                resetPasswordSuccess: ""
+            }
+
+        case RESET_PASSWORD_SUCCESS:
+            return {
+                ...state,
+                resetPasswordLoading: false,
+                resetPasswordSuccess: action.payload.message
+            }
+
+        case RESET_PASSWORD_FAILURE:
+            return {
+                ...state,
+                resetPasswordLoading: false,
+                resetPasswordError: action.payload
+            }
+
+        case CLEAR_FORGOT_PASSWORD_MESSAGE:
+            return {
+                ...state,
+                forgotPasswordError: "",
+                forgotPasswordSuccess: ""
+            }
+
+        case CLEAR_RESET_PASSWORD_MESSAGE:
+            return {
+                ...state,
+                resetPasswordError: "",
+                resetPasswordSuccess: ""
             }
 
         default:
