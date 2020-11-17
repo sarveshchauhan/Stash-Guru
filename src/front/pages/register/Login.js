@@ -32,20 +32,20 @@ class LoginComponentCtrl extends React.Component {
     }
 
 
-    // componentDidMount() {
+    componentDidMount() {
 
 
-    //     if (this.props.auth.resetPasswordSuccess) {
+        if (this.props.auth.auth.resetPasswordSuccess) {
 
 
-    //         this.setState({
-    //             resetPasswordMessage: this.props.auth.resetPasswordSuccess
-    //         });
+            this.setState({
+                resetPasswordMessage: this.props.auth.auth.resetPasswordSuccess
+            });
 
-    //         this.props.auth.clearResetPasswordMessage();
-    //     }
+            this.props.clearResetPasswordMessage();
+        }
 
-    // }
+    }
 
     handleChange(event) {
         event.preventDefault();
@@ -158,7 +158,7 @@ class LoginComponentCtrl extends React.Component {
                                                 </Row>
 
 
-                                                {/* {
+                                                {
                                                     this.state.resetPasswordMessage && <Row>
                                                         <Col sm={12}>
                                                             <Alert variant="success">
@@ -168,7 +168,7 @@ class LoginComponentCtrl extends React.Component {
                                                         </Col>
                                                     </Row>
 
-                                                } */}
+                                                }
 
                                             </Form>
                                             <div className="or_divider">

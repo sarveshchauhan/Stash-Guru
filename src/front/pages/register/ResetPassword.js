@@ -31,9 +31,9 @@ function ResetPassword() {
         if (resetPasswordSuccess) {
             setNewPassword("");
             setConfirmPassword("");
-            // history.push('/login');
-            setSuccessMessage(resetPasswordSuccess);
-            dispatch(clearResetPasswordMessage());
+            history.push('/login');
+            // setSuccessMessage(resetPasswordSuccess);
+            // dispatch(clearResetPasswordMessage());
         }
 
     }, [resetPasswordSuccess]);

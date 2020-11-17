@@ -38,6 +38,7 @@ const reducer = (state = initialState, action) => {
 
         case LOGIN_USER_SUCCESS:
             return {
+                ...state,
                 loggedIn: true,
                 loading: false,
                 response: action.payload.response,
@@ -48,6 +49,7 @@ const reducer = (state = initialState, action) => {
 
         case LOGIN_USER_FAILURE:
             return {
+                ...state,
                 loggedIn: false,
                 loading: false,
                 response: "",
@@ -64,6 +66,7 @@ const reducer = (state = initialState, action) => {
 
         case GET_USER_SUCCESS:
             return {
+                ...state,
                 islogin: true,
                 authResponse: action.payload,
                 loading: false
@@ -71,6 +74,7 @@ const reducer = (state = initialState, action) => {
 
         case GET_USER_FAILURE:
             return {
+                ...state,
                 islogin: false,
                 authResponse: {},
                 loading: false
@@ -98,6 +102,7 @@ const reducer = (state = initialState, action) => {
 
         case GOOGLE_LOGIN_FAILURE:
             return {
+                ...state,
                 loggedIn: false,
                 response: "",
                 googleLoginError: action.payload,
@@ -127,6 +132,7 @@ const reducer = (state = initialState, action) => {
 
         case FACEBOOK_LOGIN_FAILURE:
             return {
+                ...state,
                 loggedIn: false,
                 response: "",
                 facebookLoginError: action.payload,
