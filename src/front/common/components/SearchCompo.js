@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
-import {InputGroup,Button,FormControl,Form} from 'react-bootstrap';
+import React, { useState } from 'react';
+import { InputGroup, Button, FormControl, Form } from 'react-bootstrap';
 
-function SearchComponent(){
+function SearchComponent() {
 
     const [txtSearch, setTextSearch] = useState(null);
 
     const [errorSearch, setErrorSearch] = useState(null);
 
     const handleFormField = (e) => {
-        switch(e.target.name){
+        switch (e.target.name) {
             case 'txtSearch':
                 setTextSearch(e.target.value);
                 if (!e.target.value) {
@@ -41,16 +41,16 @@ function SearchComponent(){
         }
     }
 
-    return(
+    return (
         <>
             <Form onSubmit={hangleSubmit}>
                 <InputGroup className="location_search_bar">
                     <InputGroup.Prepend>
                         <InputGroup.Text>
-                        <i className="fa fa-map-marker"></i>
+                            <i className="fa fa-map-marker"></i>
                         </InputGroup.Text>
                     </InputGroup.Prepend>
-                    <FormControl aria-describedby="basic-addon1" isInvalid={errorSearch} name="txtSearch" value={txtSearch} onChange={handleFormField} onBlur={handleFormField} placeholder="Your Location" />
+                    <FormControl aria-describedby="basic-addon1" isInvalid={errorSearch} name="txtSearch" value={txtSearch ? txtSearch : ""} onChange={handleFormField} onBlur={handleFormField} placeholder="Your Location" />
                     <InputGroup.Append>
                         <Button variant="success" type="submit">
                             <i className="fa fa-search"></i>
@@ -62,7 +62,7 @@ function SearchComponent(){
                         {errorSearch}
                     </span>
                 }
-            </Form>            
+            </Form>
         </>
     )
 }

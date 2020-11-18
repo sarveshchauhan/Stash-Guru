@@ -10,7 +10,7 @@
     "bootstrap": "^4.5.2",
     "draft-js": "^0.11.7",
     "font-awesome": "^4.7.0",
-    "google-map-react": "^2.1.8",
+    "google-map-react": "^2.1.9",
     "google-maps-react": "^2.0.6",
     "jsonwebtoken": "^8.5.1",
     "node-sass": "^4.14.1",
@@ -30,7 +30,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "set PORT=3006 && react-scripts start",
+    "start": "export PORT=3006 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

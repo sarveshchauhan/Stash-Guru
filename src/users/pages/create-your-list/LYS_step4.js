@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Col, Container, Row, Button } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { Editor } from 'react-draft-wysiwyg';
@@ -7,10 +7,19 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 import StepsNavListCtrl from './steps_nav_list';
 
-function CreateYourListStepForthCtrl(){
-    return(
+function CreateYourListStepForthCtrl() {
+
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
+    return (
         <>
-            <StepsNavListCtrl/>
+            <StepsNavListCtrl />
             <section className="my-5">
                 <Container>
                     <Row className="justify-content-between">
@@ -39,7 +48,7 @@ function CreateYourListStepForthCtrl(){
                         <Col lg="6" md="6" className="text-right">
                             <NavLink to="/create-your-list-step5">
                                 <Button className="btn_outline_success mr-2 mt-2 px-5">
-                                Next <i className="fa fa-long-arrow-right ml-2" aria-hidden="true"></i>
+                                    Next <i className="fa fa-long-arrow-right ml-2" aria-hidden="true"></i>
                                 </Button>
                             </NavLink>
                         </Col>

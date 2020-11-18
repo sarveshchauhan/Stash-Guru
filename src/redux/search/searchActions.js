@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE, SEARCH_DETAILS_REQUEST, SEARCH_DETAILS_SUCCESS, SEARCH_DETAILS_FAILURE} from "./searchTypes";
+import { SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE, SEARCH_DETAILS_REQUEST, SEARCH_DETAILS_SUCCESS, SEARCH_DETAILS_FAILURE } from "./searchTypes";
 import { config } from '../../config/config';
 
 const searchRequest = () => {
@@ -52,13 +52,13 @@ export const searchListing = (data) => {
         dispatch(searchRequest());
 
         try {
-            const response = await axios.post(`${config.apiUrl}/search/list`, {key: data}, requestConfig);
+            const response = await axios.post(`${config.apiUrl}/front/search/list`, { key: data }, requestConfig);
             const listResponse = response.data;
 
             if (listResponse.status) {
-                const settings = await axios.post(`${config.apiUrl}/settings/details`, {key: 'vat'}, requestConfig);
+                const settings = await axios.post(`${config.apiUrl}/front/settings/details`, { key: 'vat' }, requestConfig);
                 let vat = 0;
-                if(settings.data.status){
+                if (settings.data.status) {
                     vat = settings.data.details.set_details
                 }
                 const listData = {
@@ -91,14 +91,14 @@ export const searchDetails = (id) => {
     return async (dispatch) => {
         dispatch(searchDetailsRequest());
         try {
-            const response = await axios.post(`${config.apiUrl}/search/details`, {store_id: id}, requestConfig);
+            const response = await axios.post(`${config.apiUrl}/front/search/details`, { store_id: id }, requestConfig);
             const detailsResponse = response.data;
 
             if (detailsResponse.status) {
-                
-                const settings = await axios.post(`${config.apiUrl}/settings/details`, {key: 'vat'}, requestConfig);
+
+                const settings = await axios.post(`${config.apiUrl}/front/settings/details`, { key: 'vat' }, requestConfig);
                 let vat = 0;
-                if(settings.data.status){
+                if (settings.data.status) {
                     vat = settings.data.details.set_details
                 }
 

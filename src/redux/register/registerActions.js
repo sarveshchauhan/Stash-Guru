@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, REGISTER_USER_FAILURE, GOOGLE_REGISTER_REQUEST, GOOGLE_REGISTER_SUCCESS, GOOGLE_REGISTER_FAILURE, FACEBOOK_REGISTER_REQUEST, FACEBOOK_REGISTER_SUCCESS, FACEBOOK_REGISTER_FAILURE, VERIFY_TOKEN_REQUEST, VERIFY_TOKEN_SUCCESS, VERIFY_TOKEN_FAILURE} from "./registerTypes";
+import { REGISTER_USER_REQUEST, REGISTER_USER_SUCCESS, REGISTER_USER_FAILURE, GOOGLE_REGISTER_REQUEST, GOOGLE_REGISTER_SUCCESS, GOOGLE_REGISTER_FAILURE, FACEBOOK_REGISTER_REQUEST, FACEBOOK_REGISTER_SUCCESS, FACEBOOK_REGISTER_FAILURE, VERIFY_TOKEN_REQUEST, VERIFY_TOKEN_SUCCESS, VERIFY_TOKEN_FAILURE } from "./registerTypes";
 import { config } from '../../config/config';
 import { set_login_token } from "../../helpers/tokenHelpers";
 
@@ -93,7 +93,7 @@ export const registerUser = (user) => {
         dispatch(registerUserRequest());
 
         try {
-            const response = await axios.post(`${config.apiUrl}/users/register`, user, requestConfig);
+            const response = await axios.post(`${config.apiUrl}/front/users/register`, user, requestConfig);
             const registerResponse = response.data;
 
             if (registerResponse.status) {
@@ -121,7 +121,7 @@ export const googleRegisterUser = (token) => {
 
     return (dispatch) => {
         dispatch(googleRegisterRequest());
-        axios.post(`${config.apiUrl}/users/googleLogin`, { googleToken: token }, requestConfig)
+        axios.post(`${config.apiUrl}/front/users/googleLogin`, { googleToken: token }, requestConfig)
             .then(response => {
 
                 const loginResponse = response.data;
@@ -134,7 +134,7 @@ export const googleRegisterUser = (token) => {
                     };
 
                     dispatch(googleRegisterSuccess(response));
-                    
+
                     set_login_token(JSON.stringify(loginResponse.token));
 
                     const query = new URLSearchParams(window.location.search);
@@ -169,7 +169,7 @@ export const facebookRegisterUser = (data) => {
 
     return (dispatch) => {
         dispatch(facebookRegisterRequest());
-        axios.post(`${config.apiUrl}/users/facebookLogin`, { fbdata: data }, requestConfig)
+        axios.post(`${config.apiUrl}/front/users/facebookLogin`, { fbdata: data }, requestConfig)
             .then(response => {
 
                 const loginResponse = response.data;
@@ -182,7 +182,7 @@ export const facebookRegisterUser = (data) => {
                     };
 
                     dispatch(facebookRegisterSuccess(response));
-                    
+
                     set_login_token(JSON.stringify(loginResponse.token));
 
                     const query = new URLSearchParams(window.location.search);
@@ -214,10 +214,10 @@ export const verifyToken = (token) => {
     const requestConfig = {
         'Content-Type': 'application/json'
     };
-    
+
     return async (dispatch) => {
         dispatch(verifyTokenRequest());
-        axios.post(`${config.apiUrl}/users/verifyEmailToken`, { token: token }, requestConfig)
+        axios.post(`${config.apiUrl}/front/users/verifyEmailToken`, { token: token }, requestConfig)
             .then(response => {
 
                 const loginResponse = response.data;
@@ -230,7 +230,7 @@ export const verifyToken = (token) => {
                     // };
 
                     // dispatch(verifyTokenSuccess(response));
-                    
+
                     set_login_token(JSON.stringify(loginResponse.token));
 
                     const query = new URLSearchParams(window.location.search);

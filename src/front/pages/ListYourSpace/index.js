@@ -1,5 +1,5 @@
-import React,{useState} from 'react';
-import { Col, Container,Row ,Form, Button ,Carousel} from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Col, Container, Row, Form, Button, Carousel } from 'react-bootstrap';
 import to_do_list from '../../../assets/front/images/icons/to_do_list.png';
 import renters from '../../../assets/front/images/icons/renters.png';
 import money from '../../../assets/front/images/icons/money.png';
@@ -24,15 +24,16 @@ import Support from '../../../assets/front/images/icons/support.png';
 
 import boy from '../../../assets/front/images/img/boy.svg';
 import girl from '../../../assets/front/images/img/girl.svg';
+import StepOneForm from './StepOneForm';
 
-function ListYourSpaceComponentCtrl(){
+function ListYourSpaceComponentCtrl() {
     const [index, setIndex] = useState(0);
 
     const connectingPeople = (selectedIndex, e) => {
-      setIndex(selectedIndex);
+        setIndex(selectedIndex);
     };
 
-    return(
+    return (
         <>
             <section className="hf_bg_list_your_space">
                 <Container fluid>
@@ -42,7 +43,7 @@ function ListYourSpaceComponentCtrl(){
                                 <Col sm={8}>
                                     <div className="my-5">
                                         <h2 className="clr_bg_stash_hdng">
-                                            Make Money on<br/> <span> Stash.Guru </span>
+                                            Make Money on<br /> <span> Stash.Guru </span>
                                         </h2>
                                         <p className="mt-3">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</p>
                                     </div>
@@ -53,24 +54,7 @@ function ListYourSpaceComponentCtrl(){
                             <Row className="justify-content-center">
                                 <Col sm={8}>
                                     <div className="clr_bg_stash_form_card">
-                                        <Form>
-                                            <h5 className="pb-4">Lorem ipsum dolor sit amet</h5>
-                                            <Form.Group className="custom_select">
-                                                <Form.Control as="select">
-                                                <option>Warehouse</option>
-                                                <option>Warehouse 2</option>
-                                                <option>Warehouse 3</option>
-                                                <option>Warehouse 4</option>
-                                                <option>Warehouse 5</option>
-                                                </Form.Control>
-                                            </Form.Group>
-                                            
-                                            <Form.Group>
-                                                <Form.Control type="text" placeholder="Your Location" />
-                                            </Form.Group>
-
-                                            <Button variant="success" className="btn-block mt-4">List your space</Button>
-                                        </Form>
+                                        <StepOneForm />
                                     </div>
                                 </Col>
                             </Row>
@@ -84,7 +68,7 @@ function ListYourSpaceComponentCtrl(){
                         <Col lg={4}>
                             <div className="t_card_list">
                                 <span>
-                                    <img src={to_do_list} alt=""  />
+                                    <img src={to_do_list} alt="" />
                                 </span>
                                 <div>
                                     <h5>List for free</h5>
@@ -95,7 +79,7 @@ function ListYourSpaceComponentCtrl(){
                         <Col lg={4}>
                             <div className="t_card_list">
                                 <span>
-                                    <img src={renters} alt=""  />
+                                    <img src={renters} alt="" />
                                 </span>
                                 <div>
                                     <h5>Respond to renters</h5>
@@ -106,7 +90,7 @@ function ListYourSpaceComponentCtrl(){
                         <Col lg={4}>
                             <div className="t_card_list">
                                 <span>
-                                    <img src={money}  alt="" />
+                                    <img src={money} alt="" />
                                 </span>
                                 <div>
                                     <h5>Make money</h5>
@@ -132,8 +116,8 @@ function ListYourSpaceComponentCtrl(){
                                 <Col lg={4}>
                                     <div className="what_need_card">
                                         <div className="what_need_card_header">
-                                            <img className="lg_img" src={gr_camera} alt=""  />
-                                            <img className="sm_img" src={camera} alt=""  />
+                                            <img className="lg_img" src={gr_camera} alt="" />
+                                            <img className="sm_img" src={camera} alt="" />
                                         </div>
                                         <div className="what_need_card_footer">
                                             <h5>Photo</h5>
@@ -144,8 +128,8 @@ function ListYourSpaceComponentCtrl(){
                                 <Col lg={4}>
                                     <div className="what_need_card">
                                         <div className="what_need_card_header">
-                                            <img className="lg_img" src={gr_dimension} alt=""  />
-                                            <img className="sm_img" src={dimension}  alt="" />
+                                            <img className="lg_img" src={gr_dimension} alt="" />
+                                            <img className="sm_img" src={dimension} alt="" />
                                         </div>
                                         <div className="what_need_card_footer">
                                             <h5>Dimensions</h5>
@@ -156,8 +140,8 @@ function ListYourSpaceComponentCtrl(){
                                 <Col lg={4}>
                                     <div className="what_need_card">
                                         <div className="what_need_card_header">
-                                            <img className="lg_img" src={gr_location} alt=""  />
-                                            <img className="sm_img" src={location}  alt="" />
+                                            <img className="lg_img" src={gr_location} alt="" />
+                                            <img className="sm_img" src={location} alt="" />
                                         </div>
                                         <div className="what_need_card_footer">
                                             <h5>Address</h5>
@@ -176,7 +160,7 @@ function ListYourSpaceComponentCtrl(){
                     <Row className="justify-content-center">
                         <Col sm={8}>
                             <div className="videos_play">
-                                <img src={video_bg} alt=""  />
+                                <img src={video_bg} alt="" />
                                 <span className="video_icon">
                                     <i className="fa fa-play" aria-hidden="true"></i>
                                 </span>
@@ -193,54 +177,54 @@ function ListYourSpaceComponentCtrl(){
                             <h3 className="pg_bg_hdng mb-3">We’ve got it covered!</h3>
                         </Col>
                     </Row>
-                    <Row>                        
+                    <Row>
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={verify} alt=""  />
+                                <img src={verify} alt="" />
                                 <h5>Verified Guests</h5>
-                                <p>There are hundreds of local storage <br/> Hosts to choose from</p>
+                                <p>There are hundreds of local storage <br /> Hosts to choose from</p>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={Affordable} alt=""  />
+                                <img src={Affordable} alt="" />
                                 <h5>Smooth Payments</h5>
-                                <p>Save on average 50% on your<br/> storage bill</p>
+                                <p>Save on average 50% on your<br /> storage bill</p>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={dashboard}  alt="" />
+                                <img src={dashboard} alt="" />
                                 <h5>Booking Dashboard</h5>
-                                <p>Clear contracts, no hidden charges<br/> or fees</p>
+                                <p>Clear contracts, no hidden charges<br /> or fees</p>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={stamp}  alt="" />
+                                <img src={stamp} alt="" />
                                 <h5>Legal Framework</h5>
-                                <p>Spaces are quality controlled and<br/> approved by stash.guru</p>
+                                <p>Spaces are quality controlled and<br /> approved by stash.guru</p>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={helping} alt=""  />
+                                <img src={helping} alt="" />
                                 <h5>Guest Insurance</h5>
-                                <p>All self storage hosts have their identity verified<br/>
-                                 by an independent third party to ensure things<br/>
+                                <p>All self storage hosts have their identity verified<br />
+                                 by an independent third party to ensure things<br />
                                   are nice, safe and secure.</p>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={Support} alt=""  />
+                                <img src={Support} alt="" />
                                 <h5>stash.guru Support</h5>
-                                <p>Our team is here to help Guests and Hosts if any<br/>
+                                <p>Our team is here to help Guests and Hosts if any<br />
                                  questions or issues arise with storage</p>
                             </div>
                         </Col>
@@ -256,11 +240,11 @@ function ListYourSpaceComponentCtrl(){
                                 <Carousel.Item>
                                     <Row className="justify-content-center">
                                         <Col sm={8} md={5}>
-                                            <img className="d-block w-100" src={boy} alt=""/>
+                                            <img className="d-block w-100" src={boy} alt="" />
                                             <h3>Steve Henderson</h3>
                                             <b>Velit imperdiet magna</b>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                                                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
                                                 sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
                                         </Col>
                                     </Row>
@@ -268,11 +252,11 @@ function ListYourSpaceComponentCtrl(){
                                 <Carousel.Item>
                                     <Row className="justify-content-center">
                                         <Col sm={8} md={5}>
-                                            <img className="d-block w-100" src={girl} alt=""/>
+                                            <img className="d-block w-100" src={girl} alt="" />
                                             <h3>Steve Henderson</h3>
                                             <b>Velit imperdiet magna</b>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                                                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
                                                 sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
                                         </Col>
                                     </Row>
@@ -280,11 +264,11 @@ function ListYourSpaceComponentCtrl(){
                                 <Carousel.Item>
                                     <Row className="justify-content-center">
                                         <Col sm={8} md={5}>
-                                            <img className="d-block w-100" src={boy} alt=""/>
+                                            <img className="d-block w-100" src={boy} alt="" />
                                             <h3>Steve Henderson</h3>
                                             <b>Velit imperdiet magna</b>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                                                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
                                                 sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
                                         </Col>
                                     </Row>
@@ -292,11 +276,11 @@ function ListYourSpaceComponentCtrl(){
                                 <Carousel.Item>
                                     <Row className="justify-content-center">
                                         <Col sm={8} md={5}>
-                                            <img className="d-block w-100" src={girl} alt=""/>
+                                            <img className="d-block w-100" src={girl} alt="" />
                                             <h3>Steve Henderson</h3>
                                             <b>Velit imperdiet magna</b>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, 
-                                                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
                                                 sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
                                         </Col>
                                     </Row>

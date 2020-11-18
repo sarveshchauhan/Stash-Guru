@@ -73,7 +73,9 @@ const Root = () => (
             <PrivateRoute exact path="/listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserListingtrl} />
             <PrivateRoute exact path="/booking" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingCtrl} />
             {/* <Route exact path="/dashboard" render={(props)=> (<UserPagesLayoutCtrl children={UserHomeCtrl} {...props} />)} /> */}
+
             <Route exact path="/create-your-list" render={(props) => (<UserPagesLayoutCtrl children={UserCreateYourListCtrl} {...props} />)} />
+
             <Route exact path="/create-your-list-step3" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepThitdCtrl} {...props} />)} />
             <Route exact path="/create-your-list-step4" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepForthCtrl} {...props} />)} />
             <Route exact path="/create-your-list-step5" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepFifthCtrl} {...props} />)} />

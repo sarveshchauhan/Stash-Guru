@@ -90,7 +90,7 @@ export const loginUser = (user) => {
 
     return async (dispatch) => {
         dispatch(loginUserRequest())
-        await axios.post(`${config.apiUrl}/users/login`, user, requestConfig)
+        await axios.post(`${config.apiUrl}/front/users/login`, user, requestConfig)
             .then(response => {
                 const loginResponse = response.data;
                 if (loginResponse.status) {
@@ -134,7 +134,7 @@ export const googleLogin = (token) => {
 
     return (dispatch) => {
         dispatch(googleLoginRequest());
-        axios.post(`${config.apiUrl}/users/googleLogin`, { googleToken: token }, requestConfig)
+        axios.post(`${config.apiUrl}/front/users/googleLogin`, { googleToken: token }, requestConfig)
             .then(response => {
 
                 const loginResponse = response.data;
@@ -179,7 +179,7 @@ export const loginWithFaceBook = (data) => {
 
     return (dispatch) => {
         dispatch(facebookLoginRequest());
-        axios.post(`${config.apiUrl}/users/facebookLogin`, { fbdata: data }, requestConfig)
+        axios.post(`${config.apiUrl}/front/users/facebookLogin`, { fbdata: data }, requestConfig)
             .then(response => {
 
                 const loginResponse = response.data;
@@ -224,7 +224,7 @@ export const getUsers = () => {
     return async (dispatch) => {
         dispatch(getUserRequest())
         if (localStorage.getItem('stashGuruToken')) {
-            await axios.post(`${config.apiUrl}/users/details`, { token: localStorage.getItem('stashGuruToken').replace(/["']/g, "") }, requestConfig)
+            await axios.post(`${config.apiUrl}/front/users/details`, { token: localStorage.getItem('stashGuruToken').replace(/["']/g, "") }, requestConfig)
                 .then(response => {
 
                     const usersResponse = response.data;
@@ -307,7 +307,7 @@ export const forgotPassword = (user) => {
 
     return async (dispatch) => {
         dispatch(forgotPasswordRequest())
-        await axios.post(`${config.apiUrl}/users/forgotpassword`, user, requestConfig)
+        await axios.post(`${config.apiUrl}/front/users/forgotpassword`, user, requestConfig)
             .then(response => {
                 const serverResponse = response.data;
                 if (+serverResponse.status === 1) {
@@ -372,7 +372,7 @@ export const resetPassword = (resetData) => {
 
     return async (dispatch) => {
         dispatch(resetPasswordRequest())
-        await axios.post(`${config.apiUrl}/users/resetpassword`, resetData, requestConfig)
+        await axios.post(`${config.apiUrl}/front/users/resetpassword`, resetData, requestConfig)
             .then(response => {
                 const serverResponse = response.data;
                 if (+serverResponse.status === 1) {
