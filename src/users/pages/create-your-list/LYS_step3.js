@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Button, Alert, Form, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { getFeatures, getFloors, getSpaceType, getSpaceUsedFor, stepThreeSave } from '../../../redux/listspace/listspaceActions';
+import { clearlistSpaceMessageFields, getFeatures, getFloors, getSpaceType, getSpaceUsedFor, stepThreeSave, stepThreeUpdate } from '../../../redux/listspace/listspaceActions';
 
 import StepsNavListCtrl from './steps_nav_list';
 
 function CreateYourListStepThitdCtrl() {
 
     const dispatch = useDispatch();
-    const { spaceTypeList, spaceUsedForList, featuresList, floorsList, stepOne, stepTwo, stepThreeLoading, stepThreeSuccess, stepThreeError } = useSelector(state => state.listspace);
+    const { spaceTypeList, spaceUsedForList, featuresList, floorsList, stepOne, stepTwo, stepThree, stepThreeLoading, stepThreeSuccess, stepThreeError } = useSelector(state => state.listspace);
     const history = useHistory();
 
 
@@ -34,10 +34,48 @@ function CreateYourListStepThitdCtrl() {
 
     const [key, set_key] = useState("Yes");
 
+
+    useEffect(() => {
+
+
+
+        if (!stepTwo) {
+
+            if (!stepTwo) {
+                history.push('/list-your-space');
+            }
+            else {
+                history.push('/create-your-list');
+            }
+
+
+
+        }
+
+    }, [stepTwo, stepOne])
+
+
+
+    useEffect(() => {
+
+        if (stepThree) {
+
+            set_title(stepThree.title);
+            set_feature_id(stepThree.features);
+            set_key(stepThree.keyStatus);
+            set_floor_id(stepThree.floor);
+            set_sut_id(stepThree.used_type);
+            set_st_id(stepThree.type);
+        }
+
+    }, [stepThree]);
+
+
     useEffect(() => {
 
         if (stepThreeSuccess) {
             history.push('/create-your-list-step4');
+            dispatch(clearlistSpaceMessageFields());
         }
 
     }, [stepThreeSuccess])
@@ -121,7 +159,15 @@ function CreateYourListStepThitdCtrl() {
             };
 
 
-            dispatch(stepThreeSave(saveInfo));
+            if (stepThree && stepThree.id) {
+                saveInfo.id = stepThree.id
+                dispatch(stepThreeUpdate(saveInfo));
+            }
+            else {
+                dispatch(stepThreeSave(saveInfo));
+
+            }
+
 
 
 

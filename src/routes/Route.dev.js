@@ -49,7 +49,12 @@ import ResetPassword from '../front/pages/register/ResetPassword';
 const Root = () => (
     <BrowserRouter>
         <Switch>
-            <PrivateRoute exact path="/login" parentComponent={RegisterPagesLayoutCtrl} childComponent={LoginComponentCtrl} />
+            {/* <PrivateRoute exact path="/login" parentComponent={RegisterPagesLayoutCtrl} childComponent={LoginComponentCtrl} /> */}
+
+            <Route exact path="/login" render={(props) => (< RegisterPagesLayoutCtrl children={LoginComponentCtrl} {...props} />)} />
+
+
+
             <Route exact path="/signup" render={(props) => (< RegisterPagesLayoutCtrl children={SignUpComponentCtrl} {...props} />)} />
             <Route exact path="/forgotpassword" render={(props) => (< RegisterPagesLayoutCtrl children={ForgotPassword} {...props} />)} />
             <Route exact path="/resetpassword/:token" render={(props) => (< RegisterPagesLayoutCtrl children={ResetPassword} {...props} />)} />
@@ -74,13 +79,29 @@ const Root = () => (
             <PrivateRoute exact path="/booking" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingCtrl} />
             {/* <Route exact path="/dashboard" render={(props)=> (<UserPagesLayoutCtrl children={UserHomeCtrl} {...props} />)} /> */}
 
-            <Route exact path="/create-your-list" render={(props) => (<UserPagesLayoutCtrl children={UserCreateYourListCtrl} {...props} />)} />
+            {/* <Route exact path="/create-your-list" render={(props) => (<UserPagesLayoutCtrl children={UserCreateYourListCtrl} {...props} />)} /> */}
 
-            <Route exact path="/create-your-list-step3" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepThitdCtrl} {...props} />)} />
-            <Route exact path="/create-your-list-step4" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepForthCtrl} {...props} />)} />
-            <Route exact path="/create-your-list-step5" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepFifthCtrl} {...props} />)} />
-            <Route exact path="/create-your-list-step6" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepSixthCtrl} {...props} />)} />
-            <Route exact path="/create-your-list-step7" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepSeventhCtrl} {...props} />)} />
+            <PrivateRoute exact path="/create-your-list" parentComponent={UserPagesLayoutCtrl} childComponent={UserCreateYourListCtrl} />
+
+            {/* <Route exact path="/create-your-list-step3" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepThitdCtrl} {...props} />)} /> */}
+            <PrivateRoute exact path="/create-your-list-step3" parentComponent={UserPagesLayoutCtrl} childComponent={CreateYourListStepThitdCtrl} />
+
+
+            {/* <Route exact path="/create-your-list-step4" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepForthCtrl} {...props} />)} /> */}
+            <PrivateRoute exact path="/create-your-list-step4" parentComponent={UserPagesLayoutCtrl} childComponent={CreateYourListStepForthCtrl} />
+
+
+            {/* <Route exact path="/create-your-list-step5" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepFifthCtrl} {...props} />)} /> */}
+            <PrivateRoute exact path="/create-your-list-step5" parentComponent={UserPagesLayoutCtrl} childComponent={CreateYourListStepFifthCtrl} />
+
+
+            {/* <Route exact path="/create-your-list-step6" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepSixthCtrl} {...props} />)} /> */}
+            <PrivateRoute exact path="/create-your-list-step6" parentComponent={UserPagesLayoutCtrl} childComponent={CreateYourListStepSixthCtrl} />
+
+            {/* <Route exact path="/create-your-list-step7" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepSeventhCtrl} {...props} />)} /> */}
+            <PrivateRoute exact path="/create-your-list-step7" parentComponent={UserPagesLayoutCtrl} childComponent={CreateYourListStepSeventhCtrl} />
+
+
         </Switch>
     </BrowserRouter>
 )

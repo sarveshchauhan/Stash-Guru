@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Form, Row, InputGroup, FormControl, Button, Container, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 // import { MapContainer } from '../../../front/common/components/map';
 import GoogleMap from '../../../front/common/components/google-map/GoogleMap';
 import { getCoordinates } from '../../../redux';
@@ -10,6 +11,7 @@ import ManualAddressForm from './ManualAddressForm';
 function UserCreateYourListCtrl() {
 
     const dispatch = useDispatch();
+    const history = useHistory();
     const { coordinates, coordinatesError, coordinatesLoading, stepOne } = useSelector(state => state.listspace);
 
     const [manually, setManually] = useState([!false]);
@@ -21,6 +23,14 @@ function UserCreateYourListCtrl() {
     const [lng, setLng] = useState("");
 
 
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
     useEffect(() => {
 
         if (stepOne && stepOne.location) {
@@ -30,6 +40,10 @@ function UserCreateYourListCtrl() {
                 address: stepOne.location
             }));
         }
+        else {
+            history.push('/list-your-space');
+        }
+
 
     }, [stepOne]);
 

@@ -10,13 +10,22 @@ function StepOneForm() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const { spaceTypeList } = useSelector(state => state.listspace);
+    const { spaceTypeList, stepOne } = useSelector(state => state.listspace);
 
 
     const [location, setLocation] = useState("");
     const [locationError, setLocationError] = useState("");
     const [spaceType, setSpaceType] = useState("");
     const [spaceTypeError, setSpaceTypeError] = useState("");
+
+    useEffect(() => {
+
+        if (stepOne) {
+            setLocation(stepOne.location);
+            setSpaceType(stepOne.spaceType);
+        }
+
+    }, [stepOne]);
 
 
     useEffect(() => {

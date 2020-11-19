@@ -32,7 +32,12 @@ class LoginComponentCtrl extends React.Component {
     }
 
 
+
     componentDidMount() {
+
+
+        window.scrollTo(0, 0);
+
 
 
         if (this.props.auth.auth.resetPasswordSuccess) {

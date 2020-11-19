@@ -8,7 +8,7 @@ import { getCoordinates, stepTwoSave } from '../../../redux';
 function ManualAddressForm() {
 
     const dispatch = useDispatch();
-    const { coordinates, coordinatesError, coordinatesLoading } = useSelector(state => state.listspace);
+    const { coordinates, coordinatesError, coordinatesLoading, stepTwo } = useSelector(state => state.listspace);
     const history = useHistory();
 
 
@@ -28,6 +28,20 @@ function ManualAddressForm() {
 
     const [postal_code, set_postal_code] = useState("");
     const [postal_code_error, set_postal_code_error] = useState("");
+
+    useEffect(() => {
+
+        if (stepTwo) {
+
+            set_house_no(stepTwo.house_no);
+            set_address1(stepTwo.address1);
+            set_address2(stepTwo.address2);
+            set_city(stepTwo.city);
+            set_postal_code(stepTwo.postal_code);
+
+        }
+
+    }, [stepTwo]);
 
 
     useEffect(() => {
@@ -158,7 +172,7 @@ function ManualAddressForm() {
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Address2</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Address2" />
+                    <Form.Control type="text" placeholder="Enter Address2" name="address2" value={address2} onChange={(e) => set_address2(e.target.value)} />
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>City/Town</Form.Label>

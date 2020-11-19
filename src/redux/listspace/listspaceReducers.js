@@ -1,25 +1,24 @@
-import { FEATURE_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FLOOR_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_FAILURE, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_ONE_SAVE, STEP_THREE_SAVE_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_TWO_SAVE } from "./listspaceTypes";
+import { CLEAR_MESSAGE_FIELDS, FEATURE_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FLOOR_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, GET_PRICE_PERCENTAGE_FAILURE, GET_PRICE_PERCENTAGE_REQUEST, GET_PRICE_PERCENTAGE_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_FAILURE, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_FOUR_SAVE_FAILURE, STEP_FOUR_SAVE_REQUEST, STEP_FOUR_SAVE_SUCCESS, STEP_FOUR_UPDATE_CLIENT, STEP_ONE_SAVE, STEP_THREE_SAVE_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_UPDATE_CLIENT, STEP_TWO_SAVE } from "./listspaceTypes";
 
 const initialState = {
 
-    stepOne: localStorage.getItem("listStepOne") ? JSON.parse(localStorage.getItem("listStepOne")) : {
-        spaceType: "",
-        location: ""
-    },
+    stepOne: sessionStorage.getItem("listStepOne") ? JSON.parse(sessionStorage.getItem("listStepOne")) : "",
 
-    stepTwo: localStorage.getItem("listStepTwo") ? JSON.parse(localStorage.getItem("listStepTwo")) : {
-        house_no: "",
-        address1: "",
-        address2: "",
-        city: "",
-        postal_code: "",
-        lat: "",
-        lng: ""
-    },
+    stepTwo: sessionStorage.getItem("listStepTwo") ? JSON.parse(sessionStorage.getItem("listStepTwo")) : "",
+
+    stepThree: sessionStorage.getItem("listStepThree") ? JSON.parse(sessionStorage.getItem("listStepThree")) : "",
+
+    stepFour: sessionStorage.getItem("listStepFour") ? JSON.parse(sessionStorage.getItem("listStepFour")) : "",
+
+
 
     stepThreeLoading: false,
     stepThreeSuccess: "",
     stepThreeError: "",
+
+    stepFourLoading: false,
+    stepFourSuccess: "",
+    stepFourError: "",
 
 
 
@@ -45,7 +44,11 @@ const initialState = {
 
     floorsLoading: false,
     floorsList: "",
-    floorsError: ""
+    floorsError: "",
+
+    pricePercentageLoading: false,
+    pricePercentage: "",
+    pricePercentageFailure: ""
 
 
 }
@@ -63,7 +66,8 @@ const reducer = (state = initialState, action) => {
         case STEP_TWO_SAVE:
             return {
                 ...state,
-                stepTwo: action.payload
+                stepTwo: action.payload,
+                coordinates: ""
             }
 
         case SPACE_TYPE_REQUEST:
@@ -195,6 +199,69 @@ const reducer = (state = initialState, action) => {
                 stepThreeError: action.payload
             }
 
+
+        case STEP_FOUR_SAVE_REQUEST:
+            return {
+                ...state,
+                stepFourLoading: true,
+                stepFourError: "",
+                stepFourSuccess: ""
+            }
+
+
+        case STEP_FOUR_SAVE_SUCCESS:
+            return {
+                ...state,
+                stepFourLoading: false,
+                stepFourSuccess: action.payload
+            }
+
+        case STEP_FOUR_SAVE_FAILURE:
+            return {
+                ...state,
+                stepFourLoading: false,
+                stepFourError: action.payload
+            }
+
+
+        case CLEAR_MESSAGE_FIELDS:
+            return {
+                ...state,
+                stepThreeSuccess: "",
+                stepFourSuccess: ""
+            }
+
+        case STEP_THREE_UPDATE_CLIENT:
+            return {
+                ...state,
+                stepThree: action.payload
+            }
+
+        case STEP_FOUR_UPDATE_CLIENT:
+            return {
+                ...state,
+                stepFour: action.payload
+            }
+
+        case GET_PRICE_PERCENTAGE_REQUEST:
+            return {
+                ...state,
+                pricePercentageLoading: true
+            }
+
+        case GET_PRICE_PERCENTAGE_SUCCESS:
+            return {
+                ...state,
+                pricePercentageLoading: false,
+                pricePercentage: action.payload
+            }
+
+        case GET_PRICE_PERCENTAGE_FAILURE:
+            return {
+                ...state,
+                pricePercentageLoading: false,
+                pricePercentageFailure: action.payload
+            }
 
 
 

@@ -15,35 +15,40 @@ import B_step3 from '../../../assets/users/images/icons/steps/B_step3.png';
 import B_step4 from '../../../assets/users/images/icons/steps/B_step4.png';
 import B_step5 from '../../../assets/users/images/icons/steps/B_step5.png';
 import B_step6 from '../../../assets/users/images/icons/steps/B_step6.png';
+import { useSelector } from 'react-redux';
 
 
-function StepsNavListCtrl(){
-    return(
+function StepsNavListCtrl() {
+
+    const { stepOne, stepTwo, stepThree, stepFour } = useSelector(state => state.listspace);
+
+
+    return (
         <>
             <section className="step_nav_list_strip">
                 <Container>
                     <Row className="align-items-center">
                         <Col xl={8}>
                             <Nav className="step_nav_list" fill defaultActiveKey="/home" as="ul">
-                                <Nav.Item as="li" className="completed">
+                                <Nav.Item as="li" className={stepOne ? "completed" : ""}>
                                     <span>
                                         <img className="complete_step_img" src={G_step1} alt="" />
                                         <img className="incomplete_step_img" src={B_step1} alt="" />
                                     </span>Overview
                                 </Nav.Item>
-                                <Nav.Item as="li" className="completed">
+                                <Nav.Item as="li" className={stepTwo ? "completed" : ""}>
                                     <span>
                                         <img className="complete_step_img" src={G_step2} alt="" />
                                         <img className="incomplete_step_img" src={B_step2} alt="" />
                                     </span>Location
                                 </Nav.Item>
-                                <Nav.Item as="li" className="">
+                                <Nav.Item as="li" className={stepThree ? "completed" : ""}>
                                     <span>
                                         <img className="complete_step_img" src={G_step3} alt="" />
                                         <img className="incomplete_step_img" src={B_step3} alt="" />
                                     </span>Space Type
                                 </Nav.Item>
-                                <Nav.Item as="li" className="">
+                                <Nav.Item as="li" className={stepFour ? "completed" : ""}>
                                     <span>
                                         <img className="complete_step_img" src={G_step4} alt="" />
                                         <img className="incomplete_step_img" src={B_step4} alt="" />

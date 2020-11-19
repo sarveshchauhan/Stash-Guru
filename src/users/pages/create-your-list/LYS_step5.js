@@ -1,13 +1,92 @@
-import React from 'react';
-import { Col, Container, Row, Button,InputGroup,Form,FormControl, Accordion } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Col, Container, Row, Button, InputGroup, Form, FormControl, Accordion } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
+import { getPricePercentage } from '../../../redux/listspace/listspaceActions';
 
 import StepsNavListCtrl from './steps_nav_list';
 
-function CreateYourListStepFifthCtrl(){
-    return(
+function CreateYourListStepFifthCtrl() {
+
+
+    const { stepFour, pricePercentage } = useSelector(state => state.listspace);
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    const [exactSpaces, setExactSpaces] = useState("");
+    const [exactSpacesError, setExactSpacesError] = useState("");
+
+
+
+    const [sizeOne, setSizeOne] = useState("");
+    const [sizeTwo, setSizeTwo] = useState("");
+    const [sizeThree, setSizeThree] = useState("");
+
+    const [sizeOneError, setSizeOneError] = useState("");
+    const [sizeTwoError, setSizeTwoError] = useState("");
+    const [sizeThreeError, setSizeThreeError] = useState("");
+
+    const [pricing, setPricing] = useState("");
+    const [pricingError, setPricingError] = useState("");
+
+    const [earning, setEarning] = useState("");
+    const [earningError, setEarningError] = useState("");
+
+    const [numberOfSpaces, setNumberOfSpaces] = useState("0");
+    const [numberOfSpacesError, setNumberOfSpacesError] = useState("");
+
+
+    useEffect(() => {
+
+        dispatch(getPricePercentage());
+
+    }, [dispatch]);
+
+    useEffect(() => {
+
+        if (!stepFour) {
+            history.push('/create-your-list-step4');
+        }
+
+    }, [stepFour]);
+
+
+    const vaildateErrors = (name, value) => {
+
+        switch (name) {
+            case "sizeOne":
+                setSizeOneError("");
+                if (!sizeOne) {
+                    setSizeOneError("Required!");
+                }
+                break;
+
+
+            case "sizeTwo":
+                setSizeTwoError("");
+                if (!sizeTwo) {
+                    setSizeTwoError("Required!");
+                }
+                break;
+
+
+            case "sizeThree":
+                setSizeThreeError("");
+                if (!sizeThree) {
+                    setSizeThreeError("Required!");
+                }
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
+
+    return (
         <>
-            <StepsNavListCtrl/>
+            <StepsNavListCtrl />
             <section className="my-5">
                 <Container>
                     <Row className="justify-content-between">
@@ -18,11 +97,11 @@ function CreateYourListStepFifthCtrl(){
                                     <div className="sizeSpaceWidth">
                                         <InputGroup className="">
                                             <InputGroup.Prepend>
-                                            <InputGroup.Text id="basic-addon3">
-                                            Width
-                                            </InputGroup.Text>
+                                                <InputGroup.Text id="basic-addon3">
+                                                    Width
+                                                </InputGroup.Text>
                                             </InputGroup.Prepend>
-                                            <FormControl id="basic-url" aria-describedby="basic-addon3" />
+                                            <FormControl id="basic-url" aria-describedby="basic-addon3" name="sizeOne" value={sizeOne} onChange={(e) => setSizeOne(e.target.value)} onBlur={() => vaildateErrors("sizeOne")} />
                                         </InputGroup>
                                     </div>
                                     <div className="sizeSpaceWidthUnit">
@@ -33,16 +112,21 @@ function CreateYourListStepFifthCtrl(){
                                             </Form.Control>
                                         </Form.Group>
                                     </div>
+                                    {
+                                        sizeOneError && <div className="ml-2 mt-2">
+                                            <small className="text-danger">{sizeOneError}</small>
+                                        </div>
+                                    }
                                 </div>
                                 <div className="sizeSpaceRow">
                                     <div className="sizeSpaceWidth">
                                         <InputGroup className="">
                                             <InputGroup.Prepend>
-                                            <InputGroup.Text id="basic-addon3">
-                                            Width
+                                                <InputGroup.Text id="basic-addon3">
+                                                    Width
                                             </InputGroup.Text>
                                             </InputGroup.Prepend>
-                                            <FormControl id="basic-url" aria-describedby="basic-addon3" />
+                                            <FormControl id="basic-url" aria-describedby="basic-addon3" name="sizeTwo" value={sizeTwo} onChange={(e) => setSizeTwo(e.target.value)} onBlur={() => vaildateErrors("sizeTwo")} />
                                         </InputGroup>
                                     </div>
                                     <div className="sizeSpaceWidthUnit">
@@ -53,16 +137,24 @@ function CreateYourListStepFifthCtrl(){
                                             </Form.Control>
                                         </Form.Group>
                                     </div>
+
+                                    {
+                                        sizeTwoError && <div className="ml-2 mt-2">
+                                            <small className="text-danger">{sizeTwoError}</small>
+                                        </div>
+                                    }
+
+
                                 </div>
                                 <div className="sizeSpaceRow">
                                     <div className="sizeSpaceWidth">
                                         <InputGroup className="">
                                             <InputGroup.Prepend>
-                                            <InputGroup.Text id="basic-addon3">
-                                            Width
+                                                <InputGroup.Text id="basic-addon3">
+                                                    Width
                                             </InputGroup.Text>
                                             </InputGroup.Prepend>
-                                            <FormControl id="basic-url" aria-describedby="basic-addon3" />
+                                            <FormControl id="basic-url" aria-describedby="basic-addon3" name="sizeThree" value={sizeThree} onChange={(e) => setSizeThree(e.target.value)} onBlur={() => vaildateErrors("sizeThree")} />
                                         </InputGroup>
                                     </div>
                                     <div className="sizeSpaceWidthUnit">
@@ -73,6 +165,13 @@ function CreateYourListStepFifthCtrl(){
                                             </Form.Control>
                                         </Form.Group>
                                     </div>
+
+                                    {
+                                        sizeThreeError && <div className="ml-2 mt-2">
+                                            <small className="text-danger">{sizeThreeError}</small>
+                                        </div>
+                                    }
+
                                 </div>
                             </Form>
                         </Col>
@@ -90,9 +189,9 @@ function CreateYourListStepFifthCtrl(){
                         <Col lg="5" md="6">
                             <h3 className="md_bld_txt">How many of these do you have?</h3>
                             <h6>I have these exact spaces</h6>
-                            
-                            <InputGroup className="text-center" style={{width: '80px'}}>
-                                <FormControl className="text-center" value="1" style={{color:'#34d789',fontWeight:'900'}} />
+
+                            <InputGroup className="text-center" style={{ width: '80px' }}>
+                                <FormControl className="text-center" value={numberOfSpaces} onChange={(e) => setNumberOfSpaces(e.target.value)} style={{ color: '#34d789', fontWeight: '900' }} />
                             </InputGroup>
                             <Accordion>
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
@@ -102,7 +201,7 @@ function CreateYourListStepFifthCtrl(){
                                     <div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</div>
                                 </Accordion.Collapse>
                             </Accordion>
-                            
+
                         </Col>
                         <Col lg="4" md="5" className="offset-lg-1">
                             <h5 className=""><b>Lorem ipsum dolor sit</b></h5>
@@ -122,11 +221,11 @@ function CreateYourListStepFifthCtrl(){
                                 <div className="PricingCol">
                                     <InputGroup className="">
                                         <InputGroup.Prepend>
-                                        <InputGroup.Text style={{width:'50px',justifyContent:'center'}}>
-                                            <i className="fa fa-usd" aria-hidden="true"></i>
-                                        </InputGroup.Text>
+                                            <InputGroup.Text style={{ width: '50px', justifyContent: 'center' }}>
+                                                <i className="fa fa-usd" aria-hidden="true"></i>
+                                            </InputGroup.Text>
                                         </InputGroup.Prepend>
-                                        <FormControl  />
+                                        <FormControl />
                                     </InputGroup>
                                 </div>
                                 <b>Per Month</b>
@@ -207,7 +306,7 @@ function CreateYourListStepFifthCtrl(){
                 </Container>
             </section>
 
-            
+
 
             <section className="my-5">
                 <Container>
@@ -240,7 +339,7 @@ function CreateYourListStepFifthCtrl(){
                         <Col lg="6" md="6" className="text-right">
                             <NavLink to="/create-your-list-step6">
                                 <Button className="btn_outline_success mr-2 mt-2 px-5">
-                                Next <i className="fa fa-long-arrow-right ml-2" aria-hidden="true"></i>
+                                    Next <i className="fa fa-long-arrow-right ml-2" aria-hidden="true"></i>
                                 </Button>
                             </NavLink>
                         </Col>

@@ -27,6 +27,9 @@ import girl from '../../../assets/front/images/img/girl.svg';
 import StepOneForm from './StepOneForm';
 
 function ListYourSpaceComponentCtrl() {
+    
+
+
     const [index, setIndex] = useState(0);
 
     const connectingPeople = (selectedIndex, e) => {

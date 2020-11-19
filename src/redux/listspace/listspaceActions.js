@@ -1,4 +1,4 @@
-import { GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_ONE_SAVE, STEP_TWO_SAVE, SPACE_USED_FOR_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FEATURE_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, FLOOR_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_SAVE_FAILURE } from "./listspaceTypes"
+import { GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_ONE_SAVE, STEP_TWO_SAVE, SPACE_USED_FOR_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FEATURE_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, FLOOR_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_SAVE_FAILURE, CLEAR_MESSAGE_FIELDS, STEP_THREE_UPDATE_CLIENT, STEP_FOUR_UPDATE_CLIENT, STEP_FOUR_SAVE_REQUEST, STEP_FOUR_SAVE_SUCCESS, STEP_FOUR_SAVE_FAILURE, GET_PRICE_PERCENTAGE_REQUEST, GET_PRICE_PERCENTAGE_SUCCESS, GET_PRICE_PERCENTAGE_FAILURE } from "./listspaceTypes"
 import axios from 'axios'
 import { config } from '../../config/config';
 
@@ -6,7 +6,7 @@ import { config } from '../../config/config';
 
 export const stepOneSave = (response) => {
 
-    localStorage.setItem("listStepOne", JSON.stringify(response));
+    sessionStorage.setItem("listStepOne", JSON.stringify(response));
 
     return {
         type: STEP_ONE_SAVE,
@@ -17,7 +17,7 @@ export const stepOneSave = (response) => {
 
 export const stepTwoSave = (response) => {
 
-    localStorage.setItem("listStepTwo", JSON.stringify(response));
+    sessionStorage.setItem("listStepTwo", JSON.stringify(response));
 
     return {
         type: STEP_TWO_SAVE,
@@ -307,6 +307,14 @@ const stepThreeSaveFailure = (response) => {
 }
 
 
+const updateStepThreeClient = (response) => {
+    return {
+        type: STEP_THREE_UPDATE_CLIENT,
+        payload: response
+    }
+}
+
+
 export const stepThreeSave = (saveData) => {
 
     const requestConfig = {
@@ -319,6 +327,16 @@ export const stepThreeSave = (saveData) => {
             .then(response => {
                 const serverResponse = response.data;
                 if (+serverResponse.status) {
+
+                    let stepThreeId = serverResponse.insertId;
+
+                    saveData.id = stepThreeId;
+
+                    let stepThreeData = saveData;
+
+                    sessionStorage.setItem("listStepThree", JSON.stringify(stepThreeData));
+
+                    dispatch(updateStepThreeClient(stepThreeData));
 
                     dispatch(stepThreeSaveSuccess(serverResponse.message));
 
@@ -336,6 +354,47 @@ export const stepThreeSave = (saveData) => {
 
 }
 
+
+
+
+export const stepThreeUpdate = (saveData) => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(stepThreeSaveRequest())
+        await axios.post(`${config.apiUrl}/front/list_your_space/update`, saveData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    let stepThreeId = serverResponse.storeid;
+
+                    saveData.id = stepThreeId;
+
+                    let stepThreeData = saveData;
+
+                    sessionStorage.setItem("listStepThree", JSON.stringify(stepThreeData));
+
+                    dispatch(updateStepThreeClient(stepThreeData));
+
+                    dispatch(stepThreeSaveSuccess(serverResponse.message));
+
+                }
+                else {
+                    dispatch(stepThreeSaveFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(stepThreeSaveFailure(errorMsg));
+
+            });
+    }
+
+}
 
 
 
@@ -399,4 +458,153 @@ export const getCoordinates = (address, manual = false) => {
 
 }
 
+export const clearlistSpaceMessageFields = () => {
 
+    return {
+        type: CLEAR_MESSAGE_FIELDS
+    }
+
+}
+
+
+
+
+
+
+
+
+const stepFourSaveRequest = () => {
+    return {
+        type: STEP_FOUR_SAVE_REQUEST
+    }
+}
+
+const stepFourSaveSuccess = (response) => {
+
+    return {
+        type: STEP_FOUR_SAVE_SUCCESS,
+        payload: response
+    }
+
+}
+
+
+const stepFourSaveFailure = (response) => {
+
+    return {
+        type: STEP_FOUR_SAVE_FAILURE,
+        payload: response
+    }
+
+}
+
+
+const updateStepFourClient = (response) => {
+
+    return {
+        type: STEP_FOUR_UPDATE_CLIENT,
+        payload: response
+    }
+}
+
+
+export const stepFourSave = (saveData) => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(stepFourSaveRequest())
+        await axios.post(`${config.apiUrl}/front/list_your_space/description`, saveData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    let stepThreeId = serverResponse.insertId;
+
+                    saveData.id = stepThreeId;
+
+                    let stepFourData = saveData;
+
+                    sessionStorage.setItem("listStepFour", JSON.stringify(stepFourData));
+
+                    dispatch(updateStepFourClient(stepFourData));
+
+                    dispatch(stepFourSaveSuccess(serverResponse.message));
+
+                }
+                else {
+                    dispatch(stepFourSaveFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(stepFourSaveFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+
+
+
+
+
+const getPricePercentageRequest = () => {
+    return {
+        type: GET_PRICE_PERCENTAGE_REQUEST
+    }
+}
+
+const getPricePercentageSuccess = (response) => {
+
+    return {
+        type: GET_PRICE_PERCENTAGE_SUCCESS,
+        payload: response
+    }
+
+}
+
+
+const getPricePercentageFailure = (response) => {
+
+    return {
+        type: GET_PRICE_PERCENTAGE_FAILURE,
+        payload: response
+    }
+
+}
+
+
+export const getPricePercentage = () => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(getPricePercentageRequest())
+        await axios.post(`${config.apiUrl}/front/settings/price_percentage`, {}, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    dispatch(getPricePercentageSuccess(serverResponse.percentage));
+
+                }
+                else {
+                    dispatch(getPricePercentageFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(getPricePercentageFailure(errorMsg));
+
+            });
+    }
+
+}
