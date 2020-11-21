@@ -1,4 +1,4 @@
-import { CAPTION_UPDATE_FAILURE, CAPTION_UPDATE_REQUEST, CAPTION_UPDATE_SUCCESS, CLEAR_LIST_SPACE_STEPS, CLEAR_MESSAGE_FIELDS, DRAFT_STATUS_FAILURE, DRAFT_STATUS_REQUEST, DRAFT_STATUS_SUCCESS, FEATURE_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FLOOR_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, GET_PRICE_PERCENTAGE_FAILURE, GET_PRICE_PERCENTAGE_REQUEST, GET_PRICE_PERCENTAGE_SUCCESS, LIST_ALL_SPACE_FAILURE, LIST_ALL_SPACE_REQUEST, LIST_ALL_SPACE_SUCCESS, LIST_DETAIL_FAILURE, LIST_DETAIL_REQUEST, LIST_DETAIL_SUCCESS, PUBLISH_FAILURE, PUBLISH_REQUEST, PUBLISH_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_FAILURE, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_FIVE_SAVE_FAILURE, STEP_FIVE_SAVE_REQUEST, STEP_FIVE_SAVE_SUCCESS, STEP_FIVE_UPDATE_CLIENT, STEP_FOUR_SAVE_FAILURE, STEP_FOUR_SAVE_REQUEST, STEP_FOUR_SAVE_SUCCESS, STEP_FOUR_UPDATE_CLIENT, STEP_ONE_SAVE, STEP_SIX_UPDATE_CLIENT, STEP_THREE_SAVE_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_UPDATE_CLIENT, STEP_TWO_SAVE, UNIT_FAILURE, UNIT_REQUEST, UNIT_SUCCESS, UPLOAD_FAILURE, UPLOAD_REQUEST, UPLOAD_SUCCESS } from "./listspaceTypes";
+import { CAPTION_UPDATE_FAILURE, CAPTION_UPDATE_REQUEST, CAPTION_UPDATE_SUCCESS, CLEAR_LIST_SPACE_STEPS, CLEAR_MESSAGE_FIELDS, DRAFT_STATUS_FAILURE, DRAFT_STATUS_REQUEST, DRAFT_STATUS_SUCCESS, FEATURE_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FLOOR_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, GET_PRICE_PERCENTAGE_FAILURE, GET_PRICE_PERCENTAGE_REQUEST, GET_PRICE_PERCENTAGE_SUCCESS, GUEST_ACCESS_FAILURE, GUEST_ACCESS_REQUEST, GUEST_ACCESS_SUCCESS, GUEST_FAILURE, GUEST_REQUEST, GUEST_SUCCESS, LIST_ALL_SPACE_FAILURE, LIST_ALL_SPACE_REQUEST, LIST_ALL_SPACE_SUCCESS, LIST_DETAIL_FAILURE, LIST_DETAIL_REQUEST, LIST_DETAIL_SUCCESS, PUBLISH_FAILURE, PUBLISH_REQUEST, PUBLISH_SUCCESS, SET_MANUAL_COORDINATES, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_FAILURE, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_FIVE_SAVE_FAILURE, STEP_FIVE_SAVE_REQUEST, STEP_FIVE_SAVE_SUCCESS, STEP_FIVE_UPDATE_CLIENT, STEP_FOUR_SAVE_FAILURE, STEP_FOUR_SAVE_REQUEST, STEP_FOUR_SAVE_SUCCESS, STEP_FOUR_UPDATE_CLIENT, STEP_ONE_SAVE, STEP_SIX_UPDATE_CLIENT, STEP_THREE_SAVE_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_UPDATE_CLIENT, STEP_TWO_SAVE, UNIT_FAILURE, UNIT_REQUEST, UNIT_SUCCESS, UPDATE_COORDINATES_CLIENT, UPLOAD_FAILURE, UPLOAD_REQUEST, UPLOAD_SUCCESS } from "./listspaceTypes";
 
 const initialState = {
 
@@ -36,6 +36,7 @@ const initialState = {
 
     coordinatesLoading: false,
     coordinates: "",
+    manualCoordinates: "",
     coordinatesError: "",
 
 
@@ -85,7 +86,15 @@ const initialState = {
 
     draftStatusLoading: false,
     draftStatus: "",
-    draftStatusError: ""
+    draftStatusError: "",
+
+    guestLoading: false,
+    guestList: "",
+    guestError: "",
+
+    guestAccessLoading: false,
+    guestAccessList: "",
+    guestAccessError: ""
 
 
 }
@@ -485,6 +494,58 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 draftStatusLoading: false,
                 draftStatusError: action.payload
+            }
+
+        case GUEST_REQUEST:
+            return {
+                ...state,
+                guestLoading: true
+            }
+
+        case GUEST_SUCCESS:
+            return {
+                ...state,
+                guestLoading: false,
+                guestList: action.payload
+            }
+
+        case GUEST_FAILURE:
+            return {
+                ...state,
+                guestLoading: false,
+                guestError: action.payload
+            }
+
+        case GUEST_ACCESS_REQUEST:
+            return {
+                ...state,
+                guestAccessLoading: true
+            }
+
+        case GUEST_ACCESS_SUCCESS:
+            return {
+                ...state,
+                guestAccessLoading: false,
+                guestAccessList: action.payload
+            }
+
+        case GUEST_ACCESS_FAILURE:
+            return {
+                ...state,
+                guestAccessLoading: false,
+                guestAccessError: action.payload
+            }
+
+        case UPDATE_COORDINATES_CLIENT:
+            return {
+                ...state,
+                coordinates: { ...state.coordinates, latitude: action.payload.latitude, longitude: action.payload.longitude }
+            }
+
+        case SET_MANUAL_COORDINATES:
+            return {
+                ...state,
+                manualCoordinates: action.payload
             }
 
         default:

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Button, Alert, Form, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { clearlistSpaceMessageFields, getFeatures, getFloors, getSpaceType, getSpaceUsedFor, stepThreeSave, stepThreeUpdate } from '../../../redux/listspace/listspaceActions';
+import { clearlistSpaceMessageFields, getFeatures, getFloors, getGuestAccess, getGuests, getSpaceType, getSpaceUsedFor, stepThreeSave, stepThreeUpdate } from '../../../redux/listspace/listspaceActions';
 
 import StepsNavListCtrl from './steps_nav_list';
 
 function CreateYourListStepThitdCtrl() {
 
     const dispatch = useDispatch();
-    const { spaceTypeList, spaceUsedForList, featuresList, floorsList, stepOne, stepTwo, stepThree, stepThreeLoading, stepThreeSuccess, stepThreeError } = useSelector(state => state.listspace);
+    const { spaceTypeList, spaceUsedForList, featuresList, floorsList, stepOne, stepTwo, stepThree, stepThreeLoading, stepThreeSuccess, stepThreeError, guestList, guestAccessList } = useSelector(state => state.listspace);
     const history = useHistory();
 
 
@@ -32,7 +32,15 @@ function CreateYourListStepThitdCtrl() {
     const [feature_id_error, set_feature_id_error] = useState("");
 
 
+    const [features, set_features] = useState([]);
+
+
     const [key, set_key] = useState("Yes");
+
+
+    const [guest, set_guest] = useState("");
+    const [guest_access, set_guest_access] = useState("");
+
 
 
     useEffect(() => {
@@ -72,6 +80,8 @@ function CreateYourListStepThitdCtrl() {
             set_floor_id(stepThree.floor);
             set_sut_id(stepThree.used_type);
             set_st_id(stepThree.type);
+            set_guest(stepThree.guest);
+            set_guest_access(stepThree.guest_access);
         }
 
     }, [stepThree]);
@@ -93,6 +103,8 @@ function CreateYourListStepThitdCtrl() {
         dispatch(getSpaceUsedFor());
         dispatch(getFeatures());
         dispatch(getFloors());
+        dispatch(getGuests());
+        dispatch(getGuestAccess());
 
     }, [dispatch]);
 
@@ -101,6 +113,38 @@ function CreateYourListStepThitdCtrl() {
         window.scrollTo(0, 0);
 
     }, [window]);
+
+
+    const is_feature_exists = (featureid) => {
+        const featureExist = features.find(i => +i === +featureid);
+        if (featureExist) {
+            return true;
+        }
+        return false;
+    }
+
+
+    const onChangeFeature = (featureid) => {
+
+        const featureExist = features.find(i => +i === +featureid);
+
+        if (featureExist) {
+            let newFeatures = features.filter((fr) => {
+                if (+fr !== +featureExist) {
+                    return fr;
+                }
+            });
+
+            set_features(newFeatures);
+        }
+        else {
+
+            set_features([...features, featureid]);
+
+        }
+
+
+    }
 
 
     const submitForm = (e) => {
@@ -130,7 +174,7 @@ function CreateYourListStepThitdCtrl() {
             set_sut_id_error("Space used for is required!");
         }
 
-        if (!feature_id) {
+        if (features.length === 0) {
             error = true;
             set_feature_id_error("Feature is required!");
         }
@@ -151,7 +195,7 @@ function CreateYourListStepThitdCtrl() {
                 title: title,
                 type: st_id,
                 used_type: sut_id,
-                features: feature_id,
+                features: features.join(","),
                 floor: floor_id,
                 keyStatus: key,
                 street: stepTwo.house_no,
@@ -160,7 +204,9 @@ function CreateYourListStepThitdCtrl() {
                 city: stepTwo.city,
                 postcode: stepTwo.postal_code,
                 lat: stepTwo.lat,
-                long: stepTwo.lng
+                long: stepTwo.lng,
+                guest: guest,
+                guest_access: guest_access
 
             };
 
@@ -243,7 +289,7 @@ function CreateYourListStepThitdCtrl() {
 
                                 {
                                     featuresList && Array.isArray(featuresList) && featuresList.map((feature, index) => (
-                                        <Button className={+feature.fs_id === +feature_id ? "btn_outline_success mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => set_feature_id(feature.fs_id)}>{feature.fs_name}</Button>
+                                        <Button className={is_feature_exists(feature.fs_id) ? "btn_outline_success mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => onChangeFeature(feature.fs_id)}>{feature.fs_name}</Button>
                                     ))
                                 }
 
@@ -295,6 +341,83 @@ function CreateYourListStepThitdCtrl() {
                     </Row>
                 </Container>
             </section>
+
+
+
+            <section className="my-5">
+                <Container>
+
+                    <Row className="justify-content-between">
+                        <Col lg="6" md="7">
+                            <h3 className="md_bld_txt mb-3">When will Guests be able to access the space?</h3>
+                        </Col>
+
+                        <Col lg="4" md="5" className="offset-lg-1">
+                        </Col>
+
+
+                        <Col lg="6" md="7">
+
+                            {
+                                guestList && guestList.map((gst) => (
+
+                                    <div className={+gst.gt_id === guest ? "guest-list-item-selected" : "guest-list-item"} onClick={() => set_guest(gst.gt_id)}>
+                                        {gst.gt_name}
+                                    </div>
+
+                                ))
+                            }
+
+
+                        </Col>
+
+
+                        <Col lg="4" md="5" className="offset-lg-1">
+                            <h5 className=""><b>Lorem ipsum dolor sit</b></h5>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
+                        </Col>
+
+
+                    </Row>
+                </Container>
+            </section>
+
+
+
+
+
+            <section className="my-5">
+                <Container>
+
+                    <Row className="justify-content-between">
+                        <Col lg="12" md="12">
+                            <h3 className="md_bld_txt mb-3">How will Guests access the space?</h3>
+                        </Col>
+                        <Col lg="12">
+
+                            {
+                                guestAccessList && guestAccessList.map((gst) => (
+                                    <div className={+gst.gta_id === +guest_access ? "guest-list-item-selected" : "guest-list-item"} onClick={() => set_guest_access(gst.gta_id)}>
+                                        {gst.gta_name}
+                                    </div>
+                                ))
+                            }
+
+
+                        </Col>
+
+                        {/* <Col lg="4" md="5" className="offset-lg-1">
+                            <h5 className=""><b>Lorem ipsum dolor sit</b></h5>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
+                        </Col> */}
+
+
+                    </Row>
+                </Container>
+            </section>
+
+
+
 
             <section className="my-5">
                 <Container>

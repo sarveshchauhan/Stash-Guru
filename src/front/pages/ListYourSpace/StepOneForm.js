@@ -18,14 +18,14 @@ function StepOneForm() {
     const [spaceType, setSpaceType] = useState("");
     const [spaceTypeError, setSpaceTypeError] = useState("");
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (stepOne) {
-            setLocation(stepOne.location);
-            setSpaceType(stepOne.spaceType);
-        }
+    //     if (stepOne) {
+    //         setLocation(stepOne.location);
+    //         setSpaceType(stepOne.spaceType);
+    //     }
 
-    }, [stepOne]);
+    // }, [stepOne]);
 
 
     useEffect(() => {

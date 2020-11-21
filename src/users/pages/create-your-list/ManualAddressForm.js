@@ -5,10 +5,12 @@ import { useHistory } from 'react-router-dom';
 import { getCoordinates, stepTwoSave } from '../../../redux';
 
 
+
+
 function ManualAddressForm() {
 
     const dispatch = useDispatch();
-    const { coordinates, coordinatesError, coordinatesLoading, stepTwo } = useSelector(state => state.listspace);
+    const { coordinates, manualCoordinates, coordinatesError, coordinatesLoading, stepTwo } = useSelector(state => state.listspace);
     const history = useHistory();
 
 
@@ -44,30 +46,6 @@ function ManualAddressForm() {
     }, [stepTwo]);
 
 
-    useEffect(() => {
-
-        if (coordinates && coordinates.manual && coordinates.manual === true) {
-            //push
-
-            let saveArg = {
-                house_no: house_no,
-                address1: address1,
-                address2: address2,
-                city: city,
-                postal_code: postal_code,
-                lat: coordinates.latitude,
-                lng: coordinates.longitude
-
-            };
-
-            dispatch(stepTwoSave(saveArg));
-
-            history.push("/create-your-list-step3");
-
-
-        }
-
-    }, [coordinates]);
 
     const validateField = (field) => {
 
@@ -135,9 +113,22 @@ function ManualAddressForm() {
 
             full_address += `${city}, ${postal_code}`;
 
+
+
+            let saveArg = {
+                house_no: house_no,
+                address1: address1,
+                address2: address2,
+                city: city,
+                postal_code: postal_code,
+                lat: coordinates.latitude,
+                lng: coordinates.longitude
+
+            };
+
             dispatch(getCoordinates({
                 address: full_address
-            }, true));
+            }, true, saveArg));
 
             return true;
         }

@@ -69,6 +69,12 @@ function UserCreateYourListCtrl() {
     }, [coordinatesError]);
 
 
+
+    const onPositionChange = (lt, lg) => {
+        setLat(lt);
+        setLng(lg);
+    }
+
     // useEffect(() => {
 
     //     document.getElementById("manualBtn").click();
@@ -138,7 +144,7 @@ function UserCreateYourListCtrl() {
 
                         <Col sm={7} style={{ maxHeight: "450px" }}>
 
-                            <GoogleMap lat={lat} lng={lng} addressName={addressName} />
+                            <GoogleMap lat={lat} lng={lng} addressName={addressName} onPositionChange={onPositionChange} />
 
                         </Col>
 

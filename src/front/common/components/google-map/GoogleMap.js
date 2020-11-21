@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCoordinatesClient } from '../../../../redux';
 // import logo from '../../../../assets/front/images/colored_logo.svg';
 
 const mapStyles = {
@@ -10,83 +12,83 @@ const mapStyles = {
     }
 };
 
-export class GoogleMap extends Component {
+export function GoogleMap(props) {
 
-    constructor(props) {
-        super(props);
+    const dispatch = useDispatch();
 
-        this.state = {
-            isOpen: false
-        }
+    const [isOpen, setIsOpen] = useState(false);
 
-    }
 
-    handleToggleOpen = (arg) => {
+    const { coordinates } = useSelector(state => state.listspace);
+
+
+    const handleToggleOpen = (arg) => {
 
         console.log(arg);
 
-        this.setState({
-            isOpen: true
-        });
-        console.log('hello');
+        setIsOpen(true);
     }
 
-    handleToggleClose = () => {
-        this.setState({
-            isOpen: false
-        });
+    const handleToggleClose = () => {
+        setIsOpen(false);
     }
 
-    render() {
+    const onMarkerDragEnd = (coord) => {
 
-        return (
-            <>
-                <Map
-                    google={this.props.google}
-                    style={mapStyles}
-                    zoom={14}
-                    center={{
-                        lat: this.props.lat ? this.props.lat : 28.535601,
-                        lng: this.props.lng ? this.props.lng : 77.209084
-                    }}
-                >
+        // alert('executed');
 
-                    {
-                        this.props.lat && this.props.lng && <Marker key="marker_1"
-                            onClick={this.handleToggleOpen}
-                            name={'malviya nagar'}
-                            position={{
-                                lat: this.props.lat,
-                                lng: this.props.lng
-                            }}
+        const { latLng } = coord;
+        const lat = latLng.lat();
+        const lng = latLng.lng();
 
-                        />
-                    }
+        dispatch(updateCoordinatesClient({
+            latitude: lat,
+            longitude: lng
+        }));
+
+    }
 
 
+    return (
+        <>
+            <Map
+                google={props.google}
+                style={mapStyles}
+                zoom={14}
+                center={{
+                    lat: coordinates && coordinates.latitude ? coordinates.latitude : 28.535601,
+                    lng: coordinates && coordinates.longitude ? coordinates.longitude : 77.209084
+                }}
+            >
 
-
-
-                    {/* <Marker key="marker_2"
-                        onClick={() => this.handleToggleOpen()}
-                        name={'lado sarai'}
+                {
+                    coordinates && coordinates.latitude && coordinates.longitude && <Marker key="marker_1"
+                        onClick={handleToggleOpen}
+                        name={'malviya nagar'}
                         position={{
-                            lat: 28.530090,
-                            lng: 77.193481
+                            lat: coordinates.latitude,
+                            lng: coordinates.longitude
                         }}
-                    /> */}
+                        draggable={true}
+                        onDragend={(t, map, coord) => onMarkerDragEnd(coord)}
 
 
 
-                    <InfoWindow
-                        position={{ lat: this.props.lat, lng: this.props.lng }}
-                        visible={this.state.isOpen}>
-                        <small>{this.props.addressName}</small>
-                    </InfoWindow>
-                </Map>
-            </>
-        );
-    }
+                    />
+                }
+
+
+                <InfoWindow
+                    position={{ lat: coordinates.latitude, lng: coordinates.longitude }}
+                    visible={isOpen}>
+                    <small>{props.addressName}</small>
+                </InfoWindow>
+
+
+            </Map>
+        </>
+    );
+
 }
 
 export default GoogleApiWrapper({

@@ -25,6 +25,13 @@ function CreateYourListStepForthCtrl() {
     const [description, setDescription] = useState();
     const [descriptionError, setDescriptionError] = useState("");
 
+    const [extra, setExtra] = useState("No");
+    const [security, setSecurity] = useState("");
+    const [location, setLocation] = useState("");
+    const [access, setAccess] = useState("");
+    const [hosting, setHosting] = useState("");
+
+
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
     useEffect(() => {
@@ -87,9 +94,15 @@ function CreateYourListStepForthCtrl() {
         }
 
         let saveData = {
+
             description: description,
             id: stepThree.id,
-            token: JSON.parse(localStorage.getItem("stashGuruToken"))
+            token: JSON.parse(localStorage.getItem("stashGuruToken")),
+            extra_data: extra,
+            security: security,
+            location: location,
+            access: access,
+            hosting: hosting
 
         };
 
@@ -113,6 +126,69 @@ function CreateYourListStepForthCtrl() {
                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
                         </Col>
                     </Row>
+
+
+                    <Row>
+                        <Col className="mt-4">
+                            <button className="btn btn-success" onClick={() => setExtra(extra === "No" ? "Yes" : "No")}>Add extra details</button>
+                        </Col>
+                    </Row>
+
+                    <div hidden={extra === "No"}>
+
+                        <Row className="justify-content-between">
+                            <Col lg="5" md="6">
+                                <h5 className="mt-3">Security</h5>
+                                <p>Highlight the security features of the space and point out anything that makes it more secure.</p>
+                                <textarea className="form-control" value={security} onChange={(e) => setSecurity(e.target.value)}></textarea>
+                            </Col>
+                            <Col lg="4" md="5" className="offset-lg-1">
+                            </Col>
+                        </Row>
+
+
+
+                        <Row className="justify-content-between">
+                            <Col lg="5" md="6">
+                                <h5 className="mt-3">Location</h5>
+                                <p>
+                                    Give some information about where the space is located. Include details about safety and transport links.
+                            </p>
+                                <textarea className="form-control" value={location} onChange={(e) => setLocation(e.target.value)}></textarea>
+                            </Col>
+                            <Col lg="4" md="5" className="offset-lg-1">
+                            </Col>
+                        </Row>
+
+
+                        <Row className="justify-content-between">
+                            <Col lg="5" md="6">
+                                <h5 className="mt-3">Access</h5>
+                                <p>
+                                    Describe how Guest will access the space if they decide to book it. Include details about keys, fobs or arranging appointments.
+                            </p>
+                                <textarea className="form-control" value={access} onChange={(e) => setAccess(e.target.value)}></textarea>
+                            </Col>
+                            <Col lg="4" md="5" className="offset-lg-1">
+                            </Col>
+                        </Row>
+
+
+                        <Row className="justify-content-between">
+                            <Col lg="5" md="6">
+                                <h5 className="mt-3">Hosting</h5>
+                                <p>
+                                    Explain how you'll be willing to help as a Host. This could include help with the move-in or how often you'll be at the space.
+                            </p>
+                                <textarea className="form-control" value={hosting} onChange={(e) => setHosting(e.target.value)}></textarea>
+                            </Col>
+                            <Col lg="4" md="5" className="offset-lg-1">
+                            </Col>
+                        </Row>
+
+
+                    </div>
+
                 </Container>
             </section>
 

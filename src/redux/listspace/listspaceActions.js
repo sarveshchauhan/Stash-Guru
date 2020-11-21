@@ -1,8 +1,7 @@
-import { GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_ONE_SAVE, STEP_TWO_SAVE, SPACE_USED_FOR_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FEATURE_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, FLOOR_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_SAVE_FAILURE, CLEAR_MESSAGE_FIELDS, STEP_THREE_UPDATE_CLIENT, STEP_FOUR_UPDATE_CLIENT, STEP_FOUR_SAVE_REQUEST, STEP_FOUR_SAVE_SUCCESS, STEP_FOUR_SAVE_FAILURE, GET_PRICE_PERCENTAGE_REQUEST, GET_PRICE_PERCENTAGE_SUCCESS, GET_PRICE_PERCENTAGE_FAILURE, UNIT_REQUEST, UNIT_SUCCESS, UNIT_FAILURE, STEP_FIVE_SAVE_REQUEST, STEP_FIVE_SAVE_SUCCESS, STEP_FIVE_SAVE_FAILURE, STEP_FIVE_UPDATE_CLIENT, UPLOAD_REQUEST, UPLOAD_SUCCESS, UPLOAD_FAILURE, LIST_DETAIL_REQUEST, LIST_DETAIL_SUCCESS, LIST_DETAIL_FAILURE, CAPTION_UPDATE_REQUEST, CAPTION_UPDATE_SUCCESS, CAPTION_UPDATE_FAILURE, STEP_SIX_UPDATE_CLIENT, PUBLISH_REQUEST, PUBLISH_SUCCESS, PUBLISH_FAILURE, CLEAR_LIST_SPACE_STEPS, LIST_ALL_SPACE_REQUEST, LIST_ALL_SPACE_SUCCESS, LIST_ALL_SPACE_FAILURE, DRAFT_STATUS_REQUEST, DRAFT_STATUS_SUCCESS, DRAFT_STATUS_FAILURE } from "./listspaceTypes"
+import { GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_ONE_SAVE, STEP_TWO_SAVE, SPACE_USED_FOR_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FEATURE_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, FLOOR_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_SAVE_FAILURE, CLEAR_MESSAGE_FIELDS, STEP_THREE_UPDATE_CLIENT, STEP_FOUR_UPDATE_CLIENT, STEP_FOUR_SAVE_REQUEST, STEP_FOUR_SAVE_SUCCESS, STEP_FOUR_SAVE_FAILURE, GET_PRICE_PERCENTAGE_REQUEST, GET_PRICE_PERCENTAGE_SUCCESS, GET_PRICE_PERCENTAGE_FAILURE, UNIT_REQUEST, UNIT_SUCCESS, UNIT_FAILURE, STEP_FIVE_SAVE_REQUEST, STEP_FIVE_SAVE_SUCCESS, STEP_FIVE_SAVE_FAILURE, STEP_FIVE_UPDATE_CLIENT, UPLOAD_REQUEST, UPLOAD_SUCCESS, UPLOAD_FAILURE, LIST_DETAIL_REQUEST, LIST_DETAIL_SUCCESS, LIST_DETAIL_FAILURE, CAPTION_UPDATE_REQUEST, CAPTION_UPDATE_SUCCESS, CAPTION_UPDATE_FAILURE, STEP_SIX_UPDATE_CLIENT, PUBLISH_REQUEST, PUBLISH_SUCCESS, PUBLISH_FAILURE, CLEAR_LIST_SPACE_STEPS, LIST_ALL_SPACE_REQUEST, LIST_ALL_SPACE_SUCCESS, LIST_ALL_SPACE_FAILURE, DRAFT_STATUS_REQUEST, DRAFT_STATUS_SUCCESS, DRAFT_STATUS_FAILURE, GUEST_REQUEST, GUEST_SUCCESS, GUEST_FAILURE, GUEST_ACCESS_REQUEST, GUEST_ACCESS_SUCCESS, GUEST_ACCESS_FAILURE, UPDATE_COORDINATES_CLIENT, SET_MANUAL_COORDINATES } from "./listspaceTypes"
 import axios from 'axios'
 import { config } from '../../config/config';
 import store from '../store';
-
 
 export const stepOneSave = (response) => {
 
@@ -448,10 +447,15 @@ const getCoordinateFailure = (response) => {
 }
 
 
+const setManualCoordinates = (response) => {
+    return {
+        type: SET_MANUAL_COORDINATES,
+        payload: response
+    }
+}
 
 
-
-export const getCoordinates = (address, manual = false) => {
+export const getCoordinates = (address, manual = false, manualData = null) => {
 
     const requestConfig = {
         'Content-Type': 'application/json'
@@ -465,10 +469,14 @@ export const getCoordinates = (address, manual = false) => {
                 if (+serverResponse.status) {
 
                     if (manual) {
-                        serverResponse.list.manual = true;
+                        dispatch(stepTwoSave(manualData));
+                        window.location.href = "/create-your-list-step3";
+                    }
+                    else {
+                        dispatch(getCoordinateSuccess(serverResponse.list));
                     }
 
-                    dispatch(getCoordinateSuccess(serverResponse.list));
+
 
                 }
                 else {
@@ -1305,4 +1313,142 @@ export const setListDetailClient = (id, redirect_url = "") => {
     }
 
 }
+
+
+
+const guestRequest = () => {
+    return {
+        type: GUEST_REQUEST
+    }
+}
+
+const guestSuccess = (response) => {
+
+    return {
+        type: GUEST_SUCCESS,
+        payload: response
+    }
+
+}
+
+
+const guestFailure = (response) => {
+
+    return {
+        type: GUEST_FAILURE,
+        payload: response
+    }
+
+}
+
+
+export const getGuests = () => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(guestRequest())
+        await axios.post(`${config.apiUrl}/front/list/guest`, {}, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    // let responseData = {
+                    //     data: serverResponse.data,
+                    //     message: serverResponse.message
+                    // };
+
+                    dispatch(guestSuccess(serverResponse.list));
+
+                }
+                else {
+                    dispatch(guestFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(guestFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+
+
+
+const guestAccessRequest = () => {
+    return {
+        type: GUEST_ACCESS_REQUEST
+    }
+}
+
+const guestAccessSuccess = (response) => {
+
+    return {
+        type: GUEST_ACCESS_SUCCESS,
+        payload: response
+    }
+
+}
+
+
+const guestAccessFailure = (response) => {
+
+    return {
+        type: GUEST_ACCESS_FAILURE,
+        payload: response
+    }
+
+}
+
+
+export const getGuestAccess = () => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(guestAccessRequest())
+        await axios.post(`${config.apiUrl}/front/list/guest_access`, {}, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    // let responseData = {
+                    //     data: serverResponse.data,
+                    //     message: serverResponse.message
+                    // };
+
+                    dispatch(guestAccessSuccess(serverResponse.list));
+
+                }
+                else {
+                    dispatch(guestAccessFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(guestAccessFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+export const updateCoordinatesClient = (coordinates) => {
+
+    return {
+        type: UPDATE_COORDINATES_CLIENT,
+        payload: coordinates
+    }
+
+}
+
 

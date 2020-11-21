@@ -206,4 +206,41 @@ input.form-control{
 }
 
 
+.guest-list-item{
+
+    border: 1px solid;
+    padding: 20px;
+    border-color: #4fd78a;
+    font-size: 20px;
+    cursor: pointer;
+ 
+}
+
+
+.guest-list-item:hover{
+
+    border: 1px solid;
+    padding: 20px;
+    color: #ffffff;
+    border-color: #4fd78a;
+    background-color: #4fd78a;
+    font-size: 20px;
+    cursor: pointer;
+ 
+}
+
+
+.guest-list-item-selected{
+
+    border: 1px solid;
+    padding: 20px;
+    color: #ffffff;
+    border-color: #4fd78a;
+    background-color: #4fd78a;
+    font-size: 20px;
+    cursor: pointer;
+ 
+}
+
+
 // sass color code End
