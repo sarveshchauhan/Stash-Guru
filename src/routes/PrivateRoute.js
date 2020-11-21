@@ -15,7 +15,7 @@ export const PrivateRoute = ({ parentComponent: ParentComponent, childComponent:
         get_login_token() ?
             <ParentComponent children={ChildComponent} {...props} />
             :
-            <Redirect to={`/login?redirect_url=${encodeURIComponent(window.location.href)}`} />
+            <Redirect to={`/signup?redirect_url=${encodeURIComponent(window.location.href)}`} />
 
     )} />
 

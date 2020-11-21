@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Form, Button, Carousel } from 'react-bootstrap';
 import to_do_list from '../../../assets/front/images/icons/to_do_list.png';
 import renters from '../../../assets/front/images/icons/renters.png';
@@ -25,16 +25,26 @@ import Support from '../../../assets/front/images/icons/support.png';
 import boy from '../../../assets/front/images/img/boy.svg';
 import girl from '../../../assets/front/images/img/girl.svg';
 import StepOneForm from './StepOneForm';
+import { useDispatch } from 'react-redux';
+import { clearListSpaceSteps } from '../../../redux';
 
 function ListYourSpaceComponentCtrl() {
-    
 
 
+    const dispatch = useDispatch();
     const [index, setIndex] = useState(0);
 
     const connectingPeople = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
+
+
+    useEffect(() => {
+
+        dispatch(clearListSpaceSteps());
+
+    }, [dispatch]);
+
 
     return (
         <>

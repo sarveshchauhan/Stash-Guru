@@ -31,6 +31,7 @@ function CreateYourListStepForthCtrl() {
 
         if (stepFour) {
 
+            setDescription(stepFour.description);
             const contentBlock = htmlToDraft(stepFour.description);
             const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
             const newEditorState = EditorState.createWithContent(contentState);
@@ -142,7 +143,7 @@ function CreateYourListStepForthCtrl() {
                         </Col>
                         <Col lg="6" md="6" className="text-right">
                             <NavLink to="/create-your-list-step5" onClick={onSubmitForm}>
-                                <Button className="btn_outline_success mr-2 mt-2 px-5">
+                                <Button className="btn_outline_success mr-2 mt-2 px-5" disabled={stepFourLoading}>
                                     Next <i className="fa fa-long-arrow-right ml-2" aria-hidden="true"></i>
                                 </Button>
 

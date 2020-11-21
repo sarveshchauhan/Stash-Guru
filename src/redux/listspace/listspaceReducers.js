@@ -1,15 +1,18 @@
-import { CLEAR_MESSAGE_FIELDS, FEATURE_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FLOOR_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, GET_PRICE_PERCENTAGE_FAILURE, GET_PRICE_PERCENTAGE_REQUEST, GET_PRICE_PERCENTAGE_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_FAILURE, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_FOUR_SAVE_FAILURE, STEP_FOUR_SAVE_REQUEST, STEP_FOUR_SAVE_SUCCESS, STEP_FOUR_UPDATE_CLIENT, STEP_ONE_SAVE, STEP_THREE_SAVE_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_UPDATE_CLIENT, STEP_TWO_SAVE } from "./listspaceTypes";
+import { CAPTION_UPDATE_FAILURE, CAPTION_UPDATE_REQUEST, CAPTION_UPDATE_SUCCESS, CLEAR_LIST_SPACE_STEPS, CLEAR_MESSAGE_FIELDS, DRAFT_STATUS_FAILURE, DRAFT_STATUS_REQUEST, DRAFT_STATUS_SUCCESS, FEATURE_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FLOOR_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, GET_PRICE_PERCENTAGE_FAILURE, GET_PRICE_PERCENTAGE_REQUEST, GET_PRICE_PERCENTAGE_SUCCESS, LIST_ALL_SPACE_FAILURE, LIST_ALL_SPACE_REQUEST, LIST_ALL_SPACE_SUCCESS, LIST_DETAIL_FAILURE, LIST_DETAIL_REQUEST, LIST_DETAIL_SUCCESS, PUBLISH_FAILURE, PUBLISH_REQUEST, PUBLISH_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_FAILURE, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_FIVE_SAVE_FAILURE, STEP_FIVE_SAVE_REQUEST, STEP_FIVE_SAVE_SUCCESS, STEP_FIVE_UPDATE_CLIENT, STEP_FOUR_SAVE_FAILURE, STEP_FOUR_SAVE_REQUEST, STEP_FOUR_SAVE_SUCCESS, STEP_FOUR_UPDATE_CLIENT, STEP_ONE_SAVE, STEP_SIX_UPDATE_CLIENT, STEP_THREE_SAVE_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_UPDATE_CLIENT, STEP_TWO_SAVE, UNIT_FAILURE, UNIT_REQUEST, UNIT_SUCCESS, UPLOAD_FAILURE, UPLOAD_REQUEST, UPLOAD_SUCCESS } from "./listspaceTypes";
 
 const initialState = {
 
-    stepOne: sessionStorage.getItem("listStepOne") ? JSON.parse(sessionStorage.getItem("listStepOne")) : "",
+    stepOne: localStorage.getItem("listStepOne") ? JSON.parse(localStorage.getItem("listStepOne")) : "",
 
-    stepTwo: sessionStorage.getItem("listStepTwo") ? JSON.parse(sessionStorage.getItem("listStepTwo")) : "",
+    stepTwo: localStorage.getItem("listStepTwo") ? JSON.parse(localStorage.getItem("listStepTwo")) : "",
 
-    stepThree: sessionStorage.getItem("listStepThree") ? JSON.parse(sessionStorage.getItem("listStepThree")) : "",
+    stepThree: localStorage.getItem("listStepThree") ? JSON.parse(localStorage.getItem("listStepThree")) : "",
 
-    stepFour: sessionStorage.getItem("listStepFour") ? JSON.parse(sessionStorage.getItem("listStepFour")) : "",
+    stepFour: localStorage.getItem("listStepFour") ? JSON.parse(localStorage.getItem("listStepFour")) : "",
 
+    stepFive: localStorage.getItem("listStepFive") ? JSON.parse(localStorage.getItem("listStepFive")) : "",
+
+    stepSix: localStorage.getItem("listStepSix") ? JSON.parse(localStorage.getItem("listStepSix")) : "",
 
 
     stepThreeLoading: false,
@@ -19,6 +22,10 @@ const initialState = {
     stepFourLoading: false,
     stepFourSuccess: "",
     stepFourError: "",
+
+    stepFiveLoading: false,
+    stepFiveSuccess: "",
+    stepFiveError: "",
 
 
 
@@ -48,7 +55,37 @@ const initialState = {
 
     pricePercentageLoading: false,
     pricePercentage: "",
-    pricePercentageFailure: ""
+    pricePercentageFailure: "",
+
+    unitLoading: false,
+    unitList: "",
+    unitError: "",
+
+    uploadLoading: false,
+    uploadData: "",
+    uploadError: "",
+
+
+    listDetailLoading: false,
+    listDetailData: "",
+    listDetailError: "",
+
+    captionUpdateLoading: false,
+    captionUpdateSuccess: "",
+    captionUpdateError: "",
+
+
+    publishLoading: false,
+    publishSuccess: "",
+    publishError: "",
+
+    listAllSpaceLoading: false,
+    allSpaceList: "",
+    listAllSpaceError: "",
+
+    draftStatusLoading: false,
+    draftStatus: "",
+    draftStatusError: ""
 
 
 }
@@ -228,7 +265,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 stepThreeSuccess: "",
-                stepFourSuccess: ""
+                stepFourSuccess: "",
+                stepFiveSuccess: ""
             }
 
         case STEP_THREE_UPDATE_CLIENT:
@@ -263,8 +301,191 @@ const reducer = (state = initialState, action) => {
                 pricePercentageFailure: action.payload
             }
 
+        case UNIT_REQUEST:
+            return {
+                ...state,
+                unitLoading: true
+            }
+
+        case UNIT_SUCCESS:
+            return {
+                ...state,
+                unitLoading: false,
+                unitList: action.payload
+            }
+
+        case UNIT_FAILURE:
+            return {
+                ...state,
+                unitLoading: false,
+                unitError: action.payload
+            }
+
+        case STEP_FIVE_SAVE_REQUEST:
+            return {
+                ...state,
+                stepFiveLoading: true,
+                stepFiveError: "",
+                stepFiveSuccess: ""
+            }
 
 
+        case STEP_FIVE_SAVE_SUCCESS:
+            return {
+                ...state,
+                stepFiveLoading: false,
+                stepFiveSuccess: action.payload
+            }
+
+        case STEP_FIVE_SAVE_FAILURE:
+            return {
+                ...state,
+                stepFiveLoading: false,
+                stepFiveError: action.payload
+            }
+
+        case STEP_FIVE_UPDATE_CLIENT:
+            return {
+                ...state,
+                stepFive: action.payload
+            }
+
+        case UPLOAD_REQUEST:
+            return {
+                ...state,
+                uploadLoading: true
+            }
+
+        case UPLOAD_SUCCESS:
+            return {
+                ...state,
+                uploadLoading: false,
+                uploadData: action.payload
+            }
+
+        case UPLOAD_FAILURE:
+            return {
+                ...state,
+                uploadLoading: false,
+                uploadError: action.payload
+            }
+
+
+        case LIST_DETAIL_REQUEST:
+            return {
+                ...state,
+                listDetailLoading: true
+            }
+
+        case LIST_DETAIL_SUCCESS:
+            return {
+                ...state,
+                listDetailLoading: false,
+                listDetailData: action.payload
+            }
+
+        case LIST_DETAIL_FAILURE:
+            return {
+                ...state,
+                listDetailLoading: false,
+                listDetailError: action.payload
+            }
+
+        case CAPTION_UPDATE_REQUEST:
+            return {
+                ...state,
+                captionUpdateLoading: true
+            }
+
+        case CAPTION_UPDATE_SUCCESS:
+            return {
+                ...state,
+                captionUpdateLoading: false,
+                captionUpdateSuccess: action.payload
+            }
+
+        case CAPTION_UPDATE_FAILURE:
+            return {
+                ...state,
+                captionUpdateLoading: false,
+                captionUpdateError: action.payload
+            }
+
+        case STEP_SIX_UPDATE_CLIENT:
+            return {
+                ...state,
+                stepSix: action.payload
+            }
+
+        case PUBLISH_REQUEST:
+            return {
+                ...state,
+                publishLoading: true
+            }
+
+        case PUBLISH_SUCCESS:
+            return {
+                ...state,
+                publishLoading: false,
+                publishSuccess: action.payload
+            }
+
+        case PUBLISH_FAILURE:
+            return {
+                ...state,
+                publishLoading: false,
+                publishError: action.payload
+            }
+
+        case CLEAR_LIST_SPACE_STEPS:
+            return {
+                ...state,
+                stepOne: "",
+                stepTwo: "",
+                stepThree: "",
+                stepFour: "",
+                stepFive: "",
+                stepSix: ""
+            }
+
+        case LIST_ALL_SPACE_REQUEST:
+            return {
+                ...state,
+                listAllSpaceLoading: true
+            }
+
+        case LIST_ALL_SPACE_SUCCESS:
+            return {
+                ...state,
+                listAllSpaceLoading: false,
+                allSpaceList: action.payload
+            }
+
+        case LIST_ALL_SPACE_FAILURE:
+            return {
+                listAllSpaceLoading: false,
+                listAllSpaceError: action.payload
+            }
+
+        case DRAFT_STATUS_REQUEST:
+            return {
+                ...state,
+                draftStatusLoading: true
+            }
+
+        case DRAFT_STATUS_SUCCESS:
+            return {
+                ...state,
+                draftStatusLoading: false,
+                draftStatus: action.payload
+            }
+
+        case DRAFT_STATUS_FAILURE:
+            return {
+                ...state,
+                draftStatusLoading: false,
+                draftStatusError: action.payload
+            }
 
         default:
             return state;

@@ -85,6 +85,18 @@ const verifyTokenFailure = error => {
 
 export const registerUser = (user) => {
 
+
+
+    const query = new URLSearchParams(window.location.search);
+
+    if (query.get('redirect_url')) {
+        user.redirect_url = encodeURIComponent(decodeURIComponent(query.get('redirect_url')));
+    }
+    else {
+        user.redirect_url = encodeURIComponent(`${config.appUrl}/dashboard`);
+    }
+
+
     const requestConfig = {
         'Content-Type': 'application/json'
     };

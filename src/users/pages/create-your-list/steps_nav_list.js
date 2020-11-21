@@ -20,7 +20,7 @@ import { useSelector } from 'react-redux';
 
 function StepsNavListCtrl() {
 
-    const { stepOne, stepTwo, stepThree, stepFour } = useSelector(state => state.listspace);
+    const { stepOne, stepTwo, stepThree, stepFour, stepFive, stepSix } = useSelector(state => state.listspace);
 
 
     return (
@@ -54,13 +54,13 @@ function StepsNavListCtrl() {
                                         <img className="incomplete_step_img" src={B_step4} alt="" />
                                     </span>Discription
                                 </Nav.Item>
-                                <Nav.Item as="li" className="">
+                                <Nav.Item as="li" className={stepFive ? "completed" : ""}>
                                     <span>
                                         <img className="complete_step_img" src={G_step5} alt="" />
                                         <img className="incomplete_step_img" src={B_step5} alt="" />
                                     </span>Size & Pricing
                                 </Nav.Item>
-                                <Nav.Item as="li" className="">
+                                <Nav.Item as="li" className={stepSix ? "completed" : ""}>
                                     <span>
                                         <img className="complete_step_img" src={G_step6} alt="" />
                                         <img className="incomplete_step_img" src={B_step6} alt="" />

@@ -1,13 +1,13 @@
-import React, { useState, useEffect }  from 'react';
-import { Col, Container, Row , Alert} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Col, Container, Row, Alert } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
 import './Register.scss';
-import {verifyToken} from '../../../redux';
+import { verifyToken } from '../../../redux';
 import { useDispatch, useSelector } from 'react-redux';
 import LoaderCtrl from '../../common/components/loader';
 
-function SignUpComponentCtrl(){
+function SignUpComponentCtrl() {
 
     const dispatch = useDispatch();
     const { token } = useParams();
@@ -17,40 +17,40 @@ function SignUpComponentCtrl(){
     useEffect(() => {
         setLoader(loading);
     }, [loading]);
-    
+
     useEffect(() => {
         dispatch(verifyToken(token));
     }, [token]);
 
-    return(
+    return (
         <>
-        <LoaderCtrl loaderStatus={loader} />
-        <section className="section_padding">
-            <Container>
-                <Row className="align-items-center">
-                    <Col sm={12} className="my-2">
-                        {
-                            response && (
-                                <Alert variant="success">
-                                    {response}
-                                </Alert>
+            <LoaderCtrl loaderStatus={loader} />
+            <section className="section_padding">
+                <Container>
+                    <Row className="align-items-center">
+                        <Col sm={12} className="my-2">
+                            {
+                                response && (
+                                    <Alert variant="success">
+                                        {response}
+                                    </Alert>
 
-                            )
-                        }
-                    </Col>
-                    <Col sm={12} className="my-2">
-                        {
-                            error && (
-                                <Alert variant="danger">
-                                    {error}
-                                </Alert>
+                                )
+                            }
+                        </Col>
+                        <Col sm={12} className="my-2">
+                            {
+                                error && (
+                                    <Alert variant="danger">
+                                        {error}
+                                    </Alert>
 
-                            )
-                        }
-                    </Col>
-                </Row>
-            </Container>
-        </section>
+                                )
+                            }
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
         </>
     )
 }

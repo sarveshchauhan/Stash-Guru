@@ -37,8 +37,6 @@ function CreateYourListStepThitdCtrl() {
 
     useEffect(() => {
 
-
-
         if (!stepTwo) {
 
             if (!stepTwo) {
@@ -52,8 +50,16 @@ function CreateYourListStepThitdCtrl() {
 
         }
 
-    }, [stepTwo, stepOne])
+    }, [stepTwo])
 
+
+    useEffect(() => {
+
+        if (stepOne) {
+            set_st_id(stepOne.spaceType);
+        }
+
+    }, [stepOne]);
 
 
     useEffect(() => {
@@ -333,7 +339,7 @@ function CreateYourListStepThitdCtrl() {
                         </Col>
                         <Col lg="6" md="6" className="text-right">
                             <NavLink to="/create-your-list-step4" onClick={submitForm}>
-                                <Button className="btn_outline_success mr-2 mt-2 px-5">
+                                <Button className="btn_outline_success mr-2 mt-2 px-5" disabled={stepThreeLoading}>
                                     Next <i className="fa fa-long-arrow-right ml-2" aria-hidden="true"></i>
                                 </Button>
 

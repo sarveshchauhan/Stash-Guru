@@ -1,5 +1,5 @@
-import React, { useState, useEffect }  from 'react';
-import { Button, Col, Container, Row ,Form, Alert} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Button, Col, Container, Row, Form, Alert } from 'react-bootstrap';
 
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
@@ -9,11 +9,13 @@ import family from '../../../assets/front/images/img/family.svg';
 
 import './Register.scss';
 import { NavLink } from 'react-router-dom';
-import {registerUser, googleRegisterUser, facebookRegisterUser} from '../../../redux';
+import { registerUser, googleRegisterUser, facebookRegisterUser } from '../../../redux';
 import { useDispatch, useSelector } from 'react-redux';
 import LoaderCtrl from '../../common/components/loader';
 
-function SignUpComponentCtrl(){
+function SignUpComponentCtrl() {
+
+    const query = new URLSearchParams(window.location.search);
 
     const dispatch = useDispatch();
 
@@ -27,21 +29,34 @@ function SignUpComponentCtrl(){
     const [mobileError, setMobileError] = useState("");
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
+    const [redirect_url, set_redirect_url] = useState("");
 
     const { response, error, loading } = useSelector(state => state.register);
+
+    useEffect(() => {
+
+        if (query.get("redirect_url")) {
+            set_redirect_url(encodeURIComponent(decodeURIComponent(query.get('redirect_url'))));
+        }
+        else {
+            set_redirect_url("");
+        }
+
+    }, [query]);
+
 
     useEffect(() => {
         setFullName("");
         setMobile("");
         setEmail("");
-        setPassword(""); 
+        setPassword("");
     }, [error]);
 
     useEffect(() => {
         setFullName("");
         setMobile("");
         setEmail("");
-        setPassword(""); 
+        setPassword("");
     }, [response]);
 
     useEffect(() => {
@@ -49,7 +64,7 @@ function SignUpComponentCtrl(){
     }, [loading]);
 
     const handleFormField = (e) => {
-        switch (e.target.name){
+        switch (e.target.name) {
             case 'email':
                 setEmail(e.target.value);
                 if (!e.target.value) {
@@ -88,8 +103,7 @@ function SignUpComponentCtrl(){
                 if (!e.target.value) {
                     setPasswordError("Last Name is required!");
                 }
-                else if(e.target.value.length < 6)
-                {
+                else if (e.target.value.length < 6) {
                     setPasswordError("Password must be 6 characters long!");
                 }
                 else {
@@ -148,46 +162,46 @@ function SignUpComponentCtrl(){
         dispatch(facebookRegisterUser(response));
     }
 
-    return(
+    return (
         <>
-        <LoaderCtrl loaderStatus={loader} />
-        <section className="section_padding">
-            <Container>
-                <Row className="align-items-center">
-                    <Col sm={4} className="my-2">
-                        <img src={catoons} />
-                    </Col>
-                    <Col sm={4} className="my-2">
-                        <div className="register_card">
-                            <Row>
-                                <Col sm={12}>
-                                    <div>
-                                        <h2 className="register_hdng">
-                                            <span>Sign Up</span> To Continue
+            <LoaderCtrl loaderStatus={loader} />
+            <section className="section_padding">
+                <Container>
+                    <Row className="align-items-center">
+                        <Col sm={4} className="my-2">
+                            <img src={catoons} />
+                        </Col>
+                        <Col sm={4} className="my-2">
+                            <div className="register_card">
+                                <Row>
+                                    <Col sm={12}>
+                                        <div>
+                                            <h2 className="register_hdng">
+                                                <span>Sign Up</span> To Continue
                                         </h2>
-                                    </div>
-                                </Col>
-                                <Col sm={12}>
-                                {
-                                    response && (
-                                        <Alert variant="success">
-                                            {response}
-                                        </Alert>
+                                        </div>
+                                    </Col>
+                                    <Col sm={12}>
+                                        {
+                                            response && (
+                                                <Alert variant="success">
+                                                    {response}
+                                                </Alert>
 
-                                    )
-                                }
-                                </Col>
-                                <Col sm={12}>
-                                {
-                                    error && (
-                                        <Alert variant="danger">
-                                            {error}
-                                        </Alert>
+                                            )
+                                        }
+                                    </Col>
+                                    <Col sm={12}>
+                                        {
+                                            error && (
+                                                <Alert variant="danger">
+                                                    {error}
+                                                </Alert>
 
-                                    )
-                                }
-                                </Col>
-                                <Col sm={12}>
+                                            )
+                                        }
+                                    </Col>
+                                    <Col sm={12}>
                                         <Form onSubmit={handleSubmit}>
                                             <Row className="my-2 pt-2">
                                                 <Col>
@@ -228,65 +242,65 @@ function SignUpComponentCtrl(){
                                                     </Form.Group>
                                                 </Col>
                                             </Row>
-                                            
+
                                             <Row className="mb-2">
                                                 <Col sm={12}>
                                                     <Button className="btn-success btn-block" type="submit">Sign Up</Button>
                                                 </Col>
                                             </Row>
                                         </Form>
-                                    <div className="or_divider">
-                                        <span>or</span>
-                                    </div>
+                                        <div className="or_divider">
+                                            <span>or</span>
+                                        </div>
 
-                                        
-                                    <Row>
-                                        <Col sm={12} className="mt-2">
-                                            <GoogleLogin
-                                                clientId="450430578559-00gdj07dktsen73dudn1cpcko05tb5qi.apps.googleusercontent.com"
-                                                buttonText="Sign In With Google"
-                                                onSuccess={responseGoogle}
-                                                onFailure={responseGoogle}
-                                                cookiePolicy={'single_host_origin'}
-                                                className="btn-block sign_with_google_btn btn"
-                                            />
-                                        </Col>
-                                        {/* <Col sm={12} className="mt-2">
+
+                                        <Row>
+                                            <Col sm={12} className="mt-2">
+                                                <GoogleLogin
+                                                    clientId="450430578559-00gdj07dktsen73dudn1cpcko05tb5qi.apps.googleusercontent.com"
+                                                    buttonText="Sign In With Google"
+                                                    onSuccess={responseGoogle}
+                                                    onFailure={responseGoogle}
+                                                    cookiePolicy={'single_host_origin'}
+                                                    className="btn-block sign_with_google_btn btn"
+                                                />
+                                            </Col>
+                                            {/* <Col sm={12} className="mt-2">
                                             <Button className="btn-block sign_with_google_btn">
                                                 <img src={GoogleLogo}/> Sign In With Google
                                             </Button>
                                         </Col> */}
-                                        {/* <Col sm={12} className="mt-4">
+                                            {/* <Col sm={12} className="mt-4">
                                             <Button className="btn-block sign_with_fb_btn">
                                             <img src={facebook}/> Sign In With Facebook
                                         </Button>
                                         </Col> */}
 
-                                        <Col sm={12} className="mt-4">
-                                            <FacebookLogin
-                                                appId="648585002686329"
-                                                fields="name,email,picture"
-                                                callback={responseFacebook}
-                                                cssClass="my-facebook-button-class btn-block sign_with_fb_btn btn"
-                                                icon="fa-facebook"
-                                            />
-                                        </Col>
-                                    </Row>
-                                    
-                                    <Row className="text-center">
-                                        <Col sm={12} className="mt-4">
-                                            <NavLink to="/login" className="" style={{color:'#1BBDF6'}}>I Already have an account</NavLink>
-                                        </Col>
-                                    </Row>
-                                </Col>
-                            </Row>
-                        </div>
-                    </Col><Col sm={4} className="my-2">
-                        <img src={family} />
-                    </Col>
-                </Row>
-            </Container>
-        </section>
+                                            <Col sm={12} className="mt-4">
+                                                <FacebookLogin
+                                                    appId="648585002686329"
+                                                    fields="name,email,picture"
+                                                    callback={responseFacebook}
+                                                    cssClass="my-facebook-button-class btn-block sign_with_fb_btn btn"
+                                                    icon="fa-facebook"
+                                                />
+                                            </Col>
+                                        </Row>
+
+                                        <Row className="text-center">
+                                            <Col sm={12} className="mt-4">
+                                                <NavLink to={redirect_url ? `/login?redirect_url=${redirect_url}` : `/login`} className="" style={{ color: '#1BBDF6' }}>I Already have an account</NavLink>
+                                            </Col>
+                                        </Row>
+                                    </Col>
+                                </Row>
+                            </div>
+                        </Col><Col sm={4} className="my-2">
+                            <img src={family} />
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
         </>
     )
 }

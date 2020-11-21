@@ -1,12 +1,12 @@
-import { GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_ONE_SAVE, STEP_TWO_SAVE, SPACE_USED_FOR_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FEATURE_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, FLOOR_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_SAVE_FAILURE, CLEAR_MESSAGE_FIELDS, STEP_THREE_UPDATE_CLIENT, STEP_FOUR_UPDATE_CLIENT, STEP_FOUR_SAVE_REQUEST, STEP_FOUR_SAVE_SUCCESS, STEP_FOUR_SAVE_FAILURE, GET_PRICE_PERCENTAGE_REQUEST, GET_PRICE_PERCENTAGE_SUCCESS, GET_PRICE_PERCENTAGE_FAILURE } from "./listspaceTypes"
+import { GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_ONE_SAVE, STEP_TWO_SAVE, SPACE_USED_FOR_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FEATURE_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, FLOOR_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_SAVE_FAILURE, CLEAR_MESSAGE_FIELDS, STEP_THREE_UPDATE_CLIENT, STEP_FOUR_UPDATE_CLIENT, STEP_FOUR_SAVE_REQUEST, STEP_FOUR_SAVE_SUCCESS, STEP_FOUR_SAVE_FAILURE, GET_PRICE_PERCENTAGE_REQUEST, GET_PRICE_PERCENTAGE_SUCCESS, GET_PRICE_PERCENTAGE_FAILURE, UNIT_REQUEST, UNIT_SUCCESS, UNIT_FAILURE, STEP_FIVE_SAVE_REQUEST, STEP_FIVE_SAVE_SUCCESS, STEP_FIVE_SAVE_FAILURE, STEP_FIVE_UPDATE_CLIENT, UPLOAD_REQUEST, UPLOAD_SUCCESS, UPLOAD_FAILURE, LIST_DETAIL_REQUEST, LIST_DETAIL_SUCCESS, LIST_DETAIL_FAILURE, CAPTION_UPDATE_REQUEST, CAPTION_UPDATE_SUCCESS, CAPTION_UPDATE_FAILURE, STEP_SIX_UPDATE_CLIENT, PUBLISH_REQUEST, PUBLISH_SUCCESS, PUBLISH_FAILURE, CLEAR_LIST_SPACE_STEPS, LIST_ALL_SPACE_REQUEST, LIST_ALL_SPACE_SUCCESS, LIST_ALL_SPACE_FAILURE, DRAFT_STATUS_REQUEST, DRAFT_STATUS_SUCCESS, DRAFT_STATUS_FAILURE } from "./listspaceTypes"
 import axios from 'axios'
 import { config } from '../../config/config';
-
+import store from '../store';
 
 
 export const stepOneSave = (response) => {
 
-    sessionStorage.setItem("listStepOne", JSON.stringify(response));
+    localStorage.setItem("listStepOne", JSON.stringify(response));
 
     return {
         type: STEP_ONE_SAVE,
@@ -17,7 +17,7 @@ export const stepOneSave = (response) => {
 
 export const stepTwoSave = (response) => {
 
-    sessionStorage.setItem("listStepTwo", JSON.stringify(response));
+    localStorage.setItem("listStepTwo", JSON.stringify(response));
 
     return {
         type: STEP_TWO_SAVE,
@@ -315,6 +315,8 @@ const updateStepThreeClient = (response) => {
 }
 
 
+
+
 export const stepThreeSave = (saveData) => {
 
     const requestConfig = {
@@ -334,7 +336,24 @@ export const stepThreeSave = (saveData) => {
 
                     let stepThreeData = saveData;
 
-                    sessionStorage.setItem("listStepThree", JSON.stringify(stepThreeData));
+                    localStorage.setItem("listStepThree", JSON.stringify(stepThreeData));
+
+
+                    // step others
+
+                    let stepOne = store.getState().listspace.stepOne;
+                    stepOne.id = stepThreeId;
+                    stepOne.spaceType = saveData.type;
+                    dispatch(stepOneSave(stepOne));
+
+                    let stepTwo = store.getState().listspace.stepTwo;
+                    stepTwo.id = stepThreeId;
+                    dispatch(stepTwoSave(stepTwo));
+
+                    // step others end
+
+
+
 
                     dispatch(updateStepThreeClient(stepThreeData));
 
@@ -376,7 +395,14 @@ export const stepThreeUpdate = (saveData) => {
 
                     let stepThreeData = saveData;
 
-                    sessionStorage.setItem("listStepThree", JSON.stringify(stepThreeData));
+                    localStorage.setItem("listStepThree", JSON.stringify(stepThreeData));
+
+
+                    let stepOne = store.getState().listspace.stepOne;
+                    stepOne.id = stepThreeId;
+                    stepOne.spaceType = saveData.type;
+                    dispatch(stepOneSave(stepOne));
+
 
                     dispatch(updateStepThreeClient(stepThreeData));
 
@@ -527,7 +553,7 @@ export const stepFourSave = (saveData) => {
 
                     let stepFourData = saveData;
 
-                    sessionStorage.setItem("listStepFour", JSON.stringify(stepFourData));
+                    localStorage.setItem("listStepFour", JSON.stringify(stepFourData));
 
                     dispatch(updateStepFourClient(stepFourData));
 
@@ -608,3 +634,675 @@ export const getPricePercentage = () => {
     }
 
 }
+
+
+
+
+
+const unitRequest = () => {
+    return {
+        type: UNIT_REQUEST
+    }
+}
+
+const unitSuccess = (response) => {
+    return {
+        type: UNIT_SUCCESS,
+        payload: response
+    }
+}
+
+const unitFailure = (response) => {
+    return {
+        type: UNIT_FAILURE,
+        payload: response
+    }
+}
+
+
+
+
+
+export const getUnits = () => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(unitRequest())
+        await axios.post(`${config.apiUrl}/front/list/measurement_unit`, {}, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    // if (manual) {
+                    // serverResponse.list.manual = true;
+                    // }
+
+                    dispatch(unitSuccess(serverResponse.list));
+
+                }
+                else {
+                    dispatch(unitFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(unitFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+
+
+
+
+const stepFiveSaveRequest = () => {
+    return {
+        type: STEP_FIVE_SAVE_REQUEST
+    }
+}
+
+const stepFiveSaveSuccess = (response) => {
+    return {
+        type: STEP_FIVE_SAVE_SUCCESS,
+        payload: response
+    }
+}
+
+const stepFiveSaveFailure = (response) => {
+    return {
+        type: STEP_FIVE_SAVE_FAILURE,
+        payload: response
+    }
+}
+
+const stepFiveUpdateClient = (response) => {
+
+    localStorage.setItem("listStepFive", JSON.stringify(response));
+
+    return {
+        type: STEP_FIVE_UPDATE_CLIENT,
+        payload: response
+    }
+}
+
+
+
+export const stepFiveSave = (saveData) => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(stepFiveSaveRequest())
+        await axios.post(`${config.apiUrl}/front/list_your_space/estimation`, saveData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    saveData.id = serverResponse.storeid;
+
+                    dispatch(stepFiveUpdateClient(saveData));
+                    dispatch(stepFiveSaveSuccess(serverResponse.storeid));
+
+                }
+                else {
+                    dispatch(stepFiveSaveFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(stepFiveSaveFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+
+
+
+const uploadRequest = () => {
+    return {
+        type: UPLOAD_REQUEST
+    }
+}
+
+const uploadSuccess = (response) => {
+    return {
+        type: UPLOAD_SUCCESS,
+        payload: response
+    }
+}
+
+const uploadFailure = (response) => {
+    return {
+        type: UPLOAD_FAILURE,
+        payload: response
+    }
+}
+
+
+
+export const uploadImageFile = (file, id) => {
+
+    const saveData = new FormData();
+    saveData.append('image', file);
+    saveData.append('token', JSON.parse(localStorage.getItem('stashGuruToken')));
+    saveData.append('id', id);
+
+    const requestConfig = {
+        'Content-Type': 'multipart/form-data'
+    };
+
+    return async (dispatch) => {
+        dispatch(uploadRequest())
+        await axios.post(`${config.apiUrl}/front/list_your_space/image`, saveData)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    dispatch(uploadSuccess(serverResponse.storeid));
+                    dispatch(getListDetails({
+                        id: id,
+                        token: JSON.parse(localStorage.getItem("stashGuruToken"))
+                    }));
+
+                }
+                else {
+                    dispatch(uploadFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(uploadFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+
+
+
+const listDetailRequest = () => {
+    return {
+        type: LIST_DETAIL_REQUEST
+    }
+}
+
+const listDetailSuccess = (response) => {
+    return {
+        type: LIST_DETAIL_SUCCESS,
+        payload: response
+    }
+}
+
+const listDetailFailure = (response) => {
+    return {
+        type: LIST_DETAIL_FAILURE,
+        payload: response
+    }
+}
+
+
+
+
+export const getListDetails = (saveData) => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(listDetailRequest())
+        await axios.post(`${config.apiUrl}/front/list_your_space/details`, saveData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+
+                    let detailData = {
+                        details: serverResponse.details,
+                        features: serverResponse.features,
+                        images: serverResponse.images
+
+                    };
+
+                    dispatch(listDetailSuccess(detailData));
+
+                }
+                else {
+                    dispatch(listDetailFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(listDetailFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+
+
+
+const updateCaptionRequest = () => {
+    return {
+        type: CAPTION_UPDATE_REQUEST
+    }
+}
+
+const updateCaptionSuccess = (response) => {
+    return {
+        type: CAPTION_UPDATE_SUCCESS,
+        payload: response
+    }
+}
+
+const updateCaptionFailure = (response) => {
+    return {
+        type: CAPTION_UPDATE_FAILURE,
+        payload: response
+    }
+}
+
+
+
+
+export const updateCaption = (saveData) => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(updateCaptionRequest())
+        await axios.post(`${config.apiUrl}/front/list_your_space/image_caption`, saveData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    dispatch(updateCaptionSuccess(serverResponse.storeid));
+
+                }
+                else {
+                    dispatch(updateCaptionFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(updateCaptionFailure(errorMsg));
+
+            });
+    }
+
+}
+
+export const stepSixUpdateClient = (response) => {
+
+
+    localStorage.setItem("listStepSix", JSON.stringify(response));
+
+    return {
+        type: STEP_SIX_UPDATE_CLIENT,
+        payload: response
+    }
+}
+
+
+
+
+const publishRequest = () => {
+    return {
+        type: PUBLISH_REQUEST
+    }
+}
+
+const publishSuccess = (response) => {
+    return {
+        type: PUBLISH_SUCCESS,
+        payload: response
+    }
+}
+
+
+const publishFailure = (response) => {
+    return {
+        type: PUBLISH_FAILURE,
+        payload: response
+    }
+}
+
+export const publishSpace = (saveData) => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(publishRequest())
+        await axios.post(`${config.apiUrl}/front/list_your_space/publish`, saveData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    dispatch(publishSuccess(serverResponse.storeid));
+                    dispatch(clearListSpaceSteps());
+
+                }
+                else {
+                    dispatch(publishFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(publishFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+export const clearListSpaceSteps = () => {
+
+    localStorage.removeItem("listStepOne");
+    localStorage.removeItem("listStepTwo");
+    localStorage.removeItem("listStepThree");
+    localStorage.removeItem("listStepFour");
+    localStorage.removeItem("listStepFive");
+    localStorage.removeItem("listStepSix");
+
+    return {
+        type: CLEAR_LIST_SPACE_STEPS
+    }
+}
+
+
+
+
+
+
+const listAllSpaceRequest = () => {
+    return {
+        type: LIST_ALL_SPACE_REQUEST
+    }
+}
+
+const listAllSpaceSuccess = (response) => {
+    return {
+        type: LIST_ALL_SPACE_SUCCESS,
+        payload: response
+    }
+}
+
+
+const listAllSpaceFailure = (response) => {
+    return {
+        type: LIST_ALL_SPACE_FAILURE,
+        payload: response
+    }
+}
+
+export const listAllSpace = (saveData) => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(listAllSpaceRequest())
+        await axios.post(`${config.apiUrl}/front/list_your_space/all`, saveData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    dispatch(listAllSpaceSuccess(serverResponse.list));
+
+                }
+                else {
+                    dispatch(listAllSpaceFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(listAllSpaceFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+
+
+
+const draftStatusRequest = () => {
+    return {
+        type: DRAFT_STATUS_REQUEST
+    }
+}
+
+const draftStatusSuccess = (response) => {
+    return {
+        type: DRAFT_STATUS_SUCCESS,
+        payload: response
+    }
+}
+
+
+const draftStatusFailure = (response) => {
+    return {
+        type: DRAFT_STATUS_FAILURE,
+        payload: response
+    }
+}
+
+export const getDraftStatus = (data) => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(draftStatusRequest())
+        await axios.post(`${config.apiUrl}/front/list_your_space/draft_status`, data, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    dispatch(draftStatusSuccess(serverResponse.list));
+
+                    let stepNo = serverResponse.details.draft_step;
+                    let storeId = serverResponse.details.store_id;
+                    let redirect_url = "";
+
+
+                    switch (+stepNo) {
+                        case 1:
+                            redirect_url = "/create-your-list";
+                            break;
+
+                        case 2:
+                            redirect_url = "/create-your-list-step3";
+                            break;
+
+                        case 3:
+                            redirect_url = "/create-your-list-step4";
+                            break;
+
+                        case 4:
+                            redirect_url = "/create-your-list-step5";
+                            break;
+
+                        case 5:
+                            redirect_url = "/create-your-list-step6";
+                            break;
+
+                        case 6:
+                            redirect_url = "/create-your-list-step7";
+                            break;
+
+                        default:
+                            break;
+                    }
+
+
+
+                    dispatch(setListDetailClient(storeId, redirect_url));
+
+
+
+                }
+                else {
+                    dispatch(draftStatusFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(draftStatusFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+
+export const setListDetailClient = (id, redirect_url = "") => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    let saveData = {
+        id: id,
+        token: JSON.parse(localStorage.getItem("stashGuruToken"))
+    };
+
+    return async (dispatch) => {
+        dispatch(listDetailRequest())
+        await axios.post(`${config.apiUrl}/front/list_your_space/details`, saveData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+
+                    let stepOne = {
+                        id: serverResponse.details.store_id,
+                        location: `${serverResponse.details.store_street}, ${serverResponse.details.store_address1}, ${serverResponse.details.store_address2}, ${serverResponse.details.store_city}, ${serverResponse.details.store_postcode} `,
+                        spaceType: serverResponse.details.st_id
+                    };
+
+                    dispatch(stepOneSave(stepOne));
+
+                    let stepTwo = {
+                        address1: serverResponse.details.store_address1,
+                        address2: serverResponse.details.store_address2,
+                        city: serverResponse.details.store_city,
+                        house_no: serverResponse.details.store_street,
+                        id: serverResponse.details.store_id,
+                        lat: serverResponse.details.store_lat,
+                        lng: serverResponse.details.store_long,
+                        postal_code: serverResponse.details.store_postcode
+                    };
+
+                    dispatch(stepTwoSave(stepTwo));
+
+                    let featureInfo = serverResponse.details.features && serverResponse.details.features.length > 0 ? serverResponse.details.features[0].sf_id : "";
+
+                    let stepThree = {
+
+                        address1: serverResponse.details.store_address1,
+                        address2: serverResponse.details.store_address2,
+                        city: serverResponse.details.store_city,
+                        features: featureInfo,
+                        floor: serverResponse.details.fl_id,
+                        id: serverResponse.details.store_id,
+                        keyStatus: serverResponse.details.store_key,
+                        lat: serverResponse.details.store_lat,
+                        lng: serverResponse.details.store_long,
+                        postcode: serverResponse.details.store_postcode,
+                        street: serverResponse.details.store_street,
+                        title: serverResponse.details.store_title,
+                        token: JSON.parse(localStorage.getItem("stashGuruToken")),
+                        type: serverResponse.details.st_id,
+                        used_type: serverResponse.details.sut_id
+
+                    };
+
+                    localStorage.setItem("listStepThree", JSON.stringify(stepThree));
+
+                    dispatch(updateStepThreeClient(stepThree));
+
+                    let stepFour = {
+                        description: serverResponse.details.store_description ? serverResponse.details.store_description : "",
+                        token: JSON.parse(localStorage.getItem("stashGuruToken"))
+                    };
+
+                    localStorage.setItem("listStepFour", JSON.stringify(stepFour));
+
+                    // dispatch(updateStepFourClient(stepFour));
+
+                    let storeSize = JSON.parse(serverResponse.details.store_total_size);
+                    let storeWidth = storeSize && storeSize.length > 0 ? storeSize[0].width : 0;
+                    let storeHeight = storeSize && storeSize.length > 0 ? storeSize[0].height : 0;
+                    let storeDepth = storeSize && storeSize.depth > 0 ? storeSize[0].depth : 0;
+
+                    let stepFive = {
+                        depth: storeDepth,
+                        flexible: serverResponse.details.is_flexible,
+                        height: storeHeight,
+                        id: serverResponse.details.store_id,
+                        instant: serverResponse.details.is_instant,
+                        price: serverResponse.details.store_cost,
+                        token: JSON.parse(localStorage.getItem("stashGuruToken")),
+                        total_size: +storeWidth * +storeHeight * +storeDepth,
+                        width: storeWidth,
+                        your_earnings: serverResponse.details.store_earnings_deposit
+                    };
+
+                    dispatch(stepFiveUpdateClient(stepFive));
+
+                    let stepSix = {
+                        id: serverResponse.details.store_id
+                    };
+
+                    dispatch(stepSixUpdateClient(stepSix));
+
+
+                    if (redirect_url) {
+                        window.location.href = redirect_url;
+                    }
+
+                }
+                else {
+                    dispatch(listDetailFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(listDetailFailure(errorMsg));
+
+            });
+    }
+
+}
+

@@ -24,7 +24,8 @@ class LoginComponentCtrl extends React.Component {
                 password: '',
             },
             loginBtn: true,
-            resetPasswordMessage: ""
+            resetPasswordMessage: "",
+            redirect_url: ""
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -37,6 +38,20 @@ class LoginComponentCtrl extends React.Component {
 
 
         window.scrollTo(0, 0);
+
+        const query = new URLSearchParams(window.location.search);
+        if (query) {
+            if (query.get('redirect_url')) {
+                this.setState({
+                    redirect_url: encodeURIComponent(decodeURIComponent(query.get('redirect_url')))
+                })
+            }
+            else {
+                this.setState({
+                    redirect_url: ""
+                })
+            }
+        }
 
 
 
@@ -214,7 +229,7 @@ class LoginComponentCtrl extends React.Component {
 
                                             <Row className="text-center">
                                                 <Col sm={12} className="mt-4">
-                                                    <NavLink to="/signup" className="" style={{ color: '#1BBDF6' }}>I don't have an account</NavLink>
+                                                    <NavLink to={this.state.redirect_url ? `/signup?redirect_url=${this.state.redirect_url}` : `/signup`} className="" style={{ color: '#1BBDF6' }}>I don't have an account</NavLink>
                                                 </Col>
                                                 <Col sm={12} className="mt-4">
                                                     <NavLink to="/forgotpassword" className="link_text">I Forgot My Password</NavLink>

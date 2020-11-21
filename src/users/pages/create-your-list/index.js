@@ -23,7 +23,6 @@ function UserCreateYourListCtrl() {
     const [lng, setLng] = useState("");
 
 
-
     useEffect(() => {
 
         window.scrollTo(0, 0);
@@ -81,8 +80,6 @@ function UserCreateYourListCtrl() {
 
         // setLat(28.535601);
         // setLng(77.209084);
-
-
 
         dispatch(getCoordinates({
             address: search

@@ -1,46 +1,113 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Row, Button, InputGroup, Form, FormControl, Accordion } from 'react-bootstrap';
+import { Col, Container, Row, Button, InputGroup, Form, FormControl, Accordion, Alert, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
-import { getPricePercentage } from '../../../redux/listspace/listspaceActions';
+import { clearlistSpaceMessageFields, getPricePercentage, getUnits, stepFiveSave } from '../../../redux/listspace/listspaceActions';
 
 import StepsNavListCtrl from './steps_nav_list';
 
 function CreateYourListStepFifthCtrl() {
 
 
-    const { stepFour, pricePercentage } = useSelector(state => state.listspace);
+    const { stepFour, pricePercentage, unitList, stepThree, stepFiveLoading, stepFiveSuccess, stepFiveError, stepFive } = useSelector(state => state.listspace);
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const [exactSpaces, setExactSpaces] = useState("");
+    const [exactSpaces, setExactSpaces] = useState("0");
     const [exactSpacesError, setExactSpacesError] = useState("");
 
 
 
-    const [sizeOne, setSizeOne] = useState("");
-    const [sizeTwo, setSizeTwo] = useState("");
-    const [sizeThree, setSizeThree] = useState("");
+    const [width, setWidth] = useState("");
+    const [widthUnit, setWidthUnit] = useState("");
 
-    const [sizeOneError, setSizeOneError] = useState("");
-    const [sizeTwoError, setSizeTwoError] = useState("");
-    const [sizeThreeError, setSizeThreeError] = useState("");
+    const [depth, setDepth] = useState("");
+    const [depthUnit, setDepthUnit] = useState("");
+
+    const [height, setHeight] = useState("");
+    const [heightUnit, setHeightUnit] = useState("");
+
+    const [widthError, setWidthError] = useState("");
+    const [depthError, setDepthError] = useState("");
+    const [heightError, setHeightError] = useState("");
 
     const [pricing, setPricing] = useState("");
     const [pricingError, setPricingError] = useState("");
 
-    const [earning, setEarning] = useState("");
-    const [earningError, setEarningError] = useState("");
+    const [earning, setEarning] = useState("0");
 
-    const [numberOfSpaces, setNumberOfSpaces] = useState("0");
-    const [numberOfSpacesError, setNumberOfSpacesError] = useState("");
+
+    const [enableInstantBooking, setEnableInstantBooking] = useState("No");
+    const [flexibleBooking, setFlexibleBooking] = useState(false);
+
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
+
+    useEffect(() => {
+
+        if (stepFive) {
+
+
+            setWidth(stepFive.width);
+            setDepth(stepFive.depth);
+            setHeight(stepFive.height);
+            setPricing(stepFive.price);
+            setEnableInstantBooking(stepFive.instant);
+            setExactSpaces(stepFive.total_size);
+            setEarning(stepFive.your_earnings);
+            setFlexibleBooking(stepFive && stepFive.flexible === "Yes" ? true : false);
+
+        }
+
+    }, [stepFive]);
+
+
+    useEffect(() => {
+
+        if (stepFiveSuccess) {
+            history.push('/create-your-list-step6');
+            dispatch(clearlistSpaceMessageFields());
+        }
+
+    }, [stepFiveSuccess]);
+
+
+    useEffect(() => {
+
+        if (width && depth) {
+            setExactSpaces(+width * +depth);
+        }
+        else {
+            setExactSpaces(0);
+        }
+
+    }, [width, depth]);
+
+
+    useEffect(() => {
+
+        if (unitList && Array.isArray(unitList) && unitList.length > 0) {
+            setWidthUnit(unitList[0].mu_id);
+            setDepthUnit(unitList[0].mu_id);
+            setHeightUnit(unitList[0].mu_id);
+        }
+
+    }, [unitList]);
 
 
     useEffect(() => {
 
         dispatch(getPricePercentage());
+        dispatch(getUnits());
 
     }, [dispatch]);
+
 
     useEffect(() => {
 
@@ -51,37 +118,106 @@ function CreateYourListStepFifthCtrl() {
     }, [stepFour]);
 
 
-    const vaildateErrors = (name, value) => {
+    useEffect(() => {
+
+        if (pricing) {
+
+            let percentage = (+pricing / 100) * (+pricePercentage);
+            setEarning(+pricing + percentage);
+        }
+        else {
+            setEarning("0");
+        }
+
+    }, [pricing]);
+
+    const vaildateErrors = (name) => {
 
         switch (name) {
-            case "sizeOne":
-                setSizeOneError("");
-                if (!sizeOne) {
-                    setSizeOneError("Required!");
+            case "width":
+                setWidthError("");
+                if (!width) {
+                    setWidthError("Width is required!");
+                }
+
+                break;
+
+
+            case "depth":
+                setDepthError("");
+                if (!depth) {
+                    setDepthError("Depth is required!");
                 }
                 break;
 
 
-            case "sizeTwo":
-                setSizeTwoError("");
-                if (!sizeTwo) {
-                    setSizeTwoError("Required!");
+            case "height":
+                setHeightError("");
+                if (!height) {
+                    setHeightError("Height is Required!");
                 }
                 break;
 
-
-            case "sizeThree":
-                setSizeThreeError("");
-                if (!sizeThree) {
-                    setSizeThreeError("Required!");
+            case "exactSpaces":
+                setExactSpacesError("");
+                if (!exactSpaces || !+exactSpaces) {
+                    setExactSpacesError("No. of exact spaces is Required!");
                 }
                 break;
+
+            case "pricing":
+                setPricingError("");
+                if (!pricing) {
+                    setPricingError("Pricing is required!");
+                }
+                break;
+
 
             default:
                 break;
         }
 
     }
+
+
+    const onSubmitForm = (e) => {
+        e.preventDefault();
+
+        vaildateErrors("width");
+        vaildateErrors("depth");
+        vaildateErrors("height");
+        vaildateErrors("exactSpaces");
+        vaildateErrors("pricing");
+
+        if (width && depth && height && exactSpaces && pricing) {
+
+
+            if (stepThree && stepThree.id) {
+
+                const saveData = {
+                    token: JSON.parse(localStorage.getItem("stashGuruToken")),
+                    id: stepThree.id,
+                    width: width,
+                    depth: depth,
+                    height: height,
+                    total_size: (+width * +depth),
+                    price: pricing,
+                    your_earnings: earning,
+                    flexible: flexibleBooking === true ? "Yes" : "No",
+                    instant: enableInstantBooking
+                };
+
+                dispatch(stepFiveSave(saveData));
+
+            }
+
+
+        }
+
+        return false;
+
+    }
+
 
 
     return (
@@ -101,20 +237,24 @@ function CreateYourListStepFifthCtrl() {
                                                     Width
                                                 </InputGroup.Text>
                                             </InputGroup.Prepend>
-                                            <FormControl id="basic-url" aria-describedby="basic-addon3" name="sizeOne" value={sizeOne} onChange={(e) => setSizeOne(e.target.value)} onBlur={() => vaildateErrors("sizeOne")} />
+                                            <FormControl id="basic-url" aria-describedby="basic-addon3" name="width" value={width} onChange={(e) => setWidth(e.target.value)} onBlur={() => vaildateErrors("width")} />
                                         </InputGroup>
                                     </div>
                                     <div className="sizeSpaceWidthUnit">
                                         <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Control as="select">
-                                                <option>Ft</option>
-                                                <option>Cm</option>
+                                            <Form.Control as="select" name="widthUnit" value={widthUnit} onChange={(e) => setWidthUnit(e.target.value)}>
+                                                {
+                                                    unitList && Array.isArray(unitList) && unitList.map((unit) => (
+                                                        <option value={unit.mu_id}>{unit.mu_name}</option>
+                                                    ))
+                                                }
+
                                             </Form.Control>
                                         </Form.Group>
                                     </div>
                                     {
-                                        sizeOneError && <div className="ml-2 mt-2">
-                                            <small className="text-danger">{sizeOneError}</small>
+                                        widthError && <div className="ml-2 mt-2">
+                                            <small className="text-danger">{widthError}</small>
                                         </div>
                                     }
                                 </div>
@@ -123,24 +263,28 @@ function CreateYourListStepFifthCtrl() {
                                         <InputGroup className="">
                                             <InputGroup.Prepend>
                                                 <InputGroup.Text id="basic-addon3">
-                                                    Width
+                                                    Depth
                                             </InputGroup.Text>
                                             </InputGroup.Prepend>
-                                            <FormControl id="basic-url" aria-describedby="basic-addon3" name="sizeTwo" value={sizeTwo} onChange={(e) => setSizeTwo(e.target.value)} onBlur={() => vaildateErrors("sizeTwo")} />
+                                            <FormControl id="basic-url" aria-describedby="basic-addon3" name="depth" value={depth} onChange={(e) => setDepth(e.target.value)} onBlur={() => vaildateErrors("depth")} />
                                         </InputGroup>
                                     </div>
                                     <div className="sizeSpaceWidthUnit">
                                         <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Control as="select">
-                                                <option>Ft</option>
-                                                <option>Cm</option>
+                                            <Form.Control as="select" name="depthUnit" value={depthUnit} onChange={(e) => setDepthUnit(e.target.value)}>
+                                                {
+                                                    unitList && Array.isArray(unitList) && unitList.map((unit) => (
+                                                        <option value={unit.mu_id}>{unit.mu_name}</option>
+                                                    ))
+                                                }
+
                                             </Form.Control>
                                         </Form.Group>
                                     </div>
 
                                     {
-                                        sizeTwoError && <div className="ml-2 mt-2">
-                                            <small className="text-danger">{sizeTwoError}</small>
+                                        depthError && <div className="ml-2 mt-2">
+                                            <small className="text-danger">{depthError}</small>
                                         </div>
                                     }
 
@@ -151,24 +295,28 @@ function CreateYourListStepFifthCtrl() {
                                         <InputGroup className="">
                                             <InputGroup.Prepend>
                                                 <InputGroup.Text id="basic-addon3">
-                                                    Width
+                                                    Height
                                             </InputGroup.Text>
                                             </InputGroup.Prepend>
-                                            <FormControl id="basic-url" aria-describedby="basic-addon3" name="sizeThree" value={sizeThree} onChange={(e) => setSizeThree(e.target.value)} onBlur={() => vaildateErrors("sizeThree")} />
+                                            <FormControl id="basic-url" aria-describedby="basic-addon3" name="height" value={height} onChange={(e) => setHeight(e.target.value)} onBlur={() => vaildateErrors("height")} />
                                         </InputGroup>
                                     </div>
                                     <div className="sizeSpaceWidthUnit">
                                         <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Control as="select">
-                                                <option>Ft</option>
-                                                <option>Cm</option>
+                                            <Form.Control as="select" name="heightUnit" value={heightUnit} onChange={(e) => setHeightUnit(e.target.value)}>
+                                                {
+                                                    unitList && Array.isArray(unitList) && unitList.map((unit) => (
+                                                        <option value={unit.mu_id}>{unit.mu_name}</option>
+                                                    ))
+                                                }
+
                                             </Form.Control>
                                         </Form.Group>
                                     </div>
 
                                     {
-                                        sizeThreeError && <div className="ml-2 mt-2">
-                                            <small className="text-danger">{sizeThreeError}</small>
+                                        heightError && <div className="ml-2 mt-2">
+                                            <small className="text-danger">{heightError}</small>
                                         </div>
                                     }
 
@@ -191,8 +339,13 @@ function CreateYourListStepFifthCtrl() {
                             <h6>I have these exact spaces</h6>
 
                             <InputGroup className="text-center" style={{ width: '80px' }}>
-                                <FormControl className="text-center" value={numberOfSpaces} onChange={(e) => setNumberOfSpaces(e.target.value)} style={{ color: '#34d789', fontWeight: '900' }} />
+                                <FormControl className="text-center" onBlur={() => vaildateErrors("exactSpaces")} value={exactSpaces} readOnly={true} style={{ color: '#34d789', fontWeight: '900' }} />
                             </InputGroup>
+
+                            {
+                                exactSpacesError && <small className="text-danger">{exactSpacesError}</small>
+                            }
+
                             <Accordion>
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
                                     <div className="text_color_gray">What does this mean? </div>
@@ -225,8 +378,11 @@ function CreateYourListStepFifthCtrl() {
                                                 <i className="fa fa-usd" aria-hidden="true"></i>
                                             </InputGroup.Text>
                                         </InputGroup.Prepend>
-                                        <FormControl />
+                                        <FormControl name="pricing" onChange={(e) => setPricing(e.target.value)} value={pricing} onBlur={() => vaildateErrors("pricing")} />
                                     </InputGroup>
+                                    {
+                                        pricingError && <small className="text-danger">{pricingError}</small>
+                                    }
                                 </div>
                                 <b>Per Month</b>
                             </div>
@@ -242,7 +398,7 @@ function CreateYourListStepFifthCtrl() {
                                 <h6>Get Your Earnings</h6>
                                 <div className="GetYourEarningsRow">
                                     <div className="GetYourEarningsCol">
-                                        <Button variant="success" className=""><i className="fa fa-usd" aria-hidden="true"></i> 1200</Button>
+                                        <Button variant="success" className=""><i className="fa fa-usd" aria-hidden="true"></i> {earning}</Button>
                                     </div>
                                     <b>Per Month</b>
                                 </div>
@@ -262,7 +418,7 @@ function CreateYourListStepFifthCtrl() {
                         <Col lg="5" md="6">
                             <h3 className="md_bld_txt">Provide Flexible Bookings?</h3>
                             <Form.Group controlId="" className="mb-0">
-                                <Form.Check type="checkbox" label="Lorem ipsum dolor sit amet" />
+                                <Form.Check type="checkbox" checked={flexibleBooking} label="Lorem ipsum dolor sit amet" onChange={() => setFlexibleBooking(!flexibleBooking)} />
                             </Form.Group>
                             <Accordion>
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
@@ -287,8 +443,8 @@ function CreateYourListStepFifthCtrl() {
                         <Col lg="5" md="6">
                             <h3 className="md_bld_txt">Enable Instant Book</h3>
                             <h6 className="text_color_shamrock">Allow Guests to book without having to accept every time</h6>
-                            <Button variant="success" className="mr-2 mt-2 px-5">Yes</Button>
-                            <Button className="btn_outline_success mr-2  mt-2 px-5">No</Button>
+                            <Button className={enableInstantBooking === "Yes" ? `mr-2 mt-2 px-5 optionButtonSelected` : 'btn_outline_success mr-2 mt-2 px-5'} onClick={() => setEnableInstantBooking("Yes")}>Yes</Button>
+                            <Button className={enableInstantBooking === "No" ? `mr-2 mt-2 px-5 optionButtonSelected` : 'btn_outline_success mr-2 mt-2 px-5'} onClick={() => setEnableInstantBooking("No")}>No</Button>
                             <Accordion>
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
                                     <div className="text_color_gray">What is an instant booking?</div>
@@ -328,6 +484,33 @@ function CreateYourListStepFifthCtrl() {
 
             <section className="my-5">
                 <Container>
+
+
+                    <Row>
+                        <Col lg={12}>
+                            {
+                                widthError && <Alert variant="danger">{widthError}</Alert>
+                            }
+                            {
+                                depthError && <Alert variant="danger">{depthError}</Alert>
+                            }
+                            {
+                                heightError && <Alert variant="danger">{heightError}</Alert>
+                            }
+                            {
+                                exactSpacesError && <Alert variant="danger">{exactSpacesError}</Alert>
+                            }
+                            {
+                                pricingError && <Alert variant="danger">{pricingError}</Alert>
+                            }
+                            {
+                                stepFiveError && <Alert variant="danger">{stepFiveError}</Alert>
+                            }
+
+                        </Col>
+                    </Row>
+
+
                     <Row className="justify-content-between">
                         <Col lg="6" md="6" className="text-left">
                             <NavLink to="/create-your-list-step4">
@@ -337,10 +520,16 @@ function CreateYourListStepFifthCtrl() {
                             </NavLink>
                         </Col>
                         <Col lg="6" md="6" className="text-right">
-                            <NavLink to="/create-your-list-step6">
-                                <Button className="btn_outline_success mr-2 mt-2 px-5">
+                            <NavLink to="/create-your-list-step6" onClick={onSubmitForm}>
+                                <Button className="btn_outline_success mr-2 mt-2 px-5" disabled={stepFiveLoading}>
                                     Next <i className="fa fa-long-arrow-right ml-2" aria-hidden="true"></i>
                                 </Button>
+
+                                {
+                                    stepFiveLoading && <Spinner variant="success" animation="border"></Spinner>
+                                }
+
+
                             </NavLink>
                         </Col>
                     </Row>
