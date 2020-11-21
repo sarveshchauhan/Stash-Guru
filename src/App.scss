@@ -30,7 +30,9 @@ $nobel_color: #9c9c9c;
     background-color: $shamrock_color;
     border-color: $shamrock_color;
 }
-
+.text_color_l_orange{
+    color: #FF784F;
+}
 .btn{
     border-radius: 25px;
     min-height: 48px;
@@ -162,6 +164,18 @@ img{
     color: $milky_color;
     background: $shamrock_color;;
 }
+
+.btn_l_orange{
+    border-color: #FF784F;
+    color: #ffffff;
+    background: #FF784F;
+}
+.btn_l_orange:hover{
+    border-color: #FF784F;
+    color: #FF784F;
+    background: transparent;;
+}
+
 
 .btn i.fa.fa-angle-right{
     margin-left: 10px;
