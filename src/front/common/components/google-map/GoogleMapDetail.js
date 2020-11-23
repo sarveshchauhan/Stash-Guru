@@ -18,8 +18,10 @@ export function GoogleMap(props) {
 
     const [isOpen, setIsOpen] = useState(false);
 
+    const { schDetails } = useSelector(state => state.search);
 
-    const { coordinates } = useSelector(state => state.listspace);
+
+
 
 
     const handleToggleOpen = (arg) => {
@@ -62,33 +64,29 @@ export function GoogleMap(props) {
                 style={mapStyles}
                 zoom={14}
                 center={{
-                    lat: coordinates && coordinates.latitude ? coordinates.latitude : 28.535601,
-                    lng: coordinates && coordinates.longitude ? coordinates.longitude : 77.209084
+                    lat: schDetails && schDetails.store_lat ? schDetails.store_lat : 28.535601,
+                    lng: schDetails && schDetails.store_long ? schDetails.store_long : 77.209084
                 }}
             >
 
                 {
-                    coordinates && coordinates.latitude && coordinates.longitude && <Marker key="marker_1"
+                    schDetails && schDetails.store_lat && schDetails.store_long && <Marker key="marker_1"
                         onClick={handleToggleOpen}
                         name={'malviya nagar'}
                         position={{
-                            lat: coordinates.latitude,
-                            lng: coordinates.longitude
+                            lat: schDetails.store_lat,
+                            lng: schDetails.store_long
                         }}
-                        draggable={true}
-                        onDragend={(t, map, coord) => onMarkerDragEnd(coord)}
-
-
 
                     />
                 }
 
-
+                {/* 
                 <InfoWindow
                     position={{ lat: coordinates.latitude, lng: coordinates.longitude }}
                     visible={isOpen}>
                     <small>{props.addressName}</small>
-                </InfoWindow>
+                </InfoWindow> */}
 
 
             </Map>

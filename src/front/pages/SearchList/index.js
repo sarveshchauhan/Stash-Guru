@@ -16,8 +16,15 @@ import MapContainer from '../../common/components/map';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchListing } from '../../../redux';
 import LoaderCtrl from '../../common/components/loader';
+import GoogleMapListing from '../../common/components/google-map/GoogleMapListing';
+import PlaceholderImage from '../../../assets/front/images/placeholder.png';
+
+
 const storeImages = require.context('../../../assets/front/images/store', true);
 const profileImages = require.context('../../../assets/users/images/profile', true);
+
+
+
 
 function FrontSearchListCtrl() {
 
@@ -180,10 +187,10 @@ function FrontSearchListCtrl() {
                                         <div className="col-sm-6 col-xl-4 SearchListPlace_col" key={details.store_id}>
                                             <div className="SearchListPlace_card">
                                                 <a href={'/search-details/' + details.store_id} >
-                                                    <img width="100%" src={storeImages(`./${details.si_path}`)} alt="" />
+                                                    <img width="100%" src={details.images && details.images.length > 0 ? details.images[0].si_path : PlaceholderImage} alt="" />
                                                     <div className="SearchListPlace_card_body">
                                                         <div className="SearchListPlaceUserArea">
-                                                            <img className="profileImg" src={details.u_pic == 'no_img.png' ? profileImages(`./${details.u_pic}`) : details.u_pic} alt="" />
+                                                            <img className="profileImg" src={details.u_pic} alt="" />
                                                             <span className="profileName">{details.u_name}</span>
                                                         </div>
 
@@ -197,7 +204,13 @@ function FrontSearchListCtrl() {
                                                         </div>
 
                                                         <div className="SearchListPlaceAreaCost">
-                                                            <strong>${(parseInt(details.store_cost) + (parseInt(details.store_cost) * (parseInt(vat) / 100))).toFixed(2)}/Month </strong>
+
+                                                            {
+                                                                details.store_cost && <strong>${(parseInt(details.store_cost) + (parseInt(details.store_cost) * (parseInt(vat) / 100))).toFixed(2)}/Month </strong>
+
+                                                            }
+
+
                                                             <span>{details.store_size}</span>
                                                         </div>
                                                     </div>
@@ -211,7 +224,7 @@ function FrontSearchListCtrl() {
                     </Col>
                     <Col lg={6}>
                         {/* <div className="map_area"> */}
-                        <MapContainer />
+                        <GoogleMapListing />
                         {/* </div> */}
                     </Col>
                 </Row>

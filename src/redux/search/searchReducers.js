@@ -1,4 +1,4 @@
-import { SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE, SEARCH_DETAILS_REQUEST, SEARCH_DETAILS_SUCCESS, SEARCH_DETAILS_FAILURE} from "./searchTypes";
+import { SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE, SEARCH_DETAILS_REQUEST, SEARCH_DETAILS_SUCCESS, SEARCH_DETAILS_FAILURE } from "./searchTypes";
 
 const initialState = {
     loading: false,
@@ -27,6 +27,7 @@ const reducer = (state = initialState, action) => {
 
         case SEARCH_SUCCESS:
             return {
+                ...state,
                 loading: false,
                 response: action.payload.response,
                 searchList: action.payload.list,
@@ -37,22 +38,24 @@ const reducer = (state = initialState, action) => {
 
         case SEARCH_FAILURE:
             return {
+                ...state,
                 loading: false,
                 response: "",
                 error: action.payload,
                 searchList: [],
                 vat: 0
             }
-        
+
         case SEARCH_DETAILS_REQUEST:
             return {
                 ...state,
                 loading: true,
                 vat: 0
             }
-            
+
         case SEARCH_DETAILS_SUCCESS:
             return {
+                ...state,
                 loading: false,
                 detailsResponse: action.payload.response,
                 detailsError: '',
@@ -66,6 +69,7 @@ const reducer = (state = initialState, action) => {
 
         case SEARCH_DETAILS_FAILURE:
             return {
+                ...state,
                 loading: false,
                 detailsResponse: "",
                 detailsError: action.payload,

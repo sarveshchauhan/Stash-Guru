@@ -14,7 +14,7 @@ function CreateYourListStepSeventhCtrl() {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const { stepSix, publishSuccess, publishError, publishLoading } = useSelector(state => state.listspace);
+    const { stepSix, publishSuccess, publishError, publishLoading, stepSeven } = useSelector(state => state.listspace);
     const [aboutDescription, setAboutDescription] = useState("");
 
     const [bookingTerms, setBookingTerms] = useState(false);
@@ -46,6 +46,17 @@ function CreateYourListStepSeventhCtrl() {
         }
 
     }, [stepSix]);
+
+
+    useEffect(() => {
+
+        if (stepSeven) {
+            setAboutDescription(stepSeven.about);
+            setVatRegistered(stepSeven.vat);
+        }
+
+    }, [stepSeven]);
+
 
 
     useEffect(() => {

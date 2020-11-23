@@ -244,8 +244,8 @@ function CreateYourListStepFifthCtrl() {
                                         <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Control as="select" name="widthUnit" value={widthUnit} onChange={(e) => setWidthUnit(e.target.value)}>
                                                 {
-                                                    unitList && Array.isArray(unitList) && unitList.map((unit) => (
-                                                        <option value={unit.mu_id}>{unit.mu_name}</option>
+                                                    unitList && Array.isArray(unitList) && unitList.map((unit, index) => (
+                                                        <option value={unit.mu_id} key={index}>{unit.mu_name}</option>
                                                     ))
                                                 }
 
@@ -273,8 +273,8 @@ function CreateYourListStepFifthCtrl() {
                                         <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Control as="select" name="depthUnit" value={depthUnit} onChange={(e) => setDepthUnit(e.target.value)}>
                                                 {
-                                                    unitList && Array.isArray(unitList) && unitList.map((unit) => (
-                                                        <option value={unit.mu_id}>{unit.mu_name}</option>
+                                                    unitList && Array.isArray(unitList) && unitList.map((unit, index) => (
+                                                        <option value={unit.mu_id} key={index}>{unit.mu_name}</option>
                                                     ))
                                                 }
 
@@ -305,8 +305,8 @@ function CreateYourListStepFifthCtrl() {
                                         <Form.Group controlId="exampleForm.ControlSelect1">
                                             <Form.Control as="select" name="heightUnit" value={heightUnit} onChange={(e) => setHeightUnit(e.target.value)}>
                                                 {
-                                                    unitList && Array.isArray(unitList) && unitList.map((unit) => (
-                                                        <option value={unit.mu_id}>{unit.mu_name}</option>
+                                                    unitList && Array.isArray(unitList) && unitList.map((unit, index) => (
+                                                        <option value={unit.mu_id} key={index}>{unit.mu_name}</option>
                                                     ))
                                                 }
 

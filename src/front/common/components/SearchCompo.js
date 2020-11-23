@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { InputGroup, Button, FormControl, Form } from 'react-bootstrap';
+import { useParams } from 'react-router';
 
 function SearchComponent() {
+
+    const { key } = useParams();
 
     const [txtSearch, setTextSearch] = useState(null);
 
     const [errorSearch, setErrorSearch] = useState(null);
+
+
+    useEffect(() => {
+
+        setTextSearch(key);
+
+    }, [key]);
+
 
     const handleFormField = (e) => {
         switch (e.target.name) {

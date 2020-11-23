@@ -1,4 +1,4 @@
-import { GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_ONE_SAVE, STEP_TWO_SAVE, SPACE_USED_FOR_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FEATURE_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, FLOOR_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_SAVE_FAILURE, CLEAR_MESSAGE_FIELDS, STEP_THREE_UPDATE_CLIENT, STEP_FOUR_UPDATE_CLIENT, STEP_FOUR_SAVE_REQUEST, STEP_FOUR_SAVE_SUCCESS, STEP_FOUR_SAVE_FAILURE, GET_PRICE_PERCENTAGE_REQUEST, GET_PRICE_PERCENTAGE_SUCCESS, GET_PRICE_PERCENTAGE_FAILURE, UNIT_REQUEST, UNIT_SUCCESS, UNIT_FAILURE, STEP_FIVE_SAVE_REQUEST, STEP_FIVE_SAVE_SUCCESS, STEP_FIVE_SAVE_FAILURE, STEP_FIVE_UPDATE_CLIENT, UPLOAD_REQUEST, UPLOAD_SUCCESS, UPLOAD_FAILURE, LIST_DETAIL_REQUEST, LIST_DETAIL_SUCCESS, LIST_DETAIL_FAILURE, CAPTION_UPDATE_REQUEST, CAPTION_UPDATE_SUCCESS, CAPTION_UPDATE_FAILURE, STEP_SIX_UPDATE_CLIENT, PUBLISH_REQUEST, PUBLISH_SUCCESS, PUBLISH_FAILURE, CLEAR_LIST_SPACE_STEPS, LIST_ALL_SPACE_REQUEST, LIST_ALL_SPACE_SUCCESS, LIST_ALL_SPACE_FAILURE, DRAFT_STATUS_REQUEST, DRAFT_STATUS_SUCCESS, DRAFT_STATUS_FAILURE, GUEST_REQUEST, GUEST_SUCCESS, GUEST_FAILURE, GUEST_ACCESS_REQUEST, GUEST_ACCESS_SUCCESS, GUEST_ACCESS_FAILURE, UPDATE_COORDINATES_CLIENT, SET_MANUAL_COORDINATES } from "./listspaceTypes"
+import { GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_ONE_SAVE, STEP_TWO_SAVE, SPACE_USED_FOR_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FEATURE_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, FLOOR_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_SAVE_FAILURE, CLEAR_MESSAGE_FIELDS, STEP_THREE_UPDATE_CLIENT, STEP_FOUR_UPDATE_CLIENT, STEP_FOUR_SAVE_REQUEST, STEP_FOUR_SAVE_SUCCESS, STEP_FOUR_SAVE_FAILURE, GET_PRICE_PERCENTAGE_REQUEST, GET_PRICE_PERCENTAGE_SUCCESS, GET_PRICE_PERCENTAGE_FAILURE, UNIT_REQUEST, UNIT_SUCCESS, UNIT_FAILURE, STEP_FIVE_SAVE_REQUEST, STEP_FIVE_SAVE_SUCCESS, STEP_FIVE_SAVE_FAILURE, STEP_FIVE_UPDATE_CLIENT, UPLOAD_REQUEST, UPLOAD_SUCCESS, UPLOAD_FAILURE, LIST_DETAIL_REQUEST, LIST_DETAIL_SUCCESS, LIST_DETAIL_FAILURE, CAPTION_UPDATE_REQUEST, CAPTION_UPDATE_SUCCESS, CAPTION_UPDATE_FAILURE, STEP_SIX_UPDATE_CLIENT, PUBLISH_REQUEST, PUBLISH_SUCCESS, PUBLISH_FAILURE, CLEAR_LIST_SPACE_STEPS, LIST_ALL_SPACE_REQUEST, LIST_ALL_SPACE_SUCCESS, LIST_ALL_SPACE_FAILURE, DRAFT_STATUS_REQUEST, DRAFT_STATUS_SUCCESS, DRAFT_STATUS_FAILURE, GUEST_REQUEST, GUEST_SUCCESS, GUEST_FAILURE, GUEST_ACCESS_REQUEST, GUEST_ACCESS_SUCCESS, GUEST_ACCESS_FAILURE, UPDATE_COORDINATES_CLIENT, SET_MANUAL_COORDINATES, ADDRESS_REQUEST, ADDRESS_SUCCESS, ADDRESS_FAILURE } from "./listspaceTypes"
 import axios from 'axios'
 import { config } from '../../config/config';
 import store from '../store';
@@ -1234,14 +1234,22 @@ export const setListDetailClient = (id, redirect_url = "") => {
 
                     dispatch(stepTwoSave(stepTwo));
 
-                    let featureInfo = serverResponse.details.features && serverResponse.details.features.length > 0 ? serverResponse.details.features[0].sf_id : "";
+                    // let featureInfo = serverResponse.details.features && serverResponse.details.features.length > 0 ? serverResponse.details.features[0].sf_id : "";    
+
+
+                    let featureList = serverResponse.features.map((ft) => {
+                        return ft.fs_id;
+                    });
+
+
+
 
                     let stepThree = {
 
                         address1: serverResponse.details.store_address1,
                         address2: serverResponse.details.store_address2,
                         city: serverResponse.details.store_city,
-                        features: featureInfo,
+                        features: featureList.join(','),
                         floor: serverResponse.details.fl_id,
                         id: serverResponse.details.store_id,
                         keyStatus: serverResponse.details.store_key,
@@ -1252,7 +1260,9 @@ export const setListDetailClient = (id, redirect_url = "") => {
                         title: serverResponse.details.store_title,
                         token: JSON.parse(localStorage.getItem("stashGuruToken")),
                         type: serverResponse.details.st_id,
-                        used_type: serverResponse.details.sut_id
+                        used_type: serverResponse.details.sut_id,
+                        guest: serverResponse.details.gt_id,
+                        guest_access: serverResponse.details.gta_id
 
                     };
 
@@ -1297,7 +1307,7 @@ export const setListDetailClient = (id, redirect_url = "") => {
 
 
                     if (redirect_url) {
-                        window.location.href = redirect_url;
+                        // window.location.href = redirect_url;
                     }
 
                 }
@@ -1452,3 +1462,61 @@ export const updateCoordinatesClient = (coordinates) => {
 }
 
 
+
+
+const addressRequest = () => {
+    return {
+        type: ADDRESS_REQUEST
+    }
+}
+
+const addressSuccess = (response) => {
+
+    return {
+        type: ADDRESS_SUCCESS,
+        payload: response
+    }
+
+}
+
+
+const addressFailure = (response) => {
+
+    return {
+        type: ADDRESS_FAILURE,
+        payload: response
+    }
+
+}
+
+
+export const getAddress = (coordinates) => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(addressRequest())
+        await axios.post(`${config.apiUrl}/front/map/address`, coordinates, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+
+
+                    dispatch(addressSuccess(serverResponse.address));
+
+                }
+                else {
+                    dispatch(addressFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(addressFailure(errorMsg));
+
+            });
+    }
+
+}

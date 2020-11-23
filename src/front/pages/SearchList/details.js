@@ -1,5 +1,5 @@
-import React,{ useState, useEffect } from 'react';
-import { Col, Container, Row,Carousel, InputGroup ,FormControl,Button} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Col, Container, Row, Carousel, InputGroup, FormControl, Button } from 'react-bootstrap';
 
 
 // Assets Include
@@ -31,11 +31,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { searchDetails } from '../../../redux';
 import { useParams } from 'react-router-dom';
 import LoaderCtrl from '../../common/components/loader';
+import GoogleMapDetail from '../../common/components/google-map/GoogleMapDetail';
 const iconImages = require.context('../../../assets/front/images/icons/list-details', true);
 const storeImages = require.context('../../../assets/front/images/store', true);
 const profileImages = require.context('../../../assets/users/images/profile', true);
 
-function FrontSearchDetailsCtrl(){
+function FrontSearchDetailsCtrl() {
 
     const { searchId } = useParams();
     const [details, setDetails] = useState([]);
@@ -44,14 +45,14 @@ function FrontSearchDetailsCtrl(){
     const dispatch = useDispatch();
 
     const { schDetails, detailsResponse, vat, features, access, images, loading } = useSelector(state => state.search);
-    
+
     useEffect(() => {
         dispatch(searchDetails(searchId));
     }, [searchId]);
 
     useEffect(() => {
         setDetails(schDetails);
-        if(schDetails && schDetails.u_verify == 'Yes'){
+        if (schDetails && schDetails.u_verify == 'Yes') {
             setVerifyStatus('Verified Host');
         }
     }, [detailsResponse]);
@@ -63,14 +64,14 @@ function FrontSearchDetailsCtrl(){
     // Back to Top
     const [showScroll, setShowScroll] = useState(false)
     const checkScrollTop = () => {
-    if (!showScroll && window.pageYOffset > 400){
-        setShowScroll(true)
-        } else if (showScroll && window.pageYOffset <= 400){
+        if (!showScroll && window.pageYOffset > 400) {
+            setShowScroll(true)
+        } else if (showScroll && window.pageYOffset <= 400) {
             setShowScroll(false)
         }
     };
-    const scrollTop = () =>{
-        window.scrollTo({top: 0, behavior: 'smooth'});
+    const scrollTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
     window.addEventListener('scroll', checkScrollTop);
     //////////// 
@@ -82,7 +83,7 @@ function FrontSearchDetailsCtrl(){
         setIndex(selectedIndex);
     };
     /////////
-    return(
+    return (
         <>
             <LoaderCtrl loaderStatus={loader} />
             <section className="py-4">
@@ -90,17 +91,19 @@ function FrontSearchDetailsCtrl(){
                     <Row>
                         <Col lg={8}>
                             <Carousel activeIndex={index} onSelect={search_Details_handleSelect} indicators={true}>
-                                {images.map(details =>
-                                    <Carousel.Item>
-                                        <img className="d-block w-100" src={storeImages(`./${details.si_path}`)} alt={details.si_name} />
+                                {images.map((details, index) =>
+                                    <Carousel.Item key={index}>
+                                        <img className="d-block w-100" src="" />
                                     </Carousel.Item>
                                 )}
                             </Carousel>
-                                
+
                             <div>
-                                <h3 className="my-4">{ details && details.store_title}</h3>
-                                <p>{details && details.store_description}</p>
-                                <hr/>
+                                <h3 className="my-4">{details && details.store_title}</h3>
+
+                                <div dangerouslySetInnerHTML={{ __html: details.store_description }} />
+
+                                <hr />
                             </div>
 
                             <div className="details_content">
@@ -126,8 +129,8 @@ function FrontSearchDetailsCtrl(){
                                         <label>Monthly Rental</label>
                                     </Col>
                                     <Col className="col-9">
-                                        <b>${details && (parseInt(details.store_cost)+(parseInt(details.store_cost)*(parseInt(vat)/100))).toFixed(2)}</b> <span>/ month ex. VAT</span><br/>
-                                        <b>${((parseInt(details.store_cost)*(parseInt(vat)/100))).toFixed(2) } VAT</b> <span>/ month</span>
+                                        <b>${details && (parseInt(details.store_cost) + (parseInt(details.store_cost) * (parseInt(vat) / 100))).toFixed(2)}</b> <span>/ month ex. VAT</span><br />
+                                        <b>${((parseInt(details.store_cost) * (parseInt(vat) / 100))).toFixed(2)} VAT</b> <span>/ month</span>
                                     </Col>
                                 </Row>
                                 <Row className="mb-3">
@@ -135,7 +138,7 @@ function FrontSearchDetailsCtrl(){
                                         <label>Annual Rental</label>
                                     </Col>
                                     <Col className="col-9">
-                                        <b>${details && ((parseInt(details.store_cost)*12)+((parseInt(details.store_cost)*12)*(parseInt(vat)/100))).toFixed(2)}</b> <span>/ year ex. VAT</span>
+                                        <b>${details && ((parseInt(details.store_cost) * 12) + ((parseInt(details.store_cost) * 12) * (parseInt(vat) / 100))).toFixed(2)}</b> <span>/ year ex. VAT</span>
                                     </Col>
                                 </Row>
                                 <Row className="mb-3">
@@ -162,55 +165,59 @@ function FrontSearchDetailsCtrl(){
                                         <b>{details && details.store_minimum_rental}</b> <span>Month</span>
                                     </Col>
                                 </Row>
-                                <hr/>
+                                <hr />
                             </div>
 
                             <div className="details_content choose_your_location">
                                 <h5 className="mt-4 sm2_hdng">Location</h5>
                                 <Row>
-                                    <Col  sm={7}>
-                                        <b>9961 St Paul Ave. Oceanside, CA 92054</b>
+                                    <Col sm={7}>
+                                        <b>{details && `${details.store_address1}, ${details.store_address2}, ${details.store_city}`} </b>
                                     </Col>
-                                    <Col  sm={5}>
-                                    <InputGroup className="mb-3">
-                                        <FormControl placeholder="Your Location" aria-label="" />
-                                        <InputGroup.Append>
-                                            <InputGroup.Text className="your_location_icon">
-                                                <span></span>
-                                            </InputGroup.Text>
-                                        </InputGroup.Append>
-                                    </InputGroup>
+                                    <Col sm={5}>
+                                        <InputGroup className="mb-3">
+                                            <FormControl placeholder="Your Location" aria-label="" />
+                                            <InputGroup.Append>
+                                                <InputGroup.Text className="your_location_icon">
+                                                    <span></span>
+                                                </InputGroup.Text>
+                                            </InputGroup.Append>
+                                        </InputGroup>
                                     </Col>
                                     <Col sm={12}>
                                         <div className="details_your_location_map">
-                                            <img src={map} alt="" />
+                                            {/* <img src={map} alt="" /> */}
+
+                                            <GoogleMapDetail />
+
                                         </div>
                                     </Col>
                                 </Row>
-                                <hr/>
+                                <hr />
                             </div>
 
                             <div className="details_content">
                                 <h5 className="mt-4 sm2_hdng">Features</h5>
                                 <Row>
-                                    {features.map(details =>
-                                        <Col  sm={3}>
+                                    {features.map((details, index) =>
+                                        <Col sm={3} key={index}>
                                             <div className="features_icon">
-                                            <img src={iconImages(`./${details.fs_icon}`)} alt={details.fs_name} />
+                                                <img src={iconImages(`./${details.fs_icon}`)} alt={details.fs_name} />
                                                 <p>{details.fs_name}</p>
                                             </div>
                                         </Col>
                                     )}
                                 </Row>
-                                <hr/>
+                                <hr />
                             </div>
 
 
                             <div className="details_content">
                                 <h5 className="mt-4 sm2_hdng">Access</h5>
-                                <Row>
+
+                                {/* <Row>
                                     {access.map(details =>
-                                        <Col  sm={6}>
+                                        <Col sm={6}>
                                             <div className="access_card">
                                                 <img src={iconImages(`./${details.as_icon}`)} alt={details.as_name} />
                                                 <div className="access_card_text">
@@ -221,18 +228,21 @@ function FrontSearchDetailsCtrl(){
                                         </Col>
                                     )}
                                 </Row>
-                                <hr/>
+ */}
+
+
+                                <hr />
                             </div>
 
                             <div className="details_content">
                                 <h5 className="mt-4 sm2_hdng">Other Listings At This Location</h5>
                                 <Row>
-                                    <Col  sm={6}>
+                                    <Col sm={6}>
                                         <div className="SearchListPlace_card">
-                                            <img width="100%" src={SearchList1}  alt="" />
+                                            <img width="100%" src={SearchList1} alt="" />
                                             <div className="SearchListPlace_card_body">
                                                 <div className="SearchListPlaceUserArea">
-                                                    <img width="100%" className="profileImg" src={user_r1} alt=""  />
+                                                    <img width="100%" className="profileImg" src={user_r1} alt="" />
                                                     <span className="profileName">Mary Ann Wagner</span>
                                                 </div>
 
@@ -248,12 +258,12 @@ function FrontSearchDetailsCtrl(){
                                             </div>
                                         </div>
                                     </Col>
-                                    <Col  sm={6}>
+                                    <Col sm={6}>
                                         <div className="SearchListPlace_card">
-                                            <img width="100%" src={SearchList2} alt=""  />
+                                            <img width="100%" src={SearchList2} alt="" />
                                             <div className="SearchListPlace_card_body">
                                                 <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r1} alt=""  />
+                                                    <img className="profileImg" src={user_r1} alt="" />
                                                     <span className="profileName">Mary Ann Wagner</span>
                                                 </div>
 
@@ -270,15 +280,15 @@ function FrontSearchDetailsCtrl(){
                                         </div>
                                     </Col>
                                 </Row>
-                                <hr/>
+                                <hr />
                             </div>
 
                             <div className="details_content">
                                 <h5 className="mt-4 sm2_hdng">Host</h5>
                                 <Row>
-                                    <Col  sm={6}>
+                                    <Col sm={6}>
                                         <div className="host_card">
-                                            <img src={details && details.u_pic=='no_img.png' ? profileImages(`./${details.u_pic}`)  : details.u_pic} alt="" />
+                                            <img src={details && details.u_pic == 'no_img.png' ? profileImages(`./${details.u_pic}`) : details.u_pic} alt="" />
                                             <div className="access_card_text">
                                                 <h4>{details && details.u_name}</h4>
                                                 <small>{verifyStatus}</small>
@@ -299,18 +309,18 @@ function FrontSearchDetailsCtrl(){
                                     <Button variant="outline-info">Warehouse </Button>
 
                                     <div className="d-flex user_area align-items-center">
-                                        <img width="30" height="30" src={details && details.u_pic=='no_img.png' ? profileImages(`./${details.u_pic}`)  : details.u_pic} alt="" />
+                                        <img width="30" height="30" src={details && details.u_pic == 'no_img.png' ? profileImages(`./${details.u_pic}`) : details.u_pic} alt="" />
                                         <div className="">
                                             <strong className="d-block">{details && details.u_name}</strong>
                                             <small className="d-block">{verifyStatus}</small>
                                         </div>
                                     </div>
                                     <small>
-                                        <i className="fa fa-map-marker mr-3"></i> 
+                                        <i className="fa fa-map-marker mr-3"></i>
                                         California | 1 Miles
                                     </small>
                                     <div className="SearchListPlaceAreaCost justify-content-between">
-                                        <strong>${details && (parseInt(details.store_cost)+(parseInt(details.store_cost)*(parseInt(vat)/100))).toFixed(2)}/Month </strong>
+                                        <strong>${details && (parseInt(details.store_cost) + (parseInt(details.store_cost) * (parseInt(vat) / 100))).toFixed(2)}/Month </strong>
                                         <span>{details && details.store_size}</span>
                                     </div>
                                     <Button variant="success" className="btn-block">Book Space</Button>
@@ -320,17 +330,17 @@ function FrontSearchDetailsCtrl(){
                                         <img className="mr-3" src={helping} alt="" />
                                         <p className="m-0">$400 insurance included</p>
                                     </div>
-                                    
+
                                     <div className="d-flex justify-content-center align-items-center">
                                         <img className="mr-3" src={support} alt="" />
                                         <p className="m-0">$400 insurance included</p>
                                     </div>
-                                    
+
                                     <div className="d-flex justify-content-center align-items-center">
                                         <img className="mr-3" src={secure_payment} alt="" />
                                         <p className="m-0">$400 insurance included</p>
                                     </div>
-                                    
+
                                     <div className="d-flex justify-content-center align-items-center">
                                         <img className="mr-3" src={agreement} alt="" />
                                         <p className="m-0">$400 insurance included</p>
@@ -341,7 +351,7 @@ function FrontSearchDetailsCtrl(){
                     </Row>
                 </Container>
             </section>
-            
+
             <section className="after_banner_strip">
                 <Container>
                     <h4 className="my-4 sm2_hdng">How Does It Work ?</h4>
@@ -360,7 +370,7 @@ function FrontSearchDetailsCtrl(){
                         <Col md={4}>
                             <div className="ab_strip_card">
                                 <div className="ab_strip_card_icon">
-                                    <img src={connect} alt=""  />
+                                    <img src={connect} alt="" />
                                 </div>
                                 <div className="ab_strip_card_content">
                                     <h4>Connect</h4>
@@ -371,7 +381,7 @@ function FrontSearchDetailsCtrl(){
                         <Col md={4}>
                             <div className="ab_strip_card">
                                 <div className="ab_strip_card_icon">
-                                    <img src={store} alt=""  />
+                                    <img src={store} alt="" />
                                 </div>
                                 <div className="ab_strip_card_content">
                                     <h4>Store</h4>
@@ -386,54 +396,54 @@ function FrontSearchDetailsCtrl(){
             <section className="section_padding">
                 <Container>
                     <h4 className="sm2_hdng">Why stash.guru?</h4>
-                    <Row className="">                        
+                    <Row className="">
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={Local} alt=""  />
+                                <img src={Local} alt="" />
                                 <h5>Local</h5>
-                                <p>There are hundreds of local storage <br/> Hosts to choose from</p>
+                                <p>There are hundreds of local storage <br /> Hosts to choose from</p>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={Affordable} alt=""  />
+                                <img src={Affordable} alt="" />
                                 <h5>Affordable</h5>
-                                <p>Save on average 50% on your<br/> storage bill</p>
+                                <p>Save on average 50% on your<br /> storage bill</p>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={Flexible} alt=""  />
+                                <img src={Flexible} alt="" />
                                 <h5>Flexible</h5>
-                                <p>Clear contracts, no hidden charges<br/> or fees</p>
+                                <p>Clear contracts, no hidden charges<br /> or fees</p>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={Vetted} alt=""  />
+                                <img src={Vetted} alt="" />
                                 <h5>Vetted</h5>
-                                <p>Spaces are quality controlled and<br/> approved by stash.guru</p>
+                                <p>Spaces are quality controlled and<br /> approved by stash.guru</p>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={IDChecks} alt=""  />
+                                <img src={IDChecks} alt="" />
                                 <h5>ID Checks</h5>
-                                <p>All self storage hosts have their identity verified<br/>
-                                 by an independent third party to ensure things<br/>
+                                <p>All self storage hosts have their identity verified<br />
+                                 by an independent third party to ensure things<br />
                                   are nice, safe and secure.</p>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
-                                <img src={Support} alt=""  />
+                                <img src={Support} alt="" />
                                 <h5>stash.guru Support</h5>
-                                <p>Our team is here to help Guests and Hosts if any<br/>
+                                <p>Our team is here to help Guests and Hosts if any<br />
                                  questions or issues arise with storage</p>
                             </div>
                         </Col>
@@ -445,17 +455,17 @@ function FrontSearchDetailsCtrl(){
             <section className="section_padding about_stash">
                 <Container>
                     <h4 className="sm2_hdng text-white">About stash.guru</h4>
-                    <Row className="">                        
+                    <Row className="">
                         <Col md={6} className="about_stash_content">
                             <p className="text-white">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
                             <p className="text-white"> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
                             <Button variant="" className="btn_milky"> <i className="fa fa-phone mr-2"></i>Contact Us</Button>
-                            
+
                             <Button variant="" className="btn_trans ml-2" onClick={scrollTop}> <i className="fa fa-angle-up mr-2"></i>Back to Top</Button>
                         </Col>
                         <Col md={6}>
                             <div className="some_empty_space_polygon_img">
-                                <img src={some_empty_space} alt=""  />
+                                <img src={some_empty_space} alt="" />
                             </div>
                         </Col>
                     </Row>

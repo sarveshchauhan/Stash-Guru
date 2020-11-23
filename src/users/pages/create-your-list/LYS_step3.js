@@ -75,7 +75,15 @@ function CreateYourListStepThitdCtrl() {
         if (stepThree) {
 
             set_title(stepThree.title);
-            set_feature_id(stepThree.features);
+            // set_feature_id(stepThree.features);
+
+            if (stepThree.features) {
+
+                let fr = stepThree.features.split(",");
+                set_features(fr);
+
+            }
+
             set_key(stepThree.keyStatus);
             set_floor_id(stepThree.floor);
             set_sut_id(stepThree.used_type);

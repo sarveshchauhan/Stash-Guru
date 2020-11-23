@@ -12,7 +12,7 @@ function UserCreateYourListCtrl() {
 
     const dispatch = useDispatch();
     const history = useHistory();
-    const { coordinates, coordinatesError, coordinatesLoading, stepOne } = useSelector(state => state.listspace);
+    const { coordinates, coordinatesError, coordinatesLoading, stepOne, address, addressLoading } = useSelector(state => state.listspace);
 
     const [manually, setManually] = useState([!false]);
     const [search, setSearch] = useState("");
@@ -22,6 +22,14 @@ function UserCreateYourListCtrl() {
     const [lat, setLat] = useState("");
     const [lng, setLng] = useState("");
 
+
+    useEffect(() => {
+
+        if (address) {
+            setSearch(address);
+        }
+
+    }, [address]);
 
     useEffect(() => {
 
@@ -123,6 +131,11 @@ function UserCreateYourListCtrl() {
                                 {
                                     coordinatesLoading && <Spinner variant="success" animation="border"></Spinner>
                                 }
+
+                                {
+                                    addressLoading && <Spinner variant="success" animation="border"></Spinner>
+                                }
+
 
                                 {
                                     coordinatesError && <small className="text-danger">{coordinatesError}</small>
