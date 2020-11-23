@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Row, Button, Alert, Spinner } from 'react-bootstrap';
+import { Col, Container, Row, Button, Alert, Spinner, Form } from 'react-bootstrap';
 import { NavLink, useHistory } from 'react-router-dom';
 
 
@@ -17,7 +17,19 @@ function CreateYourListStepSeventhCtrl() {
     const { stepSix, publishSuccess, publishError, publishLoading } = useSelector(state => state.listspace);
     const [aboutDescription, setAboutDescription] = useState("");
 
+    const [bookingTerms, setBookingTerms] = useState(false);
+    const [bookingTermsError, setBookingTermsError] = useState("");
+
+    const [guestTerms, setGuestTerms] = useState(false);
+    const [guestTermsError, setGuestTermsError] = useState("");
+
+    const [guestAgreement, setGuestAgreement] = useState(false);
+    const [guestAgreementError, setGuestAgreementError] = useState("");
+
     const [vatRegistered, setVatRegistered] = useState("Yes");
+
+
+
 
 
     useEffect(() => {
@@ -47,13 +59,47 @@ function CreateYourListStepSeventhCtrl() {
 
 
     const onSubmitForm = (e) => {
+
+        setBookingTermsError("");
+        setGuestAgreementError("");
+        setGuestTermsError("");
+
         e.preventDefault();
-        dispatch(publishSpace({
-            token: JSON.parse(localStorage.getItem("stashGuruToken")),
-            about: aboutDescription,
-            vat: vatRegistered,
-            id: stepSix.id
-        }));
+
+
+        let error = false;
+
+        if (!bookingTerms) {
+            setBookingTermsError("Please agree booking terms");
+            error = true;
+        }
+
+        if (!guestTerms) {
+            setGuestTermsError("Please agree guest terms");
+            error = true;
+        }
+
+        if (!guestAgreement) {
+            setGuestAgreementError("Please agree guest agreement");
+            error = true;
+        }
+
+
+        if (!error) {
+
+            dispatch(publishSpace({
+                token: JSON.parse(localStorage.getItem("stashGuruToken")),
+                about: aboutDescription,
+                vat: vatRegistered,
+                id: stepSix.id
+            }));
+
+
+        }
+
+
+
+
     }
 
 
@@ -105,6 +151,73 @@ function CreateYourListStepSeventhCtrl() {
                 </Container>
             </section>
 
+
+
+            <section className="my-5">
+                <Container>
+                    <Row className="justify-content-between">
+                        <Col lg="5" md="6">
+                            <h3 className="md_bld_txt">Booking Terms</h3>
+
+                            <p>The Booking Terms protect your bookings in case anything goes wrong. Your Guests will sign the before they start a booking.</p>
+                            <p><input type="checkbox" checked={bookingTerms} onChange={() => setBookingTerms(!bookingTerms)} />  I agree to the <a href="#">Booking Terms</a></p>
+
+                        </Col>
+                        <Col lg="4" md="5" className="offset-lg-1">
+                            <h5 className=""><b>Lorem ipsum dolor sit</b></h5>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+
+
+
+            <section className="my-5">
+                <Container>
+                    <Row className="justify-content-between">
+                        <Col lg="5" md="6">
+                            <h3 className="md_bld_txt">ID Verification</h3>
+
+                            <p>We ask all StashGuru Hosts to verify their account before they can respond to Guest enquires and take bookings. You'll only have to do this once, and it only takes a minute or two.</p>
+                            <Button>Verify My Account</Button>
+                            <p>Required to fully enable instant Book. <a href="#">Learn more.</a></p>
+
+                        </Col>
+                        <Col lg="4" md="5" className="offset-lg-1">
+                            <h5 className=""><b>Lorem ipsum dolor sit</b></h5>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+
+
+
+            <section className="my-5">
+                <Container>
+                    <Row className="justify-content-between">
+                        <Col lg="5" md="6">
+                            <h3 className="md_bld_txt">Add your own terms and conditions</h3>
+
+                            <p>If you are a business, you can ask your Guests to agree to your Terms when booking through StashGuru.</p>
+                            <p><input type="checkbox" checked={guestTerms} onChange={() => setGuestTerms(!guestTerms)} />   Guests must sign my Terms & Conditions when booking StashGrur</p>
+                            <p><input type="checkbox" checked={guestAgreement} onChange={() => setGuestAgreement(!guestAgreement)} />   I don't need Guests to agree to my Terms & Conditions.</p>
+
+                        </Col>
+                        <Col lg="4" md="5" className="offset-lg-1">
+                            <h5 className=""><b>Lorem ipsum dolor sit</b></h5>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+
+
+
+
+
+
             <section className="my-5">
                 <Container>
 
@@ -112,6 +225,16 @@ function CreateYourListStepSeventhCtrl() {
                         <Col lg={12}>
                             {
                                 publishError && <Alert variant="danger">{publishError}</Alert>
+                            }
+                            {
+                                bookingTermsError && <Alert variant="danger">{bookingTermsError}</Alert>
+                            }
+                            {
+                                guestTermsError && <Alert variant="danger">{guestTermsError}</Alert>
+                            }
+
+                            {
+                                guestAgreementError && <Alert variant="danger">{guestAgreementError}</Alert>
                             }
                         </Col>
                     </Row>
