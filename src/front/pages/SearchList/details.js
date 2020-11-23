@@ -93,7 +93,7 @@ function FrontSearchDetailsCtrl() {
                             <Carousel activeIndex={index} onSelect={search_Details_handleSelect} indicators={true}>
                                 {images.map((details, index) =>
                                     <Carousel.Item key={index}>
-                                        <img className="d-block w-100" src="" />
+                                        <img className="d-block w-100" src={details.si_path} />
                                     </Carousel.Item>
                                 )}
                             </Carousel>
@@ -141,20 +141,36 @@ function FrontSearchDetailsCtrl() {
                                         <b>${details && ((parseInt(details.store_cost) * 12) + ((parseInt(details.store_cost) * 12) * (parseInt(vat) / 100))).toFixed(2)}</b> <span>/ year ex. VAT</span>
                                     </Col>
                                 </Row>
-                                <Row className="mb-3">
-                                    <Col className="col-3">
-                                        <label>Security Deposit</label>
-                                    </Col>
-                                    <Col className="col-9">
-                                        <b>${details && details.store_security_deposit}</b>
-                                    </Col>
-                                </Row>
+
+                                {
+                                    details && details.store_security_deposit && <Row className="mb-3">
+                                        <Col className="col-3">
+                                            <label>Security Deposit</label>
+                                        </Col>
+
+                                        <Col className="col-9">
+                                            <b>${details && details.store_security_deposit}</b>
+                                        </Col>
+                                    </Row>
+                                }
+
+
                                 <Row className="mb-3">
                                     <Col className="col-3">
                                         <label>Total Size</label>
                                     </Col>
                                     <Col className="col-9">
-                                        <b>{details && details.store_total_size}</b> <span>sq ft. ({details && details.store_size})</span>
+
+                                        {
+                                            details.store_total_size && details.store_total_size.length > 0 &&
+                                            <div>
+                                                <p><strong>Width: </strong> {JSON.parse(details.store_total_size)[0].width}</p>
+                                                <p><strong>Depth: </strong> {JSON.parse(details.store_total_size)[0].depth}</p>
+                                                <p><strong>Height: </strong> {JSON.parse(details.store_total_size)[0].height}</p>
+                                            </div>
+                                        }
+
+                                        <p><strong>Total Size:</strong>   sq ft. ({details && details.store_size})</p>
                                     </Col>
                                 </Row>
                                 <Row className="mb-3">
@@ -213,9 +229,11 @@ function FrontSearchDetailsCtrl() {
 
 
                             <div className="details_content">
-                                <h5 className="mt-4 sm2_hdng">Access</h5>
+                                <h5 className="mt-4 sm2_hdng">Guest</h5>
 
-                                {/* <Row>
+                                <p>{details.gt_name}</p>
+
+                                {/* <Row>   
                                     {access.map(details =>
                                         <Col sm={6}>
                                             <div className="access_card">
@@ -231,6 +249,39 @@ function FrontSearchDetailsCtrl() {
  */}
 
 
+                                <hr />
+                            </div>
+
+
+
+                            <div className="details_content">
+                                <h5 className="mt-4 sm2_hdng">Guest access</h5>
+
+                                <p>{details.gta_name}</p>
+                                <hr />
+                            </div>
+
+
+
+                            <div className="details_content">
+                                <h5 className="mt-4 sm2_hdng">Floor</h5>
+
+                                <p>{details.fl_name}</p>
+                                <hr />
+                            </div>
+
+
+                            <div className="details_content">
+                                <h5 className="mt-4 sm2_hdng">Space Used type</h5>
+
+                                <p>{details.sut_name}</p>
+                                <hr />
+                            </div>
+
+                            <div className="details_content">
+                                <h5 className="mt-4 sm2_hdng">About host</h5>
+
+                                <p>{details.u_about}</p>
                                 <hr />
                             </div>
 
@@ -288,7 +339,7 @@ function FrontSearchDetailsCtrl() {
                                 <Row>
                                     <Col sm={6}>
                                         <div className="host_card">
-                                            <img src={details && details.u_pic == 'no_img.png' ? profileImages(`./${details.u_pic}`) : details.u_pic} alt="" />
+                                            <img src={details && details.u_pic ? details.u_pic : "no_img.png"} alt="" />
                                             <div className="access_card_text">
                                                 <h4>{details && details.u_name}</h4>
                                                 <small>{verifyStatus}</small>
