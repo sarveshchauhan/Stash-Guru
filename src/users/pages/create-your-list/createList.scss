@@ -199,6 +199,10 @@
     justify-content: center;
     min-height: 150px;
 }
+
+.dropzone.upload_verify_id{
+    min-height: 200px;
+}
 .dropzone *{
     outline: 0px;
 }

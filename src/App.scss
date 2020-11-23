@@ -31,8 +31,13 @@ $nobel_color: #9c9c9c;
     border-color: $shamrock_color;
 }
 .text_color_l_orange{
-    color: #FF784F;
+    color: #FF784F; 
 }
+
+
+
+
+
 .btn{
     border-radius: 25px;
     min-height: 48px;
@@ -46,8 +51,13 @@ img{
     color: $shamrock_color;
     border-color: $milky_color;
 }
+
+.btn.btn_milky.focus, 
+.btn.btn_milky:focus,
+.btn_milky:focus-within,
+.btn_milky:not(:disabled):not(.disabled):active,
 .btn.btn_milky:hover{
-    background: $milky_color;
+    background: $milky_color ;
     color: $shamrock_color;
     border-color: $milky_color;
 }
@@ -56,6 +66,10 @@ img{
     color: $milky_color;
     border-color: $shamrock_color;
 }
+.btn_success.focus, 
+.btn_success:focus,
+.btn_success:focus-within,
+.btn_success:not(:disabled):not(.disabled):active,
 .btn_success:hover{
     border-color: $shamrock_color;
     color: $shamrock_color;
@@ -67,6 +81,11 @@ img{
     color: $milky_color;
     border-color: $milky_color;
 }
+
+.btn_trans.focus, 
+.btn_trans:focus,
+.btn_trans:focus-within,
+.btn_trans:not(:disabled):not(.disabled):active,
 .btn_trans:hover{
     background: $milky_color;;
     color: $zambezi_color;
@@ -77,6 +96,11 @@ img{
     color: $deep_sky_color;
     background: transparent;
 }
+
+.btn-outline-info.focus, 
+.btn-outline-info:focus,
+.btn-outline-info:focus-within,
+.btn-outline-info:not(:disabled):not(.disabled):active,
 .btn-outline-info:hover{
     border-color: $deep_sky_color;
     color: $milky_color;
@@ -88,6 +112,11 @@ img{
     color: $milky_color;
     background: transparent;
 }
+
+.btn-outline-success.focus, 
+.btn-outline-success:focus,
+.btn-outline-success:focus-within,
+.btn-outline-success:not(:disabled):not(.disabled):active,
 .btn-outline-success:hover{
     border-color: $shamrock_color;
     color: $milky_color;
@@ -102,8 +131,7 @@ img{
     //  padding-right: 20px;
 }
 
-.btn-primary:not(:disabled):not(.disabled).active, 
-.btn-primary:not(:disabled):not(.disabled):active, 
+
 .show>.btn-primary.dropdown-toggle{
     background-color: $deep_sky_color;
     border-color: $deep_sky_color;
@@ -120,9 +148,12 @@ img{
     border-color: $deep_sky_color;
     background: $milky_color;
 }
+
+.btn_milky_bl.focus,
 .btn_milky_bl:focus,
 .btn_milky_bl:active,
 .btn_milky_bl:focus-within,
+.btn_milky_bl:not(:disabled):not(.disabled):active,
 .btn_milky_bl:hover{
     color: $milky_color;
     border-color: $milky_color;
@@ -134,6 +165,11 @@ img{
     color: $deep_sky_color;
     background: transparent;
 }
+
+.btn_outline_info.focus, 
+.btn_outline_info:focus,
+.btn_outline_info:focus-within,
+.btn_outline_info:not(:disabled):not(.disabled):active,
 .btn_outline_info:hover{
     border-color: $deep_sky_color;
     color: $milky_color;
@@ -146,9 +182,11 @@ img{
     border-color: $shamrock_color;
     background: $milky_color;
 }
+.btn_milky_grn.focus,
 .btn_milky_grn:focus,
 .btn_milky_grn:active,
 .btn_milky_grn:focus-within,
+.btn_milky_grn:not(:disabled):not(.disabled):active,
 .btn_milky_grn:hover{
     color: $milky_color;
     border-color: $milky_color;
@@ -159,6 +197,11 @@ img{
     color: $shamrock_color;
     background: transparent;
 }
+
+.btn_outline_success.focus,
+.btn_outline_success:focus,
+.btn_outline_success:focus-within,
+.btn_outline_success:not(:disabled):not(.disabled):active,
 .btn_outline_success:hover{
     border-color: $shamrock_color;
     color: $milky_color;
@@ -170,12 +213,65 @@ img{
     color: #ffffff;
     background: #FF784F;
 }
+.btn_l_orange.focus,
+.btn_l_orange:focus,
+.btn_l_orange:focus-within,
+.btn_l_orange:not(:disabled):not(.disabled):active,
 .btn_l_orange:hover{
     border-color: #FF784F;
     color: #FF784F;
     background: transparent;;
 }
+.btn.btn-previous{
+    border-color: #34D789;
+    color: #34D789;
+    background: transparent;
+    width: 120px;
+    position: relative;
+    padding-left: 35px;
+}
+.btn.btn-previous::after{
+    content: "\f177";
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
 
+.btn.btn-next{
+    border-color: #34D789;
+    color: #ffffff;
+    background: #34D789;
+    width: 120px;
+    position: relative;
+    padding-right: 35px;
+}
+
+
+.btn.btn-upload{
+    border-color: #34D789;
+    color: #ffffff;
+    background: #34D789;
+    width: 120px;
+    position: relative;
+}
+.btn.btn-next::after{
+    content: "\f178";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
 
 .btn i.fa.fa-angle-right{
     margin-left: 10px;

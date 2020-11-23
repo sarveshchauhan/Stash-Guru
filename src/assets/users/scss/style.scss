@@ -322,3 +322,97 @@ button.P_verify_btn:hover{
     top: 5px;
     left: -22px;
 }
+
+
+
+
+
+.fade.modal-backdrop.show{
+    background: #1A9A76;
+}
+.user_modal .modal-header {
+    border-bottom: 0px solid #dee2e6;
+}
+.user_modal .modal-footer{
+    border-top: 0px solid #dee2e6;
+}
+
+.user_modal .user_modal_close_btn{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    border: 0px;
+    outline: 0px;
+    font-size: 30px;
+    z-index: -1;
+}
+.photoTips_row .col .photoTips_img_card{
+    height: 55px;
+    width: 90px;
+    display: inline-flex;
+    overflow: hidden;
+    border-radius: 5px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+}
+
+.photoTips_row .col{
+    padding-bottom: 50px;
+    position: relative;
+}
+.photoTips_row .col::after,
+.photoTips_row .col:nth-child(4)::after{
+    position: absolute;
+    content: "\f00d";
+    display: inline-block;
+    font: normal normal normal 10px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    color: #34D789;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid #FF784F;
+    background-color: #FF784F;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    border-radius: 50%;
+    color: #ffffff;
+
+}
+
+.photoTips_row .col:nth-child(4)::after{
+    content: "\f00c";
+    border: 1px solid #34D789;
+    background-color: #34D789;
+}
+.photoTips_row .col:nth-child(1) .photoTips_img_card{
+    border: 2px solid #FF784F;
+    padding: 2px;
+}
+.photoTips_row .col:nth-child(1) .photoTips_img_card img{
+    transform: rotate(10deg);
+}
+.photoTips_row .col:nth-child(2) .photoTips_img_card{
+    border: 2px solid #FF784F;
+}
+.photoTips_row .col:nth-child(2) .photoTips_img_card img{
+    transform: rotate(-10deg);
+}
+.photoTips_row .col:nth-child(3) .photoTips_img_card{
+    border: 2px solid #FF784F;
+}
+
+.photoTips_row .col:nth-child(3) .photoTips_img_card img{
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+
+}
+.photoTips_row .col:nth-child(4) .photoTips_img_card{
+    border: 2px solid #34D789;
+}
