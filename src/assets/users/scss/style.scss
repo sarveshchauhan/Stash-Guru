@@ -174,7 +174,8 @@ select.form-control{
 }
 
 
-
+.box_Card,
+.sg_box_flex_card,
 .verificationCard,
 .sg_box_flex_card{
     background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -415,4 +416,200 @@ button.P_verify_btn:hover{
 }
 .photoTips_row .col:nth-child(4) .photoTips_img_card{
     border: 2px solid #34D789;
+}
+
+
+
+.Payment_Payout .no_any_invoice_card .box_CardBody,
+.Payment_Payout .AddCardPaymentBox .box_CardBody,
+.Payment_Payout .AddBankDetailsBox .box_CardBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.Payment_Payout .no_any_invoice_card .box_CardBody{
+    min-height: 575px;
+}
+.Payment_Payout .AddCardPaymentBox .box_CardBody{
+    min-height: 300px;
+}
+.Payment_Payout .AddBankDetailsBox .box_CardBody{
+    min-height: 200px;
+}
+
+
+
+
+
+.Referrals .ShareLinkAndEarnCard .box_CardBody,
+.Referrals .EarningsBox .box_CardBody,
+.Referrals .YourReferralsBox .box_CardBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.Referrals .ShareLinkAndEarnCard .box_CardBody{
+    min-height: 530px;
+}
+.Referrals .EarningsBox .box_CardBody{
+    min-height: 250px;
+}
+.Referrals .YourReferralsBox .box_CardBody{
+    min-height: 200px;
+}
+
+.Referrals .EarningsBox{
+    background: transparent linear-gradient(229deg, #34D789 0%, #1BBDF6 100%) 0% 0% no-repeat padding-box;
+}
+
+.Referrals .PendingEarningsBox,
+.Referrals .EarningsBox .EarningsBox_header{
+    color: #ffffff;
+}
+
+.Referrals .EarningsBox .EarningsBox_header h6{
+    color: #ffffff;
+    margin: 0px;
+}
+.Referrals .EarningsBox .EarningsBox_header h2{
+    color: #ffffff;
+    margin-top: 20px;
+    font-weight: 900;
+}
+.Referrals .EarningsBox .EarningsBox_header small,
+.Referrals .PendingEarningsBox small{
+    font-weight: 100;
+}
+.Referrals .PendingEarningsBox{
+    background: transparent linear-gradient(229deg, #1BBDF6 0%, #34D789 100%) 0% 0% no-repeat padding-box;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px #0000001A;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.Referrals .PendingEarningsBox h6{
+    margin: 0px;
+}
+.Referrals .PendingEarningsBox h4{
+    color: #ffffff;
+    margin: 5px;
+    font-weight: 900;
+}
+
+
+
+
+.Referrals .ShareLinkAndEarnCard .box_CardBody .referals_img{
+    position: relative;
+}
+.Referrals .ShareLinkAndEarnCard .box_CardBody h6{
+    margin: 0;
+}
+.Referrals .ShareLinkAndEarnCard .box_CardBody h2{
+    font-size: 35px;
+    font-weight: 800;
+    color: $shamrock_color;
+    margin: 0;
+}
+.Referrals .ShareLinkAndEarnCard .box_CardBody h5{
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+}
+.Referrals .ShareLinkAndEarnCard .box_CardBody .referals_img img{
+    width: 250px;
+    position: relative;
+}
+.Referrals .ShareLinkAndEarnCard .box_CardBody .referals_img strong{
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    transform: translateX(-50%);
+    top: 56px;
+    width: 55px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 15px;
+}
+.Referrals .ShareLinkAndEarnCard .box_CardBody .referals_img span{
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    transform: translateX(-50%);
+    top: 115px;
+    width: 100px;
+    font-size: 8px;
+    font-weight: 500;
+    line-height: 11px;
+}
+.copy_your_share_link{
+    max-width: 500px;
+    display: block;
+    margin: 20px auto;
+}
+.copy_your_share_link .input-group{
+    border-radius: 25px;
+    box-shadow: 0px 5px 15px #34D78970;
+}
+.copy_your_share_link .form-control{
+    border: 0px;
+    color: $shamrock_color;
+}
+.copy_your_share_link .btn.btn_success{
+    border-radius: 25px;
+    font-size: 15px;
+    min-width: 120px;
+}
+.share_to_social_media .nav-item .nav-link{
+    padding: 10px;
+}
+.share_to_social_media .nav-item .nav-link img{
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
+
+.Payment_Payout .no_any_invoice_card .box_CardBody img{
+    max-width: 150px;
+}
+.Payment_Payout .AddCardPaymentBox .box_CardBody img{
+    max-width: 100px;
+}
+.Payment_Payout .AddBankDetailsBox .box_CardBody img{
+    max-width: 70px;
+}
+
+
+.how_it_work_share_link_card{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 10px #0000001A;
+    border-radius: 11px;
+    padding: 25px;
+    margin: 15px auto;
+}
+.how_it_work_share_link_card_body{
+    text-align: center;
+    width: 200px;
+    display: block;
+    margin: 20px auto;
+}
+.how_it_work_share_link_card_body .how_it_work_shares_img{
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    display: block;
+    margin: 20px auto 0px;
 }

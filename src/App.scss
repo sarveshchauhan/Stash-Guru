@@ -352,5 +352,9 @@ input.form-control{
  
 }
 
+select.form-control, input.form-control.rectu_form_field,
+select.form-control, input.form-control.rectu_form_field{
+    border-radius: 5px;;
+}
 
 // sass color code End

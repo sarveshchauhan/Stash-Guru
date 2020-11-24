@@ -124,7 +124,7 @@ function UserVerificationCtrl(){
                             <Form>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label>Select Document Type</Form.Label>
-                                    <Form.Control as="select" style={{borderRadius:'5px'}}>
+                                    <Form.Control className="rectu_form_field" as="select">
                                         <option>Driving Licence</option>
                                         <option>Voter Id Card</option>
                                         <option>Aadhar Card</option>
@@ -133,7 +133,7 @@ function UserVerificationCtrl(){
 
                                 <Form.Group controlId="formBasicPassword">
                                     <Form.Label>Full Name</Form.Label>
-                                    <Form.Control type="text" placeholder="Password"  style={{borderRadius:'5px'}} />
+                                    <Form.Control className="rectu_form_field" type="text" placeholder="Password"  />
                                 </Form.Group>
                             </Form>
                         </div>
