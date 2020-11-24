@@ -133,7 +133,7 @@ function UserVerificationCtrl(){
 
                                 <Form.Group controlId="formBasicPassword">
                                     <Form.Label>Full Name</Form.Label>
-                                    <Form.Control className="rectu_form_field" type="text" placeholder="Password"  />
+                                    <Form.Control className="rectu_form_field" type="text" placeholder="Mike Garrett"  />
                                 </Form.Group>
                             </Form>
                         </div>
