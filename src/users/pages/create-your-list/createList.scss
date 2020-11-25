@@ -293,3 +293,171 @@
     background-color: #1BBDF6 !important;
     color: #ffffff !important; 
 }
+.ListPreviewCard{
+    border: 1px solid rgba(52, 215, 137, 0.5);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 15px auto;
+}
+.ListPreviewCardHeader{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px 10px;
+    background-color: rgba(52, 215, 137, 0.15);
+    align-items: center;
+}
+.ListPreviewCardHeader h5{
+    color: #333333;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+}
+.ListPreviewCardBody{
+    padding: 10px;
+}
+.ListPreviewCardBody table.table{
+    margin: 0px;
+}
+.ListPreviewCardBody table.table,
+.ListPreviewCardBody table.table tr,
+.ListPreviewCardBody table.table tr th,
+.ListPreviewCardBody table.table tr td{
+    border: 0px;
+}
+.ListPreviewCardBody table.table tr th{
+    font-size: 12px;
+    font-weight: 300;
+}
+.ListPreviewCardBody table.table tr td{
+    font-size: 14px;
+    font-weight: 500;
+}
+span.b_dt,
+span.g_dt{
+    padding-left: 8px;
+    padding-right: 5px;
+   position: relative;
+}
+span.b_dt::after,
+span.g_dt::after{
+    content: '';
+   position: absolute;
+   width: 5px;
+   height: 5px;
+   border-radius: 50%;
+   display: inline-block;
+   left: 0px;
+   top: 8px;
+}
+span.g_dt::after{
+   border: 1px solid #34D789;
+}
+span.b_dt::after{
+   border: 1px solid #1BBDF6;
+}
+.ListPreviewCardBody table.table tr td strong{
+    font-size: 20px;
+    font-weight: 900;
+    color: $shamrock_color;
+}
+
+.ListPreviewCard.PreviewSizePricingCard{
+    background-image: url('../../../assets/users//images/icons/homeSize.png');
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: right 10px bottom 10px;
+}
+.ListPreviewCard.PreviewLocationCard{
+    background-image: url('../../../assets/users//images/icons/location.png');
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: right 10px bottom 10px;
+    position: relative;
+    border-color: #1BBDF6;
+}
+
+.ListPreviewCard .btn-edit{
+    border-color: #34D789;
+    color: #34D789;
+}
+
+.ListPreviewCard.PreviewLocationCard .btn-edit{
+    color: #1BBDF6;
+}
+.GoogleMapLocation{
+    position: relative;
+    margin: 0px 0px 20px 0px;
+    width: 100%;
+    height: 200px;
+
+}
+.PreviewAddedPhotosCard{
+    margin: 5px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #707070;
+    height: 75px;
+    max-width: 150px;
+}
+
+
+
+.ListPreviewCard.PreviewProfileCard .ListPreviewCardBody .PreviewProfileImg{
+    max-width: 170px;
+    padding: 0px;
+}
+.ListPreviewCard.PreviewProfileCard .ListPreviewCardBody .PreviewProfileImg img{
+    width: 170px;
+    height: 170px;
+    border-radius: 5px;
+    border: 1px solid #707070;
+}
+.ListPreviewCard.PreviewProfileCard .ListPreviewCardBody .PreviewProfilecontent{
+    padding: 0px;
+    padding-left: 15px;
+}
+@media (max-width: 400px){
+    .ListPreviewCard.PreviewProfileCard .ListPreviewCardBody .PreviewProfileImg{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }    
+    .ListPreviewCard.PreviewProfileCard .ListPreviewCardBody .PreviewProfilecontent{
+        padding-left: 0px;
+    }
+}
+
+.ListPreviewCheckItOut{
+    background-color: #34D789;
+    background-image: url('../../../assets/users//images/bg/ListPreviewCheckItOut.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right bottom ;
+    position: relative;
+    border-radius: 10px;
+    padding: 70px 0px 70px 70px;
+    color: #ffffff;
+}
+.ListPreviewCheckItOut h3{
+    font-size: 40px;
+    font-weight: 700;
+}
+.ListPreviewCheckItOut p{
+    font-size: 17px;
+    font-weight: 100;
+}
+
+@media (max-width: 767px){
+    .ListPreviewCheckItOut{
+        padding: 20px 0px 20px 20px;
+        background-size: 200px;
+        color: #ffffff;
+    }
+    
+.ListPreviewCheckItOut p br{
+    display: none;
+}
+}

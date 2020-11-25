@@ -222,6 +222,8 @@ img{
     color: #FF784F;
     background: transparent;;
 }
+
+
 .btn.btn-previous{
     border-color: #34D789;
     color: #34D789;
@@ -272,6 +274,31 @@ img{
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
 }
+
+.btn-edit{
+    border-color: #ffffff;
+    color: #333333;
+    background: #ffffff;
+    height: 35px !important;
+    width: 35px !important;
+    line-height: 35px !important;
+    padding: 0px;
+    display: block;
+    text-align: center;
+    min-height: auto;
+}
+.btn-edit.focus,
+.btn-edit:focus,
+.btn-edit:focus-within,
+.btn-edit:not(:disabled):not(.disabled):active,
+.btn-edit:hover{
+    border-color: rgba(52, 215, 137, 0.5);
+    color: #000000;
+    background: #ffffff;
+}
+
+
+
 
 .btn i.fa.fa-angle-right{
     margin-left: 10px;
@@ -357,4 +384,8 @@ select.form-control, input.form-control.rectu_form_field{
     border-radius: 5px;;
 }
 
+.d-flex-wrap{
+    display: flex;
+    flex-wrap: wrap;
+}
 // sass color code End

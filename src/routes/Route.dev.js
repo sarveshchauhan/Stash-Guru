@@ -46,6 +46,7 @@ import CreateYourListStepForthCtrl from '../users/pages/create-your-list/LYS_ste
 import CreateYourListStepFifthCtrl from '../users/pages/create-your-list/LYS_step5';
 import CreateYourListStepSixthCtrl from '../users/pages/create-your-list/LYS_step6';
 import CreateYourListStepSeventhCtrl from '../users/pages/create-your-list/LYS_step7';
+import ListPreviewCtrl from '../users/pages/create-your-list/listPreview';
 import ForgotPassword from '../front/pages/register/ForgotPassword';
 import ResetPassword from '../front/pages/register/ResetPassword';
 
@@ -109,6 +110,8 @@ const Root = () => (
 
             {/* <Route exact path="/create-your-list-step7" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepSeventhCtrl} {...props} />)} /> */}
             <PrivateRoute exact path="/create-your-list-step7" parentComponent={UserPagesLayoutCtrl} childComponent={CreateYourListStepSeventhCtrl} />
+
+            <Route exact path="/list-preview" render={(props) => (<UserPagesLayoutCtrl children={ListPreviewCtrl} {...props} />)} />
 
 
         </Switch>
