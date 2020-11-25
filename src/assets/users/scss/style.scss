@@ -633,3 +633,70 @@ button.P_verify_btn:hover{
     display: block;
     margin: 20px auto 0px;
 }
+
+
+
+
+.guest-list-item,
+.guest-list-item-selected{
+    border: 1px solid;
+    padding: 10px;
+    border-color: #4fd78a;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border-radius: 10px;
+    margin: 10px auto;
+}
+.guest-list-item:hover,
+.guest-list-item-selected{
+    color: #ffffff;
+    background-color: #4fd78a;
+}
+
+.guest-list-item .guest_list_icons{
+    width: 60px;
+}
+.guest-list-item .guest_list_content{
+    width: calc(100% - 60px);
+}
+.guest-list-item .guest_list_content h5,
+.guest-list-item-selected .guest_list_content h5{
+    font-size: 17px;
+    color: #4fd78a;
+}
+.guest-list-item:hover .guest_list_content h5,
+.guest-list-item-selected .guest_list_content h5{
+    color: #ffffff;
+    font-size: 17px;
+}
+.guest-list-item .guest_list_content small,
+.guest-list-item-selected .guest_list_content small{
+    font-size: 14px;
+}
+
+
+
+.guest-list-item .guest_list_w_img{
+    display: none;
+}
+.guest-list-item .guest_list_g_img{
+    display: block;
+}
+.guest-list-item:hover .guest_list_w_img,
+.guest-list-item-selected .guest_list_w_img{
+    display: block;
+}
+.guest-list-item:hover .guest_list_g_img,
+.guest-list-item-selected .guest_list_g_img{
+    display: none;
+}
+
+.guest-list-item img,
+.guest-list-item-selected img{
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+}

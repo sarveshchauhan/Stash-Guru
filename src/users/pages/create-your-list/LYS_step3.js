@@ -5,6 +5,8 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { clearlistSpaceMessageFields, getFeatures, getFloors, getGuestAccess, getGuests, getSpaceType, getSpaceUsedFor, stepThreeSave, stepThreeUpdate } from '../../../redux/listspace/listspaceActions';
 
 import StepsNavListCtrl from './steps_nav_list';
+import G_infinite from '../../../assets/users/images/icons/create_list_step/G_infinite.png';
+import infinite from '../../../assets/users/images/icons/create_list_step/infinite.png';
 
 function CreateYourListStepThitdCtrl() {
 
@@ -377,7 +379,7 @@ function CreateYourListStepThitdCtrl() {
                 <Container>
 
                     <Row className="justify-content-between">
-                        <Col lg="6" md="7">
+                        <Col lg="7" md="7">
                             <h3 className="md_bld_txt mb-3">When will Guests be able to access the space?</h3>
                         </Col>
 
@@ -391,7 +393,14 @@ function CreateYourListStepThitdCtrl() {
                                 guestList && guestList.map((gst) => (
 
                                     <div className={+gst.gt_id === guest ? "guest-list-item-selected" : "guest-list-item"} onClick={() => set_guest(gst.gt_id)}>
-                                        {gst.gt_name}
+                                        <div className="guest_list_icons">
+                                            <img className="guest_list_g_img" src={G_infinite} />
+                                            <img className="guest_list_w_img" src={infinite} />
+                                        </div>
+                                        <div className="guest_list_content">
+                                            <h5 className="m-0">{gst.gt_name}</h5>
+                                            <small className="d-block">Guest are free to access the space whenever they want.</small>
+                                        </div>
                                     </div>
 
                                 ))
@@ -422,12 +431,20 @@ function CreateYourListStepThitdCtrl() {
                         <Col lg="12" md="12">
                             <h3 className="md_bld_txt mb-3">How will Guests access the space?</h3>
                         </Col>
-                        <Col lg="12">
+                        <Col lg="7" md="8">
 
                             {
                                 guestAccessList && guestAccessList.map((gst) => (
                                     <div className={+gst.gta_id === +guest_access ? "guest-list-item-selected" : "guest-list-item"} onClick={() => set_guest_access(gst.gta_id)}>
-                                        {gst.gta_name}
+                                        <div className="guest_list_icons">
+                                            <img className="guest_list_g_img" src={G_infinite} />
+                                            <img className="guest_list_w_img" src={infinite} />
+                                        </div>
+                                        <div className="guest_list_content">
+                                            <h5 className="m-0">{gst.gta_name}</h5>
+                                            <small className="d-block">Guest are free to access the space whenever they want.</small>
+                                        </div>
+                                        
                                     </div>
                                 ))
                             }
@@ -435,10 +452,10 @@ function CreateYourListStepThitdCtrl() {
 
                         </Col>
 
-                        {/* <Col lg="4" md="5" className="offset-lg-1">
+                        <Col lg="4" md="5" className="offset-lg-1">
                             <h5 className=""><b>Lorem ipsum dolor sit</b></h5>
                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                        </Col> */}
+                        </Col>
 
 
                     </Row>
