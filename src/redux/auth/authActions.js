@@ -103,6 +103,7 @@ export const loginUser = (user) => {
                     dispatch(loginUserSuccess(loginData));
 
                     set_login_token(JSON.stringify(loginResponse.token));
+                    localStorage.setItem("userEmail", user.email);
 
                     const query = new URLSearchParams(window.location.search);
 
@@ -150,6 +151,8 @@ export const googleLogin = (token) => {
 
                     set_login_token(JSON.stringify(loginResponse.token));
 
+                    localStorage.setItem("userEmail", loginResponse.email);
+
                     const query = new URLSearchParams(window.location.search);
 
                     if (query.get('redirect_url')) {
@@ -194,6 +197,7 @@ export const loginWithFaceBook = (data) => {
                     dispatch(facebookLoginSuccess(response));
 
                     set_login_token(JSON.stringify(loginResponse.token));
+                    localStorage.setItem("userEmail", loginResponse.email);
 
                     const query = new URLSearchParams(window.location.search);
 

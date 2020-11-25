@@ -51,8 +51,15 @@ function CreateYourListStepSeventhCtrl() {
     useEffect(() => {
 
         if (stepSeven) {
+
+
             setAboutDescription(stepSeven.about);
-            setVatRegistered(stepSeven.vat);
+
+
+            if (stepSeven.vat) {
+                setVatRegistered(stepSeven.vat);
+            }
+
         }
 
     }, [stepSeven]);

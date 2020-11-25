@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Container, Row, Carousel, InputGroup, FormControl, Button } from 'react-bootstrap';
+import { Col, Container, Row, Carousel, InputGroup, FormControl, Button, Form } from 'react-bootstrap';
 
 
 // Assets Include
@@ -32,9 +32,17 @@ import { searchDetails } from '../../../redux';
 import { useParams } from 'react-router-dom';
 import LoaderCtrl from '../../common/components/loader';
 import GoogleMapDetail from '../../common/components/google-map/GoogleMapDetail';
+import ProfilePlaceholder from '../../../assets/front/images/profile-placeholder.png';
+import MessageForm from './MessageForm';
+import MessageList from './MessageList';
+
+
+
 const iconImages = require.context('../../../assets/front/images/icons/list-details', true);
 const storeImages = require.context('../../../assets/front/images/store', true);
 const profileImages = require.context('../../../assets/users/images/profile', true);
+
+
 
 function FrontSearchDetailsCtrl() {
 
@@ -56,6 +64,8 @@ function FrontSearchDetailsCtrl() {
             setVerifyStatus('Verified Host');
         }
     }, [detailsResponse]);
+
+
 
     useEffect(() => {
         setLoader(loading);
@@ -83,6 +93,9 @@ function FrontSearchDetailsCtrl() {
         setIndex(selectedIndex);
     };
     /////////
+
+
+
     return (
         <>
             <LoaderCtrl loaderStatus={loader} />
@@ -129,16 +142,7 @@ function FrontSearchDetailsCtrl() {
                                         <label>Monthly Rental</label>
                                     </Col>
                                     <Col className="col-9">
-                                        <b>${details && (parseInt(details.store_cost) + (parseInt(details.store_cost) * (parseInt(vat) / 100))).toFixed(2)}</b> <span>/ month ex. VAT</span><br />
-                                        <b>${((parseInt(details.store_cost) * (parseInt(vat) / 100))).toFixed(2)} VAT</b> <span>/ month</span>
-                                    </Col>
-                                </Row>
-                                <Row className="mb-3">
-                                    <Col className="col-3">
-                                        <label>Annual Rental</label>
-                                    </Col>
-                                    <Col className="col-9">
-                                        <b>${details && ((parseInt(details.store_cost) * 12) + ((parseInt(details.store_cost) * 12) * (parseInt(vat) / 100))).toFixed(2)}</b> <span>/ year ex. VAT</span>
+                                        <b>${details.store_cost}</b> <span>/ month </span><br />
                                     </Col>
                                 </Row>
 
@@ -164,23 +168,16 @@ function FrontSearchDetailsCtrl() {
                                         {
                                             details.store_total_size && details.store_total_size.length > 0 &&
                                             <div>
-                                                <p><strong>Width: </strong> {JSON.parse(details.store_total_size)[0].width}</p>
-                                                <p><strong>Depth: </strong> {JSON.parse(details.store_total_size)[0].depth}</p>
-                                                <p><strong>Height: </strong> {JSON.parse(details.store_total_size)[0].height}</p>
+                                                <p><strong>Width: </strong> {JSON.parse(details.store_total_size)[0].width} ft</p>
+                                                <p><strong>Depth: </strong> {JSON.parse(details.store_total_size)[0].depth} ft</p>
+                                                <p><strong>Height: </strong> {JSON.parse(details.store_total_size)[0].height} ft</p>
                                             </div>
                                         }
 
-                                        <p><strong>Total Size:</strong>   sq ft. ({details && details.store_size})</p>
+                                        {/* <p><strong>Total Size:</strong>   sq ft. ({details && details.store_size})</p> */}
                                     </Col>
                                 </Row>
-                                <Row className="mb-3">
-                                    <Col className="col-3">
-                                        <label>Minimum Rental</label>
-                                    </Col>
-                                    <Col className="col-9">
-                                        <b>{details && details.store_minimum_rental}</b> <span>Month</span>
-                                    </Col>
-                                </Row>
+
                                 <hr />
                             </div>
 
@@ -188,7 +185,7 @@ function FrontSearchDetailsCtrl() {
                                 <h5 className="mt-4 sm2_hdng">Location</h5>
                                 <Row>
                                     <Col sm={7}>
-                                        <b>{details && `${details.store_address1}, ${details.store_address2}, ${details.store_city}`} </b>
+                                        <b>{details && `${details.store_address1}, ${details.store_address2 ? `${details.store_address2}, ` : ""} ${details.store_city}`} </b>
                                     </Col>
                                     <Col sm={5}>
                                         <InputGroup className="mb-3">
@@ -348,6 +345,17 @@ function FrontSearchDetailsCtrl() {
                                         </div>
                                     </Col>
                                 </Row>
+
+                                <Row className="mt-4">
+                                    <Col sm={12}>
+                                        <MessageForm />
+                                    </Col>
+                                </Row>
+
+
+                                <MessageList />
+
+
                             </div>
 
                         </Col>
@@ -368,11 +376,11 @@ function FrontSearchDetailsCtrl() {
                                     </div>
                                     <small>
                                         <i className="fa fa-map-marker mr-3"></i>
-                                        California | 1 Miles
+                                        {`${details.store_address1}, ${details.store_address2}, ${details.store_city}, ${details.store_postcode}`}
                                     </small>
                                     <div className="SearchListPlaceAreaCost justify-content-between">
-                                        <strong>${details && (parseInt(details.store_cost) + (parseInt(details.store_cost) * (parseInt(vat) / 100))).toFixed(2)}/Month </strong>
-                                        <span>{details && details.store_size}</span>
+                                        <strong>${details && details.store_cost}/Month </strong>
+                                        <span>{details && details.store_size} sq.ft.</span>
                                     </div>
                                     <Button variant="success" className="btn-block">Book Space</Button>
                                 </div>

@@ -19,7 +19,12 @@ function SignUpComponentCtrl() {
     }, [loading]);
 
     useEffect(() => {
-        dispatch(verifyToken(token));
+
+        if (token) {
+            dispatch(verifyToken(token));
+        }
+
+
     }, [token]);
 
     return (

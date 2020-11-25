@@ -24,8 +24,8 @@ import { Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 
-function PageSideMenuCtrl(){
-    return(
+function PageSideMenuCtrl() {
+    return (
         <>
             <Nav className="ml-2">
                 <Nav.Item className="dash_menu_list">
@@ -40,35 +40,41 @@ function PageSideMenuCtrl(){
                         <img className="img_active" src={G_hand} />
                         Booking
                     </NavLink>
-                    
+
                     <NavLink className="nav-link" to="/listing">
                         <img className="img_deactive" src={B_listing} />
                         <img className="img_active" src={G_listing} />
                         Listing
                     </NavLink>
-                    
+
                     <NavLink className="nav-link" to="/verification">
                         <img className="img_deactive" src={B_verify} />
                         <img className="img_active" src={G_verify} />
                         Verification
                     </NavLink>
-                    
+
                     <NavLink className="nav-link" to="/profile">
                         <img className="img_deactive" src={B_profile} />
                         <img className="img_active" src={G_profile} />
                         Profile
                     </NavLink>
-                    
+
                     <NavLink className="nav-link" to="/referrals">
                         <img className="img_deactive" src={B_share} />
                         <img className="img_active" src={G_share} />
                         Referrals
                     </NavLink>
-                    
+
                     <NavLink className="nav-link" to="/payment">
                         <img className="img_deactive" src={B_payment} />
                         <img className="img_active" src={G_payment} />
                         Payment
+                    </NavLink>
+
+                    <NavLink className="nav-link" to="/chat">
+                        <img className="img_deactive" src={B_payment} />
+                        <img className="img_active" src={G_payment} />
+                        Chat
                     </NavLink>
                 </Nav.Item>
             </Nav>

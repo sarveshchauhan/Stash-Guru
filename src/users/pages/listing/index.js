@@ -12,6 +12,14 @@ function UserListingtrl() {
     const dispatch = useDispatch();
     const { listAllSpaceLoading, allSpaceList, listAllSpaceError, draftStatus, draftStatusError } = useSelector(state => state.listspace);
 
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
     useEffect(() => {
 
         dispatch(listAllSpace({

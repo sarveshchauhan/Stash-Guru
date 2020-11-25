@@ -1,4 +1,4 @@
-import { GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_ONE_SAVE, STEP_TWO_SAVE, SPACE_USED_FOR_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FEATURE_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, FLOOR_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_SAVE_FAILURE, CLEAR_MESSAGE_FIELDS, STEP_THREE_UPDATE_CLIENT, STEP_FOUR_UPDATE_CLIENT, STEP_FOUR_SAVE_REQUEST, STEP_FOUR_SAVE_SUCCESS, STEP_FOUR_SAVE_FAILURE, GET_PRICE_PERCENTAGE_REQUEST, GET_PRICE_PERCENTAGE_SUCCESS, GET_PRICE_PERCENTAGE_FAILURE, UNIT_REQUEST, UNIT_SUCCESS, UNIT_FAILURE, STEP_FIVE_SAVE_REQUEST, STEP_FIVE_SAVE_SUCCESS, STEP_FIVE_SAVE_FAILURE, STEP_FIVE_UPDATE_CLIENT, UPLOAD_REQUEST, UPLOAD_SUCCESS, UPLOAD_FAILURE, LIST_DETAIL_REQUEST, LIST_DETAIL_SUCCESS, LIST_DETAIL_FAILURE, CAPTION_UPDATE_REQUEST, CAPTION_UPDATE_SUCCESS, CAPTION_UPDATE_FAILURE, STEP_SIX_UPDATE_CLIENT, PUBLISH_REQUEST, PUBLISH_SUCCESS, PUBLISH_FAILURE, CLEAR_LIST_SPACE_STEPS, LIST_ALL_SPACE_REQUEST, LIST_ALL_SPACE_SUCCESS, LIST_ALL_SPACE_FAILURE, DRAFT_STATUS_REQUEST, DRAFT_STATUS_SUCCESS, DRAFT_STATUS_FAILURE, GUEST_REQUEST, GUEST_SUCCESS, GUEST_FAILURE, GUEST_ACCESS_REQUEST, GUEST_ACCESS_SUCCESS, GUEST_ACCESS_FAILURE, UPDATE_COORDINATES_CLIENT, SET_MANUAL_COORDINATES, ADDRESS_REQUEST, ADDRESS_SUCCESS, ADDRESS_FAILURE } from "./listspaceTypes"
+import { GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCESS, SPACE_TYPE_FAILURE, SPACE_TYPE_REQUEST, SPACE_TYPE_SUCCESS, SPACE_USED_FOR_REQUEST, SPACE_USED_FOR_SUCCESS, STEP_ONE_SAVE, STEP_TWO_SAVE, SPACE_USED_FOR_FAILURE, FEATURE_REQUEST, FEATURE_SUCCESS, FEATURE_FAILURE, FLOOR_REQUEST, FLOOR_SUCCESS, FLOOR_FAILURE, STEP_THREE_SAVE_REQUEST, STEP_THREE_SAVE_SUCCESS, STEP_THREE_SAVE_FAILURE, CLEAR_MESSAGE_FIELDS, STEP_THREE_UPDATE_CLIENT, STEP_FOUR_UPDATE_CLIENT, STEP_FOUR_SAVE_REQUEST, STEP_FOUR_SAVE_SUCCESS, STEP_FOUR_SAVE_FAILURE, GET_PRICE_PERCENTAGE_REQUEST, GET_PRICE_PERCENTAGE_SUCCESS, GET_PRICE_PERCENTAGE_FAILURE, UNIT_REQUEST, UNIT_SUCCESS, UNIT_FAILURE, STEP_FIVE_SAVE_REQUEST, STEP_FIVE_SAVE_SUCCESS, STEP_FIVE_SAVE_FAILURE, STEP_FIVE_UPDATE_CLIENT, UPLOAD_REQUEST, UPLOAD_SUCCESS, UPLOAD_FAILURE, LIST_DETAIL_REQUEST, LIST_DETAIL_SUCCESS, LIST_DETAIL_FAILURE, CAPTION_UPDATE_REQUEST, CAPTION_UPDATE_SUCCESS, CAPTION_UPDATE_FAILURE, STEP_SIX_UPDATE_CLIENT, PUBLISH_REQUEST, PUBLISH_SUCCESS, PUBLISH_FAILURE, CLEAR_LIST_SPACE_STEPS, LIST_ALL_SPACE_REQUEST, LIST_ALL_SPACE_SUCCESS, LIST_ALL_SPACE_FAILURE, DRAFT_STATUS_REQUEST, DRAFT_STATUS_SUCCESS, DRAFT_STATUS_FAILURE, GUEST_REQUEST, GUEST_SUCCESS, GUEST_FAILURE, GUEST_ACCESS_REQUEST, GUEST_ACCESS_SUCCESS, GUEST_ACCESS_FAILURE, UPDATE_COORDINATES_CLIENT, SET_MANUAL_COORDINATES, ADDRESS_REQUEST, ADDRESS_SUCCESS, ADDRESS_FAILURE, STEP_SEVEN_UPDATE_CLIENT } from "./listspaceTypes"
 import axios from 'axios'
 import { config } from '../../config/config';
 import store from '../store';
@@ -1035,6 +1035,7 @@ export const clearListSpaceSteps = () => {
     localStorage.removeItem("listStepFour");
     localStorage.removeItem("listStepFive");
     localStorage.removeItem("listStepSix");
+    localStorage.removeItem("listStepSeven");
 
     return {
         type: CLEAR_LIST_SPACE_STEPS
@@ -1192,7 +1193,15 @@ export const getDraftStatus = (data) => {
 }
 
 
+const stepSevenUpdateClient = (response) => {
 
+    localStorage.setItem("listStepSeven", JSON.stringify(response));
+
+    return {
+        type: STEP_SEVEN_UPDATE_CLIENT,
+        payload: response
+    }
+}
 
 export const setListDetailClient = (id, redirect_url = "") => {
 
@@ -1270,10 +1279,17 @@ export const setListDetailClient = (id, redirect_url = "") => {
 
                     dispatch(updateStepThreeClient(stepThree));
 
+
                     let stepFour = {
                         description: serverResponse.details.store_description ? serverResponse.details.store_description : "",
-                        token: JSON.parse(localStorage.getItem("stashGuruToken"))
+                        token: JSON.parse(localStorage.getItem("stashGuruToken")),
+                        extra_data: serverResponse.details.store_extra_fields,
+                        security: serverResponse.details.store_security,
+                        location: serverResponse.details.store_location,
+                        access: serverResponse.details.store_access,
+                        hosting: serverResponse.details.store_hosting
                     };
+
 
                     localStorage.setItem("listStepFour", JSON.stringify(stepFour));
 
@@ -1282,7 +1298,8 @@ export const setListDetailClient = (id, redirect_url = "") => {
                     let storeSize = JSON.parse(serverResponse.details.store_total_size);
                     let storeWidth = storeSize && storeSize.length > 0 ? storeSize[0].width : 0;
                     let storeHeight = storeSize && storeSize.length > 0 ? storeSize[0].height : 0;
-                    let storeDepth = storeSize && storeSize.depth > 0 ? storeSize[0].depth : 0;
+                    let storeDepth = storeSize && storeSize.length > 0 ? storeSize[0].depth : 0;
+
 
                     let stepFive = {
                         depth: storeDepth,
@@ -1306,8 +1323,17 @@ export const setListDetailClient = (id, redirect_url = "") => {
                     dispatch(stepSixUpdateClient(stepSix));
 
 
+                    let stepSeven = {
+                        about: serverResponse.details.u_about,
+                        vat: serverResponse.details.store_vat
+
+                    };
+
+                    dispatch(stepSevenUpdateClient(stepSeven));
+
                     if (redirect_url) {
-                        // window.location.href = redirect_url;
+                        //need to uncomment
+                        window.location.href = redirect_url;
                     }
 
                 }
