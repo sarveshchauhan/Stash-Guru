@@ -191,7 +191,7 @@ function CreateYourListStepSeventhCtrl() {
                             <h3 className="md_bld_txt">ID Verification</h3>
 
                             <p>We ask all StashGuru Hosts to verify their account before they can respond to Guest enquires and take bookings. You'll only have to do this once, and it only takes a minute or two.</p>
-                            <Button>Verify My Account</Button>
+                            <Button className="btn_l_orange px-4">Verify My Account</Button>
                             <p>Required to fully enable instant Book. <a href="#">Learn more.</a></p>
 
                         </Col>
