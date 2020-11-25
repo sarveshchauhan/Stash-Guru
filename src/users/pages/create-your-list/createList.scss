@@ -461,3 +461,35 @@ span.b_dt::after{
     display: none;
 }
 }
+
+
+.PhotosSpaceUploadImagesList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+.PhotosSpaceUploadImages{
+    width: 160px;
+    padding: 5px;
+}
+.PhotosSpaceUploadImages .PhotosSpaceimg{
+    height: 70px;
+    border-radius: 10px;
+    border: 1px solid #333333;
+    overflow: hidden;
+    display: block;
+    margin: 10px auto;
+}
+.PhotosSpaceimg{
+    max-width: 150px;
+    max-height: 70px;
+}
+.SetStreetView{
+  background: linear-gradient(254deg, rgba(52, 215, 137 ,0.78) 0%, rgba(27, 189, 246,0.78) 100%),url('../../../assets/users/images/bg/SetStreetView.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 100px 10px;
+    border-radius: 10px;
+    color: #ffffff;
+}
