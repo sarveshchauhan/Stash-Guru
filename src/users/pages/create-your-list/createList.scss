@@ -484,6 +484,13 @@ span.b_dt::after{
     max-width: 150px;
     max-height: 70px;
 }
+@media (max-width: 767px){
+    .PhotosSpaceUploadImagesList{
+        justify-content: center;
+    }
+}
+
+
 .SetStreetView{
   background: linear-gradient(254deg, rgba(52, 215, 137 ,0.78) 0%, rgba(27, 189, 246,0.78) 100%),url('../../../assets/users/images/bg/SetStreetView.jpg');
     background-size: cover;
