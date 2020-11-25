@@ -75,12 +75,12 @@ function StepsNavListCtrl() {
                             </Nav>
                         </Col>
                         <Col xl={4}>
-                            <Row>
-                                <Col className="pr-0"><Button className="btn_milky_grn btn-block mr-2">Preview</Button></Col>
-                                <Col className="pl-0"><Button className="btn_milky_grn btn-block ml-2">Host Guide</Button></Col>
+                            <Row className="m-0">
+                                <Col className="px-1"><Button className="btn_milky_grn btn-block">Preview</Button></Col>
+                                <Col className="px-1"><Button className="btn_milky_grn btn-block">Host Guide</Button></Col>
                             </Row>
-                            <Row>
-                                <Col className="mt-2"><Button className="btn_milky_grn btn-block">Host Guide</Button></Col>
+                            <Row className="m-0">
+                                <Col className="mt-2 px-1"><Button className="btn_milky_grn btn-block">Host Guide</Button></Col>
                             </Row>
                         </Col>
                     </Row>
