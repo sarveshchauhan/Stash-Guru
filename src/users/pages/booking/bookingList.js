@@ -26,7 +26,7 @@ function UserBookingListCtrl(){
                 </div>
             </div>
 
-            <div className="space_booking_list">
+            <div className="space_booking_list active">
                 <Row className="m-0">
                     <Col sm="8" className="px-0">
                         <div className="space_booking_list_header">
@@ -181,7 +181,7 @@ function UserBookingListCtrl(){
                                     </tbody>
                                 </Table>
 
-                                <Button size="sm" variant="light_cyan" className="px-4">Send a Message to get started</Button>
+                                <Button size="sm" variant="light_cyan" className="px-4">Archived</Button>
                             </div>
                         </div>
                     </Col>
