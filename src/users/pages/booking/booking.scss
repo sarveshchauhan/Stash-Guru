@@ -119,3 +119,78 @@
 .Cancellations_Policy_Card ul a{
     font-size: 12px;
 }
+
+
+
+
+
+.space_booking_list{
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px #0000001A;
+    margin: 15px auto;
+}
+.space_booking_list_header{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ccf5e1;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 15px;
+}
+.space_booking_list_header h5,
+.space_booking_list_header i{
+    font-size: 20px;
+    color: #333333;
+}
+.space_booking_list_header h5 i{
+    color: #34D789;
+}
+.book_space_ctrl{
+    background-color: #34D789;
+    min-height: 200px;
+}
+.space_booking_list_body{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 15px;
+}
+.space_booking_list_body h5{
+    font-size: 20px;
+    font-weight: 700;
+    color: #333333;
+}
+.space_booking_list_body .space_booking_image{
+    width: 180px;;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.space_booking_list_body .space_booking_image img{
+    height: 150px;
+    width: 180px;
+}
+.space_booking_list_body table.table tr th,
+.space_booking_list_body table.table tr td{
+    padding: 0px;
+}
+
+
+
+
+
+.space_booking_list.disable .space_booking_list_header,
+.space_booking_list.disable .book_space_ctrl{
+    background-color: #5959594D;
+}
+.space_booking_list.disable,
+.space_booking_list.disable .space_booking_list_body{
+    opacity: 0.5;
+}
+.space_booking_list.disable  button.btn.btn_milky_grn{
+    border-color: #595959;
+    color: #595959;
+}
+.space_booking_list.disable  button.btn.btn_success_milky_outline{
+    background-color: #595959;
+}
