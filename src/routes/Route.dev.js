@@ -83,6 +83,7 @@ const Root = () => (
             <PrivateRoute exact path="/dashboard" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserHomeCtrl} />
             <PrivateRoute exact path="/listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserListingtrl} />
             <PrivateRoute exact path="/booking" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingCtrl} />
+            <PrivateRoute exact path="/booking-list" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingListCtrl} />
             <PrivateRoute exact path="/verification" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserVerificationCtrl} />
             <PrivateRoute exact path="/profile" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserProfileCtrl} />
             <PrivateRoute exact path="/payment" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserPaymentPayoutCtrl} />
