@@ -18,6 +18,7 @@ import B_step6 from '../../../assets/users/images/icons/steps/B_step6.png';
 import { useSelector } from 'react-redux';
 
 
+
 function StepsNavListCtrl() {
 
     const { stepOne, stepTwo, stepThree, stepFour, stepFive, stepSix, stepSeven } = useSelector(state => state.listspace);
@@ -97,4 +98,10 @@ function StepsNavListCtrl() {
         </>
     )
 }
+
+
+
+
+
+
 export default StepsNavListCtrl;

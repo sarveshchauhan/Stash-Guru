@@ -104,14 +104,15 @@ function UserListingtrl() {
 
 
 
-                                <span className="listing_card_header_icon" onClick={() => edit_listing(list.store_id)}>
+                                <span className="listing_card_header_icon" onClick={() => window.location.href = `/list-preview/${list.store_id}`}>
                                     <i className="fa fa-pencil-square-o"></i>
                                     <br /> Edit
                     </span>
-                                <span className="listing_card_header_icon">
+                                <span className="listing_card_header_icon" onClick={() => window.open(`/search-details/${list.store_id}?preview=true`)}>
                                     <i className="fa fa-eye"></i>
                                     <br /> Preview
-                    </span>
+                                </span>
+
                                 <span className="listing_card_header_icon">
                                     <i className="fa fa-th-list"></i>
                                     <br /> Re-List

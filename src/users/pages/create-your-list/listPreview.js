@@ -71,10 +71,6 @@ function ListPreviewCtrl() {
 
     const onPublishList = (e) => {
         e.preventDefault();
-        dispatch(publishSpace({
-
-
-        }));
 
         dispatch(publishSpace({
             token: JSON.parse(localStorage.getItem("stashGuruToken")),
@@ -331,7 +327,7 @@ function ListPreviewCtrl() {
                                     <h3>Check It Out!</h3>
                                     <p>See your listing the way a Stash.Guru Guest sees it. Make sure<br /> everything looks prim and proper.</p>
                                     <Button className="btn_milky_grn px-4" onClick={() => window.open(`/search-details/${id}?preview=true`)}>Preview Listing</Button>
-                                    &nbsp;<Button className="btn_milky_grn px-4" onClick={() => window.open(`/search-details/${id}?preview=true`)}>Publish Listing</Button>
+                                    &nbsp;<Button className="btn_milky_grn px-4" onClick={onPublishList}>Publish Listing</Button>
 
                                     {
                                         publishLoading

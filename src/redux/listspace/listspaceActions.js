@@ -1011,7 +1011,8 @@ export const publishSpace = (saveData) => {
 
                     dispatch(publishSuccess(serverResponse.storeid));
                     dispatch(clearListSpaceSteps());
-
+                    dispatch(clearlistSpaceMessageFields());
+                    window.location.href = "/listing";
                 }
                 else {
                     dispatch(publishFailure(serverResponse.message));
@@ -1271,7 +1272,8 @@ export const setListDetailClient = (id, redirect_url = "") => {
                         type: serverResponse.details.st_id,
                         used_type: serverResponse.details.sut_id,
                         guest: serverResponse.details.gt_id,
-                        guest_access: serverResponse.details.gta_id
+                        guest_access: serverResponse.details.gta_id,
+                        specific_time: JSON.parse(serverResponse.details.store_specific_time)
 
                     };
 
@@ -1311,7 +1313,9 @@ export const setListDetailClient = (id, redirect_url = "") => {
                         token: JSON.parse(localStorage.getItem("stashGuruToken")),
                         total_size: +storeWidth * +storeHeight * +storeDepth,
                         width: storeWidth,
-                        your_earnings: serverResponse.details.store_earnings_deposit
+                        your_earnings: serverResponse.details.store_earnings_deposit,
+                        security: serverResponse.details.store_security_deposit,
+                        security_price: serverResponse.details.store_security_deposit_price
                     };
 
                     dispatch(stepFiveUpdateClient(stepFive));
