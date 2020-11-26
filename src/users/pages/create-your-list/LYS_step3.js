@@ -14,6 +14,7 @@ function CreateYourListStepThitdCtrl() {
     const { spaceTypeList, spaceUsedForList, featuresList, floorsList, stepOne, stepTwo, stepThree, stepThreeLoading, stepThreeSuccess, stepThreeError, guestList, guestAccessList } = useSelector(state => state.listspace);
     const history = useHistory();
 
+    const hrList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
     const [title, set_title] = useState("");
     const [title_error, set_title_error] = useState("");
@@ -43,7 +44,15 @@ function CreateYourListStepThitdCtrl() {
     const [guest, set_guest] = useState("");
     const [guest_access, set_guest_access] = useState("");
 
-
+    const [specificHours, setSpecificHours] = useState([
+        { day: "Monday", selected: true, from: 9, fromType: "am", to: 6, toType: "pm" },
+        { day: "Tuesday", selected: true, from: 9, fromType: "am", to: 6, toType: "pm" },
+        { day: "Wednesday", selected: true, from: 9, fromType: "am", to: 6, toType: "pm" },
+        { day: "Thursday", selected: true, from: 9, fromType: "am", to: 6, toType: "pm" },
+        { day: "Friday", selected: true, from: 9, fromType: "am", to: 6, toType: "pm" },
+        { day: "Saturday", selected: true, from: 9, fromType: "am", to: 6, toType: "pm" },
+        { day: "Sunday", selected: true, from: 9, fromType: "am", to: 6, toType: "pm" }
+    ])
 
     useEffect(() => {
 
@@ -92,6 +101,11 @@ function CreateYourListStepThitdCtrl() {
             set_st_id(stepThree.type);
             set_guest(stepThree.guest);
             set_guest_access(stepThree.guest_access);
+
+            if (stepThree.specific_time) {
+                setSpecificHours(stepThree.specific_time);
+            }
+
         }
 
     }, [stepThree]);
@@ -157,6 +171,28 @@ function CreateYourListStepThitdCtrl() {
     }
 
 
+    const onChangeSpecificHours = (day = "", e) => {
+
+
+
+        let newHrs = specificHours.map((hr) => {
+            if (hr.day === day) {
+                if (e.target.name === "selected") {
+                    hr[e.target.name] = e.target.checked;
+                }
+                else {
+                    hr[e.target.name] = e.target.value;
+                }
+
+
+            }
+            return hr;
+        });
+
+        setSpecificHours(newHrs);
+    }
+
+
     const submitForm = (e) => {
 
         e.preventDefault();
@@ -216,7 +252,9 @@ function CreateYourListStepThitdCtrl() {
                 lat: stepTwo.lat,
                 long: stepTwo.lng,
                 guest: guest,
-                guest_access: guest_access
+                guest_access: guest_access,
+                is_specific_time: +guest === 3 ? "Yes" : "No",
+                specific_time: +guest === 3 ? specificHours : null
 
             };
 
@@ -390,19 +428,87 @@ function CreateYourListStepThitdCtrl() {
                         <Col lg="6" md="7">
 
                             {
-                                guestList && guestList.map((gst) => (
-
-                                    <div className={+gst.gt_id === guest ? "guest-list-item-selected" : "guest-list-item"} onClick={() => set_guest(gst.gt_id)}>
-                                        <div className="guest_list_icons">
-                                            <img className="guest_list_g_img" src={G_infinite} />
-                                            <img className="guest_list_w_img" src={infinite} />
+                                guestList && guestList.map((gst, index) => (
+                                    <>
+                                        <div key={index} className={+gst.gt_id === guest ? "guest-list-item-selected" : "guest-list-item"} onClick={() => set_guest(gst.gt_id)}>
+                                            <div className="guest_list_icons">
+                                                <img className="guest_list_g_img" src={gst.gt_path} />
+                                                <img className="guest_list_w_img" src={gst.gt_path2} />
+                                            </div>
+                                            <div className="guest_list_content">
+                                                <h5 className="m-0">{gst.gt_name}</h5>
+                                                <small className="d-block">Guest are free to access the space whenever they want.</small>
+                                            </div>
                                         </div>
-                                        <div className="guest_list_content">
-                                            <h5 className="m-0">{gst.gt_name}</h5>
-                                            <small className="d-block">Guest are free to access the space whenever they want.</small>
-                                        </div>
-                                    </div>
 
+
+                                        {
+                                            +gst.gt_id === 3 && +guest === 3 && <div>
+
+
+                                                {
+                                                    specificHours.map((specHour) => (
+                                                        <Row>
+                                                            <Col sm={1}>
+                                                                <input type="checkbox" name="selected" defaultChecked={specHour.selected} checked={specHour.selected} onChange={(e) => onChangeSpecificHours(specHour.day, e)} />
+                                                            </Col>
+                                                            <Col sm={2}>
+                                                                {specHour.day}
+                                                            </Col>
+                                                            <Col sm={1}>
+
+                                                                <select defaultValue={specHour.from} value={specHour.from} name="from" onChange={(e) => onChangeSpecificHours(specHour.day, e)}>
+
+                                                                    {
+                                                                        hrList.map((hr) => (
+                                                                            <option value={hr}>{hr}</option>
+                                                                        ))
+                                                                    }
+
+                                                                </select>
+
+
+                                                            </Col>
+
+                                                            <Col sm={1}>
+                                                                <select defaultValue={specHour.fromType} value={specHour.fromType} onChange={(e) => onChangeSpecificHours(specHour.day, e)} name="fromType">
+                                                                    <option value="am">am</option>
+                                                                    <option value="pm">pm</option>
+                                                                </select>
+                                                            </Col>
+                                                            <Col sm={1}>
+                                                                <i className="fa fa-arrow-right"></i>
+                                                            </Col>
+                                                            <Col sm={1}>
+
+                                                                <select defaultValue={specHour.to} value={specHour.to} onChange={(e) => onChangeSpecificHours(specHour.day, e)} name="to">
+                                                                    {
+                                                                        hrList.map((hr) => (
+                                                                            <option value={hr}>{hr}</option>
+                                                                        ))
+                                                                    }
+                                                                </select>
+
+                                                            </Col>
+
+                                                            <Col sm={1}>
+                                                                <select defaultValue={specHour.toType} value={specHour.toType} onChange={(e) => onChangeSpecificHours(specHour.day, e)} name="toType">
+                                                                    <option value="am">am</option>
+                                                                    <option value="pm">pm</option>
+                                                                </select>
+                                                            </Col>
+
+
+
+                                                        </Row>
+                                                    ))
+                                                }
+
+
+                                            </div>
+                                        }
+
+                                    </>
                                 ))
                             }
 
@@ -434,18 +540,20 @@ function CreateYourListStepThitdCtrl() {
                         <Col lg="7" md="8">
 
                             {
-                                guestAccessList && guestAccessList.map((gst) => (
-                                    <div className={+gst.gta_id === +guest_access ? "guest-list-item-selected" : "guest-list-item"} onClick={() => set_guest_access(gst.gta_id)}>
+                                guestAccessList && guestAccessList.map((gst, index) => (
+
+                                    <div key={index} className={+gst.gta_id === +guest_access ? "guest-list-item-selected" : "guest-list-item"} onClick={() => set_guest_access(gst.gta_id)}>
                                         <div className="guest_list_icons">
-                                            <img className="guest_list_g_img" src={G_infinite} />
-                                            <img className="guest_list_w_img" src={infinite} />
+                                            <img className="guest_list_g_img" src={gst.gta_path} />
+                                            <img className="guest_list_w_img" src={gst.gta_path2} />
                                         </div>
                                         <div className="guest_list_content">
                                             <h5 className="m-0">{gst.gta_name}</h5>
                                             <small className="d-block">Guest are free to access the space whenever they want.</small>
                                         </div>
-                                        
+
                                     </div>
+
                                 ))
                             }
 

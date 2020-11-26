@@ -130,16 +130,16 @@ function CreateYourListStepSixthCtrl() {
                             </Row>
                             <div className="PhotosSpaceUploadImagesList">
 
-                            {
-                                listDetailData.images.map((image, index) => (
-                                    <div className="PhotosSpaceUploadImages" key={index}>
-                                        <div className="PhotosSpaceimg">
-                                            <img src={image.si_path} alt="" />
+                                {
+                                    listDetailData.images.map((image, index) => (
+                                        <div className="PhotosSpaceUploadImages" key={index}>
+                                            <div className="PhotosSpaceimg">
+                                                <img src={image.si_path} alt="" />
+                                            </div>
+                                            <FormControl className="rectu_form_field" defaultValue={image.si_name} placeholder="Enter caption" onBlur={(e) => updateImageCaption(image.si_id, e.target.value)} ></FormControl>
                                         </div>
-                                        <FormControl className="rectu_form_field" defaultValue={image.si_name} placeholder="Enter caption" onBlur={(e) => updateImageCaption(image.si_id, e.target.value)} ></FormControl>
-                                    </div>
-                                ))
-                            }
+                                    ))
+                                }
                             </div>
 
 
@@ -151,6 +151,8 @@ function CreateYourListStepSixthCtrl() {
 
                 </Container>
             </section>
+
+            {/*       
             <section className="my-5 text-center">
                 <Container>
                     <h3 className="md_bld_txt mb-3">Street View</h3>
@@ -167,6 +169,8 @@ function CreateYourListStepSixthCtrl() {
                 </Container>
                 <h5 className="my-3"><b>What is Street View ?</b></h5>
             </section>
+
+         */}
 
             <section className="my-5">
                 <Container>

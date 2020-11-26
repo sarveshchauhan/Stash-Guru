@@ -187,7 +187,7 @@ function ManualAddressForm() {
 
                 <Form.Group>
                     <Button variant="success" type="submit">
-                        Add Address
+                        Next
                 </Button>
 
                     {

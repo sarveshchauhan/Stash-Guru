@@ -40,6 +40,9 @@ function CreateYourListStepFifthCtrl() {
     const [enableInstantBooking, setEnableInstantBooking] = useState("No");
     const [flexibleBooking, setFlexibleBooking] = useState(false);
 
+    const [security, setSecurity] = useState(false);
+    const [securityPrice, setSecurityPrice] = useState(0);
+
 
     useEffect(() => {
 
@@ -62,6 +65,17 @@ function CreateYourListStepFifthCtrl() {
             setExactSpaces(stepFive.total_size);
             setEarning(stepFive.your_earnings);
             setFlexibleBooking(stepFive && stepFive.flexible === "Yes" ? true : false);
+
+            if (stepFive.security) {
+                if (stepFive.security === "Yes") {
+                    setSecurity(true);
+                    setSecurityPrice(stepFive.security_price);
+                }
+                else {
+                    setSecurity(false);
+                    setSecurityPrice(0);
+                }
+            }
 
         }
 
@@ -204,7 +218,9 @@ function CreateYourListStepFifthCtrl() {
                     price: pricing,
                     your_earnings: earning,
                     flexible: flexibleBooking === true ? "Yes" : "No",
-                    instant: enableInstantBooking
+                    instant: enableInstantBooking,
+                    security: security ? "Yes" : "No",
+                    security_price: 0
                 };
 
                 dispatch(stepFiveSave(saveData));
@@ -412,6 +428,33 @@ function CreateYourListStepFifthCtrl() {
                 </Container>
             </section>
 
+
+            <section className="my-5">
+                <Container>
+                    <Row className="justify-content-between">
+                        <Col lg="5" md="6">
+                            <h3 className="md_bld_txt">Security deposit</h3>
+                            <Form.Group controlId="" className="mb-0" name="security-check">
+                                <Form.Check type="checkbox" checked={security} label={`Include 1 month security deposit of ($${pricing})`} onChange={() => setSecurity(!security)} />
+                            </Form.Group>
+                            <Accordion>
+                                <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
+                                    <div className="text_color_gray">Click for info </div>
+                                </Accordion.Toggle>
+                                <Accordion.Collapse eventKey="0">
+                                    <div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</div>
+                                </Accordion.Collapse>
+                            </Accordion>
+                        </Col>
+                        <Col lg="4" md="5" className="offset-lg-1">
+                            <h5 className=""><b>Lorem ipsum dolor sit</b></h5>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+
+
             <section className="my-5">
                 <Container>
                     <Row className="justify-content-between">
@@ -464,7 +507,7 @@ function CreateYourListStepFifthCtrl() {
 
 
 
-            <section className="my-5">
+            {/* <section className="my-5">
                 <Container>
                     <Row className="justify-content-between">
                         <Col lg="12" md="12">
@@ -480,7 +523,7 @@ function CreateYourListStepFifthCtrl() {
                         </Col>
                     </Row>
                 </Container>
-            </section>
+            </section> */}
 
             <section className="my-5">
                 <Container>

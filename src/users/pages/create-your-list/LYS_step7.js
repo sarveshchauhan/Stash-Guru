@@ -8,13 +8,13 @@ import B_step6 from '../../../assets/users/images/icons/steps/B_step6.png';
 
 import StepsNavListCtrl from './steps_nav_list';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearlistSpaceMessageFields, publishSpace, stepSevenUpdateClient } from '../../../redux/listspace/listspaceActions';
+import { clearlistSpaceMessageFields, getListDetails, publishSpace, stepSevenUpdateClient } from '../../../redux/listspace/listspaceActions';
 
 function CreateYourListStepSeventhCtrl() {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const { stepSix, publishSuccess, publishError, publishLoading, stepSeven } = useSelector(state => state.listspace);
+    const { stepSix, publishSuccess, publishError, publishLoading, stepSeven, listDetailData } = useSelector(state => state.listspace);
     const [aboutDescription, setAboutDescription] = useState("");
 
     const [bookingTerms, setBookingTerms] = useState(false);
@@ -31,7 +31,6 @@ function CreateYourListStepSeventhCtrl() {
 
 
 
-
     useEffect(() => {
 
         window.scrollTo(0, 0);
@@ -44,8 +43,16 @@ function CreateYourListStepSeventhCtrl() {
         if (!stepSix) {
             history.push('/create-your-list-step6');
         }
+        else {
 
-    }, [stepSix]);
+            dispatch(getListDetails({
+                id: stepSix.id,
+                token: JSON.parse(localStorage.getItem('stashGuruToken'))
+            }));
+
+        }
+
+    }, [stepSix, dispatch]);
 
 
     useEffect(() => {
@@ -66,14 +73,14 @@ function CreateYourListStepSeventhCtrl() {
 
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (publishSuccess) {
-            history.push('/listing');
-            dispatch(clearlistSpaceMessageFields());
-        }
+    //     if (publishSuccess) {
+    //         history.push('/listing');
+    //         dispatch(clearlistSpaceMessageFields());
+    //     }
 
-    }, [publishSuccess]);
+    // }, [publishSuccess]);
 
 
     const onSubmitForm = (e) => {
@@ -141,7 +148,9 @@ function CreateYourListStepSeventhCtrl() {
                             <div className="photos_of_space_row">
                                 <div className="photos_of_space_img_col">
                                     <div className="uploader_user">
-                                        <img src={no_img} />
+
+                                        <img src={listDetailData && listDetailData.details ? listDetailData.details.u_pic : no_img} />
+
                                     </div>
                                     <span className="uploader_change_own_img">
                                         <img src={B_step6} />
@@ -206,7 +215,7 @@ function CreateYourListStepSeventhCtrl() {
                             <h3 className="md_bld_txt">ID Verification</h3>
 
                             <p>We ask all StashGuru Hosts to verify their account before they can respond to Guest enquires and take bookings. You'll only have to do this once, and it only takes a minute or two.</p>
-                            <Button className="btn_l_orange px-4">Verify My Account</Button>
+                            <Button className="btn_l_orange px-4" onClick={() => window.open('/verification')}>Verify My Account</Button>
                             <p>Required to fully enable instant Book. <a href="#">Learn more.</a></p>
 
                         </Col>
