@@ -36,6 +36,8 @@ import UserListingtrl from '../users/pages/listing';
 import UserBookingCtrl from '../users/pages/booking';
 import UserVerificationCtrl from '../users/pages/verification';
 import UserProfileCtrl from '../users/pages/profile';
+import UserPaymentPayoutCtrl from '../users/pages/payment';
+import UserReferralsCtrl from '../users/pages/referrals';
 // side menu bar layout End
 
 
@@ -44,6 +46,7 @@ import CreateYourListStepForthCtrl from '../users/pages/create-your-list/LYS_ste
 import CreateYourListStepFifthCtrl from '../users/pages/create-your-list/LYS_step5';
 import CreateYourListStepSixthCtrl from '../users/pages/create-your-list/LYS_step6';
 import CreateYourListStepSeventhCtrl from '../users/pages/create-your-list/LYS_step7';
+import ListPreviewCtrl from '../users/pages/create-your-list/listPreview';
 import ForgotPassword from '../front/pages/register/ForgotPassword';
 import ResetPassword from '../front/pages/register/ResetPassword';
 import { socketIO } from '../helpers/socketHelper';
@@ -103,9 +106,17 @@ const Root = () => {
                 <PrivateRoute exact path="/chat" parentComponent={SideMenuPageLayoutCtrl} childComponent={ChatCtrl} />
 
 
+                {/* <Route exact path="/list-preview" render={(props) => (<UserPagesLayoutCtrl children={ListPreviewCtrl} {...props} />)} /> */}
+                <PrivateRoute exact path="/list-preview/:id" parentComponent={UserPagesLayoutCtrl} childComponent={ListPreviewCtrl} />
+
 
                 <PrivateRoute exact path="/verification" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserVerificationCtrl} />
                 <PrivateRoute exact path="/profile" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserProfileCtrl} />
+
+                <PrivateRoute exact path="/payment" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserPaymentPayoutCtrl} />
+                <PrivateRoute exact path="/referrals" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserReferralsCtrl} />
+
+
                 {/* <Route exact path="/dashboard" render={(props)=> (<UserPagesLayoutCtrl children={UserHomeCtrl} {...props} />)} /> */}
 
                 {/* <Route exact path="/create-your-list" render={(props) => (<UserPagesLayoutCtrl children={UserCreateYourListCtrl} {...props} />)} /> */}

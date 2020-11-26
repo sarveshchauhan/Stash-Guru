@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button,Form } from 'react-bootstrap';
+import { Button,Form,InputGroup,FormControl } from 'react-bootstrap';
 import './booking.scss';
 
 
@@ -7,21 +7,22 @@ function UserBookingCtrl(){
     return(
         <>
             <div className="user_page_hdng justify-content-between align-items-center">
-                <h2 className="user_page_hdng_txt">Booking</h2>
-                <div className="d-inline-block user_page_hdng_left">
-                    <Form className="d-inline-block float-left" style={{width:'150px'}}>
-                        <Form.Group className="mb-0" controlId="" >
-                            <Form.Control as="select">
-                                <option>All</option>
-                                <option>list1</option>
-                                <option>list2</option>
-                                <option>list3</option>
-                                <option>list4</option>
-                                <option>list5</option>
-                            </Form.Control>
-                        </Form.Group>
-                    </Form>
-                    <Button className="float-left ml-2 btn-success" style={{minWidth:'150px'}}>+ New Listing</Button>
+                
+                <div className="w-100 d-flex-wrap justify-content-between">
+                    <h2 className="user_page_hdng_txt">Booking</h2>
+                    <div className="user_page_hdng_left">
+                        <Form className="d-inline-block float-left" style={{width:'350px'}}>
+                            <InputGroup>
+                                <FormControl placeholder="Search Booking" aria-label="Search Booking" aria-describedby="basic-addon2" />
+                                <InputGroup.Append>
+                                    <Button variant="success" className="px-3">
+                                        <i className="fa fa-search"></i>
+                                    </Button>
+                                </InputGroup.Append>
+                            </InputGroup>
+                        </Form>
+                        <Button variant="outline-success" className="ml-2" style={{minWidth:'150px'}}><i className="fa fa-filter" aria-hidden="true"></i> Filters</Button>
+                    </div>
                 </div>
             </div>
         </>

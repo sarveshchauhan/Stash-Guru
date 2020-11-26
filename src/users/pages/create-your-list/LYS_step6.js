@@ -6,6 +6,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import Dropzone from 'react-dropzone'
 
 import img_icon from '../../../assets/users/images/icons/img_icon.png';
+import street_view_doll from '../../../assets/users/images/icons/street-view-doll.png'
 import StepsNavListCtrl from './steps_nav_list';
 import { useDispatch, useSelector } from 'react-redux';
 import { getListDetails, stepSixUpdateClient, updateCaption, uploadImageFile } from '../../../redux/listspace/listspaceActions';
@@ -123,19 +124,23 @@ function CreateYourListStepSixthCtrl() {
                         listDetailData && listDetailData.images && listDetailData.images.length > 0 && <>
 
                             <Row>
-                                <h4>Images</h4>
+                                <Col>
+                                    <h4 className="mt-4">Images</h4>
+                                </Col>
                             </Row>
+                            <div className="PhotosSpaceUploadImagesList">
 
                             {
                                 listDetailData.images.map((image, index) => (
-                                    <Row className="mt-2" key={index}>
-                                        <Col lg={5}>
-                                            <img src={image.si_path} alt="" style={{ height: "250px" }} />
-                                            <FormControl className="mt-2" defaultValue={image.si_name} placeholder="Enter caption" onBlur={(e) => updateImageCaption(image.si_id, e.target.value)} ></FormControl>
-                                        </Col>
-                                    </Row>
+                                    <div className="PhotosSpaceUploadImages" key={index}>
+                                        <div className="PhotosSpaceimg">
+                                            <img src={image.si_path} alt="" />
+                                        </div>
+                                        <FormControl className="rectu_form_field" defaultValue={image.si_name} placeholder="Enter caption" onBlur={(e) => updateImageCaption(image.si_id, e.target.value)} ></FormControl>
+                                    </div>
                                 ))
                             }
+                            </div>
 
 
 
@@ -145,6 +150,22 @@ function CreateYourListStepSixthCtrl() {
 
 
                 </Container>
+            </section>
+            <section className="my-5 text-center">
+                <Container>
+                    <h3 className="md_bld_txt mb-3">Street View</h3>
+                </Container>
+                <Container className="SetStreetView">
+                    <Row className="justify-content-between">
+                        <Col lg="12" md="6">
+                            <img width="70" src={street_view_doll} alt="" />
+                            <h4 className="m-0">Set Street View</h4>
+                            <p className="my-2">Move the camera to put your space in view</p>
+                            <Button className="btn_milky_grn px-5">Let's Go!</Button>
+                        </Col>
+                    </Row>
+                </Container>
+                <h5 className="my-3"><b>What is Street View ?</b></h5>
             </section>
 
             <section className="my-5">

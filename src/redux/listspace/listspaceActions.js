@@ -1193,7 +1193,7 @@ export const getDraftStatus = (data) => {
 }
 
 
-const stepSevenUpdateClient = (response) => {
+export const stepSevenUpdateClient = (response) => {
 
     localStorage.setItem("listStepSeven", JSON.stringify(response));
 
@@ -1324,6 +1324,7 @@ export const setListDetailClient = (id, redirect_url = "") => {
 
 
                     let stepSeven = {
+                        id: serverResponse.details.store_id,
                         about: serverResponse.details.u_about,
                         vat: serverResponse.details.store_vat
 
