@@ -14,7 +14,7 @@ import b_garage from '../../../assets/front/images/icons/storage_type/b_garage.p
 import SearchComponent from '../../common/components/SearchCompo';
 import MapContainer from '../../common/components/map';
 import { useDispatch, useSelector } from 'react-redux';
-import { searchListing } from '../../../redux';
+import { getCoordinates, searchListing } from '../../../redux';
 import LoaderCtrl from '../../common/components/loader';
 import GoogleMapListing from '../../common/components/google-map/GoogleMapListing';
 import PlaceholderImage from '../../../assets/front/images/placeholder.png';
@@ -37,6 +37,9 @@ function FrontSearchListCtrl() {
 
     useEffect(() => {
         dispatch(searchListing(key));
+        dispatch(getCoordinates({
+            address: key
+        }));
     }, [key]);
 
     useEffect(() => {
