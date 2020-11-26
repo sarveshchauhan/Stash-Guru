@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Container, Row, Carousel, InputGroup, FormControl, Button, Form } from 'react-bootstrap';
+import { Col, Container, Row, Carousel, InputGroup, FormControl, Button, Modal, Form } from 'react-bootstrap';
 
-
+import DatePicker from 'react-date-picker';
 // Assets Include
 import './SearchList.scss';
 import map from '../../../assets/front/images/dummy/map.jpg';
@@ -45,6 +45,15 @@ const profileImages = require.context('../../../assets/users/images/profile', tr
 
 
 function FrontSearchDetailsCtrl() {
+
+    const [value, onChange] = useState(new Date());
+
+    const [bookingSpaceModal, setBookingSpaceModal] = useState(false);
+    const handlesetbookingSpaceModalClose = () => setBookingSpaceModal(false);
+    const handlesetbookingSpaceModalShow = () => setBookingSpaceModal(true);
+
+
+
 
     const { searchId } = useParams();
     const [details, setDetails] = useState([]);
@@ -382,7 +391,7 @@ function FrontSearchDetailsCtrl() {
                                         <strong>${details && details.store_cost}/Month </strong>
                                         <span>{details && details.store_size} sq.ft.</span>
                                     </div>
-                                    <Button variant="success" className="btn-block">Book Space</Button>
+                                    <Button variant="success" className="btn-block" onClick={handlesetbookingSpaceModalShow}>Book Space</Button>
                                 </div>
                                 <div className="book_space_card_footer">
                                     <div className="d-flex justify-content-center align-items-center">
@@ -530,6 +539,53 @@ function FrontSearchDetailsCtrl() {
                     </Row>
                 </Container>
             </section>
+
+
+            <Modal className="user_modal" show={bookingSpaceModal} onHide={handlesetbookingSpaceModalClose} backdrop="static" keyboard={false}>
+                <button className="user_modal_close_btn" onClick={handlesetbookingSpaceModalClose}>
+                    <i className="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <Modal.Header>
+                    <div>
+                        <Modal.Title>Book Space</Modal.Title>
+                    </div>
+                </Modal.Header>
+                <Modal.Body>
+                    <div className="d-flex-wrap w-100">
+
+                        <div>
+                            <img className="user_img_avtar" src={user_r1} />
+                        </div>
+                        <div className="pl-3">
+                            <h4 className="m-0" style={{ fontWeight: '700', color: '#34D789' }}>Mary Ann</h4>
+                            <small><b className="m-0">Warehouse in E1</b></small>
+                        </div>
+                    </div>
+                    <div className="text-left mt-4">
+                        <Form>
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Planned Start Date</Form.Label>
+                                <div className="w-100">
+                                    <DatePicker className="w-100" onChange={onChange} value={value} />
+                                </div>
+                            </Form.Group>
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Estimated Duration</Form.Label>
+                                <Form.Control className="rectu_form_field" as="select">
+                                    <option>Select Durations</option>
+                                </Form.Control>
+                                <small className="d-block text-right">Minimum Rental <b>2 Months</b></small>
+                            </Form.Group>
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Unit</Form.Label>
+                                <Form.Control className="rectu_form_field" type="text" placeholder="" value="1 Unit" />
+                            </Form.Group>
+                        </Form>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer className=" justify-content-between">
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }

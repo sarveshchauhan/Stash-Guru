@@ -354,3 +354,52 @@ select.form-control, input.form-control.rectu_form_field{
     flex-wrap: wrap;
 }
 // sass color code End
+
+
+
+
+
+
+
+
+
+// react-date-picker
+.react-date-picker__wrapper{
+    border-radius: 5px;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    min-height: 48px;
+}
+.react-date-picker__wrapper .react-date-picker__button svg {
+    display: none;
+}
+.react-date-picker__wrapper .react-date-picker__calendar-button.react-date-picker__button {
+    color: #34D789;
+    outline: none;
+}
+.react-date-picker__wrapper .react-date-picker__clear-button.react-date-picker__button {
+    display: none;
+}
+.react-date-picker__inputGroup input{
+    outline: none;
+}
+.react-date-picker__wrapper .react-date-picker__button.react-date-picker__calendar-button.react-date-picker__button:after {
+    content: "\f073";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+// react-date-picker end
