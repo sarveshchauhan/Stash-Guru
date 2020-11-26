@@ -1,33 +1,60 @@
-import React , { useState} from 'react';
-import { Button,Col,Form,Modal, Row } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-import Dropzone from 'react-dropzone';
 
 import not_verified from '../../../assets/users/images/icons/not_verified.png';
 import verified from '../../../assets/users/images/icons/verified.png';
 import verify_id from '../../../assets/users/images/verify/verify_id.png';
-import photoTips from '../../../assets/users/images/verify/photoTips.jpg';
-import img_icon from '../../../assets/users/images/icons/img_icon.png';
+import DocumentDetails from './DocumentDetails';
+import { useDispatch, useSelector } from 'react-redux';
+import { getVerifyList, toggleDocumentDetailModal } from '../../../redux/document/documentActions';
+import DocumentUpload from './DocumentUpload';
+import VerifyIdModal from './VerifyIdModal';
 
 
-function UserVerificationCtrl(){
-    const [verifyIDmodal, setverifyIDmodal] = useState(false);
-    const handlesetverifyIDmodalClose = () => setverifyIDmodal(false);
-    const handlesetverifyIDmodalShow = () => setverifyIDmodal(true);
+function UserVerificationCtrl() {
 
-    
-    const [documentDetailsmodal, setdocumentDetailsmodal] = useState(false);
-    const handlesetDocumentDetailsmodalClose = () => setdocumentDetailsmodal(false);
-    const handlesetDocumentDetailsmodalShow = () => setdocumentDetailsmodal(true);
+    const dispatch = useDispatch();
 
-    
-    const [documentUploadmodal, setdocumentUploadmodal] = useState(false);
+    const { verifyList } = useSelector(state => state.document);
 
-    const handlesetDocumentUploadModalClose = () => setdocumentUploadmodal(false);
-    const handlesetDocumentUploadModalShow = () => setdocumentUploadmodal(true);
+    const [idVerified, setIdVerified] = useState("Pending");
+    const [phoneVerified, setPhoneVerified] = useState("Pending");
+    const [emailVerified, setEmailVerified] = useState("Pending");
 
 
-    return(
+
+    useEffect(() => {
+
+        if (verifyList && verifyList.length > 0) {
+            for (let i = 0; i < verifyList.length; i++) {
+                if (verifyList[i].uv_type === "Email") {
+                    setEmailVerified(verifyList[i].uv_status);
+                }
+
+                if (verifyList[i].uv_type === "Phone") {
+                    setPhoneVerified(verifyList[i].uv_status);
+                }
+
+                if (verifyList[i].uv_type === "Doc") {
+                    setIdVerified(verifyList[i].uv_status);
+                }
+            }
+        }
+
+    }, [verifyList]);
+
+    useEffect(() => {
+
+        dispatch(getVerifyList({
+            token: JSON.parse(localStorage.getItem("stashGuruToken"))
+        }))
+
+    }, [dispatch]);
+
+
+
+    return (
         <>
             <div className="user_page_hdng justify-content-between align-items-center">
                 <h2 className="user_page_hdng_txt">Verification</h2>
@@ -42,39 +69,53 @@ function UserVerificationCtrl(){
                 </div>
             </div>
 
-            {/* <div className="verificationCard text-center">
-                <div className="verificationCardBody">
-                    <img src={verified} alt="" />
-                    <h3 className="text_color_shamrock">Account Verified</h3>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,</p>
-                </div>
-            </div> */}
-            
+
+
             <div className="sg_box_flex_card align-items-center justify-content-between">
                 <div className="">
                     <h3 className="text_color_zambezi">ID Verification</h3>
-                    <NavLink to="" className="text_color_deep_skyi">Required for booking</NavLink>
+                    <NavLink to="" className="text_color_deep_skyi">Required for booking ({idVerified})</NavLink>
                 </div>
                 <div>
-                    <Button className="btn_l_orange" onClick={handlesetverifyIDmodalShow}>Verify Account</Button>
+                    <Button className="btn_l_orange" onClick={() => dispatch(toggleDocumentDetailModal(true))}>Verify Account</Button>
                 </div>
             </div>
-            
+
             <div className="sg_box_flex_card align-items-center justify-content-between">
                 <div className="">
                     <h3 className="text_color_zambezi">Phone Number Verification</h3>
-                    <NavLink to="" className="text_color_shamrock">Verified</NavLink> 
+                    <NavLink to="" className="text_color_shamrock">
+
+                        {
+                            phoneVerified && phoneVerified === "Verify" && <NavLink to="" className="text_color_shamrock">Verified</NavLink>
+                        }
+
+                        {
+                            phoneVerified && phoneVerified === "Pending" && <p className="text-danger">Pending</p>
+                        }
+
+                    </NavLink>
                     <span className="text_color_gray">(682)840-7833)</span>
                 </div>
                 <div>
                     <Button className="btn_success">Change Number</Button>
                 </div>
             </div>
-            
+
             <div className="sg_box_flex_card align-items-center justify-content-between">
                 <div className="">
                     <h3 className="text_color_zambezi">Email Verification</h3>
-                    <NavLink to="" className="text_color_shamrock">Verified</NavLink> 
+
+                    {
+                        emailVerified && emailVerified === "Verify" && <NavLink to="" className="text_color_shamrock">Verified</NavLink>
+                    }
+
+                    {
+                        emailVerified && emailVerified === "Pending" && <p className="text-danger">Pending</p>
+                    }
+
+
+
                     <span className="text_color_gray"> (denise.gibson@mail.com)</span>
                 </div>
                 <div>
@@ -83,141 +124,14 @@ function UserVerificationCtrl(){
             </div>
 
             <div>
-                <Modal className="user_modal" show={verifyIDmodal} onHide={handlesetverifyIDmodalClose} backdrop="static" keyboard={false}>
-                    <button className="user_modal_close_btn" onClick={handlesetverifyIDmodalClose}>
-                        <i className="fa fa-times" aria-hidden="true"></i>
-                    </button> 
-                    <Modal.Header className="justify-content-center">
-                        <div  className="text-center">
-                            <Modal.Title>Verify ID</Modal.Title>
-                        </div>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <div className="text-center">
-                            <img src={verify_id} alt="" />
-                            <p>Verifying your identity helps us to keep the platform safe and ensures we only connect real users who are genuinely interested.</p>
-                            <p>You'll need a clear photograph of your Driving Licence, Passport or National ID Card.</p>
-                            <p>You'll only have to do this once.<NavLink to="">Read more.</NavLink> </p>
-                        </div>
-                    </Modal.Body>
-                    <Modal.Footer className=" justify-content-end">
-                        <span  onClick={ handlesetverifyIDmodalClose}>
-                            <Button variant="next" onClick={handlesetDocumentDetailsmodalShow}> Next
-                            </Button>
-                        </span> 
-                    </Modal.Footer>
-                </Modal>
-
-                
-                <Modal className="user_modal" show={documentDetailsmodal} onHide={handlesetDocumentDetailsmodalClose} backdrop="static" keyboard={false}>
-                    <button className="user_modal_close_btn" onClick={handlesetDocumentDetailsmodalClose}>
-                        <i className="fa fa-times" aria-hidden="true"></i>
-                    </button> 
-                    <Modal.Header>
-                        <div>
-                            <Modal.Title>Document Details</Modal.Title>
-                            <small>Please select which document you will be uploading and enter your name</small>
-                        </div>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <div className="text-left">
-                            <Form>
-                                <Form.Group controlId="formBasicEmail">
-                                    <Form.Label>Select Document Type</Form.Label>
-                                    <Form.Control className="rectu_form_field" as="select">
-                                        <option>Driving Licence</option>
-                                        <option>Voter Id Card</option>
-                                        <option>Aadhar Card</option>
-                                    </Form.Control>
-                                </Form.Group>
-
-                                <Form.Group controlId="formBasicPassword">
-                                    <Form.Label>Full Name</Form.Label>
-                                    <Form.Control className="rectu_form_field" type="text" placeholder="Mike Garrett"  />
-                                </Form.Group>
-                            </Form>
-                        </div>
-                    </Modal.Body>
-                    <Modal.Footer className=" justify-content-between">
-                        <span onClick={handlesetverifyIDmodalShow }>
-                            <Button variant="previous" onClick={handlesetDocumentDetailsmodalClose }> Previous </Button>
-                        </span>
-                        <span onClick={handlesetDocumentUploadModalShow }>
-                            <Button variant="next" onClick={handlesetDocumentDetailsmodalClose}> Next </Button>
-                        </span>
-                    </Modal.Footer>
-                </Modal>
 
 
-                <Modal className="user_modal" show={documentUploadmodal} onHide={handlesetDocumentUploadModalClose} backdrop="static" keyboard={false}>
-                    <button className="user_modal_close_btn" onClick={handlesetDocumentUploadModalClose}>
-                        <i className="fa fa-times" aria-hidden="true"></i>
-                    </button> 
-                    <Modal.Header>
-                        <div>
-                            <Modal.Title>Document Upload</Modal.Title>
-                            <small>Please select which document you will be uploading and enter your name</small>
-                        </div>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <div className="text-left">
-                            <Form>
-                                <Form.Group controlId="formBasicEmail">
-                                    <Form.Label>Photo Tips</Form.Label>
-                                    <Row className="photoTips_row">
-                                        <Col className="col">
-                                            <div className="photoTips_img_card">
-                                                <img width="100%" src={photoTips} alt="" />
-                                            </div>
-                                        </Col>
-                                        <Col className="col">
-                                            <div className="photoTips_img_card">
-                                                <img width="100%" src={photoTips} alt="" />
-                                            </div>
-                                        </Col>
-                                        <Col className="col">
-                                            <div className="photoTips_img_card">
-                                                <img width="100%" src={photoTips} alt="" />
-                                            </div>
-                                        </Col>
-                                        <Col className="col">
-                                            <div className="photoTips_img_card">
-                                                <img width="100%" src={photoTips} alt="" />
-                                            </div>
-                                        </Col>
-                                    </Row>
-                                </Form.Group>
+                <VerifyIdModal />
 
-                                <div className="dropzone_section">
-                                    <div className="dropzone upload_verify_id">
-                                        <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
-                                            {({getRootProps, getInputProps}) => (
-                                                <section>
-                                                    <div {...getRootProps()}>
-                                                        <input {...getInputProps()} />
-                                                        <div>
-                                                            <img src={img_icon} alt="" />
-                                                        </div>
-                                                        <p className="text_color_zambezi">Drop your image here. or 
-                                                            <span className="text_color_shamrock">Browse</span>
-                                                        </p>
-                                                    </div>
-                                                </section>
-                                            )}
-                                        </Dropzone>
-                                    </div>
-                                </div>
-                            </Form>
-                        </div>
-                    </Modal.Body>
-                    <Modal.Footer className=" justify-content-between">
-                        <span onClick={handlesetDocumentDetailsmodalShow }>
-                            <Button variant="previous" onClick={handlesetDocumentUploadModalClose }> Previous </Button>
-                        </span>
-                        <Button variant="upload"> Upload </Button>
-                    </Modal.Footer>
-                </Modal>
-            
+                <DocumentDetails />
+
+                <DocumentUpload />
+
             </div>
         </>
     )

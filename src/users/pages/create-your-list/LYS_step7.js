@@ -8,7 +8,7 @@ import B_step6 from '../../../assets/users/images/icons/steps/B_step6.png';
 
 import StepsNavListCtrl from './steps_nav_list';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearlistSpaceMessageFields, publishSpace } from '../../../redux/listspace/listspaceActions';
+import { clearlistSpaceMessageFields, publishSpace, stepSevenUpdateClient } from '../../../redux/listspace/listspaceActions';
 
 function CreateYourListStepSeventhCtrl() {
 
@@ -51,8 +51,15 @@ function CreateYourListStepSeventhCtrl() {
     useEffect(() => {
 
         if (stepSeven) {
+
+
             setAboutDescription(stepSeven.about);
-            setVatRegistered(stepSeven.vat);
+
+
+            if (stepSeven.vat) {
+                setVatRegistered(stepSeven.vat);
+            }
+
         }
 
     }, [stepSeven]);
@@ -98,13 +105,21 @@ function CreateYourListStepSeventhCtrl() {
 
         if (!error) {
 
-            dispatch(publishSpace({
-                token: JSON.parse(localStorage.getItem("stashGuruToken")),
-                about: aboutDescription,
-                vat: vatRegistered,
-                id: stepSix.id
-            }));
+            // dispatch(publishSpace({
+            //     token: JSON.parse(localStorage.getItem("stashGuruToken")),
+            //     about: aboutDescription,
+            //     vat: vatRegistered,
+            //     id: stepSix.id
+            // }));
 
+            let stepSevenNew = {
+                id: stepSix.id,
+                about: aboutDescription,
+                vat: vatRegistered
+            };
+
+            dispatch(stepSevenUpdateClient(stepSevenNew));
+            window.location.href = `/list-preview/${stepSix.id}`;
 
         }
 
@@ -261,14 +276,10 @@ function CreateYourListStepSeventhCtrl() {
                         </Col>
                         <Col lg="6" md="6" className="text-right">
                             <Button variant="success" className="mr-2 mt-2 px-5" onClick={onSubmitForm} disabled={publishLoading}>
-                                Publish
+                                Preview
                             </Button>
 
-                            {
-                                publishLoading
-                                &&
-                                <Spinner variant="success" animation="border"></Spinner>
-                            }
+
 
 
                         </Col>

@@ -74,7 +74,8 @@
 }
 
 .step_nav_list li.completed span img.complete_step_img{
-    display: inline-block;;
+    display: inline-block;
+    cursor: pointer;
 }
 .step_nav_list li.completed span img.incomplete_step_img{
     display: none;

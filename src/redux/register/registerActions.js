@@ -234,6 +234,8 @@ export const verifyToken = (token) => {
 
                 const loginResponse = response.data;
 
+
+
                 if (loginResponse.status) {
 
                     // const response = {
@@ -241,14 +243,17 @@ export const verifyToken = (token) => {
                     //     tokenInfo: loginResponse.token
                     // };
 
-                    // dispatch(verifyTokenSuccess(response));
+
 
                     set_login_token(JSON.stringify(loginResponse.token));
+                    localStorage.setItem("userEmail", loginResponse.email);
 
                     const query = new URLSearchParams(window.location.search);
 
+
                     if (query.get('redirect_url')) {
                         window.location.href = query.get('redirect_url');
+                        // window.location.href = '/dashboard';
                     }
                     else {
                         window.location.href = '/dashboard';

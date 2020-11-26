@@ -123,7 +123,7 @@ function CreateYourListStepFifthCtrl() {
         if (pricing) {
 
             let percentage = (+pricing / 100) * (+pricePercentage);
-            setEarning(+pricing + percentage);
+            setEarning(+pricing - percentage);
         }
         else {
             setEarning("0");

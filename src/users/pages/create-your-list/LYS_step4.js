@@ -44,6 +44,27 @@ function CreateYourListStepForthCtrl() {
             const newEditorState = EditorState.createWithContent(contentState);
             setEditorState(newEditorState);
 
+            if (stepFour.extra_data) {
+                setExtra(stepFour.extra_data);
+            }
+
+            if (stepFour.security) {
+                setSecurity(stepFour.security);
+            }
+
+            if (stepFour.location) {
+                setLocation(stepFour.location);
+            }
+
+            if (stepFour.access) {
+                setAccess(stepFour.access);
+            }
+
+            if (stepFour.hosting) {
+                setHosting(stepFour.hosting);
+            }
+
+
         }
 
     }, [stepFour]);

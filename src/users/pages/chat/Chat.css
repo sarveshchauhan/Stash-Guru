@@ -1,0 +1,21 @@
+.chat-space-list-item{
+
+background-color: #ffffff;
+
+}
+
+
+.chat-space-list-item:hover{
+    cursor: pointer;
+    background-color:#22bff6;
+
+}
+
+
+.chat-space-list-item-selected{
+
+    background-color: #22bff6;
+    
+    }
+    
+    
