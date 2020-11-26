@@ -7,9 +7,8 @@ function UserBookingCtrl(){
     return(
         <>
             <div className="user_page_hdng justify-content-between align-items-center">
-                
                 <div className="w-100 d-flex-wrap justify-content-between">
-                    <h2 className="user_page_hdng_txt">Booking</h2>
+                    <h2 className="user_page_hdng_txt">Bookings</h2>
                     <div className="user_page_hdng_left">
                         <Form className="d-inline-block float-left" style={{width:'350px'}}>
                             <InputGroup>
