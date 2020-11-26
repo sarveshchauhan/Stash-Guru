@@ -1,0 +1,121 @@
+.whatUBePaying .whatUBePayingCard{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border: 0.5px solid rgba(112, 112,112, 0.3);
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin: 5px auto;
+    color: #595959;
+}
+.whatUBePaying .whatUBePayingCard b{
+    font-size: 15px;
+}
+.whatUBePaying .whatUBePayingCard strong{
+    font-size: 25px;
+    font-weight: 800;
+    color: #34D789;
+}
+.whatUBePaying .whatUBePayingUlListCard{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border: 0.5px solid #34D789;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin: 5px auto;
+    color: #ffffff;
+    background-color: #34D789;
+    font-size: 13px;
+    
+}
+.whatUBePaying .whatUBePayingUlListCard ul{
+    list-style: none;
+    margin-left: -20px;
+}
+.whatUBePaying .whatUBePayingUlListCard ul li{
+    padding: 3px 0px;
+    position: relative;
+    list-style: none;
+}
+
+.whatUBePaying .whatUBePayingUlListCard ul li::after{
+    content: "\f04b";
+    position: absolute;
+    display: inline-block;
+    font: normal normal normal 10px/1 FontAwesome;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    left: -15px;
+    top: 9px;
+}
+
+
+
+.box_Img_Card{
+    background: #FFFFFF;
+    box-shadow: 0px 3px 10px #0000001A;
+    border-radius: 11px;
+    margin: 15px auto;
+    padding: 0px;
+    overflow: hidden;
+}
+.box_Img_Card_body{
+    padding: 15px;
+}
+
+
+
+
+.box_Img_Card_body table.table{
+    margin: 0px;
+}
+.box_Img_Card_body table.table,
+.box_Img_Card_body table.table tr,
+.box_Img_Card_body table.table tr th,
+.box_Img_Card_body table.table tr td{
+    border: 0px;
+    vertical-align: middle;
+    padding: 0px;
+}
+.box_Img_Card_body table.table tr th{
+    font-size: 12px;
+    font-weight: 300;
+}
+.box_Img_Card_body table.table tr td{
+    font-size: 14px;
+    font-weight: 500;
+}
+.box_Img_Card_body table.table tr td strong{
+    font-size: 20px;
+    font-weight: 900;
+    color: #34D789;;
+}
+.Cancellations_Policy_Card ul{
+    list-style: none;
+    margin-left: -20px;
+}
+.Cancellations_Policy_Card ul li{
+    font-size: 12px;
+    position: relative;
+    padding: 3px 0px;
+    margin-bottom: 10px;
+}
+.Cancellations_Policy_Card ul li::after{
+    content: "\f04b";
+    position: absolute;
+    display: inline-block;
+    font: normal normal normal 10px/1 FontAwesome;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    left: -15px;
+    top: 9px;
+    color: #000;
+}
+.Cancellations_Policy_Card ul a{
+    font-size: 12px;
+}

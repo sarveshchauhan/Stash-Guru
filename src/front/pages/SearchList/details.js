@@ -29,7 +29,7 @@ import agreement from '../../../assets/front/images/icons/list-details/agreement
 // Assets Include End
 import { useDispatch, useSelector } from 'react-redux';
 import { searchDetails } from '../../../redux';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import LoaderCtrl from '../../common/components/loader';
 import GoogleMapDetail from '../../common/components/google-map/GoogleMapDetail';
 const iconImages = require.context('../../../assets/front/images/icons/list-details', true);
@@ -307,8 +307,10 @@ function FrontSearchDetailsCtrl() {
                                                 </div>
 
                                                 <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">Garage</Button>
-                                                    <span><i className="fa fa-map-marker"></i> California </span>
+                                                    <div>
+                                                        <Button size="sm">Garage</Button>
+                                                        <span><i className="fa fa-map-marker"></i> California </span>
+                                                        </div>
                                                 </div>
 
                                                 <div className="SearchListPlaceAreaCost">
@@ -573,10 +575,13 @@ function FrontSearchDetailsCtrl() {
                                 <Form.Control className="rectu_form_field" type="text" placeholder="" value="1 Unit"  />
                             </Form.Group>
                         </Form>
+                    <div className="text-center w-100">
+                        <NavLink to="/booking">
+                            <Button className="px-5" variant="success">Let's Go</Button>
+                        </NavLink>
+                    </div>
                     </div>
                 </Modal.Body>
-                <Modal.Footer className=" justify-content-between">
-                </Modal.Footer>
             </Modal>
         </>
     )
