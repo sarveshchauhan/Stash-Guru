@@ -181,6 +181,32 @@ select.form-control{
 }
 
 
+table.table.no_bdr,
+table.table.no_bdr tr,
+table.table.no_bdr tr th,
+table.table.no_bdr tr td{
+    border: 0px;
+    vertical-align: middle;
+    padding: 0px;
+}
+table.table.no_bdr tr th{
+    font-size: 12px;
+    font-weight: 300;
+}
+table.table.no_bdr tr td{
+    font-size: 14px;
+    font-weight: 500;
+}
+table.table.no_bdr tr td strong{
+    font-size: 20px;
+    font-weight: 900;
+    color: #34D789;;
+}
+
+
+
+
+
 .box_Card,
 .sg_box_flex_card,
 .verificationCard,
@@ -201,9 +227,11 @@ select.form-control{
     margin: 20px auto;
 }
 .verificationCardBody h3,
+.text_hdng_h3,
 .sg_box_flex_card h3{
     font-size: 30px;
     font-weight: 700;
+    color: #595959;
 }
 .verificationCardBody p{
     font-size: 15px;

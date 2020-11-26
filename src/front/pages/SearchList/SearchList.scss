@@ -136,6 +136,7 @@
     background: transparent;
     border: 1px solid $deep_sky_color;
     color: $deep_sky_color;
+    min-height: auto;
 }
 .SearchListPlaceAreaPlace button img{
     width: 8px;

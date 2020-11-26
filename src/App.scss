@@ -177,6 +177,23 @@ img{
 }
 
 
+
+
+.btn_success_milky_outline{
+    border-color: $milky_color;
+    color: $milky_color;
+    background: $shamrock_color;
+}
+
+.btn_success_milky_outline.focus, 
+.btn_success_milky_outline:focus,
+.btn_success_milky_outline:focus-within,
+.btn_success_milky_outline:not(:disabled):not(.disabled):active,
+.btn_success_milky_outline:hover{
+    border-color: $milky_color;
+    color: $shamrock_color;
+    background: $milky_color;;
+}
 .btn_milky_grn{
     color: $shamrock_color;
     border-color: $shamrock_color;
@@ -222,6 +239,22 @@ img{
     color: #FF784F;
     background: transparent;;
 }
+
+.btn-light_cyan{
+    border-color: #ccf5e1;
+    color: #34D789;
+    background: #ccf5e1;
+}
+.btn-light_cyan.focus,
+.btn-light_cyan:focus,
+.btn-light_cyan:focus-within,
+.btn-light_cyan:not(:disabled):not(.disabled):active,
+.btn-light_cyan:hover{
+    border-color: #ccf5e1;
+    color: #34D789;
+    background: #ccf5e1;;
+}
+
 
 
 .btn.btn-previous{
