@@ -37,6 +37,9 @@ import UserListingtrl from '../users/pages/listing';
 import UserBookingCtrl from '../users/pages/booking';
 import UserBookingListCtrl from '../users/pages/booking/bookingList';
 import UserNoBookingListCtrl from '../users/pages/booking/noBookingList';
+import UserBookingChatCtrl from '../users/pages/booking/bookingChat';
+
+
 import UserVerificationCtrl from '../users/pages/verification';
 import UserProfileCtrl from '../users/pages/profile';
 import UserPaymentPayoutCtrl from '../users/pages/payment';
@@ -87,7 +90,8 @@ const Root = () => (
             <PrivateRoute exact path="/listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserListingtrl} />
             <PrivateRoute exact path="/booking" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingCtrl} />
             <PrivateRoute exact path="/booking-list" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingListCtrl} />
-            <PrivateRoute exact path="/no-any-list" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserNoBookingListCtrl} />
+            <PrivateRoute exact path="/no-any-list" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserNoBookingListCtrl} />            
+            <PrivateRoute exact path="/chat" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingChatCtrl} />
 
 
             <PrivateRoute exact path="/verification" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserVerificationCtrl} />

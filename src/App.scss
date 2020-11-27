@@ -14,6 +14,12 @@ $dark_gray_color: #aaaaaa;
 $nobel_color: #9c9c9c;
 
 
+$light_cyan_color: #ccf5e1;
+
+
+.text_color_light_cyan{
+    color: $light_cyan_color;
+}
 .text_color_deep_skyi{
     color: $deep_sky_color;
 }
@@ -41,6 +47,9 @@ $nobel_color: #9c9c9c;
 .btn{
     border-radius: 25px;
     min-height: 48px;
+}
+.btn.btn-sm{
+    min-height: auto;
 }
 img{
     max-width: 100%;

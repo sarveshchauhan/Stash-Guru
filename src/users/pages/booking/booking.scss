@@ -206,3 +206,169 @@
     border-color: #595959;
     color: #595959;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.bookingChat .no_any_chat_card .box_CardBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 575px;
+}
+
+
+
+.bookingChat .box_CardBody{
+    min-height: 575px;
+    padding: 20px 30px;
+}
+// #C6F1DB
+
+
+
+
+
+
+.chat_text_field{
+    border: 1px solid #34d789;
+    border-radius: 25px;
+    overflow: hidden;
+}
+.chat_text_field .form-control{
+    border: 0px;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.chat_text_field .btn.btn_attachment{
+    border: 0px;
+    background-color: transparent !important;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.chat_text_field .btn.btn_send{
+    border: 0px;
+    background-color: transparent !important;
+    padding-left: 0px;
+}
+.chat_text_field .btn.btn_attachment:hover,
+.chat_text_field .btn.btn_send:hover{
+    opacity: 0.7;
+}
+
+.bookingChat table.table tr th strong,
+.bookingChat table.table tr td strong{
+    font-size: 15px;
+}
+.bookingChat table.table tr th{
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.WorkspaceWarehouse_bookingCard h5{
+    font-size: 17px;
+    font-weight: 700;
+}
+.WorkspaceWarehouse_bookingCard small{
+    font-size: 10px;
+    font-weight: 500;
+}
+.WorkspaceWarehouse_bookingCard .box_Img_Card_footer{
+    border-top: 1px solid #0000001A;
+    border-top-style: dashed;
+}
+
+
+
+.booking_chat_user_list{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #0000001A;
+}
+.booking_chat_user_list:last-child{
+    border-bottom: 0px;
+}
+.booking_chat_user_list .booking_chat_user_icn,
+.booking_chatMsg .booking_chat_user_icn{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #34d789;
+    display: block;
+    text-align: center;
+    line-height: 38px;
+    padding: 0px;
+    color: #ffffff;
+}
+
+.booking_chat_user_list .booking_chat_user_icn img,
+.booking_chatMsg .booking_chat_user_icn img{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+.booking_chatMsg .booking_chat_user_icn span{
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}   
+.booking_chat_user_list .booking_chat_user_details{
+    line-height: 1;
+}
+.booking_chat_user_list .booking_chat_user_details h5{
+    margin: 0px;
+    font-size: 15px;
+}
+
+
+
+
+
+//  booking chat Msg
+.booking_chatMsg{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.booking_chatMsg .booking_chat_user_details{
+    width: calc(100% - 60px);
+    clear: both;
+}
+.booking_chatMsg .booking_chat_user_details .booking_chat_user_name{
+    padding-bottom: 0px;
+}
+.booking_chatMsg .booking_chat_user_details .text_msg{
+    background-color: #ccf5e1;
+    padding: 7px 15px;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 15px;
+    display: inline-block;
+}
+.booking_chatMsg.MsgByMe .booking_chat_user_details .text_msg{
+    background-color: #ffffff;
+    border: 1px solid #ccf5e1;;
+}
+.booking_chatMsg .booking_chat_user_details .timing{
+    font-size: 11px;
+    display: block;
+    text-align: right;
+}

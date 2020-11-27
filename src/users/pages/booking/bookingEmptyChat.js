@@ -16,114 +16,19 @@ import r_sm_verify from '../../../assets/users/images/chat/r_sm_verify.png';
 import user1  from '../../../assets/users/images/dummy/user1.jpg';
 
 
-function UserBookingChatCtrl(){
+function UserBookingEmptyChatCtrl(){
     return(
         <>
             <div className="bookingChat">
                 <Row>
                     <Col md={8}>
-                        <div className="box_Card booking_chat_card">
-                            <div className="box_CardBody">
-
-                                <div className="booking_chatMsg">
-                                    <div className="booking_chat_user_icn">
-                                        {/* <img src={user1} /> */}
-                                        <span>KR</span>
-                                    </div>
-                                    <div className="booking_chat_user_details">
-                                        <small className="d-block booking_chat_user_name">Kumar Raghav</small>
-                                        <div className="d-flex">
-                                            <div style={{maxWidth:'100%'}}>
-                                                <div className="d-block">
-                                                    <span className="text_msg">Lorem ipsum dolor sit</span>
-                                                    <span className="timing">26 Nov, 10:14 AM</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div className="box_Card no_any_invoice_card">
+                            <div className="box_CardBody text-center">
+                                <div className="w-100">
+                                    <img src={warning} alt="" />
+                                    <h5 className="text_color_light_cyan mt-3">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</h5>
+                                    <h5 className="mt-3">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor</h5>
                                 </div>
-
-                                <div className="booking_chatMsg MsgByMe">
-                                    <div className="booking_chat_user_icn">
-                                        {/* <img src={user1} /> */}
-                                        <span>MA</span>
-                                    </div>
-                                    <div className="booking_chat_user_details">
-                                        <small className="d-block booking_chat_user_name">Mary Ann Wagner</small>
-                                        <div className="d-flex">
-                                            <div style={{maxWidth:'100%'}}>
-                                                <div className="d-block">
-                                                    <span className="text_msg">Lorem ipsum dolor sit</span>
-                                                    <span className="timing">26 Nov, 10:14 AM</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="booking_chatMsg">
-                                    <div className="booking_chat_user_icn">
-                                       {/* <img src={user1} /> */}
-                                       <span>KR</span>
-                                    </div>
-                                    <div className="booking_chat_user_details">
-                                        <small className="d-block booking_chat_user_name">Kumar Raghav</small>
-                                        <div className="d-flex">
-                                            <div style={{maxWidth:'100%'}}>
-                                                <div className="d-block">
-                                                    <span className="text_msg">Lorem ipsum dolor sit amet</span>
-                                                    <span className="timing">26 Nov, 10:14 AM</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div className="d-flex">
-                                            <div style={{maxWidth:'100%'}}>
-                                                <div className="d-block">
-                                                    <span className="text_msg">Lorem ipsum</span>
-                                                    <span className="timing">26 Nov, 10:14 AM</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="booking_chatMsg MsgByMe">
-                                    <div className="booking_chat_user_icn">
-                                        {/* <img src={user1} /> */}
-                                        <span>MA</span>
-                                    </div>
-                                    <div className="booking_chat_user_details">
-                                        <small className="d-block booking_chat_user_name">Mary Ann Wagner</small>
-                                        <div className="d-flex">
-                                            <div style={{maxWidth:'100%'}}>
-                                                <div className="d-block">
-                                                    <span className="text_msg">Lorem ipsum dolor sit</span>
-                                                    <span className="timing">26 Nov, 10:14 AM</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="d-flex">
-                                            <div style={{maxWidth:'100%'}}>
-                                                <div className="d-block">
-                                                    <span className="text_msg">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</span>
-                                                    <span className="timing">26 Nov, 10:14 AM</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="d-flex">
-                                            <div style={{maxWidth:'100%'}}>
-                                                <div className="d-block">
-                                                    <span className="text_msg">?</span>
-                                                    <span className="timing">26 Nov, 10:14 AM</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        
-                                    </div>
-                                </div>
-
                             </div>
                             <InputGroup className="chat_text_field">
                                 <FormControl placeholder="FormControl" aria-label="Recipient's username" aria-describedby="basic-addon2" />
@@ -244,4 +149,4 @@ function UserBookingChatCtrl(){
     )
 }
 
-export default UserBookingChatCtrl;
+export default UserBookingEmptyChatCtrl;
