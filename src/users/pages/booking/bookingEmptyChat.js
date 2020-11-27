@@ -22,7 +22,7 @@ function UserBookingEmptyChatCtrl(){
             <div className="bookingChat">
                 <Row>
                     <Col md={8}>
-                        <div className="box_Card no_any_invoice_card">
+                        <div className="box_Card no_any_chat">
                             <div className="box_CardBody text-center">
                                 <div className="w-100">
                                     <img src={warning} alt="" />

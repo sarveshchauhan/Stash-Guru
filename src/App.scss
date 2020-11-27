@@ -351,6 +351,9 @@ input.form-control{
     border-radius: 25px;
     min-height: 48px;
 }
+.form-control.form-control-sm{
+    min-height: auto
+}
 
 .custom_select {
     width: 100%;

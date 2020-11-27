@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Col, Container, Row, Button, Alert, Form, Spinner } from 'react-bootstrap';
+import { Col, Container, Row, Button, Alert, Form, Spinner, FormControl, InputGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import { clearlistSpaceMessageFields, getFeatures, getFloors, getGuestAccess, getGuests, getSpaceType, getSpaceUsedFor, stepThreeSave, stepThreeUpdate } from '../../../redux/listspace/listspaceActions';
@@ -443,64 +443,54 @@ function CreateYourListStepThitdCtrl() {
 
 
                                         {
-                                            +gst.gt_id === 3 && +guest === 3 && <div>
+                                            +gst.gt_id === 3 && +guest === 3 && 
+                                            <div className="my-4">
 
 
                                                 {
                                                     specificHours.map((specHour) => (
-                                                        <Row>
-                                                            <Col sm={1}>
-                                                                <input type="checkbox" name="selected" defaultChecked={specHour.selected} checked={specHour.selected} onChange={(e) => onChangeSpecificHours(specHour.day, e)} />
-                                                            </Col>
-                                                            <Col sm={2}>
-                                                                {specHour.day}
-                                                            </Col>
-                                                            <Col sm={1}>
-
-                                                                <select defaultValue={specHour.from} value={specHour.from} name="from" onChange={(e) => onChangeSpecificHours(specHour.day, e)}>
-
-                                                                    {
-                                                                        hrList.map((hr) => (
-                                                                            <option value={hr}>{hr}</option>
-                                                                        ))
-                                                                    }
-
-                                                                </select>
-
-
-                                                            </Col>
-
-                                                            <Col sm={1}>
-                                                                <select defaultValue={specHour.fromType} value={specHour.fromType} onChange={(e) => onChangeSpecificHours(specHour.day, e)} name="fromType">
-                                                                    <option value="am">am</option>
-                                                                    <option value="pm">pm</option>
-                                                                </select>
-                                                            </Col>
-                                                            <Col sm={1}>
-                                                                <i className="fa fa-arrow-right"></i>
-                                                            </Col>
-                                                            <Col sm={1}>
-
-                                                                <select defaultValue={specHour.to} value={specHour.to} onChange={(e) => onChangeSpecificHours(specHour.day, e)} name="to">
-                                                                    {
-                                                                        hrList.map((hr) => (
-                                                                            <option value={hr}>{hr}</option>
-                                                                        ))
-                                                                    }
-                                                                </select>
-
-                                                            </Col>
-
-                                                            <Col sm={1}>
-                                                                <select defaultValue={specHour.toType} value={specHour.toType} onChange={(e) => onChangeSpecificHours(specHour.day, e)} name="toType">
-                                                                    <option value="am">am</option>
-                                                                    <option value="pm">pm</option>
-                                                                </select>
-                                                            </Col>
-
-
-
-                                                        </Row>
+                                                        <Form className="d-flex my-2">
+                                                            <Form.Row>
+                                                                <Form.Group as={Col} className="mb-0" controlId="" style={{maxWidth:'120px'}}>
+                                                                    <Form.Check type="checkbox" label={specHour.day} name="selected" defaultChecked={specHour.selected} checked={specHour.selected} onChange={(e) => onChangeSpecificHours(specHour.day, e)}  />
+                                                                </Form.Group>
+                                                                <Form.Group as={Col} className="mb-0">
+                                                                    <InputGroup>
+                                                                        <FormControl className="rectu_form_field" size="sm" />
+                                                                        {/* <Form.Control className="rectu_form_field" size="sm" as="select" defaultValue={specHour.from} value={specHour.from} name="from" onChange={(e) => onChangeSpecificHours(specHour.day, e)}>
+                                                                            {
+                                                                                hrList.map((hr) => (
+                                                                                    <option value={hr}>{hr}</option>
+                                                                                ))
+                                                                            }
+                                                                        </Form.Control> */}
+                                                                        <Form.Control className="rectu_form_field" size="sm" as="select" defaultValue={specHour.fromType} value={specHour.fromType} onChange={(e) => onChangeSpecificHours(specHour.day, e)} name="fromType">
+                                                                            <option value="am">am</option>
+                                                                            <option value="pm">pm</option>
+                                                                        </Form.Control>
+                                                                    </InputGroup>
+                                                                </Form.Group>
+                                                                <Form.Group as={Col} className="mb-0 align-self-center text-center" style={{maxWidth:'50px'}}>
+                                                                    <i className="fa fa-long-arrow-right"></i>
+                                                                </Form.Group>
+                                                                <Form.Group as={Col} className="mb-0">
+                                                                    <InputGroup>
+                                                                        <FormControl className="rectu_form_field" size="sm" />
+                                                                        {/* <Form.Control className="rectu_form_field" size="sm" as="select" defaultValue={specHour.to} value={specHour.to} onChange={(e) => onChangeSpecificHours(specHour.day, e)} name="to">
+                                                                            {
+                                                                                hrList.map((hr) => (
+                                                                                    <option value={hr}>{hr}</option>
+                                                                                ))
+                                                                            }
+                                                                        </Form.Control> */}
+                                                                        <Form.Control className="rectu_form_field" size="sm" as="select" defaultValue={specHour.toType} value={specHour.toType} onChange={(e) => onChangeSpecificHours(specHour.day, e)} name="toType">
+                                                                            <option value="am">am</option>
+                                                                            <option value="pm">pm</option>
+                                                                        </Form.Control>
+                                                                    </InputGroup>
+                                                                </Form.Group>
+                                                            </Form.Row>
+                                                        </Form>
                                                     ))
                                                 }
 

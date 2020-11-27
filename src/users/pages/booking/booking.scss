@@ -220,22 +220,38 @@
 
 
 
-.bookingChat .no_any_chat_card .box_CardBody{
+
+
+
+//  booking chat Msg
+
+.bookingChat .no_any_chat .box_CardBody{
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 575px;
 }
-
-
-
 .bookingChat .box_CardBody{
-    min-height: 575px;
+    height: 570px;
     padding: 20px 30px;
+    overflow-y: auto
 }
-// #C6F1DB
 
-
+.bookingChat .box_CardBody::-webkit-scrollbar {
+    width: 10px;
+}
+/* Track */
+.bookingChat .box_CardBody::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+/* Handle */
+.bookingChat .box_CardBody::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+/* Handle on hover */
+.bookingChat .box_CardBody::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
 
 
 
@@ -287,9 +303,6 @@
     border-top: 1px solid #0000001A;
     border-top-style: dashed;
 }
-
-
-
 .booking_chat_user_list{
     display: flex;
     flex-wrap: wrap;
@@ -337,9 +350,6 @@
 
 
 
-
-
-//  booking chat Msg
 .booking_chatMsg{
     display: flex;
     flex-wrap: wrap;
