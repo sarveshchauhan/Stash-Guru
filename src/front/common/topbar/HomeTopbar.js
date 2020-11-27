@@ -1,5 +1,5 @@
-import React,{useState,useEffect} from 'react';
-import {Navbar,Nav, Row, Col} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Navbar, Nav, Row, Col } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 
@@ -15,36 +15,36 @@ import AuthComponent from '../components/AuthComponent';
 // Component Include End
 
 
-function HomeTopbarHeaderComponent(){
-    
+function HomeTopbarHeaderComponent() {
+
     const [scroll, setScroll] = useState(false);
     useEffect(() => {
-    window.addEventListener("scroll", () => {
-        setScroll(window.scrollY > 250);
-    });
+        window.addEventListener("scroll", () => {
+            setScroll(window.scrollY > 250);
+        });
     }, []);
 
 
-    return(
+    return (
         <>
             <Navbar sticky="top" className={scroll ? "add_search" : "remove_search"}>
                 <div className="nav_container lg_screen_menu">
                     <Row className="align-items-center justify-content-between">
                         <div className="col-4 text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">
-                                <img width="100%" src={logo}  alt="" />
+                                <img width="100%" src={logo} alt="" />
                             </NavLink>
                         </div>
                         <div className="col-4 top_search mx-auto justify-content-center">
                             <Nav>
-                                <SearchComponent/>
+                                <SearchComponent />
                             </Nav>
                         </div>
                         <div className="col-4 my-2">
                             <Nav className="justify-content-md-end justify-content-center align-items-center">
                                 <NavLink className="nav-link list_your_space" to="/list-your-space">List your space</NavLink>
-                                <AuthComponent/>
-                                <FrontSideBarMenu/>
+                                <AuthComponent />
+                                <FrontSideBarMenu />
                             </Nav>
                         </div>
                     </Row>
@@ -55,15 +55,15 @@ function HomeTopbarHeaderComponent(){
                     <Row className="align-items-center justify-content-between">
                         <Col className="col-12 text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">
-                                <img width="100%" src={logo} alt=""  />
+                                <img width="100%" src={logo} alt="" />
                             </NavLink>
-                            <span  className="mob_toggler">
+                            <span className="mob_toggler">
                                 <FrontSideBarMenu />
                             </span>
                         </Col>
                         <div className="col-12 top_search mx-auto justify-content-center">
                             <Nav>
-                                <SearchComponent/>
+                                <SearchComponent />
                             </Nav>
                         </div>
                     </Row>

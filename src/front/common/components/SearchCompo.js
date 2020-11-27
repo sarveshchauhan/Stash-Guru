@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { InputGroup, Button, FormControl, Form } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import GoogleSearch from './GoogleSearch';
+import SearchLocationInput from './SearchLocationInput';
 
 function SearchComponent() {
 
@@ -58,11 +59,14 @@ function SearchComponent() {
         <>
             <Form onSubmit={hangleSubmit}>
 
-                {/* <Form.Group>
+                <Form.Group>
                     <GoogleSearch />
-                </Form.Group> */}
+                </Form.Group>
 
-                <InputGroup className="location_search_bar">
+
+
+
+                {/* <InputGroup className="location_search_bar">
                     <InputGroup.Prepend>
                         <InputGroup.Text>
                             <i className="fa fa-map-marker"></i>
@@ -78,7 +82,10 @@ function SearchComponent() {
                             <i className="fa fa-search"></i>
                         </Button>
                     </InputGroup.Append>
-                </InputGroup>
+                </InputGroup> */}
+
+
+
                 {
                     errorSearch && <span className="error_msg text-danger">
                         {errorSearch}
