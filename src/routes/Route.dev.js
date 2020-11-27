@@ -90,8 +90,9 @@ const Root = () => (
             <PrivateRoute exact path="/listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserListingtrl} />
             <PrivateRoute exact path="/booking" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingCtrl} />
             <PrivateRoute exact path="/booking-list" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingListCtrl} />
-            <PrivateRoute exact path="/no-any-list" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserNoBookingListCtrl} />            
-            <PrivateRoute exact path="/chat" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingChatCtrl} />
+            <PrivateRoute exact path="/no-any-list" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserNoBookingListCtrl} />
+
+            <PrivateRoute exact path="/chat/list/:listId" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingChatCtrl} />
 
 
             <PrivateRoute exact path="/verification" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserVerificationCtrl} />
@@ -123,7 +124,9 @@ const Root = () => (
             {/* <Route exact path="/create-your-list-step7" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepSeventhCtrl} {...props} />)} /> */}
             <PrivateRoute exact path="/create-your-list-step7" parentComponent={UserPagesLayoutCtrl} childComponent={CreateYourListStepSeventhCtrl} />
             <PrivateRoute exact path="/list-preview/:id" parentComponent={UserPagesLayoutCtrl} childComponent={ListPreviewCtrl} />
-            <PrivateRoute exact path="/chat" parentComponent={SideMenuPageLayoutCtrl} childComponent={ChatCtrl} />
+
+
+            <PrivateRoute exact path="/chat/host/:listId" parentComponent={SideMenuPageLayoutCtrl} childComponent={ChatCtrl} />
             {/* <Route exact path="/list-preview/:id" render={(props) => (<UserPagesLayoutCtrl children={ListPreviewCtrl} {...props} />)} /> */}
 
 

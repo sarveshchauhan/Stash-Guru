@@ -307,7 +307,7 @@ function FrontSearchDetailsCtrl() {
                                                     <div>
                                                         <Button size="sm">Garage</Button>
                                                         <span><i className="fa fa-map-marker"></i> California </span>
-                                                        </div>
+                                                    </div>
                                                 </div>
 
                                                 <div className="SearchListPlaceAreaCost">
@@ -351,7 +351,7 @@ function FrontSearchDetailsCtrl() {
                                             <div className="access_card_text">
                                                 <h4>{details && details.u_name}</h4>
                                                 <small>{verifyStatus}</small>
-                                                <Button variant="success">Message Mary Ann..</Button>
+                                                <Button variant="success" onClick={() => window.location.href = `/chat/list/${searchId}`}>Message Mary Ann..</Button>
                                             </div>
                                         </div>
                                     </Col>
@@ -583,11 +583,11 @@ function FrontSearchDetailsCtrl() {
                                 <Form.Control className="rectu_form_field" type="text" placeholder="" value="1 Unit" />
                             </Form.Group>
                         </Form>
-                    <div className="text-center w-100">
-                        <NavLink to="/booking">
-                            <Button className="px-5" variant="success">Let's Go</Button>
-                        </NavLink>
-                    </div>
+                        <div className="text-center w-100">
+                            <NavLink to="/booking">
+                                <Button className="px-5" variant="success">Let's Go</Button>
+                            </NavLink>
+                        </div>
                     </div>
                 </Modal.Body>
             </Modal>

@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button,Col,FormControl,InputGroup,Table, Row } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Button, Col, FormControl, InputGroup, Table, Row } from 'react-bootstrap';
+import { NavLink, useParams } from 'react-router-dom';
 import './booking.scss';
 import warning from '../../../assets/users/images/chat/warning.png';
 import video_bg from '../../../assets/users/images/dummy/video_bg.png';
@@ -13,11 +13,32 @@ import calendar from '../../../assets/users/images/chat/calendar.png';
 import g_sm_verify from '../../../assets/users/images/chat/g_sm_verify.png';
 import r_sm_verify from '../../../assets/users/images/chat/r_sm_verify.png';
 
-import user1  from '../../../assets/users/images/dummy/user1.jpg';
+import user1 from '../../../assets/users/images/dummy/user1.jpg';
+import { useDispatch, useSelector } from 'react-redux';
+import { searchDetails } from '../../../redux';
 
 
-function UserBookingChatCtrl(){
-    return(
+function UserBookingChatCtrl() {
+
+    const { listId } = useParams();
+    const dispatch = useDispatch();
+
+    const { schDetails, images } = useSelector(state => state.search);
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
+    useEffect(() => {
+
+        dispatch(searchDetails(listId));
+
+    }, [dispatch]);
+
+    return (
         <>
             <div className="bookingChat">
                 <Row>
@@ -33,7 +54,7 @@ function UserBookingChatCtrl(){
                                     <div className="booking_chat_user_details">
                                         <small className="d-block booking_chat_user_name">Kumar Raghav</small>
                                         <div className="d-flex">
-                                            <div style={{maxWidth:'100%'}}>
+                                            <div style={{ maxWidth: '100%' }}>
                                                 <div className="d-block">
                                                     <span className="text_msg">Lorem ipsum dolor sit</span>
                                                     <span className="timing">26 Nov, 10:14 AM</span>
@@ -51,7 +72,7 @@ function UserBookingChatCtrl(){
                                     <div className="booking_chat_user_details">
                                         <small className="d-block booking_chat_user_name">Mary Ann Wagner</small>
                                         <div className="d-flex">
-                                            <div style={{maxWidth:'100%'}}>
+                                            <div style={{ maxWidth: '100%' }}>
                                                 <div className="d-block">
                                                     <span className="text_msg">Lorem ipsum dolor sit</span>
                                                     <span className="timing">26 Nov, 10:14 AM</span>
@@ -63,22 +84,22 @@ function UserBookingChatCtrl(){
 
                                 <div className="booking_chatMsg">
                                     <div className="booking_chat_user_icn">
-                                       {/* <img src={user1} /> */}
-                                       <span>KR</span>
+                                        {/* <img src={user1} /> */}
+                                        <span>KR</span>
                                     </div>
                                     <div className="booking_chat_user_details">
                                         <small className="d-block booking_chat_user_name">Kumar Raghav</small>
                                         <div className="d-flex">
-                                            <div style={{maxWidth:'100%'}}>
+                                            <div style={{ maxWidth: '100%' }}>
                                                 <div className="d-block">
                                                     <span className="text_msg">Lorem ipsum dolor sit amet</span>
                                                     <span className="timing">26 Nov, 10:14 AM</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div className="d-flex">
-                                            <div style={{maxWidth:'100%'}}>
+                                            <div style={{ maxWidth: '100%' }}>
                                                 <div className="d-block">
                                                     <span className="text_msg">Lorem ipsum</span>
                                                     <span className="timing">26 Nov, 10:14 AM</span>
@@ -96,7 +117,7 @@ function UserBookingChatCtrl(){
                                     <div className="booking_chat_user_details">
                                         <small className="d-block booking_chat_user_name">Mary Ann Wagner</small>
                                         <div className="d-flex">
-                                            <div style={{maxWidth:'100%'}}>
+                                            <div style={{ maxWidth: '100%' }}>
                                                 <div className="d-block">
                                                     <span className="text_msg">Lorem ipsum dolor sit</span>
                                                     <span className="timing">26 Nov, 10:14 AM</span>
@@ -104,7 +125,7 @@ function UserBookingChatCtrl(){
                                             </div>
                                         </div>
                                         <div className="d-flex">
-                                            <div style={{maxWidth:'100%'}}>
+                                            <div style={{ maxWidth: '100%' }}>
                                                 <div className="d-block">
                                                     <span className="text_msg">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</span>
                                                     <span className="timing">26 Nov, 10:14 AM</span>
@@ -112,15 +133,15 @@ function UserBookingChatCtrl(){
                                             </div>
                                         </div>
                                         <div className="d-flex">
-                                            <div style={{maxWidth:'100%'}}>
+                                            <div style={{ maxWidth: '100%' }}>
                                                 <div className="d-block">
                                                     <span className="text_msg">?</span>
                                                     <span className="timing">26 Nov, 10:14 AM</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        
-                                        
+
+
                                     </div>
                                 </div>
 
@@ -142,7 +163,7 @@ function UserBookingChatCtrl(){
                         <div className="box_Img_Card WorkspaceWarehouse_bookingCard">
                             <img src={video_bg} alt="" />
                             <div className="box_Img_Card_body">
-                                <h5>Workspace In Warehouse</h5>
+                                <h5>{schDetails && schDetails.store_title}</h5>
                                 <Table size="sm" className="no_bdr">
                                     <tbody className="pb-2">
                                         <tr>
@@ -151,7 +172,7 @@ function UserBookingChatCtrl(){
                                                     <tbody>
                                                         <tr>
                                                             <td>
-                                                                <strong>$45.00</strong>
+                                                                <strong>${schDetails && schDetails.store_cost}</strong>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -161,7 +182,7 @@ function UserBookingChatCtrl(){
                                                 </Table>
                                             </td>
 
-                                            
+
                                             <td width="120">
                                                 <Table size="sm" className="no_bdr">
                                                     <tbody>
@@ -177,7 +198,7 @@ function UserBookingChatCtrl(){
                                                 </Table>
                                             </td>
 
-                                            
+
                                             <td width="120">
                                                 <Table size="sm" className="no_bdr">
                                                     <tbody>
@@ -203,12 +224,12 @@ function UserBookingChatCtrl(){
                             <div className="box_Img_Card_footer">
                                 <div className="box_Img_Card_body">
                                     <small className="d-block"><img className="pr-1" src={send_message} width="15" /> Security Deposit $90</small>
-                                        <small className="d-block"><img className="pr-1" src={calendar} width="15" /> Minimum Rental Period 2Months</small>
+                                    <small className="d-block"><img className="pr-1" src={calendar} width="15" /> Minimum Rental Period 2Months</small>
                                 </div>
                             </div>
                         </div>
 
-                        
+
                         <div className="box_Card py-0">
                             <div className="booking_chat_user_list">
                                 <div className="booking_chat_user_icn">
@@ -217,7 +238,7 @@ function UserBookingChatCtrl(){
                                 <div className="booking_chat_user_details">
                                     <h5>Mary Ann Wagner</h5>
                                     <small className="text_color_shamrock">
-                                        <img className="pr-1" src={g_sm_verify} width="15" /> 
+                                        <img className="pr-1" src={g_sm_verify} width="15" />
                                         Verified Host
                                     </small>
                                 </div>
@@ -229,15 +250,15 @@ function UserBookingChatCtrl(){
                                 <div className="booking_chat_user_details">
                                     <h5>Mary Ann Wagner</h5>
                                     <small className="text_color_l_orange">
-                                        <img className="pr-1" src={r_sm_verify} width="15" /> 
+                                        <img className="pr-1" src={r_sm_verify} width="15" />
                                         Verified Host
                                     </small>
                                 </div>
                             </div>
                         </div>
                     </Col>
-                    
-                    
+
+
                 </Row>
             </div>
         </>
