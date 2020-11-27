@@ -87,7 +87,7 @@ export function GoogleMap(props) {
                 <InfoWindow
                     position={{ lat: coordinates.latitude, lng: coordinates.longitude }}
                     visible={isOpen}>
-                    <small>{props.addressName}</small>
+                    {/* <small>{props.addressName}</small> */}
                 </InfoWindow>
 
 

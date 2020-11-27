@@ -41,9 +41,10 @@ function UserListingtrl() {
 
     }
 
-    const edit_listing = (id) => {
+    const editListing = (id) => {
 
-        dispatch(setListDetailClient(id, '/create-your-list'));
+        dispatch(setListDetailClient(id));
+        window.location.href = `/list-preview/${id}`
 
     }
 
@@ -66,7 +67,7 @@ function UserListingtrl() {
                             </Form.Control>
                         </Form.Group>
                     </Form>
-                    <Button className="float-left ml-2 btn-success" style={{ minWidth: '150px' }}>+ New Listing</Button>
+                    <Button onClick={() => window.location.href = "/list-your-space"} className="float-left ml-2 btn-success" style={{ minWidth: '150px' }}>+ New Listing</Button>
                 </div>
             </div>
 
@@ -104,7 +105,7 @@ function UserListingtrl() {
 
 
 
-                                <span className="listing_card_header_icon" onClick={() => window.location.href = `/list-preview/${list.store_id}`}>
+                                <span className="listing_card_header_icon" onClick={() => editListing(list.store_id)}>
                                     <i className="fa fa-pencil-square-o"></i>
                                     <br /> Edit
                     </span>

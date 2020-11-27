@@ -15,6 +15,7 @@ function SearchComponent() {
 
         setTextSearch(key);
 
+
     }, [key]);
 
 

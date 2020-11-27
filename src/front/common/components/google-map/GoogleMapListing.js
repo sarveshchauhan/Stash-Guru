@@ -57,10 +57,10 @@ export function GoogleMap(props) {
             <Map
                 google={props.google}
                 style={mapStyles}
-                zoom={14}
+                zoom={10}
                 center={{
-                    lat: searchList && searchList.length > 0 ? searchList[0].store_lat : 28.535601,
-                    lng: searchList && searchList.length > 0 ? searchList[0].store_long : 77.209084
+                    lat: coordinates ? coordinates.latitude : 28.535601,
+                    lng: coordinates ? coordinates.longitude : 77.209084
                 }}
             >
 
@@ -90,7 +90,7 @@ export function GoogleMap(props) {
                     position={{ lat: popupDetail.lat, lng: popupDetail.lng }}
                     visible={isOpen}>
                     <h5>{popupDetail.title}</h5>
-                    <p><strong>Address:</strong> {popupDetail.address} </p>
+                    {/* <p><strong>Address:</strong> {popupDetail.address} </p> */}
                 </InfoWindow>
 
 
