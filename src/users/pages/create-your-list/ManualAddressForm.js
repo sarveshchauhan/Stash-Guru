@@ -143,7 +143,7 @@ function ManualAddressForm() {
         <>
             <Form className="pb-5" onSubmit={onSubmitForm}>
                 <h2>Add Address</h2>
-                {/* <Form.Group controlId="formBasicEmail">
+                <Form.Group controlId="formBasicEmail">
                     <Form.Label>Street/House Number</Form.Label>
                     <Form.Control type="text" placeholder="Enter Street/House Number" name="house_no" value={house_no} onChange={(e) => set_house_no(e.target.value)} onBlur={() => validateField("house_no")} />
 
@@ -151,7 +151,7 @@ function ManualAddressForm() {
                         house_no_error && <small className="text-danger">{house_no_error}</small>
                     }
 
-                </Form.Group> */}
+                </Form.Group>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Address1</Form.Label>
                     <Form.Control type="text" placeholder="Enter Address1" name="address1" value={address1} onChange={(e) => set_address1(e.target.value)} onBlur={() => validateField("address1")} />

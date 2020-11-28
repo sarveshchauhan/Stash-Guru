@@ -293,7 +293,7 @@ function CreateYourListStepThitdCtrl() {
                             {
                                 spaceTypeList && Array.isArray(spaceTypeList) && spaceTypeList.map((space, index) => (
 
-                                    <Button className={+space.st_id === +st_id ? "btn_outline_success mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => set_st_id(space.st_id)}>{space.st_name}</Button>
+                                    <Button variant="no_bg" className={+space.st_id === +st_id ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => set_st_id(space.st_id)}>{space.st_name}</Button>
 
 
                                 ))
@@ -326,7 +326,7 @@ function CreateYourListStepThitdCtrl() {
 
                             {
                                 spaceUsedForList && Array.isArray(spaceUsedForList) && spaceUsedForList.map((space, index) => (
-                                    <Button className={+space.sut_id === +sut_id ? "btn_outline_success mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => set_sut_id(space.sut_id)} >{space.sut_name}</Button>
+                                    <Button variant="no_bg" className={+space.sut_id === +sut_id ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => set_sut_id(space.sut_id)} >{space.sut_name}</Button>
                                 ))
                             }
 
@@ -351,7 +351,7 @@ function CreateYourListStepThitdCtrl() {
 
                                 {
                                     featuresList && Array.isArray(featuresList) && featuresList.map((feature, index) => (
-                                        <Button className={is_feature_exists(feature.fs_id) ? "btn_outline_success mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => onChangeFeature(feature.fs_id)}>{feature.fs_name}</Button>
+                                        <Button variant="no_bg" className={is_feature_exists(feature.fs_id) ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => onChangeFeature(feature.fs_id)}>{feature.fs_name}</Button>
                                     ))
                                 }
 
@@ -377,7 +377,7 @@ function CreateYourListStepThitdCtrl() {
 
                             {
                                 floorsList && Array.isArray(floorsList) && floorsList.map((floor, index) => (
-                                    <Button className={+floor.fl_id === +floor_id ? "btn_outline_success mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => set_floor_id(floor.fl_id)}>{floor.fl_name}</Button>
+                                    <Button variant="no_bg" className={+floor.fl_id === +floor_id ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => set_floor_id(floor.fl_id)}>{floor.fl_name}</Button>
                                 ))
                             }
 
@@ -400,8 +400,8 @@ function CreateYourListStepThitdCtrl() {
                     <Row className="justify-content-between">
                         <Col lg="5" md="6">
                             <h3 className="md_bld_txt mb-3">Can you provide a key for the space?</h3>
-                            <Button onClick={() => set_key("Yes")} className={key === "Yes" ? "mr-2 mt-2 px-5 optionButtonSelected" : "mr-2 mt-2 px-5 btn_outline_success"}>Yes</Button>
-                            <Button onClick={() => set_key("No")} className={key === "No" ? "mr-2 mt-2 px-5 optionButtonSelected" : "mr-2 mt-2 px-5 btn_outline_success"}>No</Button>
+                            <Button variant="no_bg" onClick={() => set_key("Yes")} className={key === "Yes" ? "mr-2 mt-2 px-5 optionButtonSelected" : "btn_outline_success mr-2 mt-2 px-5"}>Yes</Button>
+                            <Button variant="no_bg" onClick={() => set_key("No")} className={key === "No" ? "mr-2 mt-2 px-5 optionButtonSelected" : "btn_outline_success mr-2 mt-2 px-5"}>No</Button>
                         </Col>
                         <Col lg="4" md="5" className="offset-lg-1">
                             <h5 className=""><b>Lorem ipsum dolor sit</b></h5>
