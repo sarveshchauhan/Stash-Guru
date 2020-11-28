@@ -56,7 +56,7 @@ function FrontSearchListCtrl() {
             <LoaderCtrl loaderStatus={loader} />
             <Container fluid className="">
                 <Row className="">
-                    <Col lg={7} className="">
+                    <Col lg={6} className="">
                         <Navbar sticky="top" className="SearchListFilter">
                             <Row>
                                 <Col sm={12}>
@@ -194,17 +194,28 @@ function FrontSearchListCtrl() {
                                                     <img width="100%" src={details.images && details.images.length > 0 ? details.images[0].si_path : PlaceholderImage} alt="" />
                                                     <div className="SearchListPlace_card_body">
                                                         <div className="SearchListPlaceUserArea">
+                                                            <div className="">
+                                                                <b className="PlaceAreaTitle d-block">
+                                                                    Lorem Ipsum
+                                                                </b>
+                                                            </div>
+                                                        </div>
+                                                        <div className="SearchListPlaceUserArea">
                                                             <img className="profileImg" src={details.u_pic} alt="" />
-                                                            <span className="profileName">{details.u_name}</span>
+                                                            <div className="">
+                                                                <span className="profileName d-block">{details.u_name}</span>
+                                                            </div>
                                                         </div>
 
-                                                        <div className="SearchListPlaceAreaPlace">
-                                                            <Button size="sm">
+                                                        <div className="SearchListPlaceAreaPlace justify-content-between">
+                                                            <span className="FrPlace" size="sm" variant="no_bg">
                                                                 <img width="100%" src={b_garage} alt="" /> {details.st_name}
-                                                            </Button>
-                                                            <span><i className="fa fa-map-marker"></i> {details.store_location} </span>
-                                                            <span>|</span>
-                                                            <span>1 km</span>
+                                                            </span>
+                                                            <div>
+                                                                <span><i className="fa fa-map-marker"></i> {details.store_location} </span>
+                                                                <span>|</span>
+                                                                <span>1 km</span>
+                                                            </div>
                                                         </div>
 
                                                         <div className="SearchListPlaceAreaCost">
@@ -233,7 +244,7 @@ function FrontSearchListCtrl() {
                             </Col>
                         </Row>
                     </Col>
-                    <Col lg={5} className="">
+                    <Col lg={6} className="">
                         <div className="map_area">
                             <GoogleMapListing />
                         </div>
