@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { config } from '../../config/config';
-import { CHAT_GROUP_FAILURE, CHAT_GROUP_REQUEST, CHAT_GROUP_SUCCESS, MESSAGE_FAILURE, MESSAGE_REQUEST, MESSAGE_SUCCESS, PUSH_MESSAGE_INTO_LIST, PUSH_REMOTE_CHAT, SET_CURRENT_CHATGROUP, SET_CURRENT_GUEST_EMAIL, SET_CURRENT_HOST_EMAIL, SET_CURRENT_LISTID } from './chatTypes';
+import { CG_INFO_FAILURE, CG_INFO_REQUEST, CG_INFO_SUCCESS, CHAT_GROUP_FAILURE, CHAT_GROUP_REQUEST, CHAT_GROUP_SUCCESS, MESSAGE_FAILURE, MESSAGE_REQUEST, MESSAGE_SUCCESS, PUSH_MESSAGE_INTO_LIST, PUSH_REMOTE_CHAT, SET_CURRENT_CHATGROUP, SET_CURRENT_GUEST_EMAIL, SET_CURRENT_HOST_EMAIL, SET_CURRENT_LISTID } from './chatTypes';
 import store from './../store';
 
 const chatGroupRequest = () => {
@@ -134,10 +134,18 @@ export const getChatMessageList = (reqData) => {
                 const serverResponse = response.data;
                 if (+serverResponse.status) {
 
-                    dispatch(setCurrentChatGroup(reqData.chat_id));
-                    dispatch(setCurrentListId(reqData.list_id));
-                    dispatch(setCurrentHostEmail(reqData.host_email));
-                    dispatch(setCurrentGuestEmail(reqData.guest_email));
+                    if (reqData.chat_id && reqData.list_id && reqData.host_email && reqData.guest_email) {
+
+                        dispatch(setCurrentChatGroup(reqData.chat_id));
+                        dispatch(setCurrentListId(reqData.list_id));
+                        dispatch(setCurrentHostEmail(reqData.host_email));
+                        dispatch(setCurrentGuestEmail(reqData.guest_email));
+
+                    }
+
+
+
+
                     dispatch(messageSuccess(serverResponse.list));
 
 
@@ -180,5 +188,78 @@ export const pushRemoteChat = (response) => {
     }
 
 
+
+}
+
+
+export const pushRemoteChatGuest = (response) => {
+
+    return (dispatch) => {
+
+        if (+store.getState().chat.currentChatGroupId === +response.cg_id) {
+
+            dispatch(pushMessageIntoList(response));
+
+        }
+
+
+    }
+
+
+
+}
+
+
+
+
+const cgInfoRequest = () => {
+    return {
+        type: CG_INFO_REQUEST
+    }
+}
+
+const cgInfoSuccess = (response) => {
+    return {
+        type: CG_INFO_SUCCESS,
+        payload: response
+    }
+}
+
+const cgInfoFailure = (response) => {
+    return {
+        type: CG_INFO_FAILURE,
+        payload: response
+    }
+}
+
+
+
+
+export const getCgInfo = (reqData) => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(cgInfoRequest())
+        await axios.post(`${config.apiUrl}/front/chat/storage_list`, reqData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    dispatch(cgInfoSuccess(serverResponse.list));
+
+                }
+                else {
+                    dispatch(cgInfoFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(cgInfoFailure(errorMsg));
+
+            });
+    }
 
 }

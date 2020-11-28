@@ -1,4 +1,4 @@
-import { CHAT_GROUP_FAILURE, CHAT_GROUP_REQUEST, CHAT_GROUP_SUCCESS, MESSAGE_FAILURE, MESSAGE_REQUEST, MESSAGE_SUCCESS, PUSH_MESSAGE_INTO_LIST, SET_CURRENT_CHATGROUP, SET_CURRENT_GUEST_EMAIL, SET_CURRENT_HOST_EMAIL, SET_CURRENT_LISTID } from "./chatTypes";
+import { CG_INFO_FAILURE, CG_INFO_REQUEST, CG_INFO_SUCCESS, CHAT_GROUP_FAILURE, CHAT_GROUP_REQUEST, CHAT_GROUP_SUCCESS, MESSAGE_FAILURE, MESSAGE_REQUEST, MESSAGE_SUCCESS, PUSH_MESSAGE_INTO_LIST, SET_CURRENT_CHATGROUP, SET_CURRENT_GUEST_EMAIL, SET_CURRENT_HOST_EMAIL, SET_CURRENT_LISTID } from "./chatTypes";
 
 const initialState = {
 
@@ -13,7 +13,11 @@ const initialState = {
     currentChatGroupId: "",
     currentListId: "",
     currentGuestEmail: "",
-    currentHostEmail: ""
+    currentHostEmail: "",
+
+    cgInfo: "",
+    cgInfoLoading: false,
+    cgInfoError: ""
 
 }
 
@@ -90,6 +94,26 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 messageList: [...state.messageList, action.payload]
+            }
+
+        case CG_INFO_REQUEST:
+            return {
+                ...state,
+                cgInfoLoading: true
+            }
+
+        case CG_INFO_SUCCESS:
+            return {
+                ...state,
+                cgInfoLoading: false,
+                cgInfo: action.payload
+            }
+
+        case CG_INFO_FAILURE:
+            return {
+                ...state,
+                cgInfoLoading: false,
+                cgInfoError: action.payload
             }
 
 

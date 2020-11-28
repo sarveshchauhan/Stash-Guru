@@ -251,8 +251,8 @@ function CreateYourListStepThitdCtrl() {
                 postcode: stepTwo.postal_code,
                 lat: stepTwo.lat,
                 long: stepTwo.lng,
-                guest: guest,
-                guest_access: guest_access,
+                guest: +guest,
+                guest_access: +guest_access,
                 is_specific_time: +guest === 3 ? "Yes" : "No",
                 specific_time: +guest === 3 ? specificHours : null
 
@@ -443,7 +443,7 @@ function CreateYourListStepThitdCtrl() {
 
 
                                         {
-                                            +gst.gt_id === 3 && +guest === 3 && 
+                                            +gst.gt_id === 3 && +guest === 3 &&
                                             <div className="my-4">
 
 
@@ -451,12 +451,12 @@ function CreateYourListStepThitdCtrl() {
                                                     specificHours.map((specHour) => (
                                                         <Form className="d-flex my-2">
                                                             <Form.Row>
-                                                                <Form.Group as={Col} className="mb-0" controlId="" style={{maxWidth:'120px'}}>
-                                                                    <Form.Check type="checkbox" label={specHour.day} name="selected" defaultChecked={specHour.selected} checked={specHour.selected} onChange={(e) => onChangeSpecificHours(specHour.day, e)}  />
+                                                                <Form.Group as={Col} className="mb-0" controlId="" style={{ maxWidth: '120px' }}>
+                                                                    <Form.Check type="checkbox" label={specHour.day} name="selected" defaultChecked={specHour.selected} checked={specHour.selected} onChange={(e) => onChangeSpecificHours(specHour.day, e)} />
                                                                 </Form.Group>
                                                                 <Form.Group as={Col} className="mb-0">
                                                                     <InputGroup>
-                                                                        <FormControl className="rectu_form_field" size="sm" />
+                                                                        <FormControl className="rectu_form_field" size="sm" defaultValue={specHour.from} value={specHour.from} name="from" onChange={(e) => onChangeSpecificHours(specHour.day, e)} />
                                                                         {/* <Form.Control className="rectu_form_field" size="sm" as="select" defaultValue={specHour.from} value={specHour.from} name="from" onChange={(e) => onChangeSpecificHours(specHour.day, e)}>
                                                                             {
                                                                                 hrList.map((hr) => (
@@ -470,12 +470,12 @@ function CreateYourListStepThitdCtrl() {
                                                                         </Form.Control>
                                                                     </InputGroup>
                                                                 </Form.Group>
-                                                                <Form.Group as={Col} className="mb-0 align-self-center text-center" style={{maxWidth:'50px'}}>
+                                                                <Form.Group as={Col} className="mb-0 align-self-center text-center" style={{ maxWidth: '50px' }}>
                                                                     <i className="fa fa-long-arrow-right"></i>
                                                                 </Form.Group>
                                                                 <Form.Group as={Col} className="mb-0">
                                                                     <InputGroup>
-                                                                        <FormControl className="rectu_form_field" size="sm" />
+                                                                        <FormControl className="rectu_form_field" size="sm" defaultValue={specHour.to} value={specHour.to} onChange={(e) => onChangeSpecificHours(specHour.day, e)} name="to" />
                                                                         {/* <Form.Control className="rectu_form_field" size="sm" as="select" defaultValue={specHour.to} value={specHour.to} onChange={(e) => onChangeSpecificHours(specHour.day, e)} name="to">
                                                                             {
                                                                                 hrList.map((hr) => (

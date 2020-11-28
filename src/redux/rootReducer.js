@@ -5,7 +5,7 @@ import searchReducer from './search/searchReducers';
 import listspaceReducer from './listspace/listspaceReducers';
 import chatReducer from './chat/chatReducer';
 import documentReducer from './document/documentReducer';
-
+import bookingReducer from './booking/bookingReducer';
 
 export default combineReducers({
     auth: authReducer,
@@ -13,6 +13,7 @@ export default combineReducers({
     search: searchReducer,
     listspace: listspaceReducer,
     chat: chatReducer,
-    document: documentReducer
+    document: documentReducer,
+    booking: bookingReducer
 
 });

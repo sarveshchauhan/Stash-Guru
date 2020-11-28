@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 
@@ -56,10 +56,28 @@ import ListPreviewCtrl from '../users/pages/create-your-list/listPreview';
 import ForgotPassword from '../front/pages/register/ForgotPassword';
 import ResetPassword from '../front/pages/register/ResetPassword';
 import ChatCtrl from '../users/pages/chat';
+import { socketIO } from '../helpers/socketHelper';
 
 
-const Root = () => (
-    <BrowserRouter>
+const socket = socketIO;
+
+const Root = () => {
+
+
+    useEffect(() => {
+        if (localStorage.getItem("userEmail")) {
+
+            socket.emit("userLogin", {
+                email: localStorage.getItem("userEmail")
+            });
+
+        }
+
+
+    }, [socket]);
+
+
+    return (<BrowserRouter>
         <Switch>
             {/* <PrivateRoute exact path="/login" parentComponent={RegisterPagesLayoutCtrl} childComponent={LoginComponentCtrl} /> */}
 
@@ -126,12 +144,14 @@ const Root = () => (
             <PrivateRoute exact path="/list-preview/:id" parentComponent={UserPagesLayoutCtrl} childComponent={ListPreviewCtrl} />
 
 
-            <PrivateRoute exact path="/chat/host/:listId" parentComponent={SideMenuPageLayoutCtrl} childComponent={ChatCtrl} />
+            <PrivateRoute exact path="/chat/host" parentComponent={SideMenuPageLayoutCtrl} childComponent={ChatCtrl} />
             {/* <Route exact path="/list-preview/:id" render={(props) => (<UserPagesLayoutCtrl children={ListPreviewCtrl} {...props} />)} /> */}
 
 
         </Switch>
-    </BrowserRouter>
-)
+    </BrowserRouter>)
+
+
+}
 
 export default Root;

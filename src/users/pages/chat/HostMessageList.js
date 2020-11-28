@@ -17,6 +17,7 @@ function HostMessageList() {
 
     useEffect(() => {
 
+
         socket.on("chat", (data) => {
 
             // alert(`cgid ${data.data.cg_id} other ${currentChatGroupId} email: ${data.email}`);

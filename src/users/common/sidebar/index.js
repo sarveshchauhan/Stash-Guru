@@ -71,7 +71,7 @@ function PageSideMenuCtrl() {
                         Payment
                     </NavLink>
 
-                    <NavLink className="nav-link" to="/chat">
+                    <NavLink className="nav-link" to="/chat/host">
                         <img className="img_deactive" src={B_payment} />
                         <img className="img_active" src={G_payment} />
                         Chat
