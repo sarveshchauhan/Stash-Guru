@@ -62,7 +62,7 @@
         display: block;
         overflow: hidden;
         position: fixed;
-        width: 50%;
+        width: 41.666667%;
         right: 0px;
         top: 0px;
     }
@@ -96,6 +96,9 @@
     margin-top: 5px;
     margin-bottom: 5px;
     overflow: hidden;
+}
+.SearchListPlace_card img{
+    max-height: 100px;
 }
 .SearchListPlace_card a:hover{
     text-decoration: none;
@@ -156,15 +159,21 @@
 }
 .SearchListPlaceAreaCost strong{
     color: $shamrock_color;
-    font-size: 15px;
-    margin-right: 10px;
+    font-size: 18px;
+    line-height: 1;
+}
+.SearchListPlaceAreaCost strong small{
+    color: #595959;
+    font-size: 10px;
+    font-weight: 500;
 }
 .SearchListPlaceAreaCost span{
-    color: $shamrock_color;
-    font-size: 15px;
-    font-weight: 700;
-    position: relative;
-    padding-left: 10px;
+    color: $deep_sky_color;
+    // font-size: 15px;
+    // font-weight: 700;
+    // position: relative;
+    // padding-left: 10px;
+    // line-height: 1;
 }
 .SearchListPlaceAreaCost span::after{
     content: '';
@@ -175,6 +184,7 @@
     background: $shamrock_color;
     left: 2px;
     bottom: 7px;
+    display: none;
 }
 
 

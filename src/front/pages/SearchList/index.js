@@ -18,6 +18,7 @@ import { getCoordinates, searchListing } from '../../../redux';
 import LoaderCtrl from '../../common/components/loader';
 import GoogleMapListing from '../../common/components/google-map/GoogleMapListing';
 import PlaceholderImage from '../../../assets/front/images/placeholder.png';
+import lieIcon from '../../../assets/front/images/icons/lieIcon.png';
 
 
 const storeImages = require.context('../../../assets/front/images/store', true);
@@ -53,9 +54,9 @@ function FrontSearchListCtrl() {
     return (
         <>
             <LoaderCtrl loaderStatus={loader} />
-            <Container fluid>
-                <Row>
-                    <Col lg={6} className="">
+            <Container fluid className="">
+                <Row className="">
+                    <Col lg={7} className="">
                         <Navbar sticky="top" className="SearchListFilter">
                             <Row>
                                 <Col sm={12}>
@@ -207,14 +208,26 @@ function FrontSearchListCtrl() {
                                                         </div>
 
                                                         <div className="SearchListPlaceAreaCost">
+                                                            <div className="d-flex-wrap justify-content-between w-100 mx-0">
+                                                                <div className="px-0">
+                                                                    {
+                                                                        details.store_cost && 
+                                                                        <strong>
+                                                                            {(parseInt(details.store_cost) + (parseInt(details.store_cost) * (parseInt(vat) / 100))).toFixed(0)}<span > Lie</span> <small>
+                                                                              /Month</small> 
+                                                                        </strong>
+                                                                        
+                                                                    }
+                                                                </div>
+                                                                <div className="px-0">
+                                                                    <strong>{details.store_size}<small>/M<sup>2</sup> </small> </strong>
+                                                                </div>
+                                                            </div>
 
-                                                            {
-                                                                details.store_cost && <strong>${(parseInt(details.store_cost) + (parseInt(details.store_cost) * (parseInt(vat) / 100))).toFixed(2)}/Month </strong>
-
-                                                            }
+                                                            
 
 
-                                                            <span>{details.store_size}</span>
+                                                            
                                                         </div>
                                                     </div>
                                                 </a>
@@ -225,10 +238,10 @@ function FrontSearchListCtrl() {
                             </Col>
                         </Row>
                     </Col>
-                    <Col lg={6}>
-                        {/* <div className="map_area"> */}
-                        <GoogleMapListing />
-                        {/* </div> */}
+                    <Col lg={5} className="">
+                        <div className="map_area">
+                            <GoogleMapListing />
+                        </div>
                     </Col>
                 </Row>
             </Container>
