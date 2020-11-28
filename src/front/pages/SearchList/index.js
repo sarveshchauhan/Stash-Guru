@@ -202,7 +202,7 @@ function FrontSearchListCtrl() {
                                                             <Button size="sm">
                                                                 <img width="100%" src={b_garage} alt="" /> {details.st_name}
                                                             </Button>
-                                                            <span>{details.store_location} </span>
+                                                            <span><i className="fa fa-map-marker"></i> {details.store_location} </span>
                                                             <span>|</span>
                                                             <span>1 km</span>
                                                         </div>
