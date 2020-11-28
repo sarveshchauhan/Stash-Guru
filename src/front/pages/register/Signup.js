@@ -4,8 +4,8 @@ import { Button, Col, Container, Row, Form, Alert } from 'react-bootstrap';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 
-import catoons from '../../../assets/front/images/img/catoons.svg';
-import family from '../../../assets/front/images/img/family.svg';
+
+
 
 import './Register.scss';
 import { NavLink } from 'react-router-dom';
@@ -165,13 +165,10 @@ function SignUpComponentCtrl() {
     return (
         <>
             <LoaderCtrl loaderStatus={loader} />
-            <section className="section_padding">
+            <section className="section_padding register_bg">
                 <Container>
-                    <Row className="align-items-center">
-                        <Col sm={4} className="my-2">
-                            <img src={catoons} />
-                        </Col>
-                        <Col sm={4} className="my-2">
+                    <Row className="align-items-center justify-content-center">
+                        <Col sm={8} md={6} xl={4} className="my-2">
                             <div className="register_card">
                                 <Row>
                                     <Col sm={12}>
@@ -295,8 +292,6 @@ function SignUpComponentCtrl() {
                                     </Col>
                                 </Row>
                             </div>
-                        </Col><Col sm={4} className="my-2">
-                            <img src={family} />
                         </Col>
                     </Row>
                 </Container>

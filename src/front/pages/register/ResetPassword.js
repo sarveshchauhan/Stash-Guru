@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Row, Col, Form, Container, Button, Alert } from 'react-bootstrap';
-import catoons from '../../../assets/front/images/img/catoons.svg';
-import family from '../../../assets/front/images/img/family.svg';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearResetPasswordMessage, resetPassword } from '../../../redux';
@@ -93,24 +91,19 @@ function ResetPassword() {
         <>
 
 
-            <section className="section_padding">
+            <section className="section_padding register_bg">
 
 
                 <Container>
 
-                    <Row className="align-items-center">
-
-                        <Col sm={4} className="my-2">
-                            <img src={catoons} />
-                        </Col>
-                        <Col sm={4} className="my-2">
+                    <Row className="align-items-center justify-content-center">
+                        <Col sm={8} md={6} xl={4} className="my-2">
                             <div className="register_card">
                                 <Row>
                                     <Col sm={12}>
                                         <div>
                                             <h2 className="register_hdng">
-                                                <span>Reset</span> password
-                    </h2>
+                                                <span>Reset</span> password</h2>
                                         </div>
                                     </Col>
 
@@ -185,8 +178,6 @@ function ResetPassword() {
                                     </Col>
                                 </Row>
                             </div>
-                        </Col><Col sm={4} className="my-2">
-                            <img src={family} />
                         </Col>
                     </Row>
                 </Container>
