@@ -43,6 +43,7 @@ import UserBookingChatCtrl from '../users/pages/booking/bookingChat';
 import UserVerificationCtrl from '../users/pages/verification';
 import UserProfileCtrl from '../users/pages/profile';
 import UserPaymentPayoutCtrl from '../users/pages/payment';
+import UserPaymentPayoutListCtrl from '../users/pages//payment/paymentPayoutList';
 import UserReferralsCtrl from '../users/pages/referrals';
 // side menu bar layout End
 
@@ -97,7 +98,8 @@ const Root = () => (
 
             <PrivateRoute exact path="/verification" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserVerificationCtrl} />
             <PrivateRoute exact path="/profile" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserProfileCtrl} />
-            <PrivateRoute exact path="/payment" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserPaymentPayoutCtrl} />
+            {/* <PrivateRoute exact path="/payment" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserPaymentPayoutCtrl} /> */}
+            <PrivateRoute exact path="/payment" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserPaymentPayoutListCtrl} />
             <PrivateRoute exact path="/referrals" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserReferralsCtrl} />
 
             {/* <Route exact path="/dashboard" render={(props)=> (<UserPagesLayoutCtrl children={UserHomeCtrl} {...props} />)} /> */}

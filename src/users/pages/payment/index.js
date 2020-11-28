@@ -1,5 +1,5 @@
 import React , {useState} from 'react';
-import { Button,Col,Form,Modal, Row } from 'react-bootstrap';
+import { Button,Col,Form,Modal, Row,Dropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 import invoice from '../../../assets/users/images/icons/invoice.png';
@@ -27,7 +27,20 @@ function UserPaymentPayoutCtrl(){
                 <Row>
                     <Col md={8}>
                         <div className="box_Card no_any_invoice_card">
-                            <h6 className="">Invoice</h6>
+                            <div className="paymentPayout_CardHeader">
+                                <h6 className="m-0">Invoice</h6>
+                                <div className="">
+                                    <Dropdown>
+                                        <Dropdown.Toggle variant="no_bg" id="dropdown-basic">
+                                            Host
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item href="#/action-1">Host</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-2">Guest</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </div>
+                            </div>
                             <div className="box_CardBody  text-center">
                                 <div className="w-100">
                                     <img src={invoice} alt="" />
