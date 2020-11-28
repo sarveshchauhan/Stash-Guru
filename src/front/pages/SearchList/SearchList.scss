@@ -88,14 +88,13 @@
     margin-right: -5px;
     margin-left: -5px;
 }
-
-.SearchListPlace_card{
+.SearchListPlace_card {
     background: $milky_color;
-    border: 1px solid #70707085;
-    border-radius: 5px;
+    border-radius: 7px;
     margin-top: 5px;
     margin-bottom: 5px;
     overflow: hidden;
+    box-shadow: 1px 1px 4px rgba(0,0,0,.1);
 }
 .SearchListPlace_card img{
     max-height: 100px;
@@ -167,14 +166,14 @@
     font-size: 10px;
     font-weight: 500;
 }
-.SearchListPlaceAreaCost span{
-    color: $deep_sky_color;
-    // font-size: 15px;
-    // font-weight: 700;
-    // position: relative;
-    // padding-left: 10px;
-    // line-height: 1;
-}
+// .SearchListPlaceAreaCost span{
+//     color: $deep_sky_color;
+//     font-size: 15px;
+//     font-weight: 700;
+//     position: relative;
+//     padding-left: 10px;
+//     line-height: 1;
+// }
 .SearchListPlaceAreaCost span::after{
     content: '';
     position: absolute;

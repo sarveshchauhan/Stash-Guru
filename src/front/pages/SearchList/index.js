@@ -204,7 +204,7 @@ function FrontSearchListCtrl() {
                                                             </Button>
                                                             <span>{details.store_location} </span>
                                                             <span>|</span>
-                                                            <span>1 Miles</span>
+                                                            <span>1 km</span>
                                                         </div>
 
                                                         <div className="SearchListPlaceAreaCost">
@@ -213,21 +213,16 @@ function FrontSearchListCtrl() {
                                                                     {
                                                                         details.store_cost && 
                                                                         <strong>
-                                                                            {(parseInt(details.store_cost) + (parseInt(details.store_cost) * (parseInt(vat) / 100))).toFixed(0)}<span > Lie</span> <small>
-                                                                              /Month</small> 
+                                                                            {(parseInt(details.store_cost) + (parseInt(details.store_cost) * (parseInt(vat) / 100))).toFixed(0)}<span > Lei</span> <small>
+                                                                              / month</small> 
                                                                         </strong>
                                                                         
                                                                     }
                                                                 </div>
                                                                 <div className="px-0">
-                                                                    <strong>{details.store_size}<small>/M<sup>2</sup> </small> </strong>
+                                                                    <strong>{details.store_size}<small> m<sup>2</sup> </small> </strong>
                                                                 </div>
                                                             </div>
-
-                                                            
-
-
-                                                            
                                                         </div>
                                                     </div>
                                                 </a>
