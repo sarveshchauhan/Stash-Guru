@@ -42,8 +42,8 @@
 
 
 
-
-.location_search_bar .input-group-text{
+.location_search_bar .input-group-text,
+.Create_list_location_search_bar .input-group-text{
     background-color: $milky_color;
     border-right: 0px;
     border-bottom-left-radius: 25px;
@@ -53,21 +53,27 @@
     font-size: 20px;
     padding-left: 20px;
 }
-.location_search_bar .form-control{
+.location_search_bar .form-control,
+.Create_list_location_search_bar .form-control{
     border-left: 0px;
     outline: none !important;
     box-shadow: none !important;
     border-color: $shamrock_color;
 }
-.location_search_bar .input-group{
+.location_search_bar .input-group,
+.Create_list_location_search_bar .input-group{
     box-shadow: none;
     border-radius: 30px;
 }
 .location_search_bar .input-group-text,
 .location_search_bar .form-control,
-.location_search_bar.input-group > .input-group-append > .btn{
+.location_search_bar.input-group > .input-group-append > .btn,
+.Create_list_location_search_bar .input-group-text,
+.Create_list_location_search_bar .form-control,
+.Create_list_location_search_bar.input-group > .input-group-append > .btn{
     height: 48px;
 }
+
 
 
 
@@ -124,13 +130,28 @@
     color: #333333;
 }
 
+
+.top_search form{
+    width: calc(100% - 50px);
+}
+@media (max-width: 1199px){
+
+    .top_search form{
+        width: 100%;
+    }
+}
+
 .top_search{
     position: relative;
 }
+.top_search .location_search_bar.form-group{
+    margin-bottom: 0px;
+}
 .top_search .error_msg{
     position: absolute;
-    top: 45px;
-    left: 20px;
+    top: 47px;
+    left: 40px;
+    font-size: 10px;
 }
 .top_search .autocomplete-dropdown-container,
 .here_to_help_you .autocomplete-dropdown-container{

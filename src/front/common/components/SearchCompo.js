@@ -57,7 +57,7 @@ function SearchComponent() {
 
     return (
         <>
-            <Form onSubmit={hangleSubmit}>
+            <Form onSubmit={hangleSubmit} >
 
                 <Form.Group className="location_search_bar">
                     <GoogleSearch />

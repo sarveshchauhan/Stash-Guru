@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Button, Spinner, Alert } from 'react-bootstrap';
+import { Form, Button, Spinner, Alert, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getCoordinates, stepTwoSave } from '../../../redux';
@@ -143,7 +143,7 @@ function ManualAddressForm() {
         <>
             <Form className="pb-5" onSubmit={onSubmitForm}>
                 <h2>Add Address</h2>
-                <Form.Group controlId="formBasicEmail">
+                {/* <Form.Group controlId="formBasicEmail">
                     <Form.Label>Street/House Number</Form.Label>
                     <Form.Control type="text" placeholder="Enter Street/House Number" name="house_no" value={house_no} onChange={(e) => set_house_no(e.target.value)} onBlur={() => validateField("house_no")} />
 
@@ -151,7 +151,7 @@ function ManualAddressForm() {
                         house_no_error && <small className="text-danger">{house_no_error}</small>
                     }
 
-                </Form.Group>
+                </Form.Group> */}
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Address1</Form.Label>
                     <Form.Control type="text" placeholder="Enter Address1" name="address1" value={address1} onChange={(e) => set_address1(e.target.value)} onBlur={() => validateField("address1")} />
@@ -165,7 +165,8 @@ function ManualAddressForm() {
                     <Form.Label>Address2</Form.Label>
                     <Form.Control type="text" placeholder="Enter Address2" name="address2" value={address2} onChange={(e) => set_address2(e.target.value)} />
                 </Form.Group>
-                <Form.Group controlId="formBasicEmail">
+                <Form.Row>
+                <Form.Group as={Col} md="6" controlId="formBasicEmail">
                     <Form.Label>City/Town</Form.Label>
                     <Form.Control type="text" placeholder="Enter City/Town" name="city" value={city} onChange={(e) => set_city(e.target.value)} onBlur={() => validateField("city")} />
                     {
@@ -174,19 +175,18 @@ function ManualAddressForm() {
 
                 </Form.Group>
 
-                <Form.Group controlId="formBasicPassword">
+                <Form.Group as={Col} md="6"  controlId="formBasicPassword">
                     <Form.Label>Post Code</Form.Label>
                     <Form.Control type="text" placeholder="Post Code" name="postal_code" value={postal_code} onChange={(e) => set_postal_code(e.target.value)} onBlur={() => validateField("postal_code")} />
 
                     {
                         postal_code_error && <small className="text-danger">{postal_code_error}</small>
                     }
-
-
                 </Form.Group>
+                </Form.Row>
 
                 <Form.Group>
-                    <Button variant="success" type="submit">
+                    <Button variant="next" type="submit">
                         Next
                 </Button>
 
