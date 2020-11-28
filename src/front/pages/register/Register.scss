@@ -8,7 +8,57 @@
 .register_hdng span{
     color: $shamrock_color;
 }
+.register_bg{
+    background-image: url('../../../assets/front/images/img/catoons.svg');
+    background-attachment: fixed;
+    background-size: 300px;
+    background-position: left 150px  top 45vh;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.register_bg::after{
+    content: '';
+    background: url('../../../assets/front/images/img/family.svg');
+    background-attachment: fixed;
+    background-size: 300px;
+    background-position: right 150px  top 50vh;
+    background-repeat: no-repeat;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
 
+
+@media (max-width: 1199px){
+    .register_bg{
+        background-position: left 50px  top 45vh;
+        background-size: 200px;
+    }
+    .register_bg::after{
+        background-position: right 50px  top 50vh;
+        background-size: 200px;
+    }
+}
+@media (max-width: 1024px){
+    .register_bg{
+        background-position: left 50px  top 45vh;
+        background-size: 150px;
+    }
+    .register_bg::after{
+        background-position: right 50px  top 50vh;
+        background-size: 150px;
+    }
+}
+
+@media (max-width: 767px){
+    .register_bg,
+    .register_bg::after{
+        background-image: none;
+    }
+}
 .register_card{
     background-color: $milky_color;
     border-radius: 20px;
@@ -24,8 +74,19 @@
     text-align: center !important;
     justify-content: center;
 }
+
+.sign_with_google_btn:hover{
+    border-color: $shamrock_color !important;
+    background-color: $shamrock_color !important;
+    color: $milky_color !important;
+    box-shadow: 0px 19px 21px -15px $zambezi_color !important;
+    border-radius: 25px !important;
+    text-align: center !important;
+    justify-content: center;
+}
 .sign_with_google_btn *{
     text-align:  center !important;
+    background-color: transparent !important;
 }
 .sign_with_google_btn > div{
     padding: 7px !important;
@@ -41,6 +102,12 @@
     background-color: transparent;
     color: $zambezi_color;
     box-shadow: 0px 19px 21px -15px $shamrock_color;
+}
+.sign_with_fb_btn:hover{
+    border-color: $deep_sky_color;
+    background-color: $deep_sky_color;
+    color: $milky_color;
+    box-shadow: 0px 19px 21px -15px $zambezi_color !important;
 }
 .sign_with_fb_btn i{
     margin-right: 10px;

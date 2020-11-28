@@ -205,8 +205,6 @@ table.table.no_bdr tr td strong{
 
 
 
-
-
 .box_Card,
 .sg_box_flex_card,
 .verificationCard,
@@ -486,17 +484,87 @@ button.P_verify_btn:hover{
     align-items: center;
 }
 
-
-
 .Payment_Payout .no_any_invoice_card .box_CardBody{
-    min-height: 575px;
+    min-height: 555px;
+    padding: 15px;
+}
+.Payment_Payout .no_any_invoice_card{
+    padding: 0px;
+}
+.Payment_Payout .paymentPayoutList_CardHeader,
+.Payment_Payout .paymentPayout_CardHeader{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 15px;
 }
 .Payment_Payout .AddCardPaymentBox .box_CardBody{
     min-height: 300px;
 }
-.Payment_Payout .AddBankDetailsBox .box_CardBody{
-    min-height: 200px;
+// .Payment_Payout .AddBankDetailsBox .box_CardBody{
+//     min-height: 200px;
+// }
+
+
+
+
+
+
+
+
+.Payment_Payout .paymentPayoutList_card .box_CardBody{
+    height: 575px;
+    overflow: auto;
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
 }
+.Payment_Payout .AddCardPaymentListBox .box_CardBody{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+.Payment_Payout .AddCardPaymentListBox .box_CardBody img{
+    border-radius: 10px;
+}
+.Payment_Payout .paymentPayoutList_card{
+    padding: 0px;
+}
+
+.paymentPayoutList_card table.table.table-sm.no_bdr,
+.paymentPayoutList_card table.table.table-sm.no_bdr tr,
+.paymentPayoutList_card table.table.table-sm.no_bdr tr th,
+.paymentPayoutList_card table.table.table-sm.no_bdr tr td{
+    border: 0px;
+    vertical-align: middle;
+    padding: 0px;
+}
+.paymentPayoutList_card table.table.table-sm.no_bdr tr th,
+.paymentPayoutList_card table.table.table-sm.no_bdr tr td{
+    font-size: 12px;
+    padding: 5px 5px 6px 15px;
+}
+
+.paymentPayoutList_card table.table.table-sm.no_bdr tr th{
+    font-weight: 700;
+    background-color: #E8FAF1;
+}
+.paymentPayoutList_card table.table.table-sm.no_bdr tr td{
+    font-weight: 400;
+}
+
+.paymentPayoutList_card table.table.table-sm.no_bdr tr td strong{
+    font-size: 15px;
+    font-weight: 900;
+    color: #34D789;;
+}
+
+
+
+
+
 
 
 
@@ -738,3 +806,5 @@ button.P_verify_btn:hover{
     width: 50px;
     height: 50px;
 }
+
+

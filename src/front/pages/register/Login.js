@@ -128,17 +128,13 @@ class LoginComponentCtrl extends React.Component {
         return (
             <>
                 <LoaderCtrl loaderStatus={this.props.auth.auth.loading} {...this.props} />
-                <section className="section_padding">
+                <section className="section_padding register_bg">
 
 
                     <Container>
 
-                        <Row className="align-items-center">
-
-                            <Col sm={4} className="my-2">
-                                <img src={catoons} />
-                            </Col>
-                            <Col sm={4} className="my-2">
+                        <Row className="align-items-center justify-content-center">
+                            <Col sm={8} md={6} xl={4} className="my-2">
                                 <div className="register_card">
                                     <Row>
                                         <Col sm={12}>
@@ -238,8 +234,6 @@ class LoginComponentCtrl extends React.Component {
                                         </Col>
                                     </Row>
                                 </div>
-                            </Col><Col sm={4} className="my-2">
-                                <img src={family} />
                             </Col>
                         </Row>
                     </Container>

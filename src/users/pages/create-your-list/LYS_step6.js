@@ -3,7 +3,8 @@ import { Col, Container, Row, Button, FormControl, Spinner } from 'react-bootstr
 import { NavLink, useHistory } from 'react-router-dom';
 
 
-import Dropzone from 'react-dropzone'
+import Dropzone from 'react-dropzone';
+
 
 import img_icon from '../../../assets/users/images/icons/img_icon.png';
 import street_view_doll from '../../../assets/users/images/icons/street-view-doll.png'

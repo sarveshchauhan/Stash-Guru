@@ -114,7 +114,7 @@ function UserCreateYourListCtrl() {
                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, <br /> sed diam nonumy eirmod.</p>
                             <Form className="py-2">
                                 <Form.Label>Add Your Location</Form.Label>
-                                <InputGroup className="location_search_bar mb-2">
+                                <InputGroup className="Create_list_location_search_bar mb-2">
                                     <InputGroup.Prepend>
                                         <InputGroup.Text id="">
                                             <i className="fa fa-map-marker"></i>
@@ -155,7 +155,7 @@ function UserCreateYourListCtrl() {
                             </div>
                         </Col>
 
-                        <Col sm={7} style={{ maxHeight: "450px" }}>
+                        <Col sm={7} style={{ maxHeight: "650px" }}>
 
                             <GoogleMap lat={lat} lng={lng} addressName={addressName} onPositionChange={onPositionChange} />
 

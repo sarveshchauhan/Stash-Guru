@@ -88,14 +88,22 @@
     margin-right: -5px;
     margin-left: -5px;
 }
-
-.SearchListPlace_card{
+.SearchListPlace_card {
     background: $milky_color;
-    border: 1px solid #70707085;
-    border-radius: 5px;
+    border-radius: 7px;
     margin-top: 5px;
     margin-bottom: 5px;
     overflow: hidden;
+    box-shadow: 1px 1px 4px rgba(0,0,0,.1);
+}
+.SearchListPlace_card a{
+    color: #595959;
+}
+.SearchListPlace_card:hover {
+    box-shadow: 2px 2px 16px rgba(0,0,0,.1);
+}
+.SearchListPlace_card img{
+    max-height: 100px;
 }
 .SearchListPlace_card a:hover{
     text-decoration: none;
@@ -110,6 +118,9 @@
     align-items: center;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+.SearchListPlaceAreaPlace .PlaceAreaTitle{
+    font-size: 20px;
 }
 .SearchListPlace_card_body .profileImg{
     width: 20px;
@@ -126,8 +137,9 @@
 .SearchListPlaceAreaPlace{
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-bottom: 5px;
+    line-height: 1;
 }
 .SearchListPlaceAreaPlace button{
     font-size: 10px;
@@ -140,6 +152,15 @@
 }
 .SearchListPlaceAreaPlace button img{
     width: 8px;
+}
+
+
+.SearchListPlaceAreaPlace .FrPlace{
+    font-size: 12px;
+    color: $deep_sky_color;
+}
+.SearchListPlaceAreaPlace .FrPlace img{
+    width: 12px;
 }
 
 .SearchListPlaceAreaPlace span{
@@ -156,16 +177,22 @@
 }
 .SearchListPlaceAreaCost strong{
     color: $shamrock_color;
-    font-size: 15px;
-    margin-right: 10px;
+    font-size: 18px;
+    line-height: 1;
 }
-.SearchListPlaceAreaCost span{
-    color: $shamrock_color;
-    font-size: 15px;
-    font-weight: 700;
-    position: relative;
-    padding-left: 10px;
+.SearchListPlaceAreaCost strong small{
+    color: #595959;
+    font-size: 10px;
+    font-weight: 500;
 }
+// .SearchListPlaceAreaCost span{
+//     color: $deep_sky_color;
+//     font-size: 15px;
+//     font-weight: 700;
+//     position: relative;
+//     padding-left: 10px;
+//     line-height: 1;
+// }
 .SearchListPlaceAreaCost span::after{
     content: '';
     position: absolute;
@@ -175,6 +202,7 @@
     background: $shamrock_color;
     left: 2px;
     bottom: 7px;
+    display: none;
 }
 
 

@@ -23,7 +23,8 @@
 @media (min-width: 1200px)
 {
     .nav_container {
-        max-width: 1140px;
+        // max-width: 1140px;
+        max-width: inherit;
     }
 }
 .nav_container {
@@ -84,7 +85,7 @@
 .navbar-brand img{
     max-width: 250px;
 }
-@media (max-width: 500px)
+@media (max-width: 1024px)
 {
     .navbar-brand img{
         max-width: 150px;

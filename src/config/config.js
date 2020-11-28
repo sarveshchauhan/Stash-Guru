@@ -1,5 +1,6 @@
 export const config = {
 
+<<<<<<< HEAD
     apiUrl: 'http://localhost:5000',
     appUrl: 'http://localhost:3006',
 
@@ -7,6 +8,15 @@ export const config = {
     // appUrl: 'https://sguru.dizicraft.com',
     // socketUrl: "https://sgapi.dizicraft.com/stream",
     socketUrl: "http://localhost:5000/stream",
+=======
+    // apiUrl: 'http://localhost:5000',
+    // appUrl: 'http://localhost:3006',
+
+    apiUrl: 'https://sgapi.dizicraft.com',
+    appUrl: 'https://sguru.dizicraft.com',
+    socketUrl: "https://sgapi.dizicraft.com/stream",
+    // socketUrl: "http://localhost:5000/stream",
+>>>>>>> 8b86116cbfaaf00279590c330d813693a1a7e967
 
     googleMapApiKey: "AIzaSyB103Ei2FmqUW2l1PHQAaf2u4xo3RzkEkg"
 
