@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import B_home from '../../../assets/users/images/icons/menu/B_home.png';
 import G_home from '../../../assets/users/images/icons/menu/G_home.png';
 
@@ -25,9 +26,26 @@ import { NavLink } from 'react-router-dom';
 
 
 function PageSideMenuCtrl() {
+    const [isSticky, setSticky] = useState(false);
+    const ref = useRef(null);
+    const handleScroll = () => {
+      if (ref.current) {
+        setSticky(ref.current.getBoundingClientRect().top <= 0);
+      }
+    };
+  
+    useEffect(() => {
+      window.addEventListener('scroll', handleScroll);
+  
+      return () => {
+        window.removeEventListener('scroll', () => handleScroll);
+      };
+    }, []);
+
+
     return (
         <>
-            <Nav className="ml-2">
+            <Nav className="ml-2" className={`sticky-wrapper${isSticky ? ' stickyRemove' : ' stickyAdd'}`} ref={ref}>
                 <Nav.Item className="dash_menu_list">
                     <NavLink className="nav-link" to="/dashboard">
                         <img className="img_deactive" src={B_home} />

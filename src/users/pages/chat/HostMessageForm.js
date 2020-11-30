@@ -69,7 +69,7 @@ function HostMessageForm() {
             {
                 !messageListLoading && <Form onSubmit={onSubmitForm}>
                     <Form.Control placeholder="Write your message" value={message} onChange={(e) => setMessage(e.target.value)}></Form.Control>
-                    <Button type="submit" className="mt-2">Submit</Button>
+                    <Button variant="success" type="submit" className="mt-2 px-5">Submit</Button>
                 </Form>
             }
 
