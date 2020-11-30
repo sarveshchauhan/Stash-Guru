@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import {Row,Col, Button,Form, Table } from 'react-bootstrap';
 import './booking.scss';
 import video_bg from '../../../assets/users/images/dummy/video_bg.png';
@@ -6,6 +6,22 @@ import hours_delivery from '../../../assets/users/images/icons/hours_delivery.pn
 
 
 function UserBookingCtrl(){
+    const [isSticky, setSticky] = useState(false);
+    const ref = useRef(null);
+    const handleScroll = () => {
+      if (ref.current) {
+        setSticky(ref.current.getBoundingClientRect().top <= 0);
+      }
+    };
+  
+    useEffect(() => {
+      window.addEventListener('scroll', handleScroll);
+  
+      return () => {
+        window.removeEventListener('scroll', () => handleScroll);
+      };
+    }, []);
+
     return(
         <>
             <Row>
@@ -117,56 +133,59 @@ function UserBookingCtrl(){
 
 
                 <Col lg={4}>
-                    <div className="box_Img_Card">
-                        <img src={video_bg} alt="" />
-                        <div className="box_Img_Card_body">
-                            <h5>Workspace In Warehouse</h5>
-                            <Table size="sm">
-                                <tbody>
-                                    <tr>
-                                        <th>Start Date</th>
-                                        <td>
-                                            <strong>18<sup>th</sup> Nov</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Minimum Rental</th>
-                                        <td>
-                                            <strong>2 </strong><sma>months</sma>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Monthly Rental</th>
-                                        <td>
-                                            <strong>$1000</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Security Deposit</th>
-                                        <td>
-                                            <strong>$12000</strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Space</th>
-                                        <td>
-                                            <strong>20x25</strong><small>(500sq ft.)</small>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </Table>
-                        </div>
-                    </div>
 
-                    
-                    <div className="box_Card">
-                        <div className="Cancellations_Policy_Card">
-                            <label class="form-label">Cancellations & Refunds Policy</label>
-                            <ul>
-                                <li><b>Security Deposit:</b> fully refundable for 24 hours. After that, partially refundable depending on when you cancel</li>
-                                <li><b>First Monthly Rental:</b> fully refundable until 11th Nov. </li>
-                                <a href="" >Read More</a>
-                            </ul>
+                    <div className={`${isSticky ? ' stickyRemove' : ' stickyAdd'}`} ref={ref}>
+                        <div className="box_Img_Card">
+                            <img src={video_bg} alt="" />
+                            <div className="box_Img_Card_body">
+                                <h5>Workspace In Warehouse</h5>
+                                <Table size="sm">
+                                    <tbody>
+                                        <tr>
+                                            <th>Start Date</th>
+                                            <td>
+                                                <strong>18<sup>th</sup> Nov</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Minimum Rental</th>
+                                            <td>
+                                                <strong>2 </strong><sma>months</sma>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Monthly Rental</th>
+                                            <td>
+                                                <strong>$1000</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Security Deposit</th>
+                                            <td>
+                                                <strong>$12000</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>Space</th>
+                                            <td>
+                                                <strong>20x25</strong><small>(500sq ft.)</small>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                            </div>
+                        </div>
+
+                        
+                        <div className="box_Card">
+                            <div className="Cancellations_Policy_Card">
+                                <label class="form-label">Cancellations & Refunds Policy</label>
+                                <ul>
+                                    <li><b>Security Deposit:</b> fully refundable for 24 hours. After that, partially refundable depending on when you cancel</li>
+                                    <li><b>First Monthly Rental:</b> fully refundable until 11th Nov. </li>
+                                    <a href="" >Read More</a>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </Col>

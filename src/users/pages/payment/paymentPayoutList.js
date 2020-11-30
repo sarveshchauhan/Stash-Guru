@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { Button,Col,Form,Modal, Row,Dropdown, Table } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
@@ -7,6 +7,25 @@ import visa_cards_citibank from '../../../assets/users/images/dummy/visa_cards_c
 import bank from '../../../assets/users/images/icons/bank.png';
 
 function UserPaymentPayoutListCtrl(){
+    const [isSticky, setSticky] = useState(false);
+    const ref = useRef(null);
+    const handleScroll = () => {
+      if (ref.current) {
+        setSticky(ref.current.getBoundingClientRect().top <= 0);
+      }
+    };
+  
+    useEffect(() => {
+      window.addEventListener('scroll', handleScroll);
+  
+      return () => {
+        window.removeEventListener('scroll', () => handleScroll);
+      };
+    }, []);
+
+
+
+
     const [AddCardmodal, setAddCardDmodal] = useState(false);
     const handlesetAddCardDmodalClose = () => setAddCardDmodal(false);
     const handlesetAddCardDmodalShow = () => setAddCardDmodal(true);
@@ -222,96 +241,98 @@ function UserPaymentPayoutListCtrl(){
                         </div>
                     </Col>
                     <Col md={4}>
-                        <div className="box_Card AddBankDetailsBox">
-                            <h6>Card Payment</h6>
-                            <div className="box_CardBody align-items-end">
-                                <Table size="sm" className="no_bdr">
-                                    <tbody>
-                                        <tr>
-                                            <th className="pt-2">Name</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Joe Gomez</td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <th className="pt-2">Card No.</th>
-                                        </tr>
-                                        <tr>
-                                            <td>XXXXXXXXXXXXXXX4545</td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <th className="pt-2">Valid</th>
-                                        </tr>
-                                        <tr>
-                                            <td>XXXXXXX</td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
-                                <div>
-                                    <div className="d-block text-right" style={{width: '80px'}}>
-                                        <Button variant="no_bg" className="px-1 text_color_gray">
-                                            <i className="fa fa-trash-o" aria-hidden="true"></i>
-                                        </Button>
-                                        <Button variant="no_bg" className="px-1 text_color_gray">
-                                            <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                        </Button>
+                        <div className={`${isSticky ? ' stickyRemove' : ' stickyAdd'}`} ref={ref}>
+                            <div className="box_Card AddBankDetailsBox">
+                                <h6>Card Payment</h6>
+                                <div className="box_CardBody align-items-end">
+                                    <Table size="sm" className="no_bdr">
+                                        <tbody>
+                                            <tr>
+                                                <th className="pt-2">Name</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Joe Gomez</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th className="pt-2">Card No.</th>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXXXXXXXXXXXXX4545</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th className="pt-2">Valid</th>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXXXXX</td>
+                                            </tr>
+                                        </tbody>
+                                    </Table>
+                                    <div>
+                                        <div className="d-block text-right" style={{width: '80px'}}>
+                                            <Button variant="no_bg" className="px-1 text_color_gray">
+                                                <i className="fa fa-trash-o" aria-hidden="true"></i>
+                                            </Button>
+                                            <Button variant="no_bg" className="px-1 text_color_gray">
+                                                <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="d-block w-100">
+                                    <div className="text-center">
+                                        <Button className="btn_success px-4" onClick={handlesetAddCardDmodalShow}>+ Add New Card</Button>
                                     </div>
                                 </div>
                             </div>
-                            <div className="d-block w-100">
-                                <div className="text-center">
-                                    <Button className="btn_success px-4" onClick={handlesetAddCardDmodalShow}>+ Add New Card</Button>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div className="box_Card AddBankDetailsBox">
-                            <h6>Bank Details</h6>
-                            <div className="box_CardBody align-items-end">
-                                <Table size="sm" className="no_bdr">
-                                    <tbody>
-                                        <tr>
-                                            <th className="pt-2">Name</th>
-                                        </tr>
-                                        <tr>
-                                            <td>Joe Gomez</td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <th className="pt-2">A/C No.</th>
-                                        </tr>
-                                        <tr>
-                                            <td>XXXXXXXXXXXXXXX4545</td>
-                                        </tr>
-                                        
-                                        <tr>
-                                            <th className="pt-2">IFSC Code</th>
-                                        </tr>
-                                        <tr>
-                                            <td>HSBC012454</td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
-                                <div>
-                                    <div className="d-block text-right" style={{width: '80px'}}>
-                                        <Button variant="no_bg" className="px-1 text_color_gray">
-                                            <i className="fa fa-trash-o" aria-hidden="true"></i>
-                                        </Button>
-                                        <Button variant="no_bg" className="px-1 text_color_gray">
-                                            <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                        </Button>
+                            <div className="box_Card AddBankDetailsBox">
+                                <h6>Bank Details</h6>
+                                <div className="box_CardBody align-items-end">
+                                    <Table size="sm" className="no_bdr">
+                                        <tbody>
+                                            <tr>
+                                                <th className="pt-2">Name</th>
+                                            </tr>
+                                            <tr>
+                                                <td>Joe Gomez</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th className="pt-2">A/C No.</th>
+                                            </tr>
+                                            <tr>
+                                                <td>XXXXXXXXXXXXXXX4545</td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th className="pt-2">IFSC Code</th>
+                                            </tr>
+                                            <tr>
+                                                <td>HSBC012454</td>
+                                            </tr>
+                                        </tbody>
+                                    </Table>
+                                    <div>
+                                        <div className="d-block text-right" style={{width: '80px'}}>
+                                            <Button variant="no_bg" className="px-1 text_color_gray">
+                                                <i className="fa fa-trash-o" aria-hidden="true"></i>
+                                            </Button>
+                                            <Button variant="no_bg" className="px-1 text_color_gray">
+                                                <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            </Button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="d-block w-100">
+                                    <div className="text-center">
+                                        <Button className="btn_success px-4" onClick={handlesetAddBankmodalShow}>+ Add Bank</Button>
                                     </div>
                                 </div>
                             </div>
-                            <div className="d-block w-100">
-                                <div className="text-center">
-                                    <Button className="btn_success px-4" onClick={handlesetAddBankmodalShow}>+ Add Bank</Button>
-                                </div>
-                            </div>
-                        </div>
 
+                        </div>
                     </Col>
                 </Row>
             </div>
