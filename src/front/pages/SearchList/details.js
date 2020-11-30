@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { Col, Container, Row, Carousel, InputGroup, FormControl, Button, Modal, Form } from 'react-bootstrap';
 
 
@@ -47,7 +48,21 @@ const profileImages = require.context('../../../assets/users/images/profile', tr
 
 function FrontSearchDetailsCtrl() {
 
-
+    const [isSticky, setSticky] = useState(false);
+    const ref = useRef(null);
+    const handleScroll = () => {
+      if (ref.current) {
+        setSticky(ref.current.getBoundingClientRect().top <= 0);
+      }
+    };
+  
+    useEffect(() => {
+      window.addEventListener('scroll', handleScroll);
+  
+      return () => {
+        window.removeEventListener('scroll', () => handleScroll);
+      };
+    }, []);
 
 
     const { searchId } = useParams();
@@ -369,7 +384,7 @@ function FrontSearchDetailsCtrl() {
 
 
                         <Col lg={4}>
-                            <div className="book_space_card">
+                            <div className={`book_space_card${isSticky ? ' stickyRemove' : ' stickyAdd'}`} ref={ref}>
                                 <div className="book_space_card_body">
                                     <Button variant="outline-info">Warehouse </Button>
 
