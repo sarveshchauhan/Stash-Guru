@@ -126,7 +126,7 @@ function StepOneForm() {
 
             <Form onSubmit={submitForm}>
                 <h5 className="pb-4">Lorem ipsum dolor sit amet</h5>
-                <Form.Group className="custom_select">
+                <Form.Group className="custom_select" style={{height: '48px'}}>
                     <Form.Control as="select" name="spaceType" value={spaceType} onChange={(e) => setSpaceType(e.target.value)} onBlur={handleFormFields}>
 
                         {
