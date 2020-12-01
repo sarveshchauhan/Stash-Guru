@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-import React, { useEffect } from 'react';
-import { Row, Col, Button, Form, Table } from 'react-bootstrap';
-=======
+
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import {Row,Col, Button,Form, Table } from 'react-bootstrap';
->>>>>>> d6feef194cf5b41c0bbc45b9d701bb39009f29d3
+
 import './booking.scss';
 import video_bg from '../../../assets/users/images/dummy/video_bg.png';
 import hours_delivery from '../../../assets/users/images/icons/hours_delivery.png';
@@ -18,28 +15,10 @@ import { get_store_size } from '../../../helpers/storeHelper';
 import { config } from '../../../config/config';
 import PaymentForm from './PaymentForm';
 
-<<<<<<< HEAD
+
 
 
 function UserBookingCtrl() {
-
-    const dispatch = useDispatch();
-    const { guid } = useParams();
-    const { bookingInfo } = useSelector(state => state.booking);
-
-
-    useEffect(() => {
-
-        dispatch(getBookingInfoByGuid({
-            guid: guid
-        }));
-
-    }, [dispatch]);
-
-
-    return (
-=======
-function UserBookingCtrl(){
     const [isSticky, setSticky] = useState(false);
     const ref = useRef(null);
     const handleScroll = () => {
@@ -56,8 +35,26 @@ function UserBookingCtrl(){
       };
     }, []);
 
+    
+
+    const dispatch = useDispatch();
+    const { guid } = useParams();
+    const { bookingInfo } = useSelector(state => state.booking);
+
+
+    useEffect(() => {
+
+        dispatch(getBookingInfoByGuid({
+            guid: guid
+        }));
+
+    }, [dispatch]);
+
+
+
+    
+
     return(
->>>>>>> d6feef194cf5b41c0bbc45b9d701bb39009f29d3
         <>
 
             <StripeProvider apiKey={config.stripePublishableKey}>

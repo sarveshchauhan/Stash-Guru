@@ -48,8 +48,7 @@ const profileImages = require.context('../../../assets/users/images/profile', tr
 
 function FrontSearchDetailsCtrl() {
 
-<<<<<<< HEAD
-=======
+
     const [isSticky, setSticky] = useState(false);
     const ref = useRef(null);
     const handleScroll = () => {
@@ -66,7 +65,7 @@ function FrontSearchDetailsCtrl() {
       };
     }, []);
 
->>>>>>> d6feef194cf5b41c0bbc45b9d701bb39009f29d3
+
 
     const { searchId } = useParams();
     const [details, setDetails] = useState([]);
