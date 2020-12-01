@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 import React, { useEffect } from 'react';
 import { Row, Col, Button, Form, Table } from 'react-bootstrap';
+=======
+
+import React, { Fragment, useEffect, useRef, useState } from 'react';
+import {Row,Col, Button,Form, Table } from 'react-bootstrap';
+
+>>>>>>> 677edc0e032b6d5722badaee3f8508841a5eaaa3
 import './booking.scss';
 import video_bg from '../../../assets/users/images/dummy/video_bg.png';
 import hours_delivery from '../../../assets/users/images/icons/hours_delivery.png';
@@ -13,9 +20,30 @@ import { get_store_size } from '../../../helpers/storeHelper';
 import { config } from '../../../config/config';
 import PaymentForm from './PaymentForm';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 677edc0e032b6d5722badaee3f8508841a5eaaa3
 
 
 function UserBookingCtrl() {
+    const [isSticky, setSticky] = useState(false);
+    const ref = useRef(null);
+    const handleScroll = () => {
+      if (ref.current) {
+        setSticky(ref.current.getBoundingClientRect().top <= 0);
+      }
+    };
+
+    useEffect(() => {
+      window.addEventListener('scroll', handleScroll);
+
+      return () => {
+        window.removeEventListener('scroll', () => handleScroll);
+      };
+    }, []);
+
+    
 
     const dispatch = useDispatch();
     const { guid } = useParams();
@@ -31,7 +59,14 @@ function UserBookingCtrl() {
     }, [dispatch]);
 
 
+<<<<<<< HEAD
     return (
+=======
+
+    
+
+    return(
+>>>>>>> 677edc0e032b6d5722badaee3f8508841a5eaaa3
         <>
 
             <StripeProvider apiKey={config.stripePublishableKey}>
