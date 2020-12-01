@@ -184,47 +184,7 @@
 .sizeSpaceWidthUnit{
     width: 100px;
 }
-.dropzone_section{
-    background-color: #ffffff;
-    padding: 10px 10px;
-    border-radius: 10px;
-    box-shadow: 0px 10px 39px #34D7893B;
-}
-.dropzone {
-    text-align: center;
-    border: 1px dashed $shamrock_color;
-    border-radius: 10px;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    min-height: 150px;
-}
 
-.dropzone.upload_verify_id{
-    min-height: 200px;
-}
-.dropzone *{
-    outline: 0px;
-}
-.dropzone p{
-    margin: 0;
-}
-.dropzone span{
-    margin: 0;
-    font-weight: 700;
-    cursor: pointer;
-}
-.uploaded_images{
-    width: 100%;
-    align-items: center;
-    justify-self: start;
-}
-.uploaded_images img{
-    max-width: 80px;
-    width: 100%;
-    margin: 20px 3px;
-}
 
 // Street View
 

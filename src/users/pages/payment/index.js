@@ -1,4 +1,4 @@
-import React , {useState} from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { Button,Col,Form,Modal, Row,Dropdown } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
@@ -7,6 +7,24 @@ import card_payment from '../../../assets/users/images/icons/card_payment.png';
 import bank from '../../../assets/users/images/icons/bank.png';
 
 function UserPaymentPayoutCtrl(){
+    const [isSticky, setSticky] = useState(false);
+    const ref = useRef(null);
+    const handleScroll = () => {
+      if (ref.current) {
+        setSticky(ref.current.getBoundingClientRect().top <= 0);
+      }
+    };
+  
+    useEffect(() => {
+      window.addEventListener('scroll', handleScroll);
+  
+      return () => {
+        window.removeEventListener('scroll', () => handleScroll);
+      };
+    }, []);
+
+
+
     const [AddCardmodal, setAddCardDmodal] = useState(false);
     const handlesetAddCardDmodalClose = () => setAddCardDmodal(false);
     const handlesetAddCardDmodalShow = () => setAddCardDmodal(true);
@@ -51,28 +69,29 @@ function UserPaymentPayoutCtrl(){
                         </div>
                     </Col>
                     <Col md={4}>
-                        <div className="box_Card AddCardPaymentBox">
-                            <h6>Card Payment</h6>
-                            <div className="text-center box_CardBody align-items-center justify-content-between">
-                                <div className="w-100">
-                                    <img src={card_payment} alt="" />
-                                    <p>Add a payment card to make payments. We accept Visa, Mastercard, American Express, and Discover.</p>
-                                    <Button className="btn_success px-4" onClick={handlesetAddCardDmodalShow}>+ Add Card</Button>
+                        <div className={`${isSticky ? ' stickyRemove' : ' stickyAdd'}`} ref={ref}>
+                            <div className="box_Card AddCardPaymentBox">
+                                <h6>Card Payment</h6>
+                                <div className="text-center box_CardBody align-items-center justify-content-between">
+                                    <div className="w-100">
+                                        <img src={card_payment} alt="" />
+                                        <p>Add a payment card to make payments. We accept Visa, Mastercard, American Express, and Discover.</p>
+                                        <Button className="btn_success px-4" onClick={handlesetAddCardDmodalShow}>+ Add Card</Button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="box_Card AddBankDetailsBox">
+                                <h6>Bank Details</h6>
+                                <div className="text-center box_CardBody align-items-center justify-content-between">
+                                    <div className="w-100">
+                                        <img src={bank} alt="" />
+                                        <p>This is the account your Host payouts will get paid into.</p>
+                                        <Button className="btn_success px-4" onClick={handlesetAddBankmodalShow}>+ Add Bank</Button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div className="box_Card AddBankDetailsBox">
-                            <h6>Bank Details</h6>
-                            <div className="text-center box_CardBody align-items-center justify-content-between">
-                                <div className="w-100">
-                                    <img src={bank} alt="" />
-                                    <p>This is the account your Host payouts will get paid into.</p>
-                                    <Button className="btn_success px-4" onClick={handlesetAddBankmodalShow}>+ Add Bank</Button>
-                                </div>
-                            </div>
-                        </div>
-
                     </Col>
                 </Row>
             </div>

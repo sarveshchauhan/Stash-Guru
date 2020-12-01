@@ -108,3 +108,11 @@ img.dash_avtar_user{
     display: block;
     color: #5c5c5c;
 }
+
+
+.stickyAdd,
+.stickyRemove {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 100px;
+}

@@ -72,59 +72,101 @@ function DocumentUpload() {
                                     </Col>
                                 </Row>
 
-
-                                {
-                                    uploadedDocs && Array.isArray(uploadedDocs) && uploadedDocs.length > 0 && <Row className="photoTips_row">
-
-
-                                        {
-
-                                            uploadedDocs.map((doc) => (
-                                                <Col className="col">
-                                                    <div className="photoTips_img_card">
-                                                        <img width="100%" src={doc} alt="" />
-                                                    </div>
-                                                </Col>
-                                            ))
-
-                                        }
-
-                                    </Row>
-                                }
-
+                                
 
 
 
                             </Form.Group>
-
-                            <div className="dropzone_section">
-                                <div className="dropzone upload_verify_id">
-
-                                    {
-                                        documentUploadLoading ? <div className="text-center">
-                                            <Spinner animation="border" variant="success"></Spinner>
-                                        </div>
-                                            :
+                            <Row>
+                            <Col md="12">
+                                <label className="pt-4">Front Side</label>
+                                <div className="dropzone_section">
+                                    <div className="dropzone upload_verify_id">
+                                        {
+                                            documentUploadLoading ? <div className="text-center">
+                                                <Spinner animation="border" variant="success"></Spinner>
+                                            </div>
+                                                :
                                             <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
                                                 {({ getRootProps, getInputProps }) => (
-                                                    <section>
-                                                        <div {...getRootProps()}>
+                                                    <section {...getRootProps()}>
+                                                        <div>
                                                             <input {...getInputProps()} onChange={onChangeFiles} />
                                                             <div>
-                                                                <img src={img_icon} alt="" />
+                                                                <img className="upload_img_icon" src={img_icon} alt="" />
                                                             </div>
                                                             <p className="text_color_zambezi">Drop your image here. or
                                                             <span className="text_color_shamrock">Browse</span>
                                                             </p>
                                                         </div>
+
+
+
+                                                            <div  className="uploaded_id_card">
+                                                                {
+                                                                    uploadedDocs && Array.isArray(uploadedDocs) && uploadedDocs.length > 0 && <div className="uploaded_Img">
+                                                                        {
+                                                                            uploadedDocs.map((doc) => (
+                                                                                <img width="100%" src={doc} alt="" />
+                                                                            ))
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                            </div>
                                                     </section>
                                                 )}
                                             </Dropzone>
-                                    }
+                                        }
 
-
+                                    </div>
                                 </div>
-                            </div>
+                            </Col>
+                            <Col  md="12">
+                                <label className="pt-4">Back Side</label>
+                                <div className="dropzone_section">
+                                    <div className="dropzone upload_verify_id">
+                                        {
+                                            documentUploadLoading ? <div className="text-center">
+                                                <Spinner animation="border" variant="success"></Spinner>
+                                            </div>
+                                                :
+                                            <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
+                                                {({ getRootProps, getInputProps }) => (
+                                                    <section {...getRootProps()}>
+                                                        <div>
+                                                            <input {...getInputProps()} onChange={onChangeFiles} />
+                                                            <div>
+                                                                <img className="upload_img_icon" src={img_icon} alt="" />
+                                                            </div>
+                                                            <p className="text_color_zambezi">Drop your image here. or
+                                                            <span className="text_color_shamrock">Browse</span>
+                                                            </p>
+                                                        </div>
+
+
+
+                                                            <div  className="uploaded_id_card">
+                                                                {
+                                                                    uploadedDocs && Array.isArray(uploadedDocs) && uploadedDocs.length > 0 && <div className="uploaded_Img">
+                                                                        {
+                                                                            uploadedDocs.map((doc) => (
+                                                                                <img width="100%" src={doc} alt="" />
+                                                                            ))
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                    </section>
+                                                )}
+                                            </Dropzone>
+                                        }
+
+                                    </div>
+                                </div>
+                            </Col>
+                            </Row>
+
+                            
                         </Form>
                     </div>
                 </Modal.Body>
