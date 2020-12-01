@@ -9,9 +9,10 @@ import user_r1 from '../../../assets/front/images/dummy/user_r1.png';
 function BookingModal() {
 
     const { showBookingModal, bookingLoading, bookingError } = useSelector(state => state.booking);
+    const { schDetails } = useSelector(state => state.search);
     const dispatch = useDispatch();
 
-    const { searchId } = useParams();
+    const { searchId, listId } = useParams();
 
 
     var currentDate = new Date();
@@ -41,12 +42,23 @@ function BookingModal() {
 
         if (!monthError && month) {
 
+            if (searchId) {
+                dispatch(newBooking({
+                    store_id: +searchId,
+                    planned_start_date: startDate,
+                    estimated_duration: +month
+                }))
+            }
+            else {
 
-            dispatch(newBooking({
-                store_id: +searchId,
-                planned_start_date: startDate,
-                estimated_duration: +month
-            }))
+                dispatch(newBooking({
+                    store_id: +listId,
+                    planned_start_date: startDate,
+                    estimated_duration: +month
+                }))
+
+            }
+
 
         }
 
@@ -69,11 +81,14 @@ function BookingModal() {
                     <div className="d-flex-wrap w-100">
 
                         <div>
-                            <img className="user_img_avtar" src={user_r1} />
+                            {
+                                schDetails && schDetails.u_pic ? <img className="user_img_avtar" src={schDetails.u_pic} /> : <img className="user_img_avtar" src={user_r1} />
+                            }
+
                         </div>
                         <div className="pl-3">
-                            <h4 className="m-0" style={{ fontWeight: '700', color: '#34D789' }}>Mary Ann</h4>
-                            <small><b className="m-0">Warehouse in E1</b></small>
+                            <h4 className="m-0" style={{ fontWeight: '700', color: '#34D789' }}>{schDetails && schDetails.u_name}</h4>
+                            <small><b className="m-0">{schDetails && schDetails.store_title}</b></small>
                         </div>
                     </div>
                     <div className="text-left mt-4">

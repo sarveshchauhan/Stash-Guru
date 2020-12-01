@@ -196,7 +196,7 @@ function FrontSearchListCtrl() {
                                                         <div className="SearchListPlaceUserArea">
                                                             <div className="">
                                                                 <b className="PlaceAreaTitle d-block">
-                                                                    Lorem Ipsum
+                                                                    {details.store_title.substring(0, 20)}...
                                                                 </b>
                                                             </div>
                                                         </div>
@@ -222,12 +222,12 @@ function FrontSearchListCtrl() {
                                                             <div className="d-flex-wrap justify-content-between w-100 mx-0">
                                                                 <div className="px-0">
                                                                     {
-                                                                        details.store_cost && 
+                                                                        details.store_cost &&
                                                                         <strong>
                                                                             {(parseInt(details.store_cost) + (parseInt(details.store_cost) * (parseInt(vat) / 100))).toFixed(0)}<span > Lei</span> <small>
-                                                                              / month</small> 
+                                                                                / month</small>
                                                                         </strong>
-                                                                        
+
                                                                     }
                                                                 </div>
                                                                 <div className="px-0">

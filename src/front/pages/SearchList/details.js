@@ -28,8 +28,8 @@ import agreement from '../../../assets/front/images/icons/list-details/agreement
 
 // Assets Include End
 import { useDispatch, useSelector } from 'react-redux';
-import { searchDetails, toggleBookingModal } from '../../../redux';
-import { NavLink, useParams } from 'react-router-dom';
+import { getBookingInfoByStore, searchDetails, toggleBookingModal } from '../../../redux';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import LoaderCtrl from '../../common/components/loader';
 import GoogleMapDetail from '../../common/components/google-map/GoogleMapDetail';
 import ProfilePlaceholder from '../../../assets/front/images/profile-placeholder.png';
@@ -48,18 +48,22 @@ const profileImages = require.context('../../../assets/users/images/profile', tr
 function FrontSearchDetailsCtrl() {
 
 
-
-
     const { searchId } = useParams();
     const [details, setDetails] = useState([]);
     const [verifyStatus, setVerifyStatus] = useState('No Verify Host');
     const [loader, setLoader] = useState(false);
     const dispatch = useDispatch();
+    const history = useHistory();
+
 
     const { schDetails, detailsResponse, vat, features, access, images, loading } = useSelector(state => state.search);
+    const { bookingInfo } = useSelector(state => state.booking);
 
     useEffect(() => {
         dispatch(searchDetails(searchId));
+        dispatch(getBookingInfoByStore({
+            store_id: +searchId
+        }));
     }, [searchId]);
 
     useEffect(() => {
@@ -388,7 +392,14 @@ function FrontSearchDetailsCtrl() {
                                         <strong>${details && details.store_cost}/Month </strong>
                                         <span>{details && details.store_size} sq.ft.</span>
                                     </div>
-                                    <Button variant="success" className="btn-block" onClick={() => dispatch(toggleBookingModal(true))}>Book Space</Button>
+
+
+                                    {
+                                      details.u_email !== localStorage.getItem("userEmail") &&  bookingInfo ? <Button variant="success" className="btn-block" onClick={() => window.location.href = `/booking/${bookingInfo.guid}`}>View Booking</Button> : <Button variant="success" className="btn-block" onClick={() => dispatch(toggleBookingModal(true))}>Book Space</Button>
+                                    }
+
+
+
                                 </div>
                                 <div className="book_space_card_footer">
                                     <div className="d-flex justify-content-center align-items-center">

@@ -107,8 +107,8 @@ const Root = () => {
             {/* <PrivateRoute exact path="/dashboard" parentComponent={SideMenuLayoutCtrl} childComponent={UserHomeCtrl} /> */}
             <PrivateRoute exact path="/dashboard" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserHomeCtrl} />
             <PrivateRoute exact path="/listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserListingtrl} />
-            <PrivateRoute exact path="/booking" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingCtrl} />
-            <PrivateRoute exact path="/booking-list" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingListCtrl} />
+            <PrivateRoute exact path="/booking/:guid" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingCtrl} />
+            <PrivateRoute exact path="/booking" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingListCtrl} />
             <PrivateRoute exact path="/no-any-list" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserNoBookingListCtrl} />
 
             <PrivateRoute exact path="/chat/list/:listId" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingChatCtrl} />

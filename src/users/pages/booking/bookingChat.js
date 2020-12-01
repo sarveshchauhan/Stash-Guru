@@ -12,8 +12,9 @@ import r_sm_verify from '../../../assets/users/images/chat/r_sm_verify.png';
 
 import user1 from '../../../assets/users/images/dummy/user1.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCgInfo, searchDetails } from '../../../redux';
+import { getCgInfo, searchDetails, toggleBookingModal } from '../../../redux';
 import BookingChatBox from './BookingChatBox';
+import BookingModal from '../../../front/pages/SearchList/BookingModal';
 
 
 function UserBookingChatCtrl() {
@@ -110,7 +111,11 @@ function UserBookingChatCtrl() {
                                 <small className="d-block"><img src={deposit} width="30" /> Security Deposit ${schDetails && schDetails.store_cost}</small>
                                 {/* <small className="d-block"><img src={G_calender} width="30" /> Minimum Rental Period 2Months</small> */}
                                 <Button size="sm" className="btn_milky_grn mt-3">Read More</Button>
-                                <Button variant="success" className="btn-block my-3">Book Space</Button>
+
+                                <Button variant="success" className="btn-block my-3" onClick={() => dispatch(toggleBookingModal(true))}>Book Space</Button>
+
+                                <BookingModal />
+
                             </div>
                             <div className="box_Img_Card_footer">
                                 <div className="box_Img_Card_body">
