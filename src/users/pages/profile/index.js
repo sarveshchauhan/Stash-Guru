@@ -25,7 +25,13 @@ function UserProfileCtrl() {
                 <Col lg={8}>
                     <div className="about_user_profile">
                         <div className="change_user_profile_img">
-                            <img src={user_img} />
+
+                            {
+                                authResponse && authResponse.users && authResponse.users.profile_pic ? <img src={authResponse.users.profile_pic} /> : <img src={user_img} />
+                            }
+
+
+
                             <div className="change_user_icon_camera">
                                 <i className="fa fa-camera" aria-hidden="true"></i>
                             </div>
