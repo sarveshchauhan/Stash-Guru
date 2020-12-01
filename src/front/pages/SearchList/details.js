@@ -48,25 +48,9 @@ const profileImages = require.context('../../../assets/users/images/profile', tr
 
 function FrontSearchDetailsCtrl() {
 
-<<<<<<< HEAD
-=======
+
     const [isSticky, setSticky] = useState(false);
     const ref = useRef(null);
-    const handleScroll = () => {
-      if (ref.current) {
-        setSticky(ref.current.getBoundingClientRect().top <= 0);
-      }
-    };
-  
-    useEffect(() => {
-      window.addEventListener('scroll', handleScroll);
-  
-      return () => {
-        window.removeEventListener('scroll', () => handleScroll);
-      };
-    }, []);
-
->>>>>>> d6feef194cf5b41c0bbc45b9d701bb39009f29d3
 
     const { searchId } = useParams();
     const [details, setDetails] = useState([]);
@@ -415,7 +399,7 @@ function FrontSearchDetailsCtrl() {
 
 
                                     {
-                                      details.u_email !== localStorage.getItem("userEmail") &&  bookingInfo ? <Button variant="success" className="btn-block" onClick={() => window.location.href = `/booking/${bookingInfo.guid}`}>View Booking</Button> : <Button variant="success" className="btn-block" onClick={() => dispatch(toggleBookingModal(true))}>Book Space</Button>
+                                        details.u_email !== localStorage.getItem("userEmail") && bookingInfo ? <Button variant="success" className="btn-block" onClick={() => window.location.href = `/booking/${bookingInfo.guid}`}>View Booking</Button> : <Button variant="success" className="btn-block" onClick={() => dispatch(toggleBookingModal(true))}>Book Space</Button>
                                     }
 
 
