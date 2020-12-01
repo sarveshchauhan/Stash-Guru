@@ -7,9 +7,10 @@ import verified from '../../../assets/users/images/icons/verified.png';
 import verify_id from '../../../assets/users/images/verify/verify_id.png';
 import DocumentDetails from './DocumentDetails';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVerifyList, toggleDocumentDetailModal } from '../../../redux/document/documentActions';
+import { getVerifyList, toggleDocumentDetailModal, toggleMobileVerifyModal } from '../../../redux/document/documentActions';
 import DocumentUpload from './DocumentUpload_old';
 import VerifyIdModal from './VerifyIdModal';
+import MobileVerification from './MobileVerification';
 
 
 function UserVerificationCtrl() {
@@ -17,6 +18,8 @@ function UserVerificationCtrl() {
     const dispatch = useDispatch();
 
     const { verifyList } = useSelector(state => state.document);
+    const { authResponse } = useSelector(state => state.auth);
+
 
     const [idVerified, setIdVerified] = useState("Pending");
     const [phoneVerified, setPhoneVerified] = useState("Pending");
@@ -30,9 +33,9 @@ function UserVerificationCtrl() {
 
     useEffect(() => {
 
-        
 
-        
+
+
 
         if (verifyList && verifyList.length > 0) {
             for (let i = 0; i < verifyList.length; i++) {
@@ -103,10 +106,20 @@ function UserVerificationCtrl() {
                         }
 
                     </NavLink>
-                    <span className="text_color_gray">(682)840-7833)</span>
+                    <span className="text_color_gray">({authResponse && authResponse.users && authResponse.users.mobile})</span>
                 </div>
+
+
                 <div>
-                    <Button className="btn_success">Change Number</Button>
+
+                    {
+
+                        phoneVerified && phoneVerified !== "Verify" && <Button className="btn_success" onClick={() => dispatch(toggleMobileVerifyModal(true))}>Verify Number</Button>
+
+                    }
+
+
+
                 </div>
             </div>
 
@@ -139,6 +152,8 @@ function UserVerificationCtrl() {
                 <DocumentDetails />
 
                 <DocumentUpload />
+
+                <MobileVerification />
 
             </div>
         </>

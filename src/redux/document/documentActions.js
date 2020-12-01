@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { config } from '../../config/config';
+import { validateClientToken } from '../../helpers/tokenHelpers';
 import store from '../store';
-import { DOCUMENT_FAILURE, DOCUMENT_REQUEST, DOCUMENT_STEP_ONE_SAVE_FAILURE, DOCUMENT_STEP_ONE_SAVE_REQUEST, DOCUMENT_STEP_ONE_SAVE_SUCCESS, DOCUMENT_SUCCESS, DOC_UPLOAD_FAILURE, DOC_UPLOAD_REQUEST, DOC_UPLOAD_SUCCESS, TOGGLE_DOCUMENT_DETAIL_MODAL, TOGGLE_DOCUMENT_UPLOAD_MODAL, TOGGLE_VERIFY_ID_MODAL, VERIFY_LIST_FAILURE, VERIFY_LIST_REQUEST, VERIFY_LIST_SUCCESS } from './documentTypes';
+import { DOCUMENT_FAILURE, DOCUMENT_REQUEST, DOCUMENT_STEP_ONE_SAVE_FAILURE, DOCUMENT_STEP_ONE_SAVE_REQUEST, DOCUMENT_STEP_ONE_SAVE_SUCCESS, DOCUMENT_SUCCESS, DOC_UPLOAD_FAILURE, DOC_UPLOAD_REQUEST, DOC_UPLOAD_SUCCESS, MOBILE_VERIFY_FAILURE, MOBILE_VERIFY_REQUEST, MOBILE_VERIFY_SUCCESS, TOGGLE_DOCUMENT_DETAIL_MODAL, TOGGLE_DOCUMENT_UPLOAD_MODAL, TOGGLE_MOBILE_VERIFY_MODAL, TOGGLE_VERIFY_ID_MODAL, VERIFY_LIST_FAILURE, VERIFY_LIST_REQUEST, VERIFY_LIST_SUCCESS } from './documentTypes';
 
 
 const documentListRequest = () => {
@@ -249,4 +250,79 @@ export const docUpload = (file) => {
     }
 
 }
+
+
+export const toggleMobileVerifyModal = (response) => {
+    return {
+        type: TOGGLE_MOBILE_VERIFY_MODAL,
+        payload: response
+    }
+}
+
+
+const mobileVerifyRequest = () => {
+    return {
+        type: MOBILE_VERIFY_REQUEST
+    }
+}
+
+const mobileVerifySuccess = (response) => {
+    return {
+        type: MOBILE_VERIFY_SUCCESS,
+        payload: response
+    }
+}
+
+
+const mobileVerifyFailure = (response) => {
+    return {
+        type: MOBILE_VERIFY_FAILURE,
+        payload: response
+    }
+}
+
+
+export const verifyMobile = (reqData) => {
+
+    reqData.token = JSON.parse(localStorage.getItem("stashGuruToken"));
+
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(mobileVerifyRequest());
+
+        reqData.token = await validateClientToken();
+
+
+        await axios.post(`${config.apiUrl}/front/users/verify_account`, reqData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    dispatch(mobileVerifySuccess(serverResponse.info));
+                    window.location.reload();
+                    dispatch(getDocumentList({
+                        token: JSON.parse(localStorage.getItem("stashGuruToken"))
+                    }));
+
+
+
+                }
+                else {
+                    dispatch(mobileVerifyFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(mobileVerifyFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
 

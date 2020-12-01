@@ -1,8 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { Col, Container, Row, Button, FormControl, Spinner } from 'react-bootstrap';
 import { NavLink, useHistory } from 'react-router-dom';
-
-
 import Dropzone from 'react-dropzone';
 
 
@@ -11,6 +9,10 @@ import street_view_doll from '../../../assets/users/images/icons/street-view-dol
 import StepsNavListCtrl from './steps_nav_list';
 import { useDispatch, useSelector } from 'react-redux';
 import { getListDetails, stepSixUpdateClient, updateCaption, uploadImageFile } from '../../../redux/listspace/listspaceActions';
+import ListingImageCrop from './ListingImageCrop';
+
+
+
 
 function CreateYourListStepSixthCtrl() {
 
@@ -78,9 +80,24 @@ function CreateYourListStepSixthCtrl() {
             <section className="my-5">
                 <Container>
                     <Row className="justify-content-between">
+
+                        {/* <Col lg={12}>
+
+                            <ListingImageCrop />
+
+                        </Col> */}
+
                         <Col lg="5" md="6">
+
                             <h3 className="md_bld_txt mb-3">Photos of the space</h3>
+
+
+
                             <div className="dropzone_section">
+
+
+
+
                                 <div className="dropzone">
                                     <Dropzone onDrop={onChangeFile}>
                                         {({ getRootProps, getInputProps }) => (

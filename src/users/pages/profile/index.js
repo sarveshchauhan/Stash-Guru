@@ -1,14 +1,22 @@
 import React from 'react';
-import { Button,Col,Form, Row } from 'react-bootstrap';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import G_profile from '../../../assets/users/images/icons/G_profile.png';
 import bell from '../../../assets/users/images/icons/bell.png';
 import promotion from '../../../assets/users/images/icons/promotion.png';
 import user_img from '../../../assets/users/images/dummy/user1.jpg';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleMobileVerifyModal } from '../../../redux';
+import MobileVerification from '../verification/MobileVerification';
 
 
-function UserProfileCtrl(){
-    return(
+function UserProfileCtrl() {
+
+    const dispatch = useDispatch();
+    const { authResponse } = useSelector(state => state.auth);
+
+
+    return (
         <>
             <div className="user_page_hdng justify-content-between align-items-center">
                 <h2 className="user_page_hdng_txt">Profile</h2>
@@ -24,13 +32,26 @@ function UserProfileCtrl(){
                         </div>
                         <div className="verify_user_email_mob">
                             <div className="verify_user_email_mob_content">
+
+                                <div className="verify_user_email_mob_flex mt-3">
+                                    <div className="verify_user_email_mob_icn">
+                                        <i className="fa fa-user" aria-hidden="true"></i>
+                                    </div>
+                                    <div>
+                                        <small>Name</small>
+                                        <h4>{authResponse && authResponse.users && authResponse.users.name} <Button className="P_verify_btn">Edit</Button></h4>
+                                    </div>
+                                </div>
+
+
                                 <div className="verify_user_email_mob_flex mt-3">
                                     <div className="verify_user_email_mob_icn">
                                         <i className="fa fa-phone" aria-hidden="true"></i>
                                     </div>
                                     <div>
                                         <small>Mobile</small>
-                                        <h4>(771)260-0497 <Button className="P_verify_btn">Verify</Button></h4>
+                                        <h4> {authResponse && authResponse.users && authResponse.users.mobile} <Button className="P_verify_btn" onClick={(e) => dispatch(toggleMobileVerifyModal(true))}>Verify</Button></h4>
+                                        <MobileVerification />
                                     </div>
                                 </div>
 
@@ -40,7 +61,7 @@ function UserProfileCtrl(){
                                     </div>
                                     <div>
                                         <small>Email</small>
-                                        <h4>bobby.cooper@mail.com <Button className="P_verify_btn">Verify</Button></h4>
+                                        <h4>{authResponse && authResponse.users && authResponse.users.email} <Button className="P_verify_btn">Verify</Button></h4>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +106,7 @@ function UserProfileCtrl(){
                         </Form>
                     </div>
 
-                    
+
                     <div className="sg_box_flex_card profile_r_card">
                         <div className="profile_l_body">
                             <h5>Reminders</h5>

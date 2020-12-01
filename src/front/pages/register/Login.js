@@ -146,7 +146,7 @@ class LoginComponentCtrl extends React.Component {
                                         </Col>
                                         <Col sm={12}>
                                             {this.props.auth.auth.error &&
-                                                <span>{JSON.stringify(this.props.auth.auth.error).replace(/["']/g, "")}</span>
+                                                <Alert variant="danger">{JSON.stringify(this.props.auth.auth.error).replace(/["']/g, "")}</Alert>
                                             }
                                         </Col>
                                         <Col sm={12}>
@@ -155,12 +155,12 @@ class LoginComponentCtrl extends React.Component {
                                                     <Col>
                                                         <Form.Group controlId="">
                                                             <Form.Control type="email" name="email" isInvalid={this.state.errors.email} value={this.state.email} onChange={this.handleChange} placeholder="Email Address" />
-                                                            {this.state.errors.email.length > 0 && <span className='error'>{this.state.errors.email}</span>}
+                                                            {this.state.errors.email.length > 0 && <span className='error text-danger'>{this.state.errors.email}</span>}
                                                         </Form.Group>
 
                                                         <Form.Group controlId="">
                                                             <Form.Control type="password" name="password" isInvalid={this.state.errors.password} value={this.state.password} onChange={this.handleChange} placeholder="Password" />
-                                                            {this.state.errors.password.length > 0 && <span className='error'>{this.state.errors.password}</span>}
+                                                            {this.state.errors.password.length > 0 && <span className='error text-danger'>{this.state.errors.password}</span>}
                                                         </Form.Group>
                                                     </Col>
                                                 </Row>

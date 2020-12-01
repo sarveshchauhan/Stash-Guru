@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getSpaceType, stepOneSave } from '../../../redux/listspace/listspaceActions';
@@ -10,7 +10,7 @@ function StepOneForm() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const { spaceTypeList, stepOne } = useSelector(state => state.listspace);
+    const { spaceTypeList, stepOne, spaceTypeListLoading } = useSelector(state => state.listspace);
 
 
     const [location, setLocation] = useState("");
@@ -124,42 +124,47 @@ function StepOneForm() {
     return (
         <>
 
-            <Form onSubmit={submitForm}>
-                <h5 className="pb-4">Lorem ipsum dolor sit amet</h5>
-                <Form.Group className="custom_select" style={{height: '48px'}}>
-                    <Form.Control as="select" name="spaceType" value={spaceType} onChange={(e) => setSpaceType(e.target.value)} onBlur={handleFormFields}>
+            {
+                spaceTypeListLoading ? <div className="text-center"><Spinner animation="border" variant="success"></Spinner></div> :
+                    <Form onSubmit={submitForm}>
+                        <h5 className="pb-4">Lorem ipsum dolor sit amet</h5>
+                        <Form.Group className="custom_select" style={{ height: '48px' }}>
+                            <Form.Control as="select" name="spaceType" value={spaceType} onChange={(e) => setSpaceType(e.target.value)} onBlur={handleFormFields}>
 
-                        {
-                            spaceTypeList && Array.isArray(spaceTypeList) && spaceTypeList.map((st, index) => (
-                                <option key={index} value={st.st_id}>{st.st_name}</option>
-                            ))
-                        }
+                                {
+                                    spaceTypeList && Array.isArray(spaceTypeList) && spaceTypeList.map((st, index) => (
+                                        <option key={index} value={st.st_id}>{st.st_name}</option>
+                                    ))
+                                }
 
-                    </Form.Control>
+                            </Form.Control>
 
-                    {
-                        spaceTypeError && <small className="text-danger">
-                            {spaceTypeError}
-                        </small>
-                    }
+                            {
+                                spaceTypeError && <small className="text-danger">
+                                    {spaceTypeError}
+                                </small>
+                            }
 
 
 
-                </Form.Group>
+                        </Form.Group>
 
-                <Form.Group>
-                    <Form.Control type="text" placeholder="Your Location" name="location" value={location} onChange={(e) => setLocation(e.target.value)} onBlur={handleFormFields} />
+                        <Form.Group>
+                            <Form.Control type="text" placeholder="Your Location" name="location" value={location} onChange={(e) => setLocation(e.target.value)} onBlur={handleFormFields} />
 
-                    {
-                        locationError && <small className="text-danger">
-                            {locationError}
-                        </small>
-                    }
+                            {
+                                locationError && <small className="text-danger">
+                                    {locationError}
+                                </small>
+                            }
 
-                </Form.Group>
+                        </Form.Group>
 
-                <Button variant="success" type="submit" className="btn-block mt-4">List your space</Button>
-            </Form>
+                        <Button variant="success" type="submit" className="btn-block mt-4">List your space</Button>
+                    </Form>
+
+            }
+
 
         </>
     )

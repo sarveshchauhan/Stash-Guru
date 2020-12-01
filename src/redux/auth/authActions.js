@@ -236,7 +236,7 @@ export const getUsers = () => {
                     if (usersResponse.status) {
 
                         const response = {
-                            users: { name: usersResponse.users.u_name, profile_pic: usersResponse.users.u_pic }
+                            users: { name: usersResponse.users.u_name, profile_pic: usersResponse.users.u_pic, email: usersResponse.users.u_email, mobile: usersResponse.users.u_mobile }
                         };
 
                         dispatch(getUserSuccess(response));
@@ -401,3 +401,8 @@ export const resetPassword = (resetData) => {
     }
 
 }
+
+
+
+
+

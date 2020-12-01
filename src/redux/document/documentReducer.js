@@ -1,4 +1,4 @@
-import { DOCUMENT_FAILURE, DOCUMENT_REQUEST, DOCUMENT_STEP_ONE_SAVE_FAILURE, DOCUMENT_STEP_ONE_SAVE_REQUEST, DOCUMENT_STEP_ONE_SAVE_SUCCESS, DOCUMENT_SUCCESS, DOC_UPLOAD_FAILURE, DOC_UPLOAD_REQUEST, DOC_UPLOAD_SUCCESS, TOGGLE_DOCUMENT_DETAIL_MODAL, TOGGLE_DOCUMENT_UPLOAD_MODAL, TOGGLE_VERIFY_ID_MODAL, VERIFY_LIST_FAILURE, VERIFY_LIST_REQUEST, VERIFY_LIST_SUCCESS } from "./documentTypes";
+import { DOCUMENT_FAILURE, DOCUMENT_REQUEST, DOCUMENT_STEP_ONE_SAVE_FAILURE, DOCUMENT_STEP_ONE_SAVE_REQUEST, DOCUMENT_STEP_ONE_SAVE_SUCCESS, DOCUMENT_SUCCESS, DOC_UPLOAD_FAILURE, DOC_UPLOAD_REQUEST, DOC_UPLOAD_SUCCESS, MOBILE_VERIFY_FAILURE, MOBILE_VERIFY_REQUEST, MOBILE_VERIFY_SUCCESS, TOGGLE_DOCUMENT_DETAIL_MODAL, TOGGLE_DOCUMENT_UPLOAD_MODAL, TOGGLE_MOBILE_VERIFY_MODAL, TOGGLE_VERIFY_ID_MODAL, VERIFY_LIST_FAILURE, VERIFY_LIST_REQUEST, VERIFY_LIST_SUCCESS } from "./documentTypes";
 
 const initialState = {
 
@@ -23,7 +23,13 @@ const initialState = {
     documentUploadLoading: false,
     documentUploadError: "",
 
-    uploadedDocs: []
+    uploadedDocs: [],
+
+    mobileVerifyShow: false,
+
+    mobileVerifyLoading: false,
+    mobileVerifyResponse: "",
+    mobileVerifyError: ""
 
 
 }
@@ -134,6 +140,32 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 documentUploadLoading: false,
                 documentUploadError: action.payload
+            }
+
+        case TOGGLE_MOBILE_VERIFY_MODAL:
+            return {
+                ...state,
+                mobileVerifyShow: action.payload
+            }
+
+        case MOBILE_VERIFY_REQUEST:
+            return {
+                ...state,
+                mobileVerifyLoading: true
+            }
+
+        case MOBILE_VERIFY_SUCCESS:
+            return {
+                ...state,
+                mobileVerifyLoading: false,
+                mobileVerifyResponse: action.payload
+            }
+
+        case MOBILE_VERIFY_FAILURE:
+            return {
+                ...state,
+                mobileVerifyLoading: false,
+                mobileVerifyError: action.payload
             }
 
         default:

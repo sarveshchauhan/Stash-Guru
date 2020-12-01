@@ -391,7 +391,8 @@ function CreateYourListStepFifthCtrl() {
                                     <InputGroup className="">
                                         <InputGroup.Prepend>
                                             <InputGroup.Text style={{ width: '50px', justifyContent: 'center' }}>
-                                                <i className="fa fa-usd" aria-hidden="true"></i>
+                                                {/* <i className="fa fa-usd" aria-hidden="true"></i> */}
+                                            Lei
                                             </InputGroup.Text>
                                         </InputGroup.Prepend>
                                         <FormControl name="pricing" onChange={(e) => setPricing(e.target.value)} value={pricing} onBlur={() => vaildateErrors("pricing")} />
@@ -414,7 +415,10 @@ function CreateYourListStepFifthCtrl() {
                                 <h6>Get Your Earnings</h6>
                                 <div className="GetYourEarningsRow">
                                     <div className="GetYourEarningsCol">
-                                        <Button variant="success" className=""><i className="fa fa-usd" aria-hidden="true"></i> {earning}</Button>
+                                        <Button variant="success" className="">
+                                            {/* <i className="fa fa-usd" aria-hidden="true"></i>  */}
+
+                                            {earning}  Lei </Button>
                                     </div>
                                     <b>Per Month</b>
                                 </div>
@@ -435,7 +439,7 @@ function CreateYourListStepFifthCtrl() {
                         <Col lg="5" md="6">
                             <h3 className="md_bld_txt">Security deposit</h3>
                             <Form.Group controlId="" className="mb-0" name="security-check">
-                                <Form.Check type="checkbox" checked={security} label={`Include 1 month security deposit of ($${pricing})`} onChange={() => setSecurity(!security)} />
+                                <Form.Check type="checkbox" checked={security} label={`Include 1 month security deposit of (${pricing} Lei)`} onChange={() => setSecurity(!security)} />
                             </Form.Group>
                             <Accordion>
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
