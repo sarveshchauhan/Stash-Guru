@@ -47,7 +47,7 @@ function UserBookingListCtrl() {
                 bookingList && Array.isArray(bookingList) && bookingList.map((booking, index) => (
 
 
-                    <div className={`space_booking_list ${booking.booking_status === "PAID" ? "disable" : "active"}`} key={index}>
+                    <div className={`space_booking_list active`} key={index}>
                         <Row className="m-0">
                             <Col sm="8" className="px-0">
                                 <div className="space_booking_list_header">

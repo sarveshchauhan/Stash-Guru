@@ -89,7 +89,7 @@ export function GoogleMap(props) {
                 <InfoWindow
                     position={{ lat: popupDetail.lat, lng: popupDetail.lng }}
                     visible={isOpen}>
-                    <h5>{popupDetail.title}</h5>
+                    <h5>{popupDetail.title} ssss</h5>
                     {/* <p><strong>Address:</strong> {popupDetail.address} </p> */}
                 </InfoWindow>
 
