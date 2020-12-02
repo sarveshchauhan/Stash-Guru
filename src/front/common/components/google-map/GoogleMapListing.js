@@ -33,6 +33,13 @@ export function GoogleMap(props) {
 
     const [popupDetail, setPopupDetail] = useState(initialPopupDetail);
 
+
+    useEffect(() => {
+
+
+    }, [props]);
+
+
     const handleToggleOpen = (arg, listDetail) => {
 
         // console.log(arg);

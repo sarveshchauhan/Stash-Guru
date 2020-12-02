@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+
+
 import { Container, Row, Col, Navbar, Button, Dropdown } from 'react-bootstrap';
 
 import { useParams } from 'react-router-dom';
@@ -23,13 +28,35 @@ import StorageTypeFilter from './StorageTypeFilter';
 import FeaturesFilter from './FeaturesFilter';
 
 
+
+
+
 const storeImages = require.context('../../../assets/front/images/store', true);
 const profileImages = require.context('../../../assets/users/images/profile', true);
 
 
 
 
+
+
 function FrontSearchListCtrl() {
+    // rangeSlider 
+    const useStyles = makeStyles({
+        root: {
+            width: 300,
+        },
+    });
+    function valuetext(value) {
+        return `${value}°C`;
+    }
+    const classes = useStyles();
+    const [value, setValue] = React.useState([20, 37]);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
+    // rangeSlider  end
+
 
     const { key } = useParams();
     const [list, setList] = useState([]);
@@ -72,45 +99,49 @@ function FrontSearchListCtrl() {
                                 <Col sm={8} className="SearchListFilter_Buttons">
 
 
+
+
                                     <StorageTypeFilter />
 
 
                                     <Dropdown className="d-inline-block">
                                         <Dropdown.Toggle variant="outline-success" size="sm" id="Storage Type">
                                             Price
-                                    </Dropdown.Toggle>
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">Price</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">Something</Dropdown.Item>
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu className="priceSizeRS_card">
+                                            <div className="priceSizeRS_card_body">
+                                                <div className={classes.root}>
+                                                    <Typography className="mb-5">Monthly Price Range</Typography>
+                                                    <Slider value={value} onChange={handleChange} valueLabelDisplay="auto" aria-labelledby="discrete-slider-always" getAriaValueText={valuetext} valueLabelDisplay="on"
+                                                    />
+                                                </div>
+                                            </div>
                                         </Dropdown.Menu>
                                     </Dropdown>
 
                                     <Dropdown className="d-inline-block">
                                         <Dropdown.Toggle variant="outline-success" size="sm" id="Storage Type">
                                             Size
-                                    </Dropdown.Toggle>
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">Size</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">Something</Dropdown.Item>
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu className="priceSizeRS_card">
+                                            <div className="priceSizeRS_card_body">
+                                                <div className={classes.root}>
+                                                    <Typography className="mb-5">Space Size</Typography>
+                                                    <Slider value={value} onChange={handleChange} valueLabelDisplay="auto" aria-labelledby="discrete-slider-always" getAriaValueText={valuetext} valueLabelDisplay="on"
+                                                    />
+                                                </div>
+                                            </div>
                                         </Dropdown.Menu>
                                     </Dropdown>
 
                                     <FeaturesFilter />
 
-                                    <Dropdown className="d-inline-block">
-                                        <Dropdown.Toggle variant="outline-success" size="sm" id="Storage Type">
-                                            More Filters
-                                    </Dropdown.Toggle>
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">More Filters</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">Something</Dropdown.Item>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
+
                                     <Button variant="outline-warning" size="sm">Reset Filters</Button>{' '}
                                 </Col>
                                 <Col sm={4} className="text--center text-md-right" style={{ fontSize: '14px' }}>
                                     <small className="mx-2 mt-4 d-inline-block">Showing {list.length} Results</small>
-                                    <Button variant="link" className="p-0" style={{ fontSize: '14px', color: '#000', textDecoration: 'none' }}><b>Nearest <i className="fa fa-sort" aria-hidden="true"></i></b></Button>
+                                    {/* <Button variant="link" className="p-0" style={{ fontSize: '14px', color: '#000', textDecoration: 'none' }}><b>Nearest <i className="fa fa-sort" aria-hidden="true"></i></b></Button> */}
                                 </Col>
                             </Row>
                             <hr />
