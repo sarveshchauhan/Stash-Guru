@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAddress, updateCoordinatesClient } from '../../../../redux';
+import ListYourSpaceImage from '../../../../assets/front/images/icons/warehouse.svg';
 
 const mapStyles = {
     map: {
@@ -69,7 +70,11 @@ export function GoogleMap(props) {
                     searchList && Array.isArray(searchList) && searchList.map((list, index) => (
 
                         <Marker key={index}
-
+                            icon={{
+                                url: ListYourSpaceImage,
+                                anchor: new props.google.maps.Point(32, 32),
+                                scaledSize: new props.google.maps.Size(32, 32)
+                            }}
                             // onMouseover={(e) => handleToggleOpen(e, list)}
                             // onMouseout={(e) => handleToggleClose()}
                             onClick={(e) => handleToggleOpen(e, list)}
