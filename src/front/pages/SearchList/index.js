@@ -19,6 +19,8 @@ import LoaderCtrl from '../../common/components/loader';
 import GoogleMapListing from '../../common/components/google-map/GoogleMapListing';
 import PlaceholderImage from '../../../assets/front/images/placeholder.png';
 import lieIcon from '../../../assets/front/images/icons/lieIcon.png';
+import StorageTypeFilter from './StorageTypeFilter';
+import FeaturesFilter from './FeaturesFilter';
 
 
 const storeImages = require.context('../../../assets/front/images/store', true);
@@ -68,79 +70,11 @@ function FrontSearchListCtrl() {
                                     <SearchComponent />
                                 </Col>
                                 <Col sm={8} className="SearchListFilter_Buttons">
-                                    <Dropdown className="d-inline-block">
-                                        <Dropdown.Toggle variant="outline-success" size="sm" id="StorageType">
-                                            Storage Type
-                                    </Dropdown.Toggle>
-                                        <Dropdown.Menu className="switch_dropdown_menu">
-                                            <div className="switch_dropdown_row">
-                                                <div className="switch_col">
-                                                    <label class="switch">
-                                                        <input type="checkbox" />
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                    <span className="switch_label_name">garge</span>
-                                                </div>
-                                                <div className="switch_col">
-                                                    <label class="switch">
-                                                        <input type="checkbox" />
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                    <span className="switch_label_name">Spare rooms</span>
-                                                </div>
-                                                <div className="switch_col">
-                                                    <label class="switch">
-                                                        <input type="checkbox" />
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                    <span className="switch_label_name">Lock Ups</span>
-                                                </div>
-                                                <div className="switch_col">
-                                                    <label class="switch">
-                                                        <input type="checkbox" />
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                    <span className="switch_label_name">Basement</span>
-                                                </div>
-                                                <div className="switch_col">
-                                                    <label class="switch">
-                                                        <input type="checkbox" />
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                    <span className="switch_label_name">Parking House</span>
-                                                </div>
-                                                <div className="switch_col">
-                                                    <label class="switch">
-                                                        <input type="checkbox" />
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                    <span className="switch_label_name">Lofts</span>
-                                                </div>
-                                                <div className="switch_col">
-                                                    <label class="switch">
-                                                        <input type="checkbox" />
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                    <span className="switch_label_name">Out housed</span>
-                                                </div>
-                                                <div className="switch_col">
-                                                    <label class="switch">
-                                                        <input type="checkbox" />
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                    <span className="switch_label_name">Container</span>
-                                                </div>
-                                                <div className="switch_col">
-                                                    <label class="switch">
-                                                        <input type="checkbox" />
-                                                        <span class="slider round"></span>
-                                                    </label>
-                                                    <span className="switch_label_name">Warehouse</span>
-                                                </div>
-                                            </div>
-                                        </Dropdown.Menu>
 
-                                    </Dropdown>
+
+                                    <StorageTypeFilter />
+
+
                                     <Dropdown className="d-inline-block">
                                         <Dropdown.Toggle variant="outline-success" size="sm" id="Storage Type">
                                             Price
@@ -161,15 +95,7 @@ function FrontSearchListCtrl() {
                                         </Dropdown.Menu>
                                     </Dropdown>
 
-                                    <Dropdown className="d-inline-block">
-                                        <Dropdown.Toggle variant="outline-success" size="sm" id="Storage Type">
-                                            Features
-                                    </Dropdown.Toggle>
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">Features</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">Something</Dropdown.Item>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
+                                    <FeaturesFilter />
 
                                     <Dropdown className="d-inline-block">
                                         <Dropdown.Toggle variant="outline-success" size="sm" id="Storage Type">
@@ -208,18 +134,20 @@ function FrontSearchListCtrl() {
                                                         <div className="SearchListPlaceUserArea">
                                                             <img className="profileImg" src={details.u_pic} alt="" />
                                                             <div className="">
-                                                                <span className="profileName d-block">{details.u_name}</span>
+                                                                <span className="profileName d-block">{details.u_name.split(" ")[0]}</span>
                                                             </div>
                                                         </div>
 
                                                         <div className="SearchListPlaceAreaPlace justify-content-between">
                                                             <span className="FrPlace" size="sm" variant="no_bg">
-                                                                <img width="100%" src={b_garage} alt="" /> {details.st_name}
+                                                                <img width="100%" src={details.st_path} alt="" /> {details.st_name}
                                                             </span>
                                                             <div>
-                                                                <span><i className="fa fa-map-marker"></i> {details.store_location} </span>
-                                                                <span>|</span>
+                                                                <span><i className="fa fa-map-marker"></i></span>
+
+                                                                {/* <span>|</span>
                                                                 <span>1 km</span>
+                                                             */}
                                                             </div>
                                                         </div>
 

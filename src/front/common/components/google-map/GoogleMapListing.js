@@ -4,18 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAddress, updateCoordinatesClient } from '../../../../redux';
 import ListYourSpaceImage from '../../../../assets/front/images/icons/warehouse.svg';
 
-import BasementIcon from '../../../../assets/front/images/icons/storagetypes/basement-g.svg';
-import ContainerIcon from '../../../../assets/front/images/icons/storagetypes/container-g.svg';
-import LockupIcon from '../../../../assets/front/images/icons/storagetypes/lockup-g.svg';
-import LoftsIcon from '../../../../assets/front/images/icons/storagetypes/lofts-g.svg';
-import OutHousedIcon from '../../../../assets/front/images/icons/storagetypes/out-housed-g.svg';
-import ParkingIcon from '../../../../assets/front/images/icons/storagetypes/parking-g.svg';
-import SpareRoomIcon from '../../../../assets/front/images/icons/storagetypes/spare-room-g.svg';
-import WarehouseIcon from '../../../../assets/front/images/icons/storagetypes/warehouse-g.svg';
-
-
-
-
 import dummy1 from '../../../../assets//users/images/dummy/dummy1.jpg';
 import { LIST_DETAIL_SUCCESS } from '../../../../redux/listspace/listspaceTypes';
 
@@ -58,7 +46,6 @@ export function GoogleMap(props) {
             image: listDetail.images && listDetail.images.length > 0 ? listDetail.images[0].si_path : "",
             cost: listDetail.store_cost,
             size: listDetail.store_size
-
         })
 
         setIsOpen(true);
@@ -89,10 +76,11 @@ export function GoogleMap(props) {
                     searchList && Array.isArray(searchList) && searchList.map((list, index) => (
 
                         <Marker key={index}
+
                             icon={{
-                                url: ListYourSpaceImage,
-                                anchor: new props.google.maps.Point(32, 32),
-                                scaledSize: new props.google.maps.Size(32, 32)
+                                url: list.st_map,
+                                anchor: new props.google.maps.Point(48, 48),
+                                scaledSize: new props.google.maps.Size(48, 48)
                             }}
                             // onMouseover={(e) => handleToggleOpen(e, list)}
                             // onMouseout={(e) => handleToggleClose()}

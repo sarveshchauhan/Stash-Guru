@@ -106,7 +106,7 @@ function BookingModal() {
 
                                     {
                                         months.map((month, index) => (
-                                            <option value={month} key={index}>{month}</option>
+                                            <option value={month} key={index}>{month} months</option>
                                         ))
                                     }
                                 </Form.Control>
