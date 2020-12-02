@@ -45,7 +45,10 @@ function UserProfileCtrl() {
                                     </div>
                                     <div>
                                         <small>Name</small>
-                                        <h4>{authResponse && authResponse.users && authResponse.users.name} <Button className="P_verify_btn">Edit</Button></h4>
+                                        <h4>{authResponse && authResponse.users && authResponse.users.name}</h4>
+                                    </div>
+                                    <div>
+                                       <Button className="P_verify_btn">Edit</Button>
                                     </div>
                                 </div>
 
@@ -56,7 +59,10 @@ function UserProfileCtrl() {
                                     </div>
                                     <div>
                                         <small>Mobile</small>
-                                        <h4> {authResponse && authResponse.users && authResponse.users.mobile} <Button className="P_verify_btn" onClick={(e) => dispatch(toggleMobileVerifyModal(true))}>Verify</Button></h4>
+                                        <h4> {authResponse && authResponse.users && authResponse.users.mobile} </h4>
+                                    </div>
+                                    <div>
+                                        <Button className="P_verify_btn" onClick={(e) => dispatch(toggleMobileVerifyModal(true))}>Verify</Button>
                                         <MobileVerification />
                                     </div>
                                 </div>
@@ -67,7 +73,10 @@ function UserProfileCtrl() {
                                     </div>
                                     <div>
                                         <small>Email</small>
-                                        <h4>{authResponse && authResponse.users && authResponse.users.email} <Button className="P_verify_btn">Verify</Button></h4>
+                                        <h4>{authResponse && authResponse.users && authResponse.users.email}</h4>
+                                    </div>
+                                    <div>
+                                        <Button className="P_verify_btn">Verify</Button>
                                     </div>
                                 </div>
                             </div>

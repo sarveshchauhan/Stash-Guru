@@ -3,6 +3,7 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAddress, updateCoordinatesClient } from '../../../../redux';
 import ListYourSpaceImage from '../../../../assets/front/images/icons/warehouse.svg';
+import dummy1 from '../../../../assets//users/images/dummy/dummy1.jpg';
 
 const mapStyles = {
     map: {
@@ -94,7 +95,23 @@ export function GoogleMap(props) {
                 <InfoWindow
                     position={{ lat: popupDetail.lat, lng: popupDetail.lng }}
                     visible={isOpen}>
-                    <h5>{popupDetail.title} ssss</h5>
+                    <img src={dummy1} />
+                    <div className="gm_style_iw_body">
+                        <h5>{popupDetail.title}</h5>
+                        <div className="w-100 d-flex-wrap justify-content-around">
+                            <div>
+                                <strong>118<span> Lei</span> <br />
+                                    <small>month</small>
+                                </strong>
+                            </div>
+                            <div>
+                                <strong>280<br />
+                                    <small>m<sup>2</sup></small>
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+
                     {/* <p><strong>Address:</strong> {popupDetail.address} </p> */}
                 </InfoWindow>
 
