@@ -63,7 +63,7 @@ function PaymentForm({ stripe }) {
 
 
 
-            <Form className="mt-5" onSubmit={handleSubmit}>
+            <Form className="mt-5 paymentForm" onSubmit={handleSubmit}>
                 <Row>
                     <Col sm="12">
                         <Form.Group controlId="formBasicPassword">
@@ -82,17 +82,17 @@ function PaymentForm({ stripe }) {
                         <Form.Row sm="6">
                             <Form.Group as={Col} sm="6" controlId="">
                                 <Form.Label>Card Number</Form.Label>
-                                <CardNumberElement />
+                                <CardNumberElement className="form-control" />
                             </Form.Group>
 
                             <Form.Group as={Col} sm="3" controlId="">
                                 <Form.Label>Expiry</Form.Label>
-                                <CardExpiryElement />
+                                <CardExpiryElement className="form-control" />
                             </Form.Group>
 
                             <Form.Group as={Col} sm="3" controlId="">
                                 <Form.Label>CVV</Form.Label>
-                                <CardCVCElement />
+                                <CardCVCElement className="form-control" />
                             </Form.Group>
                         </Form.Row>
                     </Col>

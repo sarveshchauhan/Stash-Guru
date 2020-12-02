@@ -394,7 +394,7 @@ input.form-control{
     width: 100%;
 }
 
-
+.form-control.rectu_form_field,
 select.form-control, input.form-control.rectu_form_field,
 select.form-control, input.form-control.rectu_form_field{
     border-radius: 5px;;
@@ -407,7 +407,9 @@ textarea.form-control{
     flex-wrap: wrap;
 }
 // sass color code End
-
+.paymentForm .form-control{
+    padding-top: 11px;
+}
 
 
 
