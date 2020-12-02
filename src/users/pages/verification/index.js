@@ -8,7 +8,7 @@ import verify_id from '../../../assets/users/images/verify/verify_id.png';
 import DocumentDetails from './DocumentDetails';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVerifyList, toggleDocumentDetailModal, toggleMobileVerifyModal } from '../../../redux/document/documentActions';
-import DocumentUpload from './DocumentUpload_old';
+import DocumentUpload from './DocumentUpload';
 import VerifyIdModal from './VerifyIdModal';
 import MobileVerification from './MobileVerification';
 
