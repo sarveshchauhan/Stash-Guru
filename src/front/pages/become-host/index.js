@@ -5,6 +5,9 @@ import { NavLink } from 'react-router-dom';
 import SearchComponent from '../../common/components/SearchCompo';
 
 import banner_img from '../../../assets/front/images/img/banner_img.svg';
+import hosting_video_bg from '../../../assets/front/images/img/hosting_video_bg.jpg'
+import chat_with_us from '../../../assets/front/images/img/chat_with_us.png';
+import start_earning from '../../../assets/front/images/img/start_earning.png';
 
 import listUrSpace from '../../../assets/front/images/icons/listUrSpace.png';
 import manageBooking from '../../../assets/front/images/icons/manageBooking.png';
@@ -148,6 +151,61 @@ function FrontBecomeHostCtrl() {
                             </Row>
                         </Col>
                     </Row>
+                    <Row>
+                        <Col className="text-center mt-5">
+                            <Button variant="success" className="px-5">Get Started</Button>
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+
+            <section className="section_padding">
+                <Container>
+                    <Row>
+                        <Col className="text-center">
+                            <h3 className="pg_bg_hdng mb-3">How Does it work?</h3>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-center align-items-center my-5">
+                        <Col lg={5}>
+                            <div className="">
+                                <img src={banner_img} />
+                            </div>
+                        </Col>
+                        <Col lg={7}>
+                            <div className="">
+                                <h5 className="text5">List for Free</h5>
+                                <p className="text_p">It’s quick and easy to get your space listed (and completely free, too!). Just upload some photos, enter the measurements and add a few key details. Our Host Onboarding team will then review your listing before putting it live.</p>
+                            </div>
+                        </Col>
+                    </Row>
+                    
+                    <Row className="justify-content-center align-items-center my-5">
+                        <Col lg={7}>
+                            <div className="">
+                                <h5 className="text5">Get Requests</h5>
+                                <p className="text_p">Live listings appear on the search map so that Guests can easily find and request to book your space. We verify Guests before they can send you a booking request, and you’ll always have the option to either accept or decline.</p>
+                            </div>
+                        </Col>
+                        <Col lg={5}>
+                            <div className="">
+                                <img src={banner_img} />
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-center align-items-center my-5">
+                        <Col lg={5}>
+                            <div className="">
+                                <img src={banner_img} />
+                            </div>
+                        </Col>
+                        <Col lg={7}>
+                            <div className="">
+                                <h5 className="text5">Get Paid!</h5>
+                                <p className="text_p">Our secure, cashless system handles monthly payments, so you can relax knowing you’ll always get paid on time. We’ll also take care of sending out the Booking Terms, and we’ll be on hand to answer questions every step of the way.</p>
+                            </div>
+                        </Col>
+                    </Row>
                 </Container>
             </section>
 
@@ -213,15 +271,56 @@ function FrontBecomeHostCtrl() {
                 </Container>
             </section>
 
-            <section className="">
+
+            <section className="section_padding">
                 <Container>
-                    <Row className="justify-content-center">
-                        <Col md={12}>
-                            <div className="">
-                                <h3>Featured Storages Cities</h3>
+                    <Row>
+                        <Col className="text-center">
+                            <h3 className="pg_bg_hdng mb-3">Watch a video about hosting</h3>
+                            <p>Find out what it’s like to be a Host from StashGuru Super-Host, Will Wood.</p>
+                        </Col>
+                    </Row>
+                    <Row className="justify-content-center align-items-center">
+                        <Col lg={12}>
+                            <div className="hosting_video_bg">
+                                <img src={hosting_video_bg} />
                             </div>
                         </Col>
-                        <Col className="text-center my-5"></Col>
+                    </Row>
+                </Container>
+            </section>
+
+            <section className="section_padding">
+                <Container>
+                    <Row className="justify-content-center align-items-center">
+                        <Col lg={6}>
+                            <div className="">
+                                <h3 className="pg_bg_hdng mb-3">Chat to us!</h3>
+                                <p>We’re here to make putting your spare space to good use easy, whilst helping you earn an extra income in the process. Fancy a chat before you get started? Get in touch!</p>
+                                <Button variant="success" className="px-5 mt-4">Contact Us</Button>
+                            </div>
+                        </Col>
+                        <Col lg={6}>
+                            <div className="p-5">
+                                <img src={chat_with_us} />
+                            </div>
+                        </Col>
+                    </Row>
+
+                    
+                    <Row className="justify-content-center align-items-center">
+                        <Col lg={6}>
+                            <div className="p-5">
+                                <img src={start_earning} />
+                            </div>
+                        </Col>
+                        <Col lg={6}>
+                            <div className="">
+                                <h3 className="pg_bg_hdng mb-3">Ready to start earning from your space?</h3>
+                                <p>Get started by creating a listing. We’ll take care of the rest!</p>
+                                <Button variant="success" className="px-5 mt-4">Get Started</Button>
+                            </div>
+                        </Col>
                     </Row>
                 </Container>
             </section>
