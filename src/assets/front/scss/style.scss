@@ -20,6 +20,7 @@
 
 
 .home_banner{
+    background-color: #ffffff;
     background-image: url('../images/bg/banner_bg_img.svg');
     background-size: cover;
     padding-top: 100px;
@@ -27,6 +28,7 @@
 .home_banner img{
     padding-top: 50px;
 }
+
 .home_banner_content h2{
     font-weight: 900;
     font-size: 50px;
@@ -35,12 +37,6 @@
     font-size: 25px;
     color: $zambezi_color;
 }
-
-
-
-
-
-
 
 .location_search_bar .input-group-text,
 .Create_list_location_search_bar .input-group-text{
@@ -247,7 +243,7 @@
     padding-left: 20px;
 }
 .ab_strip_card_content h4{
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 700;
     margin: 0px;
     color: #32D78A;
@@ -785,13 +781,16 @@
 }
 
 @media (max-width: 768px){
-    .home_banner{
+    .home_banner,
+    .page_banner{
         padding-top: 50px;
     }
-    .home_banner_content h2{
+    .home_banner_content h2,
+    .page_banner_content h2{
         font-size: 25px;
     }
-    .home_banner_content p{
+    .home_banner_content p,
+    .page_banner_content p{
         font-size: 15px;
     }
     .stash_guru_user_slider .carousel-item h3,
@@ -909,7 +908,8 @@
 
 .what_need_card{
     background-color: $milky_color;
-    margin-top: 30px;;
+    margin-top: 30px;
+    box-shadow: 0px 4px 40px #0000001A;
 }
 .what_need_card_header{
     text-align: center;
@@ -963,3 +963,169 @@
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.page_banner_content h2{
+    font-weight: 900;
+    font-size: 40px;
+}
+.page_banner_content p{
+    font-size: 20px;
+    color: $zambezi_color;
+}
+.page_banner{
+    padding-top: 100px;
+    background-color: #ffffff;
+}
+.page_banner.about_page_banner .page_banner_img{
+    background-image: url('../images/img/about_banner_img.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right top;
+    min-height: 230px;
+}
+
+.page_content .page_h4_txt{
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 700;
+}
+.hello_sections {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background: #34D789;
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+.hello_sections::after
+{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1000px;
+    height: 1000px;
+    background-image: url('../images/bg/polygon.svg');
+    background-size: contain;
+    background-repeat: repeat;   
+    background-position: right -100px top -100px;
+    background-size: 1000px 1000px;
+}
+.hello_sections p{
+    font-weight: 200;
+}
+.hello_sections table.table{
+    color: #ffffff;
+}
+.count_about_sections{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background: #ffffff;
+    color: #333333;
+}
+.counter_card{
+    text-align: center;
+}
+.counter_card_icon{
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border: 1px solid #34D789;
+    border-radius: 50%;
+    margin: 10px auto;
+    display: block;
+    text-align: center;
+}
+.counter_card_icon img{
+    width: 40px;
+}
+.counter_card h3{
+    font-size: 30px;
+    font-weight: 900;
+}
+.counter_card h5{
+    font-size: 17px;
+    font-weight: 400;
+}
+.counter_card p{
+    font-size: 15px;
+    font-weight: 400;
+}
+.counter_card b{
+    color: #34D789;
+}
+
+
+.bottom_search_strip{
+    background: #E8FAF1;
+    // min-height: 150px;
+    padding: 50px 0px;
+}
+.bottom_search_strip .location_search_bar .location-search-input{
+    border-color: #ffffff;
+}
+.bottom_search_strip .bx_shd_crd{
+    box-shadow: 0px 12px 18px #34D78929;
+    border-radius: 34px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.bottom_search_strip .bx_shd_crd a{
+    text-decoration: none;
+}
+
+
+
+.bottom_search_strip button.btn{
+    font-weight: bold;
+}
+.bottom_search_strip input {
+    color: #34D789;
+    font-weight: bold;
+}
+.bottom_search_strip ::-webkit-input-placeholder {
+    color: #34D789;
+    font-weight: bold;
+}
+  
+.bottom_search_strip :-ms-input-placeholder {
+    color: #34D789;
+    font-weight: bold;
+  }
+  
+.bottom_search_strip ::placeholder {
+    color: #34D789;
+    font-weight: bold;
+}
+
+
+
+.bottom_search_strip .location_search_bar::after{
+    color: #34D789;
+}

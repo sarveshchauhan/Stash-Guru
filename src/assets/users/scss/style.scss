@@ -187,22 +187,39 @@ table.table.no_bdr tr th,
 table.table.no_bdr tr td{
     border: 0px;
     vertical-align: middle;
-    padding: 0px;
+    padding: 5px 10px;
 }
 table.table.no_bdr tr th{
-    font-size: 12px;
     font-weight: 300;
 }
 table.table.no_bdr tr td{
+    font-weight: 500;
+}
+
+
+
+
+table.table-sm.no_bdr,
+table.table-sm.no_bdr tr,
+table.table-sm.no_bdr tr th,
+table.table.no_bdr tr td{
+    border: 0px;
+    vertical-align: middle;
+    padding: 0px;
+}
+table.table-sm.no_bdr tr th{
+    font-size: 12px;
+    font-weight: 300;
+}
+table.table-sm.no_bdr tr td{
     font-size: 14px;
     font-weight: 500;
 }
-table.table.no_bdr tr td strong{
+table.table-sm.no_bdr tr td strong{
     font-size: 20px;
     font-weight: 900;
     color: #34D789;;
 }
-
 
 
 .box_Card,
@@ -887,3 +904,60 @@ button.P_verify_btn:hover{
 }
 
 
+.gm-style-iw.gm-style-iw-c{
+    padding: 0px !important;
+}
+
+.gm-style-iw.gm-style-iw-c .gm-style-iw-d{
+    width: 200px !important;
+    overflow: hidden !important;
+}
+.gm-style-iw.gm-style-iw-c .gm-style-iw-d img{
+    width: 100% !important;
+    max-height: 100px !important;
+}
+.gm_style_iw_body{
+    padding: 5px;
+}
+.gm_style_iw_body h5{
+    font-size: 15px;
+    display: block;
+    text-align: center;
+}
+.gm_style_iw_body strong{
+    color:#34d789;
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    display: block;
+}
+.gm_style_iw_body small{
+    color:#34d789;
+    font-weight: 500;
+    font-size: 10px;
+    color: #595959;
+}
+.gm-style-iw.gm-style-iw-c .gm-ui-hover-effect{
+    position: relative;
+    top: 0px !important;
+    right: 0px !important;
+    opacity: 1;
+}
+.gm-style-iw.gm-style-iw-c .gm-ui-hover-effect img{
+    display: none !important;
+}
+.gm-style-iw.gm-style-iw-c .gm-ui-hover-effect::after{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "\f05c" !important;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 20px;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #ffffff;
+    top: 5px;
+    right: 0px;
+}

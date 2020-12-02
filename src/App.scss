@@ -55,17 +55,24 @@ img{
     max-width: 100%;
 }
 
+.btn.btn-milky,
 .btn.btn_milky{
     background: $milky_color;
     color: $shamrock_color;
     border-color: $milky_color;
 }
 
-.btn.btn_milky.focus, 
+.btn.btn_milky.focus,
 .btn.btn_milky:focus,
 .btn_milky:focus-within,
 .btn_milky:not(:disabled):not(.disabled):active,
-.btn.btn_milky:hover{
+.btn.btn_milky:hover,
+
+.btn.btn-milky.focus,
+.btn.btn-milky:focus,
+.btn-milky:focus-within,
+.btn-milky:not(:disabled):not(.disabled):active,
+.btn.btn-milky:hover{
     background: $milky_color ;
     color: $shamrock_color;
     border-color: $milky_color;
@@ -388,12 +395,13 @@ input.form-control{
 }
 
 
-
 select.form-control, input.form-control.rectu_form_field,
 select.form-control, input.form-control.rectu_form_field{
     border-radius: 5px;;
 }
-
+textarea.form-control{
+    border-radius: 25px;;
+}
 .d-flex-wrap{
     display: flex;
     flex-wrap: wrap;
