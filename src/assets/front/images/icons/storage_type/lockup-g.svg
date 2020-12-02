@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="lockup-g" transform="translate(-173 -378)">
+    <g id="Rectangle_1513" data-name="Rectangle 1513" transform="translate(173 378)" fill="#fff" stroke="#707070" stroke-width="1" opacity="0">
+      <rect width="32" height="32" stroke="none"/>
+      <rect x="0.5" y="0.5" width="31" height="31" fill="none"/>
+    </g>
+    <g id="house-lock" transform="translate(154.017 378)">
+      <g id="Group_2714" data-name="Group 2714" transform="translate(20.983 0)">
+        <path id="Path_12605" data-name="Path 12605" d="M48.759,15.916,35.653.317a.867.867,0,0,0-1.341,0l-13.105,15.6a.944.944,0,0,0,.67,1.557h2.085V31.062a.916.916,0,0,0,.894.937H45.11A.916.916,0,0,0,46,31.062V17.474h2.085A.944.944,0,0,0,48.759,15.916ZM37.366,27.464H32.6a.931.931,0,0,1-.85-1.225l1.106-3.6a3.49,3.49,0,0,1-1.149-2.616,3.28,3.28,0,1,1,6.553,0,3.49,3.49,0,0,1-1.149,2.616l1.106,3.6A.931.931,0,0,1,37.366,27.464Z" transform="translate(-20.983 0)" fill="#34d789"/>
+      </g>
+    </g>
+  </g>
+</svg>

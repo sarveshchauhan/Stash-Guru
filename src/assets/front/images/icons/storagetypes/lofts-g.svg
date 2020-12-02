@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="lofts-g" transform="translate(-255 -378)">
+    <g id="Rectangle_1515" data-name="Rectangle 1515" transform="translate(255 378)" fill="#fff" stroke="#707070" stroke-width="1" opacity="0">
+      <rect width="32" height="32" stroke="none"/>
+      <rect x="0.5" y="0.5" width="31" height="31" fill="none"/>
+    </g>
+    <g id="Group_4735" data-name="Group 4735" transform="translate(-106.56 -359.025)">
+      <path id="Subtraction_1" data-name="Subtraction 1" d="M32,28.8H0V15.377L19.821,0,32,9.6V28.8ZM21.13,18.463V25.9H26.85V18.463Zm-14.873,0V25.9H17.7V18.463ZM17.777,5.689h0l-5.955,4.444v4.444h5.955V5.69Zm3.112,0h0v8.621h6.4V9.689l-6.4-4Z" transform="translate(361.56 738.224)" fill="#34d789"/>
+      <path id="Path_16468" data-name="Path 16468" d="M-10964.265,5081.468v4.444l-3.911-3.11v-1.334Z" transform="translate(11353.913 -4342.533)" fill="#34d789"/>
+    </g>
+  </g>
+</svg>

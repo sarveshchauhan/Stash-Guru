@@ -52,7 +52,7 @@ export const searchListing = (data) => {
         dispatch(searchRequest());
 
         try {
-            const response = await axios.post(`${config.apiUrl}/front/search/list`, { key: data }, requestConfig);
+            const response = await axios.post(`${config.apiUrl}/front/search/list`, data, requestConfig);
             const listResponse = response.data;
 
             if (listResponse.status) {

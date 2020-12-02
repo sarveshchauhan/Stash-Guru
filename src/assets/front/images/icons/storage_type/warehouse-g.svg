@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="warehouse-g" transform="translate(-91 -378)">
+    <g id="Rectangle_1512" data-name="Rectangle 1512" transform="translate(91 378)" fill="#fff" stroke="#707070" stroke-width="1" opacity="0">
+      <rect width="32" height="32" stroke="none"/>
+      <rect x="0.5" y="0.5" width="31" height="31" fill="none"/>
+    </g>
+    <g id="warehouse" transform="translate(91 378)">
+      <path id="Path_12601" data-name="Path 12601" d="M31.568,10.509,16.568.176a1,1,0,0,0-1.135,0l-15,10.333A1,1,0,0,0,0,11.333V30.667A1.334,1.334,0,0,0,1.333,32H4V16a1.334,1.334,0,0,1,1.333-1.333H26.667A1.334,1.334,0,0,1,28,16V32h2.667A1.334,1.334,0,0,0,32,30.667V11.333A1,1,0,0,0,31.568,10.509Z" transform="translate(0 0)" fill="#34d789"/>
+      <path id="Path_12602" data-name="Path 12602" d="M10.5,19v1a1,1,0,0,1-2,0V19H6.167a.667.667,0,0,0-.667.667V25a.667.667,0,0,0,.667.667h6.667A.667.667,0,0,0,13.5,25V19.667A.667.667,0,0,0,12.833,19Z" transform="translate(1.833 6.333)" fill="#34d789"/>
+      <path id="Path_12603" data-name="Path 12603" d="M17.5,19v1a1,1,0,0,1-2,0V19H13.167a.667.667,0,0,0-.667.667V25a.667.667,0,0,0,.667.667h6.667A.667.667,0,0,0,20.5,25V19.667A.667.667,0,0,0,19.833,19Z" transform="translate(4.167 6.333)" fill="#34d789"/>
+      <path id="Path_12604" data-name="Path 12604" d="M14,13v1a1,1,0,0,1-2,0V13H9.667A.667.667,0,0,0,9,13.667V19a.667.667,0,0,0,.667.667h6.667A.667.667,0,0,0,17,19V13.667A.667.667,0,0,0,16.333,13Z" transform="translate(3 4.333)" fill="#34d789"/>
+    </g>
+  </g>
+</svg>

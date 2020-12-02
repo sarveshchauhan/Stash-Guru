@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="basement-g" transform="translate(-297 -378)">
+    <g id="Rectangle_1516" data-name="Rectangle 1516" transform="translate(297 378)" fill="#fff" stroke="#707070" stroke-width="1" opacity="0">
+      <rect width="32" height="32" stroke="none"/>
+      <rect x="0.5" y="0.5" width="31" height="31" fill="none"/>
+    </g>
+    <g id="Group_4734" data-name="Group 4734" transform="translate(-521.916 -172)">
+      <path id="Path_16464" data-name="Path 16464" d="M-10553.084,4909.625V4928.6h22.647v-7.55h-7.345v-5.712h-6.428v-5.713Z" transform="translate(11372 -4346.6)" fill="#34d789"/>
+      <path id="Union_14" data-name="Union 14" d="M0,10.563A2.265,2.265,0,0,1,1,8.745V7.5a1,1,0,0,1,1-1V5.875a1,1,0,0,1,.018-.188H2V0H4V5.687H3.984A1,1,0,0,1,4,5.875V6.5a1,1,0,0,1,1,1V8.746a2.262,2.262,0,0,1,1,1.817A2.763,2.763,0,0,1,3,13,2.764,2.764,0,0,1,0,10.563Z" transform="translate(838.143 552)" fill="#34d789"/>
+      <path id="Union_15" data-name="Union 15" d="M25.483,31V2.884H0V0H29.123V31Z" transform="translate(821.793 550)" fill="#34d789"/>
+    </g>
+  </g>
+</svg>

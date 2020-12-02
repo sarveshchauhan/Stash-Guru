@@ -37,7 +37,12 @@ function FrontSearchListCtrl() {
     const { searchList, vat, loading } = useSelector(state => state.search);
 
     useEffect(() => {
-        dispatch(searchListing(key));
+        dispatch(searchListing({
+            key: key,
+            storage_type: "",
+            features_type: "",
+            price: ""
+        }));
         dispatch(getCoordinates({
             address: key
         }));

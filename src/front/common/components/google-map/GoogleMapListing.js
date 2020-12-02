@@ -3,7 +3,21 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAddress, updateCoordinatesClient } from '../../../../redux';
 import ListYourSpaceImage from '../../../../assets/front/images/icons/warehouse.svg';
+
+import BasementIcon from '../../../../assets/front/images/icons/storagetypes/basement-g.svg';
+import ContainerIcon from '../../../../assets/front/images/icons/storagetypes/container-g.svg';
+import LockupIcon from '../../../../assets/front/images/icons/storagetypes/lockup-g.svg';
+import LoftsIcon from '../../../../assets/front/images/icons/storagetypes/lofts-g.svg';
+import OutHousedIcon from '../../../../assets/front/images/icons/storagetypes/out-housed-g.svg';
+import ParkingIcon from '../../../../assets/front/images/icons/storagetypes/parking-g.svg';
+import SpareRoomIcon from '../../../../assets/front/images/icons/storagetypes/spare-room-g.svg';
+import WarehouseIcon from '../../../../assets/front/images/icons/storagetypes/warehouse-g.svg';
+
+
+
+
 import dummy1 from '../../../../assets//users/images/dummy/dummy1.jpg';
+import { LIST_DETAIL_SUCCESS } from '../../../../redux/listspace/listspaceTypes';
 
 const mapStyles = {
     map: {
@@ -40,7 +54,11 @@ export function GoogleMap(props) {
             lat: listDetail.store_lat,
             lng: listDetail.store_long,
             title: listDetail.store_title,
-            address: listDetail.store_address1 + ", " + listDetail.store_address2 + ", " + listDetail.store_city
+            address: listDetail.store_address1 + ", " + listDetail.store_address2 + ", " + listDetail.store_city,
+            image: listDetail.images && listDetail.images.length > 0 ? listDetail.images[0].si_path : "",
+            cost: listDetail.store_cost,
+            size: listDetail.store_size
+
         })
 
         setIsOpen(true);
@@ -95,18 +113,18 @@ export function GoogleMap(props) {
                 <InfoWindow
                     position={{ lat: popupDetail.lat, lng: popupDetail.lng }}
                     visible={isOpen}>
-                    <img src={dummy1} />
+                    <img src={popupDetail.image} />
                     <div className="gm_style_iw_body">
                         <h5>{popupDetail.title}</h5>
                         <div className="w-100 d-flex-wrap justify-content-around">
                             <div>
-                                <strong>118<span> Lei</span> <br />
+                                <strong>{popupDetail.cost}<span> Lei</span> <br />
                                     <small>month</small>
                                 </strong>
                             </div>
                             <div>
-                                <strong>280<br />
-                                    <small>m<sup>2</sup></small>
+                                <strong>{popupDetail.size}<br />
+                                    <small>ft<sup>2</sup></small>
                                 </strong>
                             </div>
                         </div>
