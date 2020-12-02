@@ -1129,3 +1129,26 @@
 .bottom_search_strip .location_search_bar::after{
     color: #34D789;
 }
+
+h5.text5{
+    font-size: 20px;
+    font-weight: 700;
+}
+p.text_p{
+    font-size: 15px;
+}
+.hosting_video_bg{
+    margin-top:  50px;
+    background-size: contain;
+    position: relative;
+}
+.hosting_video_bg::after{
+    content: '';
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #34D789;
+    opacity: 0.76;
+}
