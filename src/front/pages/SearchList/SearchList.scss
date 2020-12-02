@@ -22,6 +22,9 @@
     margin-top: 20px;
     margin-right: 3px;
 }
+.SearchListFilter_Buttons .btn.btn-outline-success:focus{
+    color: #ffffff;
+}
 .SearchListFilter_Buttons .btn.btn-outline-success.dropdown-toggle::after{
     display: none;
 }
@@ -476,4 +479,18 @@
 .book_space_card_footer .d-flex p{
     color: #595959;
     font-weight: 300;
+}
+
+
+
+
+.priceSizeRS_card{
+    width: 360px;
+    padding: 0px;
+}
+.priceSizeRS_card_body{
+    padding: 10px 30px;
+}
+.MuiSlider-root{
+    color: #34d789 !important;
 }

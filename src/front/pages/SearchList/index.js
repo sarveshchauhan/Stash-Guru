@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
+
+
 import { Container, Row, Col, Navbar, Button, Dropdown } from 'react-bootstrap';
 
 import { useParams } from 'react-router-dom';
@@ -21,13 +26,35 @@ import PlaceholderImage from '../../../assets/front/images/placeholder.png';
 import lieIcon from '../../../assets/front/images/icons/lieIcon.png';
 
 
+
+
+
 const storeImages = require.context('../../../assets/front/images/store', true);
 const profileImages = require.context('../../../assets/users/images/profile', true);
 
 
 
 
+
+
 function FrontSearchListCtrl() {
+    // rangeSlider 
+    const useStyles = makeStyles({
+    root: {
+        width: 300,
+    },
+    });
+    function valuetext(value) {
+    return `${value}°C`;
+    }
+    const classes = useStyles();
+    const [value, setValue] = React.useState([20, 37]);
+  
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
+    // rangeSlider  end
+
 
     const { key } = useParams();
     const [list, setList] = useState([]);
@@ -71,7 +98,7 @@ function FrontSearchListCtrl() {
                                     <Dropdown className="d-inline-block">
                                         <Dropdown.Toggle variant="outline-success" size="sm" id="StorageType">
                                             Storage Type
-                                    </Dropdown.Toggle>
+                                        </Dropdown.Toggle>
                                         <Dropdown.Menu className="switch_dropdown_menu">
                                             <div className="switch_dropdown_row">
                                                 <div className="switch_col">
@@ -144,20 +171,30 @@ function FrontSearchListCtrl() {
                                     <Dropdown className="d-inline-block">
                                         <Dropdown.Toggle variant="outline-success" size="sm" id="Storage Type">
                                             Price
-                                    </Dropdown.Toggle>
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">Price</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">Something</Dropdown.Item>
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu className="priceSizeRS_card">
+                                            <div className="priceSizeRS_card_body">
+                                                <div className={classes.root}>
+                                                    <Typography className="mb-5">Monthly Price Range</Typography>
+                                                    <Slider value={value} onChange={handleChange} valueLabelDisplay="auto" aria-labelledby="discrete-slider-always" getAriaValueText={valuetext} valueLabelDisplay="on"
+                                                    />
+                                                </div>
+                                            </div>
                                         </Dropdown.Menu>
                                     </Dropdown>
 
                                     <Dropdown className="d-inline-block">
                                         <Dropdown.Toggle variant="outline-success" size="sm" id="Storage Type">
                                             Size
-                                    </Dropdown.Toggle>
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">Size</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">Something</Dropdown.Item>
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu className="priceSizeRS_card">
+                                            <div className="priceSizeRS_card_body">
+                                                <div className={classes.root}>
+                                                    <Typography className="mb-5">Space Size</Typography>
+                                                    <Slider value={value} onChange={handleChange} valueLabelDisplay="auto" aria-labelledby="discrete-slider-always" getAriaValueText={valuetext} valueLabelDisplay="on"
+                                                    />
+                                                </div>
+                                            </div>
                                         </Dropdown.Menu>
                                     </Dropdown>
 
