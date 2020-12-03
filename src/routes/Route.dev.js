@@ -18,7 +18,9 @@ import FrontAboutCtrl from '../front/pages/about';
 import FrontFaqsCtrl from '../front/pages/faqs';
 import FrontSitemapCtrl from '../front/pages/sitemap';
 import FrontRefundPolicyCtrl from '../front/pages/refund-policy';
+import FrontsayHelloCtrl from '../front/pages/help-center/sayHello';
 import FrontHelpCenterCtrl from '../front/pages/help-center';
+
 import FrontSearchListCtrl from '../front/pages/SearchList';
 import FrontSearchDetailsCtrl from '../front/pages/SearchList/details';
 import ListYourSpaceComponentCtrl from '../front/pages/ListYourSpace';
@@ -104,6 +106,7 @@ const Root = () => {
             <Route exact path="/sitemap" render={(props) => (< FrontPagesLayoutCtrl children={FrontSitemapCtrl} {...props} />)} />
             <Route exact path="/refund-policy" render={(props) => (< FrontPagesLayoutCtrl children={FrontRefundPolicyCtrl} {...props} />)} />
             <Route exact path="/help-center" render={(props) => (< FrontPagesLayoutCtrl children={FrontHelpCenterCtrl} {...props} />)} />
+            <Route exact path="/say-hello" render={(props) => (< FrontPagesLayoutCtrl children={FrontsayHelloCtrl} {...props} />)} />
             <Route exact path="/become-a-host" render={(props) => (< FrontHomePagesLayoutCtrl children={FrontBecomeHostCtrl} {...props} />)} />
 
             {/* <PrivateRoute exact path="/dashboard" parentComponent={SideMenuLayoutCtrl} childComponent={UserHomeCtrl} /> */}
