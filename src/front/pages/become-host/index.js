@@ -161,7 +161,7 @@ function FrontBecomeHostCtrl() {
                 </Container>
             </section>
 
-            <section className="section_padding">
+            <section className="section_padding become_host_how_work">
                 <Container>
                     <Row>
                         <Col className="text-center">
