@@ -1155,3 +1155,53 @@ p.text_p{
 .become_host_how_work h5.text5{
     color: #32D78A;
 }
+
+
+
+
+
+
+
+
+.help_center_banner_btns .btn{
+    line-height: 38px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 15px;
+    background: #ffffff;
+    color: #34D789;
+    border-color: #34D789;
+}
+.help_center_banner_btns .btn-primary:not(:disabled):not(.disabled).active, 
+.help_center_banner_btns .btn-primary:not(:disabled):not(.disabled):active, 
+.help_center_banner_btns .show>.btn-primary.dropdown-toggle{
+    background: #34D789;
+    color: #ffffff;
+    border-color: #34D789;
+}
+.help_center_box_card{
+    box-shadow: 0px 2px 10px #0000001A;
+    margin-bottom: 30px;
+    min-height: 395px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.help_center_box_card_img{
+    background-color: #F5F9FE;
+}
+.help_center_box_card_body{
+    background-color: #ffffff;
+    padding: 10px 20px;
+}
+.help_center_box_card_body h5.text5{
+    color: #595959;
+    margin: 20px auto;
+}
+.help_center_box_card_body ul{
+    margin-left: -20px;
+    color: #34D789;
+    font-weight: 700;
+}
+.help_center_box_card_body ul li{
+    margin: 7px auto;
+}
