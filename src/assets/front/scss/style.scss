@@ -793,6 +793,9 @@
     .page_banner_content p{
         font-size: 15px;
     }
+    .page_banner_content p.sm_font{
+        font-size: 12px;
+    }
     .stash_guru_user_slider .carousel-item h3,
     .some_empty_space_text h3,
     .here_to_help_you h3{
@@ -998,6 +1001,9 @@
     font-size: 20px;
     color: $zambezi_color;
 }
+.page_banner_content p.sm_font{
+    font-size: 15px;
+}
 .page_banner{
     padding-top: 100px;
     background-color: #ffffff;
@@ -1151,4 +1157,131 @@ p.text_p{
     height: 100%;
     background: #34D789;
     opacity: 0.76;
+}
+.become_host_how_work h5.text5{
+    color: #32D78A;
+}
+
+
+
+
+
+
+
+
+.help_center_banner_btns .btn{
+    margin-top: 15px;
+    line-height: 0;
+    background: #ffffff;
+    color: #34D789;
+    border-color: #34D789;
+    overflow: hidden;    
+    padding: 0px 25px;
+    height: 48px;
+    line-height: 48px;
+}
+
+@media (max-width: 600px){
+    .help_center_banner_btns .btn a{
+        padding: 0px 5px;
+    }
+}
+.help_center_banner_btns .btn.active{
+    background: #34D789;
+    color: #ffffff;
+    border-color: #34D789;
+}
+
+
+
+
+
+.help_center_box_card{
+    box-shadow: 0px 2px 10px #0000001A;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 100%;
+}
+a.link{
+    text-decoration: none;
+}
+.help_center_box_card_img{
+    background-color: #F5F9FE;
+}
+.help_center_box_card_body{
+    background-color: #ffffff;
+    padding: 10px 20px;
+}
+.help_center_box_card_body h5.text5{
+    color: #595959;
+    margin: 20px auto;
+}
+.help_center_box_card_body ul{
+    margin-left: -20px;
+    color: #34D789;
+    font-weight: 700;
+}
+.help_center_box_card_body ul li{
+    margin: 7px auto;
+    font-size: 15px;
+}
+
+
+.help_center_details .MuiTab-root{
+    padding: 3px;
+    min-height: auto;
+    text-align: left;
+    text-transform: none;
+    outline: none !important;
+}
+.MuiTab-wrapper{
+    text-align: left;
+    justify-content: start !important;
+    align-items: start !important;
+    padding-left: 10px;
+    font-size: 12px;
+}
+.makeStyles-root-1{
+    height: auto !important;
+}
+.MuiBox-root-3{
+    padding-top: 0px !important;
+}
+.tabVrtHr{
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    margin-top: 80px;
+}
+.MuiTab-textColorInherit.Mui-selected {
+    opacity: 1;
+    color: #34d789 !important;
+}
+.MuiTabs-indicator{
+    background-color: #34d789 !important;
+    display: none !important;
+    opacity: 0 !important;
+}
+.help_center_details_content p{
+    font-size: 12px;
+}
+.help_center_details_content h4{
+    font-size: 20px;
+}
+.highLight_box{
+    background-color: #E8FAF1;
+    padding: 15px;
+    font-size: 12px;
+}
+.help_center_details_content h5{
+    font-size: 17px;
+    font-weight: 700;
+}
+.help_center_details_content .highLight_box ul{
+    margin-bottom: 0px;
+    margin-left: -20px;
+    list-style-type: circle;
+    color: #34D789;
+}
+.help_center_details_content .highLight_box ul li text{
+    color: #595959;
+    font-size: 14px;
 }

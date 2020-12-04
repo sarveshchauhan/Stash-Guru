@@ -9,7 +9,8 @@ import hosting_video_bg from '../../../assets/front/images/img/hosting_video_bg.
 import chat_with_us from '../../../assets/front/images/img/chat_with_us.png';
 import start_earning from '../../../assets/front/images/img/start_earning.png';
 import calendar_img from '../../../assets/front/images/img/calendar_img.png';
-
+import getRequests from '../../../assets/front/images/img/getRequests.png';
+import protectingBooking from '../../../assets/front/images/img/protectingBooking.png';
 
 import listUrSpace from '../../../assets/front/images/icons/listUrSpace.png';
 import manageBooking from '../../../assets/front/images/icons/manageBooking.png';
@@ -48,7 +49,7 @@ function FrontBecomeHostCtrl() {
                                 <p>Got some empty space? Get it listed and connect with people looking to rent it for storage or parking.</p>
                                 <div className="mt-5">
                                     <Button variant="success" className="px-5 ml-0 m-2">Get Started</Button>
-                                    <Button variant="milky" className="px-5 ml-0 m-2">More Info</Button>
+                                    <Button className="btn btn_milky_grn px-5 ml-0 m-2">More Info</Button>
                                 </div>
                             </div>
                         </Col>
@@ -161,7 +162,7 @@ function FrontBecomeHostCtrl() {
                 </Container>
             </section>
 
-            <section className="section_padding">
+            <section className="section_padding become_host_how_work">
                 <Container>
                     <Row>
                         <Col className="text-center">
@@ -191,14 +192,14 @@ function FrontBecomeHostCtrl() {
                         </Col>
                         <Col lg={5}>
                             <div className="">
-                                <img src={banner_img} />
+                                <img src={getRequests} />
                             </div>
                         </Col>
                     </Row>
                     <Row className="justify-content-center align-items-center my-5">
                         <Col lg={5}>
                             <div className="">
-                                <img src={banner_img} />
+                                <img src={protectingBooking} />
                             </div>
                         </Col>
                         <Col lg={7}>

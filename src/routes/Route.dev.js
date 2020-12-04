@@ -18,11 +18,19 @@ import FrontAboutCtrl from '../front/pages/about';
 import FrontFaqsCtrl from '../front/pages/faqs';
 import FrontSitemapCtrl from '../front/pages/sitemap';
 import FrontRefundPolicyCtrl from '../front/pages/refund-policy';
+import FrontsayHelloCtrl from '../front/pages/help-center/sayHello';
 import FrontHelpCenterCtrl from '../front/pages/help-center';
+import FrontBookingSpaceDetailsCtrl from '../front/pages/help-center/bookingSpace_Details';
+import FrontHostingSpaceDetailsCtrl from '../front/pages/help-center/hostingSpace_Detail';
+import FrontHostingSpaceCtrl from '../front/pages/help-center/hostingSpace';
+import FrontCommonQuestionsCtrl from '../front/pages/help-center/commonQuestions';
+
 import FrontSearchListCtrl from '../front/pages/SearchList';
 import FrontSearchDetailsCtrl from '../front/pages/SearchList/details';
 import ListYourSpaceComponentCtrl from '../front/pages/ListYourSpace';
 import FrontBecomeHostCtrl from '../front/pages/become-host';
+
+import FrontBusinessStorageCtrl from '../front/pages/business-storage'
 
 
 // user layout
@@ -103,8 +111,14 @@ const Root = () => {
             <Route exact path="/FAQS" render={(props) => (< FrontPagesLayoutCtrl children={FrontFaqsCtrl} {...props} />)} />
             <Route exact path="/sitemap" render={(props) => (< FrontPagesLayoutCtrl children={FrontSitemapCtrl} {...props} />)} />
             <Route exact path="/refund-policy" render={(props) => (< FrontPagesLayoutCtrl children={FrontRefundPolicyCtrl} {...props} />)} />
-            <Route exact path="/help-center" render={(props) => (< FrontPagesLayoutCtrl children={FrontHelpCenterCtrl} {...props} />)} />
             <Route exact path="/become-a-host" render={(props) => (< FrontHomePagesLayoutCtrl children={FrontBecomeHostCtrl} {...props} />)} />
+            <Route exact path="/say-hello" render={(props) => (< FrontPagesLayoutCtrl children={FrontsayHelloCtrl} {...props} />)} />
+            <Route exact path="/manage-your-booking" render={(props) => (< FrontPagesLayoutCtrl children={FrontHelpCenterCtrl} {...props} />)} />
+            <Route exact path="/manage-your-booking/details" render={(props) => (< FrontPagesLayoutCtrl children={FrontBookingSpaceDetailsCtrl} {...props} />)} />
+            <Route exact path="/hosting-a-space" render={(props) => (< FrontPagesLayoutCtrl children={FrontHostingSpaceCtrl} {...props} />)} />
+            <Route exact path="/hosting-a-space/details" render={(props) => (< FrontPagesLayoutCtrl children={FrontHostingSpaceDetailsCtrl} {...props} />)} />
+            <Route exact path="/common-questions" render={(props) => (< FrontPagesLayoutCtrl children={FrontCommonQuestionsCtrl} {...props} />)} />
+            <Route exact path="/business-storage" render={(props) => (< FrontPagesLayoutCtrl children={FrontBusinessStorageCtrl} {...props} />)} />
 
             {/* <PrivateRoute exact path="/dashboard" parentComponent={SideMenuLayoutCtrl} childComponent={UserHomeCtrl} /> */}
             <PrivateRoute exact path="/dashboard" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserHomeCtrl} />

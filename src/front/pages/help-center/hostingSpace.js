@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Col, Container, Row, Button, ButtonGroup } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink,Link } from 'react-router-dom';
 import SearchComponent from '../../common/components/SearchCompo';
-
 
 import helpCenter from '../../../assets/front/images/img/helpCenter.png';
 import calendar_img from '../../../assets/front/images/img/calendar_img.png';
 import endingBooking from '../../../assets/front/images/img/endingBooking.png';
+import gettingStarted from '../../../assets/front/images/img/gettingStarted.png';
+
 import protectingBooking from '../../../assets/front/images/img/protectingBooking.png';
 
-function FrontHelpCenterCtrl(){
+function FrontHostingSpaceCtrl(){
     return(
         <>
             <section className="page_banner about_page_banner">
@@ -19,8 +20,8 @@ function FrontHelpCenterCtrl(){
                             <div className="help_center_banner_btns">
                                 <h2>Help Center</h2>
                                 <ButtonGroup>
-                                    <Link to="/manage-your-booking" className="btn active" >Booking a Space</Link>
-                                    <Link to="/hosting-a-space" className="btn">Hosting a Space</Link>
+                                    <Link to="/manage-your-booking" className="btn" >Booking a Space</Link>
+                                    <Link to="/hosting-a-space" className="btn active">Hosting a Space</Link>
                                     <Link to="/common-questions" className="btn">Common Questions</Link>
                                 </ButtonGroup>
                             </div>
@@ -39,7 +40,26 @@ function FrontHelpCenterCtrl(){
                 <Container>
                     <Row>
                         <Col md="4" className="py-3">
-                            <Link className="link" to="/manage-your-booking/details">
+                            <Link className="link" to="/hosting-a-space/details">
+                                <div className="help_center_box_card">
+                                    <div className="help_center_box_card_img">
+                                        <img src={gettingStarted} alt="" />
+                                    </div>
+                                    <div className="help_center_box_card_body">
+                                        <h5 className="text5">Getting Started</h5>
+                                        <ul>
+                                            <li>Listing Your Space</li>
+                                            <li>Pricing Your Space</li>
+                                            <li>Instant Book</li>
+                                            <li>Verifying Your Account</li>
+                                            <li>Getting Paid</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </Link>
+                        </Col>
+                        <Col md="4" className="py-3">
+                            <Link className="link" to="/hosting-a-space/details">
                                 <div className="help_center_box_card">
                                     <div className="help_center_box_card_img">
                                         <img src={calendar_img} alt="" />
@@ -57,7 +77,7 @@ function FrontHelpCenterCtrl(){
                             </Link>
                         </Col>
                         <Col md="4" className="py-3">
-                            <Link className="link" to="/manage-your-booking/details">
+                            <Link className="link" to="/hosting-a-space/details">
                                 <div className="help_center_box_card">
                                     <div className="help_center_box_card_img">
                                         <img src={protectingBooking} alt="" />
@@ -74,7 +94,7 @@ function FrontHelpCenterCtrl(){
                             </Link>
                         </Col>
                         <Col md="4" className="py-3">
-                            <Link className="link" to="/manage-your-booking/details">
+                            <Link className="link" to="/hosting-a-space/details">
                                 <div className="help_center_box_card">
                                     <div className="help_center_box_card_img">
                                         <img src={endingBooking} alt="" />
@@ -132,4 +152,4 @@ function FrontHelpCenterCtrl(){
     )
 }
 
-export default FrontHelpCenterCtrl;
+export default FrontHostingSpaceCtrl;
