@@ -10,6 +10,7 @@ import chat_with_us from '../../../assets/front/images/img/chat_with_us.png';
 import start_earning from '../../../assets/front/images/img/start_earning.png';
 import calendar_img from '../../../assets/front/images/img/calendar_img.png';
 import getRequests from '../../../assets/front/images/img/getRequests.png';
+import protectingBooking from '../../../assets/front/images/img/protectingBooking.png';
 
 import listUrSpace from '../../../assets/front/images/icons/listUrSpace.png';
 import manageBooking from '../../../assets/front/images/icons/manageBooking.png';
@@ -198,7 +199,7 @@ function FrontBecomeHostCtrl() {
                     <Row className="justify-content-center align-items-center my-5">
                         <Col lg={5}>
                             <div className="">
-                                <img src={banner_img} />
+                                <img src={protectingBooking} />
                             </div>
                         </Col>
                         <Col lg={7}>

@@ -1164,27 +1164,51 @@ p.text_p{
 
 
 .help_center_banner_btns .btn{
-    line-height: 38px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding: 0px;
     margin-top: 15px;
     background: #ffffff;
     color: #34D789;
     border-color: #34D789;
+    overflow: hidden;
+}
+.help_center_banner_btns .btn a{
+    // line-height: 48px;
+    padding: 12px 25px;
+    background: #ffffff;
+    color: #34D789;
+    border-color: #34D789;
+    display: block;
+    text-decoration: none !important;
+}
+
+@media (max-width: 600px){
+    .help_center_banner_btns .btn a{
+        padding: 12px 5px;
+    }
 }
 .help_center_banner_btns .btn-primary:not(:disabled):not(.disabled).active, 
 .help_center_banner_btns .btn-primary:not(:disabled):not(.disabled):active, 
-.help_center_banner_btns .show>.btn-primary.dropdown-toggle{
+.help_center_banner_btns .show>.btn-primary.dropdown-toggle,
+.help_center_banner_btns .btn-primary:not(:disabled):not(.disabled).active a, 
+.help_center_banner_btns .btn-primary:not(:disabled):not(.disabled):active a, 
+.help_center_banner_btns .show>.btn-primary.dropdown-toggle a{
     background: #34D789;
     color: #ffffff;
     border-color: #34D789;
 }
+
+
+
+
+
 .help_center_box_card{
     box-shadow: 0px 2px 10px #0000001A;
-    margin-bottom: 30px;
-    min-height: 395px;
     border-radius: 10px;
     overflow: hidden;
+    height: 100%;
+}
+a.link{
+    text-decoration: none;
 }
 .help_center_box_card_img{
     background-color: #F5F9FE;
@@ -1204,4 +1228,62 @@ p.text_p{
 }
 .help_center_box_card_body ul li{
     margin: 7px auto;
+}
+
+
+.help_center_details .MuiTab-root{
+    padding: 3px;
+    min-height: auto;
+    text-align: left;
+    text-transform: none;
+    outline: none !important;
+}
+.MuiTab-wrapper{
+    text-align: left;
+    justify-content: start !important;
+    align-items: start !important;
+    padding-left: 10px;
+    font-size: 12px;
+}
+.makeStyles-root-1{
+    height: auto !important;
+}
+.MuiBox-root-3{
+    padding-top: 0px !important;
+}
+.tabVrtHr{
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    margin-top: 80px;
+}
+.MuiTab-textColorInherit.Mui-selected {
+    opacity: 1;
+    color: #34d789 !important;
+}
+.PrivateTabIndicator-colorSecondary-5 {
+    background-color: #f50057;
+    display: none;
+}
+.help_center_details_content p{
+    font-size: 12px;
+}
+.help_center_details_content h4{
+    font-size: 20px;
+}
+.highLight_box{
+    background-color: #E8FAF1;
+    padding: 15px;
+    font-size: 12px;
+}
+.help_center_details_content h5{
+    font-size: 17px;
+    font-weight: 700;
+}
+.help_center_details_content .highLight_box ul{
+    margin-bottom: 0px;
+    margin-left: -20px;
+    list-style-type: circle;
+    color: #34D789;
+}
+.help_center_details_content .highLight_box ul li text{
+    color: #595959;
 }

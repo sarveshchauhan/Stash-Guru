@@ -85,7 +85,7 @@ function FooterComponent(){
                                         <NavLink to="/" className="nav-link">Home</NavLink>
                                         <NavLink to="/about" className="nav-link">About</NavLink>
                                         <NavLink to="/FAQS" className="nav-link">FAQs</NavLink>
-                                        <NavLink to="/help-center" className="nav-link">Help Centre</NavLink>
+                                        <NavLink to="/manage-your-booking" className="nav-link">Help Centre</NavLink>
                                         <NavLink to="/refund-policy" className="nav-link">Cancellations & Refunds Policy</NavLink>
                                         <NavLink to="/sitemap" className="nav-link">Sitemap</NavLink>
                                     </Nav>
@@ -145,7 +145,7 @@ function FooterComponent(){
                                                 <NavLink to="/" className="nav-link">Home</NavLink>
                                                 <NavLink to="/about" className="nav-link">About</NavLink>
                                                 <NavLink to="/FAQS" className="nav-link">FAQs</NavLink>
-                                                <NavLink to="/help-center" className="nav-link">Help Centre</NavLink>
+                                                <NavLink to="/manage-your-booking" className="nav-link">Help Centre</NavLink>
                                                 <NavLink to="/refund-policy" className="nav-link">Cancellations & Refunds Policy</NavLink>
                                                 <NavLink to="/sitemap" className="nav-link">Sitemap</NavLink>
                                             </Nav>
