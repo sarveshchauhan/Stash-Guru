@@ -14,6 +14,8 @@ function CreateYourListStepThitdCtrl() {
     const { spaceTypeList, spaceUsedForList, featuresList, floorsList, stepOne, stepTwo, stepThree, stepThreeLoading, stepThreeSuccess, stepThreeError, guestList, guestAccessList } = useSelector(state => state.listspace);
     const history = useHistory();
 
+
+
     const hrList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
     const [title, set_title] = useState("");
@@ -26,6 +28,8 @@ function CreateYourListStepThitdCtrl() {
     const [sut_id, set_sut_id] = useState("");
     const [sut_id_error, set_sut_id_error] = useState("");
 
+
+    const [sut_list, set_sut_list] = useState([]);
 
     const [floor_id, set_floor_id] = useState("");
     const [floor_id_error, set_floor_id_error] = useState("");
@@ -95,9 +99,13 @@ function CreateYourListStepThitdCtrl() {
 
             }
 
+            if(stepThree.used_type){
+                set_sut_list(stepThree.used_type.split(",")); 
+            }
+
             set_key(stepThree.keyStatus);
             set_floor_id(stepThree.floor);
-            set_sut_id(stepThree.used_type);
+            // set_sut_id(stepThree.used_type);
             set_st_id(stepThree.type);
             set_guest(stepThree.guest);
             set_guest_access(stepThree.guest_access);
@@ -171,6 +179,41 @@ function CreateYourListStepThitdCtrl() {
     }
 
 
+
+
+    const is_sut_exists = (sutid) => {
+        const sutExist = sut_list.find(i => +i === +sutid);
+        if (sutExist) {
+            return true;
+        }
+        return false;
+    }
+
+
+    const onChangeSut = (sutid) => {
+
+        const sutExist = sut_list.find(i => +i === +sutid);
+
+        if (sutExist) {
+            let newSutList = sut_list.filter((sut) => {
+                if (+sut !== +sutExist) {
+                    return sut;
+                }
+            });
+
+            set_sut_list(newSutList);
+        }
+        else {
+
+            set_sut_list([...sut_list, sutid]);
+
+        }
+
+
+    }
+
+
+
     const onChangeSpecificHours = (day = "", e) => {
 
 
@@ -215,7 +258,7 @@ function CreateYourListStepThitdCtrl() {
             set_st_id_error("Type of space is required!");
         }
 
-        if (!sut_id) {
+        if (sut_list.length === 0) {
             error = true;
             set_sut_id_error("Space used for is required!");
         }
@@ -240,7 +283,7 @@ function CreateYourListStepThitdCtrl() {
                 token: token,
                 title: title,
                 type: st_id,
-                used_type: sut_id,
+                used_type: sut_list.join(","),
                 features: features.join(","),
                 floor: floor_id,
                 keyStatus: key,
@@ -324,11 +367,28 @@ function CreateYourListStepThitdCtrl() {
                         <Col lg="5" md="6">
                             <h3 className="md_bld_txt mb-3">What can this space be used for?</h3>
 
+
+
                             {
+                                spaceUsedForList && Array.isArray(spaceUsedForList) && spaceUsedForList.map((space, index) => (
+                                    <Button variant="no_bg" className={is_sut_exists(space.sut_id) ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => onChangeSut(space.sut_id)}>{space.sut_name}</Button>
+                                ))
+                            }
+
+
+
+                            {/* {
                                 spaceUsedForList && Array.isArray(spaceUsedForList) && spaceUsedForList.map((space, index) => (
                                     <Button variant="no_bg" className={+space.sut_id === +sut_id ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => set_sut_id(space.sut_id)} >{space.sut_name}</Button>
                                 ))
-                            }
+                            } */}
+
+
+                            {/* {
+                                    featuresList && Array.isArray(spaceUsedForList) && spaceUsedForList.map((space, index) => (
+                                        <Button variant="no_bg" className={is_sut_exists(space.sut_id) ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => onChangeSut(space.sut_id)}>{space.sut_name}</Button>
+                                    ))
+                                } */}
 
 
 

@@ -36,6 +36,12 @@ export function GoogleMap(props) {
 
     useEffect(() => {
 
+        if (props.list) {
+            handleToggleOpen(null, props.list);
+        }
+        else {
+
+        }
 
     }, [props]);
 
@@ -52,7 +58,8 @@ export function GoogleMap(props) {
             address: listDetail.store_address1 + ", " + listDetail.store_address2 + ", " + listDetail.store_city,
             image: listDetail.images && listDetail.images.length > 0 ? listDetail.images[0].si_path : "",
             cost: listDetail.store_cost,
-            size: listDetail.store_size
+            size: listDetail.store_size,
+            unit: listDetail.measurement_unit.mu_name
         })
 
         setIsOpen(true);
@@ -119,7 +126,7 @@ export function GoogleMap(props) {
                             </div>
                             <div>
                                 <strong>{popupDetail.size}<br />
-                                    <small>ft<sup>2</sup></small>
+                                    <small>{popupDetail.unit}<sup>2</sup></small>
                                 </strong>
                             </div>
                         </div>

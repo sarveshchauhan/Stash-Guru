@@ -65,12 +65,14 @@ function PaymentForm({ stripe }) {
 
             <Form className="mt-5 paymentForm" onSubmit={handleSubmit}>
                 <Row>
-                    <Col sm="12">
+
+                    {/* <Col sm="12">
                         <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Send Mary Ann a message</Form.Label>
+                            <Form.Label>Send a message</Form.Label>
                             <Form.Control className="rectu_form_field" as="textarea" placeholder="Say hello and what you're using the space for" />
                         </Form.Group>
                     </Col>
+                     */}
                     <Col sm="12">
                         <Form.Group controlId="formBasicPassword">
                             <Form.Label>Payment Method</Form.Label>

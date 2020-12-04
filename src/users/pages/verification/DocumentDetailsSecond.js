@@ -4,10 +4,10 @@ import { documentStepOneSave, getDocumentList, toggleDocumentDetailModal, toggle
 import { Modal, Form, Button, Spinner, Alert } from 'react-bootstrap';
 import DocumentPhoto from './DocumentPhoto';
 
-function DocumentDetails() {
+function DocumentDetailsSecond() {
 
     const dispatch = useDispatch();
-    const { documentDetailsModalShow, documentList, documentStepOneResult, documentStepOneSaveLoading, documentStepOneSaveError } = useSelector(state => state.document);
+    const { documentDetailsModalSecondShow, documentList, documentStepOneResult, documentStepOneSaveLoading, documentStepOneSaveError } = useSelector(state => state.document);
 
 
     const [documentType, setDocumentType] = useState("");
@@ -80,17 +80,17 @@ function DocumentDetails() {
 
             let formData = new FormData();
             formData.append("token", JSON.parse(localStorage.getItem("stashGuruToken")));
-            formData.append("type", "ID");
+            formData.append("type", "ID1");
             formData.append("name", nameOnDocument);
             formData.append("doc_type", documentType);
             formData.append("front_doc", frontDocumentFile);
             formData.append("back_doc", backDocumentFile);
 
 
-            console.log(`Name is ${frontDocumentFile.name} and size is ${frontDocumentFile.size}`);
-            console.log(backDocumentFile);
+            // console.log(`Name is ${frontDocumentFile.name} and size is ${frontDocumentFile.size}`);
+            // console.log(backDocumentFile);
 
-            dispatch(documentStepOneSave(formData, "ID"));
+            dispatch(documentStepOneSave(formData, "ID1"));
 
 
         }
@@ -105,7 +105,7 @@ function DocumentDetails() {
     return (
         <>
 
-            <Modal className="user_modal" show={documentDetailsModalShow} onHide={() => dispatch(toggleDocumentDetailModal(false))} backdrop="static" keyboard={false}>
+            <Modal className="user_modal" show={documentDetailsModalSecondShow} onHide={() => dispatch(toggleDocumentDetailModal(false))} backdrop="static" keyboard={false}>
                 <button className="user_modal_close_btn" onClick={() => dispatch(toggleDocumentDetailModal(false))}>
                     <i className="fa fa-times" aria-hidden="true"></i>
                 </button>
@@ -113,7 +113,7 @@ function DocumentDetails() {
                     <div>
                         <Modal.Title>
                             <h3>Document Details</h3>
-                            <h5>First Document</h5>
+                            <h5>Second Document</h5>
                         </Modal.Title>
                         {/* <small>Please select which document you will be uploading and enter your name</small> */}
                     </div>
@@ -190,4 +190,4 @@ function DocumentDetails() {
     )
 }
 
-export default DocumentDetails
+export default DocumentDetailsSecond

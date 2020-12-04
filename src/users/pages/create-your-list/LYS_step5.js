@@ -43,6 +43,41 @@ function CreateYourListStepFifthCtrl() {
     const [security, setSecurity] = useState(false);
     const [securityPrice, setSecurityPrice] = useState(0);
 
+    const [unit, setUnit] = useState("");
+
+
+    useEffect(() => {
+
+        setUnit(widthUnit);
+        setDepthUnit(widthUnit);
+        setHeightUnit(widthUnit);
+
+    }, [widthUnit]);
+
+    useEffect(() => {
+
+        setUnit(heightUnit);
+        setWidthUnit(heightUnit);
+        setDepthUnit(heightUnit);
+
+    }, [heightUnit]);
+
+    useEffect(() => {
+
+        setUnit(depthUnit);
+        setHeightUnit(depthUnit);
+        setWidthUnit(depthUnit);
+
+    }, [depthUnit]);
+
+
+    useEffect(() => {
+
+        setWidthUnit(unit);
+        setHeightUnit(unit);
+        setDepthUnit(unit);
+
+    }, [unit]);
 
     useEffect(() => {
 
@@ -56,7 +91,7 @@ function CreateYourListStepFifthCtrl() {
 
         if (stepFive) {
 
-
+            setUnit(stepFive.mu_id);
             setWidth(stepFive.width);
             setDepth(stepFive.depth);
             setHeight(stepFive.height);
@@ -107,6 +142,7 @@ function CreateYourListStepFifthCtrl() {
     useEffect(() => {
 
         if (unitList && Array.isArray(unitList) && unitList.length > 0) {
+            setUnit(unitList[0].mu_id);
             setWidthUnit(unitList[0].mu_id);
             setDepthUnit(unitList[0].mu_id);
             setHeightUnit(unitList[0].mu_id);
@@ -220,7 +256,8 @@ function CreateYourListStepFifthCtrl() {
                     flexible: flexibleBooking === true ? "Yes" : "No",
                     instant: enableInstantBooking,
                     security: security ? "Yes" : "No",
-                    security_price: 0
+                    security_price: 0,
+                    measurement_unit: unit
                 };
 
                 dispatch(stepFiveSave(saveData));
@@ -351,7 +388,7 @@ function CreateYourListStepFifthCtrl() {
                 <Container>
                     <Row className="justify-content-between">
                         <Col lg="5" md="6">
-                            <h3 className="md_bld_txt">How many of these do you have?</h3>
+                            <h3 className="md_bld_txt">Total Area</h3>
                             <h6>I have these exact spaces</h6>
 
                             <InputGroup className="text-center" style={{ width: '80px' }}>

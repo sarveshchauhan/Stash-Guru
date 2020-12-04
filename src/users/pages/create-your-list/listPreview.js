@@ -22,8 +22,11 @@ function ListPreviewCtrl() {
     const [depth, setDepth] = useState("");
 
     const { stepSeven, publishLoading, stepSix } = useSelector(state => state.listspace);
-    const { details, features, images } = useSelector(state => state.listspace.listDetailData);
+    const { details, features, images, measurement_unit, used_type } = useSelector(state => state.listspace.listDetailData);
 
+
+    const [aboutState, setAboutState] = useState("");
+    const [vatState, setVatState] = useState("");
 
     useEffect(() => {
 
@@ -31,6 +34,22 @@ function ListPreviewCtrl() {
 
     }, [window]);
 
+
+    useEffect(() => {
+
+        if (stepSeven) {
+            if (sessionStorage.getItem("step7")) {
+                let sevenInfo = JSON.parse(sessionStorage.getItem("step7"));
+                setAboutState(sevenInfo.about);
+                setVatState(sevenInfo.vat);
+            }
+            else {
+                setAboutState(stepSeven.about);
+                setVatState(stepSeven.vat);
+            }
+        }
+
+    }, [stepSeven]);
 
 
     useEffect(() => {
@@ -72,10 +91,24 @@ function ListPreviewCtrl() {
     const onPublishList = (e) => {
         e.preventDefault();
 
+        let about = "";
+        let vat = "";
+
+        if (sessionStorage.getItem("step7")) {
+            let sevenInfo = JSON.parse(sessionStorage.getItem("step7"));
+            about = sevenInfo.about;
+            vat = sevenInfo.vat;
+            sessionStorage.removeItem("step7");
+        }
+        else {
+            about = stepSeven.about;
+            vat = stepSeven.vat;
+        }
+
         dispatch(publishSpace({
             token: JSON.parse(localStorage.getItem("stashGuruToken")),
-            about: stepSeven.about,
-            vat: stepSeven.vat,
+            about: about,
+            vat: vat,
             id: stepSix.id
         }));
 
@@ -130,10 +163,12 @@ function ListPreviewCtrl() {
                                             <tr>
                                                 <th width="100">Can be Used For</th>
                                                 <td>
-                                                    <span className="g_dt">{details && details.sut_name}</span>
 
-
-
+                                                    {
+                                                        used_type && Array.isArray(used_type) && used_type.map((sut) => (
+                                                            <span className="g_dt">{sut.sut_name}</span>
+                                                        ))
+                                                    }
                                                 </td>
                                             </tr>
                                             <tr>
@@ -216,7 +251,7 @@ function ListPreviewCtrl() {
                                                     {
                                                         width && height && depth && <>
                                                             <strong>{+width * +depth}</strong>
-                                                      &nbsp; sq ft. <small>
+                                                      &nbsp; sq {measurement_unit && measurement_unit.mu_name} <small>
                                                                 ({`${width} x ${height} x ${depth}`})
                                                         </small>
                                                         </>
@@ -292,7 +327,11 @@ function ListPreviewCtrl() {
                                 <div className="ListPreviewCardBody">
                                     <div className='d-flex-wrap'>
                                         <div className="col PreviewProfileImg">
-                                            <img src={user1} />
+                                            {
+                                                details && details.u_pic ? <img src={details.u_pic} /> : <img src={user1} />
+                                            }
+
+
                                         </div>
                                         <div className="col PreviewProfilecontent">
                                             <Table size="sm">
@@ -303,7 +342,7 @@ function ListPreviewCtrl() {
                                                     <tr>
                                                         <td>
 
-                                                            {details && details.u_about}
+                                                            {aboutState}
 
                                                         </td>
                                                     </tr>
@@ -311,7 +350,7 @@ function ListPreviewCtrl() {
                                                         <th>VAT Registered?</th>
                                                     </tr>
                                                     <tr>
-                                                        <td>{details && details.store_vat}</td>
+                                                        <td>{vatState}</td>
                                                     </tr>
                                                 </tbody>
                                             </Table>

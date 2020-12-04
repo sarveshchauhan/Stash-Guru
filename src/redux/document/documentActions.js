@@ -2,7 +2,7 @@ import axios from 'axios'
 import { config } from '../../config/config';
 import { validateClientToken } from '../../helpers/tokenHelpers';
 import store from '../store';
-import { DOCUMENT_FAILURE, DOCUMENT_REQUEST, DOCUMENT_STEP_ONE_SAVE_FAILURE, DOCUMENT_STEP_ONE_SAVE_REQUEST, DOCUMENT_STEP_ONE_SAVE_SUCCESS, DOCUMENT_SUCCESS, DOC_UPLOAD_FAILURE, DOC_UPLOAD_REQUEST, DOC_UPLOAD_SUCCESS, MOBILE_VERIFY_FAILURE, MOBILE_VERIFY_REQUEST, MOBILE_VERIFY_SUCCESS, TOGGLE_DOCUMENT_DETAIL_MODAL, TOGGLE_DOCUMENT_UPLOAD_MODAL, TOGGLE_MOBILE_VERIFY_MODAL, TOGGLE_VERIFY_ID_MODAL, VERIFY_LIST_FAILURE, VERIFY_LIST_REQUEST, VERIFY_LIST_SUCCESS } from './documentTypes';
+import { DOCUMENT_FAILURE, DOCUMENT_REQUEST, DOCUMENT_STEP_ONE_SAVE_FAILURE, DOCUMENT_STEP_ONE_SAVE_REQUEST, DOCUMENT_STEP_ONE_SAVE_SUCCESS, DOCUMENT_SUCCESS, DOC_UPLOAD_FAILURE, DOC_UPLOAD_REQUEST, DOC_UPLOAD_SUCCESS, MOBILE_VERIFY_FAILURE, MOBILE_VERIFY_REQUEST, MOBILE_VERIFY_SUCCESS, TOGGLE_DOCUMENT_DETAIL_MODAL, TOGGLE_DOCUMENT_DETAIL_SECOND_MODAL, TOGGLE_DOCUMENT_UPLOAD_MODAL, TOGGLE_MOBILE_VERIFY_MODAL, TOGGLE_VERIFY_ID_MODAL, VERIFY_LIST_FAILURE, VERIFY_LIST_REQUEST, VERIFY_LIST_SUCCESS } from './documentTypes';
 
 
 const documentListRequest = () => {
@@ -61,6 +61,14 @@ export const getDocumentList = (reqData) => {
 export const toggleDocumentDetailModal = (response) => {
     return {
         type: TOGGLE_DOCUMENT_DETAIL_MODAL,
+        payload: response
+    }
+}
+
+
+export const toggleDocumentDetailSecondModal = (response) => {
+    return {
+        type: TOGGLE_DOCUMENT_DETAIL_SECOND_MODAL,
         payload: response
     }
 }
@@ -164,7 +172,7 @@ const documentStepOneSaveFailure = (response) => {
     }
 }
 
-export const documentStepOneSave = (reqData) => {
+export const documentStepOneSave = (reqData, id = "") => {
 
     const requestConfig = {
         'Content-Type': 'application/json'
@@ -177,9 +185,18 @@ export const documentStepOneSave = (reqData) => {
                 const serverResponse = response.data;
                 if (+serverResponse.status) {
 
+                    if (id === "ID") {
+                        dispatch(toggleDocumentDetailModal(false));
+                        dispatch(toggleDocumentDetailSecondModal(true));
+                        window.scroll(0, 0);
+                    }
 
-                    dispatch(toggleDocumentDetailModal(false));
-                    dispatch(toggleDocumentUploadModal(true));
+                    if (id === "ID1") {
+                        dispatch(toggleDocumentDetailSecondModal(false));
+                        window.location.reload();
+                    }
+
+                    // dispatch(toggleDocumentUploadModal(true));
 
                     dispatch(documentStepOneSaveSuccess(serverResponse.id));
 

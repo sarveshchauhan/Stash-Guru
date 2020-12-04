@@ -6,11 +6,12 @@ import Slider from '@material-ui/core/Slider';
 
 import { Container, Row, Col, Navbar, Button, Dropdown } from 'react-bootstrap';
 
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 // Assets Include
 import '../../common/topbar/topbar.scss';
 import './SearchList.scss';
+import './Filter.css';
 
 import b_garage from '../../../assets/front/images/icons/storage_type/b_garage.png';
 
@@ -26,6 +27,8 @@ import PlaceholderImage from '../../../assets/front/images/placeholder.png';
 import lieIcon from '../../../assets/front/images/icons/lieIcon.png';
 import StorageTypeFilter from './StorageTypeFilter';
 import FeaturesFilter from './FeaturesFilter';
+import PriceFilter from './PriceFilter';
+import SizeFilter from './SizeFilter';
 
 
 
@@ -40,6 +43,10 @@ const profileImages = require.context('../../../assets/users/images/profile', tr
 
 
 function FrontSearchListCtrl() {
+
+    const query = new URLSearchParams(window.location.search);
+    const history = useHistory();
+
     // rangeSlider 
     const useStyles = makeStyles({
         root: {
@@ -62,20 +69,34 @@ function FrontSearchListCtrl() {
     const [list, setList] = useState([]);
     const [loader, setLoader] = useState(false);
     const dispatch = useDispatch();
+    const [currentList, setCurrentList] = useState(null);
 
     const { searchList, vat, loading } = useSelector(state => state.search);
 
+
+
     useEffect(() => {
+
+
         dispatch(searchListing({
             key: key,
-            storage_type: "",
-            features_type: "",
-            price: ""
+            storage_type: query.get('storage') || "",
+            features_type: query.get('features') || "",
+            price: query.get('price') ? true : "",
+            minPrice: query.get('price') ? +query.get('price').split(",")[0] : "",
+            maxPrice: query.get('price') ? +query.get('price').split(",")[1] : "",
+            size: query.get('size') ? true : "",
+            minSize: query.get('size') ? +query.get('size').split(",")[0] : "",
+            maxSize: query.get('size') ? +query.get('size').split(",")[1] : ""
+
         }));
+
+
         dispatch(getCoordinates({
             address: key
         }));
-    }, [key]);
+    }, [key, query.get('storage'), query.get('features'), query.get('price'), query.get('size')]);
+
 
     useEffect(() => {
         setList(searchList);
@@ -84,6 +105,10 @@ function FrontSearchListCtrl() {
     useEffect(() => {
         setLoader(loading);
     }, [loading]);
+
+
+
+
 
     return (
         <>
@@ -104,40 +129,14 @@ function FrontSearchListCtrl() {
                                     <StorageTypeFilter />
 
 
-                                    <Dropdown className="d-inline-block">
-                                        <Dropdown.Toggle variant="outline-success" size="sm" id="Storage Type">
-                                            Price
-                                        </Dropdown.Toggle>
-                                        <Dropdown.Menu className="priceSizeRS_card">
-                                            <div className="priceSizeRS_card_body">
-                                                <div className={classes.root}>
-                                                    <Typography className="mb-5">Monthly Price Range</Typography>
-                                                    <Slider value={value} onChange={handleChange} valueLabelDisplay="auto" aria-labelledby="discrete-slider-always" getAriaValueText={valuetext} valueLabelDisplay="on"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
+                                    <PriceFilter />
 
-                                    <Dropdown className="d-inline-block">
-                                        <Dropdown.Toggle variant="outline-success" size="sm" id="Storage Type">
-                                            Size
-                                        </Dropdown.Toggle>
-                                        <Dropdown.Menu className="priceSizeRS_card">
-                                            <div className="priceSizeRS_card_body">
-                                                <div className={classes.root}>
-                                                    <Typography className="mb-5">Space Size</Typography>
-                                                    <Slider value={value} onChange={handleChange} valueLabelDisplay="auto" aria-labelledby="discrete-slider-always" getAriaValueText={valuetext} valueLabelDisplay="on"
-                                                    />
-                                                </div>
-                                            </div>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
+                                    <SizeFilter />
 
                                     <FeaturesFilter />
 
 
-                                    <Button variant="outline-warning" size="sm">Reset Filters</Button>{' '}
+                                    <Button variant="outline-warning" size="sm" onClick={() => history.push(`/search/${key}`)}>Reset Filters</Button>{' '}
                                 </Col>
                                 <Col sm={4} className="text--center text-md-right" style={{ fontSize: '14px' }}>
                                     <small className="mx-2 mt-4 d-inline-block">Showing {list.length} Results</small>
@@ -150,7 +149,7 @@ function FrontSearchListCtrl() {
                             <Col lg={12} className="pt-3">
                                 <div className="SearchListPlace_row">
                                     {list.map(details =>
-                                        <div className="col-sm-6 col-xl-4 SearchListPlace_col" key={details.store_id}>
+                                        <div className="col-sm-6 col-xl-4 SearchListPlace_col" key={details.store_id} onMouseOver={() => setCurrentList(details)}>
                                             <div className="SearchListPlace_card">
                                                 <a href={'/search-details/' + details.store_id} >
                                                     <img width="100%" src={details.images && details.images.length > 0 ? details.images[0].si_path : PlaceholderImage} alt="" />
@@ -188,14 +187,14 @@ function FrontSearchListCtrl() {
                                                                     {
                                                                         details.store_cost &&
                                                                         <strong>
-                                                                            {(parseInt(details.store_cost) + (parseInt(details.store_cost) * (parseInt(vat) / 100))).toFixed(0)}<span > Lei</span> <small>
+                                                                            {details.store_cost}<span > Lei</span> <small>
                                                                                 / month</small>
                                                                         </strong>
 
                                                                     }
                                                                 </div>
                                                                 <div className="px-0">
-                                                                    <strong>{details.store_size}<small> m<sup>2</sup> </small> </strong>
+                                                                    <strong>{details.store_size}<small> {details.measurement_unit.mu_name}<sup>2</sup> </small> </strong>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -210,7 +209,7 @@ function FrontSearchListCtrl() {
                     </Col>
                     <Col lg={6} className="">
                         <div className="map_area">
-                            <GoogleMapListing />
+                            <GoogleMapListing list={currentList} />
                         </div>
                     </Col>
                 </Row>

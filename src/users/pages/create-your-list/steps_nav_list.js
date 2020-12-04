@@ -22,7 +22,7 @@ import { useSelector } from 'react-redux';
 function StepsNavListCtrl() {
 
     const { stepOne, stepTwo, stepThree, stepFour, stepFive, stepSix, stepSeven } = useSelector(state => state.listspace);
-
+    const { authResponse } = useSelector(state => state.auth);
 
     return (
         <>
@@ -69,8 +69,8 @@ function StepsNavListCtrl() {
                                 </Nav.Item>
                                 <Nav.Item as="li" className={stepSeven ? "completed" : ""} onClick={() => stepSeven ? window.location.href = "/create-your-list-step7" : false} >
                                     <span>
-                                        <img className="complete_step_img" src={G_step7} alt="" />
-                                        <img className="incomplete_step_img" src={G_step7} alt="" />
+                                        <img className="complete_step_img" src={authResponse && authResponse.users && authResponse.users.profile_pic ? authResponse.users.profile_pic : G_step7} alt="" />
+                                        <img className="incomplete_step_img" src={authResponse && authResponse.users && authResponse.users.profile_pic ? authResponse.users.profile_pic : G_step7} alt="" />
                                     </span>About You
                                 </Nav.Item>
 

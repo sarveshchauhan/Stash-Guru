@@ -40,6 +40,15 @@ function CreateYourListStepSeventhCtrl() {
 
     useEffect(() => {
 
+        if (sessionStorage.getItem("step7")) {
+            sessionStorage.removeItem("step7");
+        }
+
+    }, [sessionStorage]);
+
+
+    useEffect(() => {
+
         if (!stepSix) {
             history.push('/create-your-list-step6');
         }
@@ -119,11 +128,14 @@ function CreateYourListStepSeventhCtrl() {
             //     id: stepSix.id
             // }));
 
+
             let stepSevenNew = {
                 id: stepSix.id,
                 about: aboutDescription,
                 vat: vatRegistered
             };
+
+            sessionStorage.setItem("step7", JSON.stringify(stepSevenNew));
 
             dispatch(stepSevenUpdateClient(stepSevenNew));
             window.location.href = `/list-preview/${stepSix.id}`;

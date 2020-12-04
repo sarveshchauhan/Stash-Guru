@@ -75,7 +75,7 @@ function FrontSearchDetailsCtrl() {
     const history = useHistory();
 
 
-    const { schDetails, detailsResponse, vat, features, access, images, loading } = useSelector(state => state.search);
+    const { schDetails, detailsResponse, vat, features, access, images, measurement_unit, used_type, loading } = useSelector(state => state.search);
     const { bookingInfo } = useSelector(state => state.booking);
 
     useEffect(() => {
@@ -195,9 +195,9 @@ function FrontSearchDetailsCtrl() {
                                         {
                                             details.store_total_size && details.store_total_size.length > 0 &&
                                             <div>
-                                                <p><strong>Width: </strong> {JSON.parse(details.store_total_size)[0].width} ft</p>
-                                                <p><strong>Depth: </strong> {JSON.parse(details.store_total_size)[0].depth} ft</p>
-                                                <p><strong>Height: </strong> {JSON.parse(details.store_total_size)[0].height} ft</p>
+                                                <p><strong>Width: </strong> {JSON.parse(details.store_total_size)[0].width} {measurement_unit && measurement_unit.mu_name}</p>
+                                                <p><strong>Depth: </strong> {JSON.parse(details.store_total_size)[0].depth} {measurement_unit && measurement_unit.mu_name}</p>
+                                                <p><strong>Height: </strong> {JSON.parse(details.store_total_size)[0].height} {measurement_unit && measurement_unit.mu_name}</p>
                                             </div>
                                         }
 
@@ -298,7 +298,7 @@ function FrontSearchDetailsCtrl() {
                             <div className="details_content">
                                 <h5 className="mt-4 sm2_hdng">Space Used type</h5>
 
-                                <p>{details.sut_name}</p>
+                                <p>{used_type && Array.isArray(used_type) && used_type.map(sut => sut.sut_name).join(", ")}</p>
                                 <hr />
                             </div>
 
@@ -409,12 +409,17 @@ function FrontSearchDetailsCtrl() {
                                     </small>
                                     <div className="SearchListPlaceAreaCost justify-content-between">
                                         <strong>${details && details.store_cost}/Month </strong>
-                                        <span>{details && details.store_size} sq.ft.</span>
+                                        <span>{details && details.store_size} {measurement_unit && measurement_unit.mu_name}<sup>2</sup></span>
                                     </div>
 
 
-                                    {
+                                    {/* {
                                         details.u_email !== localStorage.getItem("userEmail") && bookingInfo ? <Button variant="success" className="btn-block" onClick={() => window.location.href = `/booking/${bookingInfo.guid}`}>View Booking</Button> : <Button variant="success" className="btn-block" onClick={() => dispatch(toggleBookingModal(true))}>Book Space</Button>
+                                    } */}
+
+                                    {
+                                        details.u_email !== localStorage.getItem("userEmail") ? bookingInfo ? <Button variant="success" className="btn-block" onClick={() => window.location.href = `/booking/${bookingInfo.guid}`}>View Booking</Button> : <Button variant="success" className="btn-block" onClick={() => dispatch(toggleBookingModal(true))}>Book Space</Button> : <Button variant="success" className="btn-block" onClick={() => window.location.href = `/list-preview/${searchId}`}>Edit Listing</Button>
+
                                     }
 
 

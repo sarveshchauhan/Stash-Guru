@@ -884,8 +884,9 @@ export const getListDetails = (saveData) => {
                     let detailData = {
                         details: serverResponse.details,
                         features: serverResponse.features,
-                        images: serverResponse.images
-
+                        images: serverResponse.images,
+                        measurement_unit: serverResponse.measurement_unit,
+                        used_type: serverResponse.used_type
                     };
 
                     dispatch(listDetailSuccess(detailData));
@@ -1270,7 +1271,7 @@ export const setListDetailClient = (id, redirect_url = "") => {
                         title: serverResponse.details.store_title,
                         token: JSON.parse(localStorage.getItem("stashGuruToken")),
                         type: serverResponse.details.st_id,
-                        used_type: serverResponse.details.sut_id,
+                        used_type: serverResponse.used_type.map(sut =>  sut.suts_id).join(","),
                         guest: serverResponse.details.gt_id,
                         guest_access: serverResponse.details.gta_id,
                         specific_time: JSON.parse(serverResponse.details.store_specific_time)
@@ -1315,7 +1316,9 @@ export const setListDetailClient = (id, redirect_url = "") => {
                         width: storeWidth,
                         your_earnings: serverResponse.details.store_earnings_deposit,
                         security: serverResponse.details.store_security_deposit,
-                        security_price: serverResponse.details.store_security_deposit_price
+                        security_price: serverResponse.details.store_security_deposit_price,
+                        mu_id: serverResponse.details.mu_id,
+                        mu_name: serverResponse.measurement_unit.mu_name
                     };
 
                     dispatch(stepFiveUpdateClient(stepFive));
@@ -1337,7 +1340,6 @@ export const setListDetailClient = (id, redirect_url = "") => {
                     dispatch(stepSevenUpdateClient(stepSeven));
 
                     if (redirect_url) {
-                        //need to uncomment
                         window.location.href = redirect_url;
                     }
 

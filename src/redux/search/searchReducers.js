@@ -21,6 +21,9 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true,
+                vat: 0,
+                searchList: [],
+                error: '',
                 vat: 0
             }
 
@@ -63,7 +66,9 @@ const reducer = (state = initialState, action) => {
                 vat: action.payload.vat,
                 features: action.payload.features,
                 access: action.payload.access,
-                images: action.payload.images
+                images: action.payload.images,
+                measurement_unit: action.payload.measurement_unit,
+                used_type: action.payload.used_type
             }
 
 

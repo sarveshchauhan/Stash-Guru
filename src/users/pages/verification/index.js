@@ -11,6 +11,7 @@ import { getVerifyList, toggleDocumentDetailModal, toggleMobileVerifyModal } fro
 import DocumentUpload from './DocumentUpload';
 import VerifyIdModal from './VerifyIdModal';
 import MobileVerification from './MobileVerification';
+import DocumentDetailsSecond from './DocumentDetailsSecond';
 
 
 function UserVerificationCtrl() {
@@ -22,11 +23,13 @@ function UserVerificationCtrl() {
 
 
     const [idVerified, setIdVerified] = useState("Pending");
+    const [id1Verfied, setId1Verified] = useState("Pending");
+
+    const [idData, setIdData] = useState(null);
+    const [id1Data, setId1Data] = useState(null);
+
     const [phoneVerified, setPhoneVerified] = useState("Pending");
     const [emailVerified, setEmailVerified] = useState("Pending");
-
-
-
 
 
 
@@ -49,6 +52,12 @@ function UserVerificationCtrl() {
 
                 if (verifyList[i].uv_type === "Doc") {
                     setIdVerified(verifyList[i].uv_status);
+                    setIdData(verifyList[i].uv_data);
+                }
+
+                if (verifyList[i].uv_type === "Doc1") {
+                    setId1Verified(verifyList[i].uv_status);
+                    setId1Data(verifyList[i].uv_data);
                 }
             }
         }
@@ -71,14 +80,14 @@ function UserVerificationCtrl() {
                 <h2 className="user_page_hdng_txt">Verification</h2>
             </div>
 
-
-            <div className="verificationCard text-center">
+            { (idVerified === "Verify" && id1Verfied === "Verify" && emailVerified === "Verify" && phoneVerified === "Verify") ? "" : <div className="verificationCard text-center">
                 <div className="verificationCardBody">
                     <img src={not_verified} alt="" />
                     <h3 className="text_color_l_orange">Account not verified</h3>
                     <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,</p>
                 </div>
-            </div>
+            </div>}
+
 
 
 
@@ -88,7 +97,25 @@ function UserVerificationCtrl() {
                     <NavLink to="" className="text_color_deep_skyi">Required for booking ({idVerified})</NavLink>
                 </div>
                 <div>
-                    <Button className="btn_l_orange" onClick={() => dispatch(toggleDocumentDetailModal(true))}>Verify Account</Button>
+
+
+                    {
+                        !idData && !id1Data && <Button className="btn_l_orange" onClick={() => dispatch(toggleDocumentDetailModal(true))}>Verify Account</Button>
+                    }
+
+                    {
+                        (idVerified === "Verify" && id1Verfied === "Verify") && <Button variant="success" type="button">Verified</Button>
+                    }
+
+                    {
+                        (idVerified === "Pending" || id1Verfied === "Pending") && <Button variant="warning" type="button">Pending</Button>
+                    }
+
+                    {
+                        (idVerified === "Reject" || id1Verfied === "Reject") && <Button className="btn_l_orange" onClick={() => dispatch(toggleDocumentDetailModal(true))}>Verify Account</Button>
+                    }
+
+
                 </div>
             </div>
 
@@ -150,6 +177,8 @@ function UserVerificationCtrl() {
                 <VerifyIdModal />
 
                 <DocumentDetails />
+
+                <DocumentDetailsSecond />
 
                 <DocumentUpload />
 
