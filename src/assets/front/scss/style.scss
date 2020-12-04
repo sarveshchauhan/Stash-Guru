@@ -1171,8 +1171,8 @@ p.text_p{
     border-color: #34D789;
     overflow: hidden;    
     padding: 0px 25px;
-    height: 45px;
-    line-height: 45px;
+    height: 48px;
+    line-height: 48px;
 }
 
 @media (max-width: 600px){
@@ -1217,6 +1217,7 @@ a.link{
 }
 .help_center_box_card_body ul li{
     margin: 7px auto;
+    font-size: 15px;
 }
 
 
@@ -1276,4 +1277,5 @@ a.link{
 }
 .help_center_details_content .highLight_box ul li text{
     color: #595959;
+    font-size: 14px;
 }
