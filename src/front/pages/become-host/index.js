@@ -49,7 +49,7 @@ function FrontBecomeHostCtrl() {
                                 <p>Got some empty space? Get it listed and connect with people looking to rent it for storage or parking.</p>
                                 <div className="mt-5">
                                     <Button variant="success" className="px-5 ml-0 m-2">Get Started</Button>
-                                    <Button variant="milky" className="px-5 ml-0 m-2">More Info</Button>
+                                    <Button className="btn btn_milky_grn px-5 ml-0 m-2">More Info</Button>
                                 </div>
                             </div>
                         </Col>
