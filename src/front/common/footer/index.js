@@ -57,7 +57,7 @@ function FooterComponent(){
                                     <Nav className="flex-column">
                                         <NavLink to="" className="nav-link">Start Storing</NavLink>
                                         <NavLink to="" className="nav-link">Domestic Storage</NavLink>
-                                        <NavLink to="" className="nav-link">Business Storage</NavLink>
+                                        <NavLink to="/business-storage" className="nav-link">Business Storage</NavLink>
                                         <NavLink to="" className="nav-link">Rent A Parking Space</NavLink>
                                         <NavLink to="" className="nav-link">Storage Space In London</NavLink>
                                         <NavLink to="" className="nav-link">Rent A Garage</NavLink>
@@ -105,7 +105,7 @@ function FooterComponent(){
                                             <Nav className="flex-column">
                                                 <NavLink to="" className="nav-link">Start Storing</NavLink>
                                                 <NavLink to="" className="nav-link">Domestic Storage</NavLink>
-                                                <NavLink to="" className="nav-link">Business Storage</NavLink>
+                                                <NavLink to="/business-storage" className="nav-link">Business Storage</NavLink>
                                                 <NavLink to="" className="nav-link">Rent A Parking Space</NavLink>
                                                 <NavLink to="" className="nav-link">Storage Space In London</NavLink>
                                                 <NavLink to="" className="nav-link">Rent A Garage</NavLink>
