@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Col, Container, Row, Button, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Col, Container, Row, Button, ButtonGroup } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 import SearchComponent from '../../common/components/SearchCompo';
 
@@ -18,11 +18,11 @@ function FrontHelpCenterCtrl(){
                         <Col lg={7}>
                             <div className="help_center_banner_btns">
                                 <h2>Help Center</h2>
-                                <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
-                                    <ToggleButton value={1}><NavLink to="/manage-your-booking">Booking a Space</NavLink></ToggleButton>
-                                    <ToggleButton value={2}><NavLink to="/hosting-a-space">Hosting a Space</NavLink></ToggleButton>
-                                    <ToggleButton value={3}><NavLink to="/common-questions">Common Questions</NavLink></ToggleButton>
-                                </ToggleButtonGroup>
+                                <ButtonGroup>
+                                    <Link to="/manage-your-booking" className="btn active" >Booking a Space</Link>
+                                    <Link to="/hosting-a-space" className="btn">Hosting a Space</Link>
+                                    <Link to="/common-questions" className="btn">Common Questions</Link>
+                                </ButtonGroup>
                             </div>
                         </Col>
                         <Col lg={5}>

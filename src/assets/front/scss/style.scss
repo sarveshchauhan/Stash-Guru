@@ -1164,34 +1164,23 @@ p.text_p{
 
 
 .help_center_banner_btns .btn{
-    padding: 0px;
     margin-top: 15px;
+    line-height: 0;
     background: #ffffff;
     color: #34D789;
     border-color: #34D789;
-    overflow: hidden;
-}
-.help_center_banner_btns .btn a{
-    // line-height: 48px;
-    padding: 12px 25px;
-    background: #ffffff;
-    color: #34D789;
-    border-color: #34D789;
-    display: block;
-    text-decoration: none !important;
+    overflow: hidden;    
+    padding: 0px 25px;
+    height: 45px;
+    line-height: 45px;
 }
 
 @media (max-width: 600px){
     .help_center_banner_btns .btn a{
-        padding: 12px 5px;
+        padding: 0px 5px;
     }
 }
-.help_center_banner_btns .btn-primary:not(:disabled):not(.disabled).active, 
-.help_center_banner_btns .btn-primary:not(:disabled):not(.disabled):active, 
-.help_center_banner_btns .show>.btn-primary.dropdown-toggle,
-.help_center_banner_btns .btn-primary:not(:disabled):not(.disabled).active a, 
-.help_center_banner_btns .btn-primary:not(:disabled):not(.disabled):active a, 
-.help_center_banner_btns .show>.btn-primary.dropdown-toggle a{
+.help_center_banner_btns .btn.active{
     background: #34D789;
     color: #ffffff;
     border-color: #34D789;
@@ -1259,9 +1248,10 @@ a.link{
     opacity: 1;
     color: #34d789 !important;
 }
-.PrivateTabIndicator-colorSecondary-5 {
-    background-color: #f50057;
-    display: none;
+.MuiTabs-indicator{
+    background-color: #34d789 !important;
+    display: none !important;
+    opacity: 0 !important;
 }
 .help_center_details_content p{
     font-size: 12px;

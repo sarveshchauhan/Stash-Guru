@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Col, Container, Row, Button, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Col, Container, Row, Button, ButtonGroup } from 'react-bootstrap';
+import { NavLink,Link } from 'react-router-dom';
 import SearchComponent from '../../common/components/SearchCompo';
 
 import helpCenter from '../../../assets/front/images/img/helpCenter.png';
@@ -17,11 +17,11 @@ function FrontCommonQuestionsCtrl(){
                         <Col lg={7}>
                             <div className="help_center_banner_btns">
                                 <h2>Help Center</h2>
-                                <ToggleButtonGroup type="radio" name="options" defaultValue={3}>
-                                    <ToggleButton value={1}><NavLink to="/help-center">Booking a Space</NavLink></ToggleButton>
-                                    <ToggleButton value={2}><NavLink to="/hosting-a-space">Hosting a Space</NavLink></ToggleButton>
-                                    <ToggleButton value={3}><NavLink to="/common-questions">Common Questions</NavLink></ToggleButton>
-                                </ToggleButtonGroup>
+                                <ButtonGroup>
+                                    <Link to="/manage-your-booking" className="btn" >Booking a Space</Link>
+                                    <Link to="/hosting-a-space" className="btn">Hosting a Space</Link>
+                                    <Link to="/common-questions" className="btn active">Common Questions</Link>
+                                </ButtonGroup>
                             </div>
                         </Col>
                         <Col lg={5}>
