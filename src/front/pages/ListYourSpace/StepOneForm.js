@@ -3,6 +3,7 @@ import { Form, Button, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getSpaceType, stepOneSave } from '../../../redux/listspace/listspaceActions';
+import GoogleSearchListing from '../../common/components/GoogleSearchListing';
 
 
 function StepOneForm() {
@@ -150,7 +151,9 @@ function StepOneForm() {
                         </Form.Group>
 
                         <Form.Group>
-                            <Form.Control type="text" placeholder="Your Location" name="location" value={location} onChange={(e) => setLocation(e.target.value)} onBlur={handleFormFields} />
+
+                            <GoogleSearchListing />
+                            {/* <Form.Control type="text" placeholder="Your Location" name="location" value={location} onChange={(e) => setLocation(e.target.value)} onBlur={handleFormFields} /> */}
 
                             {
                                 locationError && <small className="text-danger">
