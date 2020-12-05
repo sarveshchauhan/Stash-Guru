@@ -77,6 +77,28 @@
 
 
 
+.my_form_control_styles{
+    position: relative;
+}
+.location-search-input{
+    position: relative;
+    border-radius: 25px;
+    width: 100%;
+    min-height: 48px;
+    display: block;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    transition: border-color .15s ease-in-out,
+    box-shadow .15s ease-in-out;
+    outline: 0px !important;
+}
+
+
 .location_search_bar .location-search-input{
     border-left: 0px;
     outline: none !important;
@@ -118,10 +140,12 @@
     position: absolute;
     width: 100%;
     top: 50px;
-    padding-left: 30px;
-    padding-right: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #ffffff;
     z-index: +9;
 }
+
 .here_to_help_you .autocomplete-dropdown-container{
     color: #333333;
 }

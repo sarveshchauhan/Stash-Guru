@@ -150,7 +150,7 @@ function StepOneForm() {
 
                         </Form.Group>
 
-                        <Form.Group>
+                        <Form.Group className="my_form_control_styles">
 
                             <GoogleSearchListing />
                             {/* <Form.Control type="text" placeholder="Your Location" name="location" value={location} onChange={(e) => setLocation(e.target.value)} onBlur={handleFormFields} /> */}
