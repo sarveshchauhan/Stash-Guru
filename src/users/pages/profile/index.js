@@ -25,15 +25,16 @@ function UserProfileCtrl() {
                 <Col lg={8}>
                     <div className="about_user_profile">
                         <div className="change_user_profile_img">
-
                             {
                                 authResponse && authResponse.users && authResponse.users.profile_pic ? <img src={authResponse.users.profile_pic} /> : <img src={user_img} />
                             }
-
-
-
                             <div className="change_user_icon_camera">
-                                <i className="fa fa-camera" aria-hidden="true"></i>
+                                <div className="upload-btn-wrapper">
+                                    <button className="change_user_icon_camera_btn">
+                                        <i className="fa fa-camera"></i>
+                                    </button>
+                                    <input className="change_user_icon_file" type="file" name="myfile" />
+                                </div>
                             </div>
                         </div>
                         <div className="verify_user_email_mob">
