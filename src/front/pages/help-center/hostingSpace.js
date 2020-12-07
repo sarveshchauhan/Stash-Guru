@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Button, ButtonGroup } from 'react-bootstrap';
-import { NavLink,Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import SearchComponent from '../../common/components/SearchCompo';
 
 import helpCenter from '../../../assets/front/images/img/helpCenter.png';
@@ -10,8 +10,16 @@ import gettingStarted from '../../../assets/front/images/img/gettingStarted.png'
 
 import protectingBooking from '../../../assets/front/images/img/protectingBooking.png';
 
-function FrontHostingSpaceCtrl(){
-    return(
+function FrontHostingSpaceCtrl() {
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
+    return (
         <>
             <section className="page_banner about_page_banner">
                 <Container>
@@ -35,7 +43,7 @@ function FrontHostingSpaceCtrl(){
                 </Container>
             </section>
 
-            
+
             <section className="bg-white py-5">
                 <Container>
                     <Row>
@@ -113,7 +121,7 @@ function FrontHostingSpaceCtrl(){
                 </Container>
             </section>
 
-  
+
 
             <section className="bottom_search_strip">
                 <Container>

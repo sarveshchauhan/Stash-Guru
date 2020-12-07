@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Col, Container, Row, Button, ButtonGroup } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 import SearchComponent from '../../common/components/SearchCompo';
@@ -13,15 +13,24 @@ import calendar_img from '../../../assets/front/images/img/calendar_img.png';
 import endingBooking from '../../../assets/front/images/img/endingBooking.png';
 import protectingBooking from '../../../assets/front/images/img/protectingBooking.png';
 
-function FrontBusinessStorageCtrl(){
-    return(
+function FrontBusinessStorageCtrl() {
+
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
+    return (
         <>
             <section className="page_banner about_page_banner">
                 <Container className="pb-5">
                     <Row className="justify-content-between pb-5">
                         <Col lg={6}>
                             <div className="page_banner_content">
-                                <h2>Business Storage <br/> Units, Nearby!</h2>
+                                <h2>Business Storage <br /> Units, Nearby!</h2>
                                 <p className="sm_font">We may all be working from home a lot more in the future, but some things won’t change. For one, businesses of all types will still need commercial storage. Whether you’re looking for somewhere safe to put your office furniture while waiting to reopen, or more long-term storage solutions, Stashbee is the right place to start your search.</p>
                                 <div className="mt-4">
                                     <SearchComponent />
@@ -78,9 +87,9 @@ function FrontBusinessStorageCtrl(){
                 </Container>
             </section>
 
-            
 
-  
+
+
 
             <section className="bottom_search_strip">
                 <Container>

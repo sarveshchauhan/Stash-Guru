@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Col, Container, Row, Button,ButtonGroup } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Col, Container, Row, Button, ButtonGroup } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 import SearchComponent from '../../common/components/SearchCompo';
 import helpCenter from '../../../assets/front/images/img/helpCenter.png';
@@ -14,56 +14,56 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+    const { children, value, index, ...other } = props;
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`vertical-tabpanel-${index}`}
+            aria-labelledby={`vertical-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box p={3}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
 }
 
 TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
+    children: PropTypes.node,
+    index: PropTypes.any.isRequired,
+    value: PropTypes.any.isRequired,
 };
 
 
 
 function a11yProps(index) {
     return {
-      id: `vertical-tab-${index}`,
-      'aria-controls': `vertical-tabpanel-${index}`,
+        id: `vertical-tab-${index}`,
+        'aria-controls': `vertical-tabpanel-${index}`,
     };
-  }
-  
-  const useStyles = makeStyles((theme) => ({
+}
+
+const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
-      backgroundColor: theme.palette.background.paper,
-      display: 'flex',
+        flexGrow: 1,
+        backgroundColor: theme.palette.background.paper,
+        display: 'flex',
     },
     tabs: {
-    //   borderRight: `1px solid ${theme.palette.divider}`,
+        //   borderRight: `1px solid ${theme.palette.divider}`,
     },
-  }));
+}));
 
 
 
 
 
-function FrontBookingSpaceDetailsCtrl(){
+function FrontBookingSpaceDetailsCtrl() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
@@ -72,7 +72,14 @@ function FrontBookingSpaceDetailsCtrl(){
     };
 
 
-    return(
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
+    return (
         <>
             <section className="page_banner about_page_banner">
                 <Container>
@@ -96,7 +103,7 @@ function FrontBookingSpaceDetailsCtrl(){
                 </Container>
             </section>
 
-            
+
             <section className="bg-white help_center_details py-5">
                 <Container>
                     <div className={classes.root}>
@@ -104,7 +111,7 @@ function FrontBookingSpaceDetailsCtrl(){
                             <div className="tabVrtHr">
                                 <h6 className="d-block">Managing Your Booking</h6>
                                 <Tabs orientation="vertical" variant="scrollable" value={value} onChange={handleChange} aria-label="Vertical tabs example" className={classes.tabs}
-                                >   
+                                >
                                     <Tab label="Making an Enquiry" {...a11yProps(0)} />
                                     <Tab label="Making a Booking" {...a11yProps(1)} />
                                     <Tab label="Verifying Your Account" {...a11yProps(2)} />
@@ -119,9 +126,9 @@ function FrontBookingSpaceDetailsCtrl(){
                                     <Tab label="Serving Notice" {...a11yProps(7)} />
                                     <Tab label="Moving Out" {...a11yProps(8)} />
                                 </Tabs>
-                                </div>
+                            </div>
                         </Col>
-                            
+
                         <Col md="9">
                             <TabPanel value={value} index={0}>
                                 <div className="help_center_details_content">
@@ -155,12 +162,12 @@ function FrontBookingSpaceDetailsCtrl(){
                             <TabPanel value={value} index={8}>
                             </TabPanel>
                         </Col>
-                            
+
                     </div>
                 </Container>
             </section>
 
-  
+
 
             <section className="bottom_search_strip">
                 <Container>

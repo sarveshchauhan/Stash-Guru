@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Card, Col, Row } from 'react-bootstrap';
 
 import Bl_hand from '../../../assets/users/images/icons/menu/Bl_hand.png';
@@ -14,8 +14,17 @@ import Family from '../../../assets/users/images/img/Family.png';
 import Listing from '../../../assets/users/images/img/Listing.png';
 
 
-function UserHomeCtrl(){
-    return(
+function UserHomeCtrl() {
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
+
+    return (
         <>
             <Row>
                 <Col sm={12} lg={4}>
