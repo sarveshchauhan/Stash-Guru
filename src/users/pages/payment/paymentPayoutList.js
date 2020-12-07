@@ -1,26 +1,35 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
-import { Button,Col,Form,Modal, Row,Dropdown, Table } from 'react-bootstrap';
+import { Button, Col, Form, Modal, Row, Dropdown, Table } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 import invoice from '../../../assets/users/images/icons/invoice.png';
 import visa_cards_citibank from '../../../assets/users/images/dummy/visa_cards_citibank.jpg';
 import bank from '../../../assets/users/images/icons/bank.png';
 
-function UserPaymentPayoutListCtrl(){
+function UserPaymentPayoutListCtrl() {
+
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
     const [isSticky, setSticky] = useState(false);
     const ref = useRef(null);
     const handleScroll = () => {
-      if (ref.current) {
-        setSticky(ref.current.getBoundingClientRect().top <= 0);
-      }
+        if (ref.current) {
+            setSticky(ref.current.getBoundingClientRect().top <= 0);
+        }
     };
-  
+
     useEffect(() => {
-      window.addEventListener('scroll', handleScroll);
-  
-      return () => {
-        window.removeEventListener('scroll', () => handleScroll);
-      };
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', () => handleScroll);
+        };
     }, []);
 
 
@@ -29,12 +38,12 @@ function UserPaymentPayoutListCtrl(){
     const [AddCardmodal, setAddCardDmodal] = useState(false);
     const handlesetAddCardDmodalClose = () => setAddCardDmodal(false);
     const handlesetAddCardDmodalShow = () => setAddCardDmodal(true);
-    
+
     const [AddBankmodal, setAddBankDmodal] = useState(false);
     const handlesetAddBankmodalClose = () => setAddBankDmodal(false);
     const handlesetAddBankmodalShow = () => setAddBankDmodal(true);
 
-    return(
+    return (
         <>
             <div className="Payment_Payout">
                 <div className="user_page_hdng justify-content-between align-items-center">
@@ -83,7 +92,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -93,7 +102,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -103,7 +112,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -113,7 +122,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -123,7 +132,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -133,7 +142,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -143,7 +152,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -153,7 +162,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -163,7 +172,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -173,7 +182,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -183,7 +192,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -193,7 +202,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -203,7 +212,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -213,7 +222,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -223,7 +232,7 @@ function UserPaymentPayoutListCtrl(){
                                                 <td className="text-center"><strong>$2500</strong></td>
                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td className="text-left">Warehouse</td>
                                                 <td className="text-left">LONDON, E1 7AA</td>
@@ -236,7 +245,7 @@ function UserPaymentPayoutListCtrl(){
                                         </tbody>
                                     </Table>
                                 </div>
-                               
+
                             </div>
                         </div>
                     </Col>
@@ -253,14 +262,14 @@ function UserPaymentPayoutListCtrl(){
                                             <tr>
                                                 <td>Joe Gomez</td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <th className="pt-2">Card No.</th>
                                             </tr>
                                             <tr>
                                                 <td>XXXXXXXXXXXXXXX4545</td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <th className="pt-2">Valid</th>
                                             </tr>
@@ -270,7 +279,7 @@ function UserPaymentPayoutListCtrl(){
                                         </tbody>
                                     </Table>
                                     <div>
-                                        <div className="d-block text-right" style={{width: '80px'}}>
+                                        <div className="d-block text-right" style={{ width: '80px' }}>
                                             <Button variant="no_bg" className="px-1 text_color_gray">
                                                 <i className="fa fa-trash-o" aria-hidden="true"></i>
                                             </Button>
@@ -298,14 +307,14 @@ function UserPaymentPayoutListCtrl(){
                                             <tr>
                                                 <td>Joe Gomez</td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <th className="pt-2">A/C No.</th>
                                             </tr>
                                             <tr>
                                                 <td>XXXXXXXXXXXXXXX4545</td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <th className="pt-2">IFSC Code</th>
                                             </tr>
@@ -315,7 +324,7 @@ function UserPaymentPayoutListCtrl(){
                                         </tbody>
                                     </Table>
                                     <div>
-                                        <div className="d-block text-right" style={{width: '80px'}}>
+                                        <div className="d-block text-right" style={{ width: '80px' }}>
                                             <Button variant="no_bg" className="px-1 text_color_gray">
                                                 <i className="fa fa-trash-o" aria-hidden="true"></i>
                                             </Button>
@@ -340,9 +349,9 @@ function UserPaymentPayoutListCtrl(){
             <Modal className="user_modal" show={AddCardmodal} onHide={handlesetAddCardDmodalClose} backdrop="static" keyboard={false}>
                 <button className="user_modal_close_btn" onClick={handlesetAddCardDmodalClose}>
                     <i className="fa fa-times" aria-hidden="true"></i>
-                </button> 
+                </button>
                 <Modal.Header className="justify-content-start">
-                    <div  className="text-left">
+                    <div className="text-left">
                         <Modal.Title>Add New Card</Modal.Title>
                     </div>
                 </Modal.Header>
@@ -353,38 +362,38 @@ function UserPaymentPayoutListCtrl(){
                                 <Col md={12}>
                                     <Form.Group controlId="formBasicPassword">
                                         <Form.Label>Your Card number</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="XXXX-XXXX-XXXX-XXXX"  />
+                                        <Form.Control className="rectu_form_field" type="text" placeholder="XXXX-XXXX-XXXX-XXXX" />
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group controlId="formBasicPassword">
                                         <Form.Label>Expiry</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="10/22"  />
+                                        <Form.Control className="rectu_form_field" type="text" placeholder="10/22" />
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group controlId="formBasicPassword">
                                         <Form.Label>CVV</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="123"  />
+                                        <Form.Control className="rectu_form_field" type="text" placeholder="123" />
                                     </Form.Group>
                                 </Col>
-                                
+
                                 <Col md={6}>
                                     <Form.Group controlId="formBasicPassword">
                                         <Form.Label>House No. & Street</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="22 Main Street"  />
+                                        <Form.Control className="rectu_form_field" type="text" placeholder="22 Main Street" />
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group controlId="formBasicPassword">
                                         <Form.Label>City</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="London"  />
+                                        <Form.Control className="rectu_form_field" type="text" placeholder="London" />
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group controlId="formBasicPassword">
                                         <Form.Label>Postcode</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="AS245FV"  />
+                                        <Form.Control className="rectu_form_field" type="text" placeholder="AS245FV" />
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
@@ -399,18 +408,18 @@ function UserPaymentPayoutListCtrl(){
                                 </Col>
                                 <Col md={12}>
                                     <Form.Group>
-                                    
-                                    <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1"/>
-                                        <label class="custom-control-label" for="customCheck1">Adding your payment method allows your card to be charged if your booking goes ahead, as outlined in our <NavLink to="" className='text_color_shamrock'>Terms and Conditions.</NavLink></label>
-                                    </div>
+
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1" />
+                                            <label class="custom-control-label" for="customCheck1">Adding your payment method allows your card to be charged if your booking goes ahead, as outlined in our <NavLink to="" className='text_color_shamrock'>Terms and Conditions.</NavLink></label>
+                                        </div>
                                     </Form.Group>
                                 </Col>
                                 <Col md={12} className="text-center">
                                     <Button className="btn_success px-5"> Add Card </Button>
                                 </Col>
                             </Row>
-                            
+
                         </Form>
                     </div>
                 </Modal.Body>
@@ -419,9 +428,9 @@ function UserPaymentPayoutListCtrl(){
             <Modal className="user_modal" show={AddBankmodal} onHide={handlesetAddBankmodalClose} backdrop="static" keyboard={false}>
                 <button className="user_modal_close_btn" onClick={handlesetAddBankmodalClose}>
                     <i className="fa fa-times" aria-hidden="true"></i>
-                </button> 
+                </button>
                 <Modal.Header className="justify-content-start">
-                    <div  className="text-left">
+                    <div className="text-left">
                         <Modal.Title>Add Bank Account</Modal.Title>
                     </div>
                 </Modal.Header>
@@ -450,53 +459,53 @@ function UserPaymentPayoutListCtrl(){
                                 <Col md={12}>
                                     <Form.Group controlId="">
                                         <Form.Label>Date Of Birth</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="01-01-1980"  />
+                                        <Form.Control className="rectu_form_field" type="text" placeholder="01-01-1980" />
                                     </Form.Group>
                                 </Col>
-                                
+
                                 <Col md={6}>
                                     <Form.Group controlId="">
                                         <Form.Label>Account Number</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="1451245754512455"  />
+                                        <Form.Control className="rectu_form_field" type="text" placeholder="1451245754512455" />
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group controlId="">
                                         <Form.Label>Sort Code</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="41451451"  />
+                                        <Form.Control className="rectu_form_field" type="text" placeholder="41451451" />
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group controlId="">
                                         <Form.Label>Address Line 1</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="22 Main Street"  />
+                                        <Form.Control className="rectu_form_field" type="text" placeholder="22 Main Street" />
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group controlId="">
                                         <Form.Label>Address Line 2</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="Lorem ipsum"  />
+                                        <Form.Control className="rectu_form_field" type="text" placeholder="Lorem ipsum" />
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group controlId="">
                                         <Form.Label>City</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="London"  />
+                                        <Form.Control className="rectu_form_field" type="text" placeholder="London" />
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group controlId="">
                                         <Form.Label>Postcode</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="AS245FV"  />
+                                        <Form.Control className="rectu_form_field" type="text" placeholder="AS245FV" />
                                     </Form.Group>
                                 </Col>
 
-                                
+
                                 <Col md={12} className="text-center">
                                     <Button className="btn_success px-5"> Add Bank Account </Button>
                                 </Col>
                             </Row>
-                            
+
                         </Form>
                     </div>
                 </Modal.Body>

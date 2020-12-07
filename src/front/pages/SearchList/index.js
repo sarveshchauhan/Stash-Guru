@@ -73,7 +73,11 @@ function FrontSearchListCtrl() {
 
     const { searchList, vat, loading } = useSelector(state => state.search);
 
+    useEffect(() => {
 
+        window.scrollTo(0, 0);
+
+    }, [window]);
 
     useEffect(() => {
 

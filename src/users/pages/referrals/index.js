@@ -1,5 +1,5 @@
-import React,{useState} from 'react';
-import { Button,Col,Form, Row ,FormControl,InputGroup,Nav} from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Form, Row, FormControl, InputGroup, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 import referals from '../../../assets/users/images/icons/referals.png';
@@ -15,10 +15,15 @@ import share from '../../../assets/users/images/icons/share.png';
 import g_dollar from '../../../assets/users/images/icons/g_dollar.png';
 import thankU from '../../../assets/users/images/icons/thankU.png';
 
-function UserReferralsCtrl(){
+function UserReferralsCtrl() {
 
+    useEffect(() => {
 
-    return(
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+    return (
         <>
             <div className="Referrals">
                 <div className="user_page_hdng justify-content-between align-items-center">
@@ -35,7 +40,7 @@ function UserReferralsCtrl(){
                                     <div className="referals_img">
                                         <img src={referals} alt="" />
                                         <strong>Share This Link</strong>
-                                        <span>You’ll earn £50.00 from anyone who starts Hosting with Stas.Guru using this unique link (and they’ll get £50.00 too!).<br/> Click to copy and share!</span>
+                                        <span>You’ll earn £50.00 from anyone who starts Hosting with Stas.Guru using this unique link (and they’ll get £50.00 too!).<br /> Click to copy and share!</span>
                                     </div>
                                     <div className="copy_your_share_link">
                                         <InputGroup className="mb-3">
@@ -45,7 +50,7 @@ function UserReferralsCtrl(){
                                             </InputGroup.Append>
                                         </InputGroup>
                                     </div>
-                                    
+
                                     <div className="share_to_social_media">
                                         <Nav className="justify-content-center" activeKey="/home">
                                             <Nav.Item>
@@ -71,9 +76,9 @@ function UserReferralsCtrl(){
                                         </Nav>
                                     </div>
                                 </div>
-                               
+
                             </div>
-                        
+
                             <div className="text-right">
                                 <span className="p-3 text_color_gray ">Terms Apply</span>
                             </div>
@@ -109,7 +114,7 @@ function UserReferralsCtrl(){
                                 <div className="w-100">
                                     <Form>
                                         <Form.Group controlId="formBasicPassword">
-                                            <Form.Control type="text" placeholder="Email Address"  />
+                                            <Form.Control type="text" placeholder="Email Address" />
                                         </Form.Group>
                                     </Form>
                                     <Button className="btn_success px-5"><b>Send Invite</b> </Button>

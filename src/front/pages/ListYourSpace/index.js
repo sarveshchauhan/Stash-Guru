@@ -38,12 +38,20 @@ function ListYourSpaceComponentCtrl() {
         setIndex(selectedIndex);
     };
 
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
 
     useEffect(() => {
 
         dispatch(clearListSpaceSteps());
 
     }, [dispatch]);
+
+
+
 
 
     return (

@@ -17,6 +17,12 @@ function ForgotPassword() {
 
     useEffect(() => {
 
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+    useEffect(() => {
+
         if (forgotPasswordSuccess) {
             setEmail("");
             setSuccessMessage(forgotPasswordSuccess);

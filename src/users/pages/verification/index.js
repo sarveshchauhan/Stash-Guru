@@ -31,7 +31,11 @@ function UserVerificationCtrl() {
     const [phoneVerified, setPhoneVerified] = useState("Pending");
     const [emailVerified, setEmailVerified] = useState("Pending");
 
+    useEffect(() => {
 
+        window.scrollTo(0, 0);
+
+    }, [window]);
 
 
     useEffect(() => {

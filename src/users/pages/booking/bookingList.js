@@ -18,6 +18,12 @@ function UserBookingListCtrl() {
     const { bookingLoading, bookingError, bookingList } = useSelector(state => state.booking);
 
     useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+    useEffect(() => {
         dispatch(getBookingList({}));
     }, [dispatch]);
 

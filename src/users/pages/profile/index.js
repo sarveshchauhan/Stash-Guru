@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Col, Form, Row, Spinner } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import G_profile from '../../../assets/users/images/icons/G_profile.png';
@@ -12,6 +12,13 @@ import ProfileEditModal from './ProfileEditModal';
 
 
 function UserProfileCtrl() {
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
 
     const dispatch = useDispatch();
     const { authResponse, saveProfilePicLoading } = useSelector(state => state.auth);

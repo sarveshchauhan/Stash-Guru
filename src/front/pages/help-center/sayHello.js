@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Button, Form, Nav, Table } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import SearchComponent from '../../common/components/SearchCompo';
 
 import banner_img from '../../../assets/front/images/img/about_banner_img.png';
 
-function FrontsayHelloCtrl(){
-    return(
+function FrontsayHelloCtrl() {
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
+    return (
         <>
             <section className="page_banner about_page_banner">
                 <Container>
@@ -28,15 +36,15 @@ function FrontsayHelloCtrl(){
                 </Container>
             </section>
 
-            
+
             <section className="hello_sections">
                 <Container>
                     <Row className='align-items-center'>
                         <Col lg={6}>
                             <div className="page_content">
                                 <h4 className="page_h4_txt">Hello!</h4>
-                                <p>Got a question? Or just fancy a chat about boxes? Send us an email or chat to a real human when our offices are open.</p> 
-                                    
+                                <p>Got a question? Or just fancy a chat about boxes? Send us an email or chat to a real human when our offices are open.</p>
+
                                 <div className="my-4">
                                     <h4 className="page_h4_txt"><i className="fa fa-envelope mr-2" aria-hidden="true"></i> support@stasguru.com</h4>
                                     <h4 className="page_h4_txt"><i className="fa fa-phone mr-2" aria-hidden="true"></i> (427)447-6847</h4>
@@ -97,19 +105,19 @@ function FrontsayHelloCtrl(){
                                             <Form.Label>Email address</Form.Label>
                                             <Form.Control type="email" placeholder="Enter email address" />
                                         </Form.Group>
-                                        <Form.Group as={Col} md={12}  controlId="">
+                                        <Form.Group as={Col} md={12} controlId="">
                                             <Form.Label>Mobile Number (optional)</Form.Label>
                                             <Form.Control type="text" placeholder="Enter Mobile Number" />
                                         </Form.Group>
-                                        <Form.Group as={Col} md={12}  controlId="">
+                                        <Form.Group as={Col} md={12} controlId="">
                                             <Form.Label>Full Name</Form.Label>
                                             <Form.Control type="text" placeholder="Enter Full Name" />
                                         </Form.Group>
-                                        <Form.Group as={Col} md={12}  controlId="">
+                                        <Form.Group as={Col} md={12} controlId="">
                                             <Form.Label>What's Your Enquiry About</Form.Label>
                                             <Form.Control type="text" placeholder="Enter Your Enquiry" />
                                         </Form.Group>
-                                        <Form.Group as={Col} md={12}  controlId="">
+                                        <Form.Group as={Col} md={12} controlId="">
                                             <Form.Label>Your Message</Form.Label>
                                             <Form.Control as="textarea" rows={3} />
                                         </Form.Group>
@@ -123,7 +131,7 @@ function FrontsayHelloCtrl(){
                         <Col lg={4}>
                             <div className="">
                                 <div className="">
-                                <img src={banner_img} alt={banner_img} />
+                                    <img src={banner_img} alt={banner_img} />
                                 </div>
                             </div>
                         </Col>

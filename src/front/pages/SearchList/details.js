@@ -49,6 +49,14 @@ const profileImages = require.context('../../../assets/users/images/profile', tr
 function FrontSearchDetailsCtrl() {
 
 
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
     const [isSticky, setSticky] = useState(false);
     const ref = useRef(null);
     const handleScroll = () => {

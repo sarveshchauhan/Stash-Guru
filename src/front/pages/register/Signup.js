@@ -35,6 +35,13 @@ function SignUpComponentCtrl() {
 
     useEffect(() => {
 
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
+    useEffect(() => {
+
         if (query.get("redirect_url")) {
             set_redirect_url(encodeURIComponent(decodeURIComponent(query.get('redirect_url'))));
         }

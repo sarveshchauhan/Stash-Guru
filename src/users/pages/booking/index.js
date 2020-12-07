@@ -43,6 +43,13 @@ function UserBookingCtrl() {
 
     useEffect(() => {
 
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
+    useEffect(() => {
+
         dispatch(getBookingInfoByGuid({
             guid: guid
         }));

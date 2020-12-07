@@ -26,6 +26,13 @@ function ResetPassword() {
 
     useEffect(() => {
 
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
+    useEffect(() => {
+
         if (resetPasswordSuccess) {
             setNewPassword("");
             setConfirmPassword("");

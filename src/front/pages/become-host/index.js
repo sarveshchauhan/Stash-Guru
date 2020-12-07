@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Button, Carousel, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
@@ -37,6 +37,14 @@ import ListYourSpace from '../../../assets/front/images/icons/list_your_space.pn
 
 
 function FrontBecomeHostCtrl() {
+
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
 
     return (
         <>
@@ -182,7 +190,7 @@ function FrontBecomeHostCtrl() {
                             </div>
                         </Col>
                     </Row>
-                    
+
                     <Row className="justify-content-center align-items-center my-5">
                         <Col lg={7}>
                             <div className="">
@@ -310,7 +318,7 @@ function FrontBecomeHostCtrl() {
                         </Col>
                     </Row>
 
-                    
+
                     <Row className="justify-content-center align-items-center">
                         <Col lg={6}>
                             <div className="p-5">
