@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILURE, FORGOT_PASSWORD_SUCCESS, CLEAR_FORGOT_PASSWORD_MESSAGE, CLEAR_RESET_PASSWORD_MESSAGE } from "./authTypes"
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILURE, FORGOT_PASSWORD_SUCCESS, CLEAR_FORGOT_PASSWORD_MESSAGE, CLEAR_RESET_PASSWORD_MESSAGE, SAVE_PROFILE_PIC_REQUEST, SAVE_PROFILE_PIC_SUCCESS, SAVE_PROFILE_PIC_FAILURE, SAVE_PROFILE_REQUEST, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAILURE, TOGGLE_PROFILE_MODAL } from "./authTypes"
 import { set_login_token, remove_login_token } from "../../helpers/tokenHelpers";
 import { config } from '../../config/config';
 
@@ -236,7 +236,7 @@ export const getUsers = () => {
                     if (usersResponse.status) {
 
                         const response = {
-                            users: { name: usersResponse.users.u_name, profile_pic: usersResponse.users.u_pic, email: usersResponse.users.u_email, mobile: usersResponse.users.u_mobile }
+                            users: { name: usersResponse.users.u_name, profile_pic: usersResponse.users.u_pic, email: usersResponse.users.u_email, mobile: usersResponse.users.u_mobile, about: usersResponse.users.u_about, verify: usersResponse.users.u_verify }
                         };
 
                         dispatch(getUserSuccess(response));
@@ -406,3 +406,132 @@ export const resetPassword = (resetData) => {
 
 
 
+
+const saveProfilePicRequest = () => {
+
+    return {
+        type: SAVE_PROFILE_PIC_REQUEST
+    }
+
+}
+
+const saveProfilePicSuccess = (response) => {
+    return {
+        type: SAVE_PROFILE_PIC_SUCCESS,
+        payload: response
+    }
+}
+
+
+const saveProfilePicFailure = (response) => {
+    return {
+        type: SAVE_PROFILE_PIC_FAILURE,
+        payload: response
+    }
+}
+
+
+
+
+export const saveProfilePic = (file) => {
+
+    const saveData = new FormData();
+    saveData.append('profile_pic', file);
+    saveData.append('token', JSON.parse(localStorage.getItem('stashGuruToken')));
+
+
+    return async (dispatch) => {
+        dispatch(saveProfilePicRequest())
+        await axios.post(`${config.apiUrl}/front/users/update_profile_pic`, saveData)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    dispatch(saveProfilePicSuccess(serverResponse.list));
+                    dispatch(getUsers());
+
+                }
+                else {
+                    dispatch(saveProfilePicFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(saveProfilePicFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+const saveProfileRequest = () => {
+
+    return {
+        type: SAVE_PROFILE_REQUEST
+    }
+
+}
+
+const saveProfileSuccess = (response) => {
+    return {
+        type: SAVE_PROFILE_SUCCESS,
+        payload: response
+    }
+}
+
+
+const saveProfileFailure = (response) => {
+    return {
+        type: SAVE_PROFILE_FAILURE,
+        payload: response
+    }
+}
+
+
+
+
+export const saveProfile = (reqData) => {
+
+    reqData.token = JSON.parse(localStorage.getItem('stashGuruToken'));
+
+    return async (dispatch) => {
+        dispatch(saveProfileRequest())
+        await axios.post(`${config.apiUrl}/front/users/update_profile_details`, reqData)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    dispatch(saveProfileSuccess(serverResponse.list));
+                    dispatch(getUsers());
+                    dispatch(toggleProfileModal(false));
+                }
+                else {
+                    dispatch(saveProfileFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(saveProfileFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+export const toggleProfileModal = (response) => {
+    return {
+        type: TOGGLE_PROFILE_MODAL,
+        payload: response
+    }
+}

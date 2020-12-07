@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Button, Carousel, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import SearchComponent from '../../common/components/SearchCompo';
@@ -9,8 +9,18 @@ import star from '../../../assets/front/images/icons/star.png';
 import avlSpace from '../../../assets/front/images/icons/avlSpace.png';
 import calender from '../../../assets/front/images/icons/calender.png';
 
-function FrontAboutCtrl(){
-    return(
+function FrontAboutCtrl() {
+
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
+
+
+
+    return (
         <>
             <section className="page_banner about_page_banner">
                 <Container>
@@ -18,7 +28,7 @@ function FrontAboutCtrl(){
                         <Col lg={6}>
                             <div className="page_banner_content">
                                 <h2>Storage Made Simple</h2>
-                                <p>Read a bit about <b className="text_color_shamrock">Stas.Guru</b> and what <br/> we’re all about.</p>
+                                <p>Read a bit about <b className="text_color_shamrock">Stas.Guru</b> and what <br /> we’re all about.</p>
                                 <div className="mt-5">
                                 </div>
                             </div>
@@ -32,15 +42,15 @@ function FrontAboutCtrl(){
                 </Container>
             </section>
 
-            
+
             <section className="hello_sections">
                 <Container>
                     <Row className='align-items-center'>
                         <Col lg={6}>
                             <div className="page_content">
                                 <h4 className="page_h4_txt">Hello!</h4>
-                                <p>e’re Stas.Guru, and we believe that finding storage and long term parking should be easy (and less of a hassle than needing it in the first place). That's why we're on a mission to make it simpler for everyone involved.</p> 
-                                <p>Since getting started in 2019, we’ve been busy building a platform that connects people who have unused space with people who need it for storage and parking.</p> 
+                                <p>e’re Stas.Guru, and we believe that finding storage and long term parking should be easy (and less of a hassle than needing it in the first place). That's why we're on a mission to make it simpler for everyone involved.</p>
+                                <p>Since getting started in 2019, we’ve been busy building a platform that connects people who have unused space with people who need it for storage and parking.</p>
                                 <p>By running verification checks, securely managing payments and offering 7-days-a-week support, we’re here to make finding space simple. All whilst making it easier for our Hosts to put their empty space to good use (and helping them earn a bit of extra cash too!).</p>
                                 <Button variant="milky" className="px-5">Say Hi</Button>
                             </div>

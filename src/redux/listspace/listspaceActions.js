@@ -2,6 +2,7 @@ import { GET_COORDINATES_FAILURE, GET_COORDINATES_REQUEST, GET_COORDINATES_SUCCE
 import axios from 'axios'
 import { config } from '../../config/config';
 import store from '../store';
+import Swal from 'sweetalert2';
 
 export const stepOneSave = (response) => {
 
@@ -14,9 +15,14 @@ export const stepOneSave = (response) => {
 }
 
 
-export const stepTwoSave = (response) => {
+export const stepTwoSave = (response, redirect = "") => {
 
     localStorage.setItem("listStepTwo", JSON.stringify(response));
+
+    if (redirect) {
+        console.log('redirect is true' + redirect);
+        window.location.href = redirect;
+    }
 
     return {
         type: STEP_TWO_SAVE,
@@ -467,6 +473,11 @@ export const getCoordinates = (address, manual = false, manualData = null) => {
             .then(response => {
                 const serverResponse = response.data;
                 if (+serverResponse.status) {
+
+                    dispatch(getAddress({
+                        lat: serverResponse.list.latitude,
+                        long: serverResponse.list.longitude
+                    }));
 
                     if (manual) {
                         dispatch(stepTwoSave(manualData));
@@ -1010,10 +1021,54 @@ export const publishSpace = (saveData) => {
                 const serverResponse = response.data;
                 if (+serverResponse.status) {
 
-                    dispatch(publishSuccess(serverResponse.storeid));
-                    dispatch(clearListSpaceSteps());
-                    dispatch(clearlistSpaceMessageFields());
-                    window.location.href = "/listing";
+                    if (store.getState().auth.authResponse.users.verify === "Yes") {
+
+
+                        dispatch(publishSuccess(serverResponse.storeid));
+                        dispatch(clearListSpaceSteps());
+                        dispatch(clearlistSpaceMessageFields());
+                        window.location.href = "/listing";
+
+
+                    }
+                    else {
+
+
+                        Swal.fire({
+                            title: 'Verification required!',
+                            text: "Your account is not verified. Please verify account before publish!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, Verify',
+                            cancelButtonText: 'Skip & Save'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "/verification";
+                            }
+
+                            else if (result.dismiss === "cancel") {
+
+                                dispatch(publishSuccess(serverResponse.storeid));
+                                dispatch(clearListSpaceSteps());
+                                dispatch(clearlistSpaceMessageFields());
+                                window.location.href = "/listing";
+
+                            }
+                            else if (result.dismiss === "backdrop") {
+                                // alert("backdrop");
+                                dispatch(publishFailure(""));
+                            }
+                        })
+
+
+                    }
+
+
+
+
+
                 }
                 else {
                     dispatch(publishFailure(serverResponse.message));
@@ -1271,7 +1326,7 @@ export const setListDetailClient = (id, redirect_url = "") => {
                         title: serverResponse.details.store_title,
                         token: JSON.parse(localStorage.getItem("stashGuruToken")),
                         type: serverResponse.details.st_id,
-                        used_type: serverResponse.used_type.map(sut =>  sut.suts_id).join(","),
+                        used_type: serverResponse.used_type.map(sut => sut.suts_id).join(","),
                         guest: serverResponse.details.gt_id,
                         guest_access: serverResponse.details.gta_id,
                         specific_time: JSON.parse(serverResponse.details.store_specific_time)
@@ -1536,9 +1591,7 @@ export const getAddress = (coordinates) => {
                 const serverResponse = response.data;
                 if (+serverResponse.status) {
 
-
-
-                    dispatch(addressSuccess(serverResponse.address));
+                    dispatch(addressSuccess(serverResponse));
 
                 }
                 else {

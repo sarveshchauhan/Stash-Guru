@@ -1,4 +1,4 @@
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILURE, CLEAR_FORGOT_PASSWORD_MESSAGE, CLEAR_RESET_PASSWORD_MESSAGE } from "./authTypes"
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILURE, CLEAR_FORGOT_PASSWORD_MESSAGE, CLEAR_RESET_PASSWORD_MESSAGE, SAVE_PROFILE_PIC_REQUEST, SAVE_PROFILE_PIC_SUCCESS, SAVE_PROFILE_PIC_FAILURE, SAVE_PROFILE_REQUEST, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAILURE, TOGGLE_PROFILE_MODAL } from "./authTypes"
 
 const initialState = {
     loggedIn: false,
@@ -20,7 +20,18 @@ const initialState = {
 
     resetPasswordLoading: false,
     resetPasswordSuccess: "",
-    resetPasswordError: ""
+    resetPasswordError: "",
+
+    saveProfilePicLoading: false,
+    saveProfilePicResponse: "",
+    saveProfilePicError: "",
+
+
+    saveProfileLoading: false,
+    svaeProfileResponse: "",
+    saveProfileError: "",
+
+    showProfileEditModal: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -196,6 +207,55 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 resetPasswordError: "",
                 resetPasswordSuccess: ""
+            }
+
+        case SAVE_PROFILE_PIC_REQUEST:
+            return {
+                ...state,
+                saveProfilePicLoading: true,
+                saveProfilePicError: "",
+                saveProfilePicResponse: ""
+            }
+
+
+        case SAVE_PROFILE_PIC_SUCCESS:
+            return {
+                ...state,
+                saveProfilePicLoading: false,
+                saveProfilePicResponse: action.payload
+            }
+
+        case SAVE_PROFILE_PIC_FAILURE:
+            return {
+                ...state,
+                saveProfilePicLoading: false,
+                saveProfilePicError: action.payload
+            }
+
+        case SAVE_PROFILE_REQUEST:
+            return {
+                ...state,
+                saveProfileLoading: true
+            }
+
+        case SAVE_PROFILE_SUCCESS:
+            return {
+                ...state,
+                saveProfileLoading: false,
+                svaeProfileResponse: action.payload
+            }
+
+        case SAVE_PROFILE_FAILURE:
+            return {
+                ...state,
+                saveProfileLoading: false,
+                saveProfileError: action.payload
+            }
+
+        case TOGGLE_PROFILE_MODAL:
+            return {
+                ...state,
+                showProfileEditModal: action.payload
             }
 
         default:

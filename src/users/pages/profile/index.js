@@ -1,19 +1,27 @@
 import React from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import { Button, Col, Form, Row, Spinner } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import G_profile from '../../../assets/users/images/icons/G_profile.png';
 import bell from '../../../assets/users/images/icons/bell.png';
 import promotion from '../../../assets/users/images/icons/promotion.png';
 import user_img from '../../../assets/users/images/dummy/user1.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleMobileVerifyModal } from '../../../redux';
+import { saveProfilePic, toggleMobileVerifyModal, toggleProfileModal } from '../../../redux';
 import MobileVerification from '../verification/MobileVerification';
+import ProfileEditModal from './ProfileEditModal';
 
 
 function UserProfileCtrl() {
 
     const dispatch = useDispatch();
-    const { authResponse } = useSelector(state => state.auth);
+    const { authResponse, saveProfilePicLoading } = useSelector(state => state.auth);
+
+
+    const onChangeProfilePic = (e) => {
+
+        dispatch(saveProfilePic(e.target.files[0]));
+
+    }
 
 
     return (
@@ -24,19 +32,33 @@ function UserProfileCtrl() {
             <Row>
                 <Col lg={8}>
                     <div className="about_user_profile">
+
                         <div className="change_user_profile_img">
+
+
                             {
-                                authResponse && authResponse.users && authResponse.users.profile_pic ? <img src={authResponse.users.profile_pic} /> : <img src={user_img} />
+                                saveProfilePicLoading ? <Spinner variant="success" animation="border"></Spinner> : <>
+
+                                    {
+                                        authResponse && authResponse.users && authResponse.users.profile_pic ? <img src={authResponse.users.profile_pic} /> : <img src={user_img} />
+                                    }
+                                    <div className="change_user_icon_camera">
+                                        <div className="upload-btn-wrapper">
+                                            <button className="change_user_icon_camera_btn">
+                                                <i className="fa fa-camera"></i>
+                                            </button>
+                                            <input className="change_user_icon_file" type="file" name="myfile" onChange={onChangeProfilePic} />
+                                        </div>
+                                    </div>
+                                </>
+
                             }
-                            <div className="change_user_icon_camera">
-                                <div className="upload-btn-wrapper">
-                                    <button className="change_user_icon_camera_btn">
-                                        <i className="fa fa-camera"></i>
-                                    </button>
-                                    <input className="change_user_icon_file" type="file" name="myfile" />
-                                </div>
-                            </div>
+
+
                         </div>
+
+
+
                         <div className="verify_user_email_mob">
                             <div className="verify_user_email_mob_content">
 
@@ -49,9 +71,11 @@ function UserProfileCtrl() {
                                         <h4>{authResponse && authResponse.users && authResponse.users.name}</h4>
                                     </div>
                                     <div>
-                                       <Button className="P_verify_btn">Edit</Button>
+                                        <Button className="P_verify_btn" type="button" onClick={() => dispatch(toggleProfileModal(true))}>Edit</Button>
                                     </div>
                                 </div>
+
+                                <ProfileEditModal />
 
 
                                 <div className="verify_user_email_mob_flex mt-3">
@@ -63,7 +87,7 @@ function UserProfileCtrl() {
                                         <h4> {authResponse && authResponse.users && authResponse.users.mobile} </h4>
                                     </div>
                                     <div>
-                                        <Button className="P_verify_btn" onClick={(e) => dispatch(toggleMobileVerifyModal(true))}>Verify</Button>
+                                        <Button className="P_verify_btn" onClick={(e) => dispatch(toggleMobileVerifyModal(true))}>Edit</Button>
                                         <MobileVerification />
                                     </div>
                                 </div>
@@ -77,7 +101,7 @@ function UserProfileCtrl() {
                                         <h4>{authResponse && authResponse.users && authResponse.users.email}</h4>
                                     </div>
                                     <div>
-                                        <Button className="P_verify_btn">Verify</Button>
+                                        {/* <Button className="P_verify_btn">Verify</Button> */}
                                     </div>
                                 </div>
                             </div>
@@ -86,10 +110,13 @@ function UserProfileCtrl() {
 
                     <div className="align-items-center justify-content-between">
                         <div className="">
-                            <h3 className="text_color_zambezi user_hdng_2nd">Chad Smith</h3>
+                            <h3 className="text_color_zambezi user_hdng_2nd">{authResponse && authResponse.users && authResponse.users.name}</h3>
                             <h6>About You</h6>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                            <p>
+                                {authResponse && authResponse.users && authResponse.users.about}
+                            </p>
+
+
                         </div>
                     </div>
                 </Col>

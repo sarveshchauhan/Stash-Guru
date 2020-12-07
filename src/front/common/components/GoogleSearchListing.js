@@ -4,11 +4,15 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router';
 
-function GoogleSearchListing() {
+function GoogleSearchListing(props) {
 
     const [address, setAddress] = useState("");
 
+    useEffect(() => {
 
+        props.onChangeLocation(address);
+
+    }, [address]);
 
     const handleChange = address => {
         setAddress(address);

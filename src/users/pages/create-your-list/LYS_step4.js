@@ -140,7 +140,7 @@ function CreateYourListStepForthCtrl() {
                     <Row className="justify-content-between">
                         <Col lg="5" md="6">
                             <h3 className="md_bld_txt mb-3">Description</h3>
-                            <Editor toolbarClassName="toolbarClassName" wrapperClassName="wrapperClassName" editorClassName="editorClassName" editorState={editorState} onEditorStateChange={onEditorStateChange} />
+                            <Editor toolbarHidden={true} toolbarClassName="toolbarClassName" wrapperClassName="wrapperClassName" editorClassName="editorClassName" editorState={editorState} onEditorStateChange={onEditorStateChange} />
                         </Col>
                         <Col lg="4" md="5" className="offset-lg-1">
                             <h5 className=""><b>Lorem ipsum dolor sit</b></h5>

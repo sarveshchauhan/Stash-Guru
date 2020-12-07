@@ -8,6 +8,16 @@ import StepsNavListCtrl from './steps_nav_list';
 import G_infinite from '../../../assets/users/images/icons/create_list_step/G_infinite.png';
 import infinite from '../../../assets/users/images/icons/create_list_step/infinite.png';
 
+import './liststep.css';
+
+
+const iconImages = require.context('../../../assets/front/images/icons/list-details', true);
+
+
+
+
+
+
 function CreateYourListStepThitdCtrl() {
 
     const dispatch = useDispatch();
@@ -99,8 +109,8 @@ function CreateYourListStepThitdCtrl() {
 
             }
 
-            if(stepThree.used_type){
-                set_sut_list(stepThree.used_type.split(",")); 
+            if (stepThree.used_type) {
+                set_sut_list(stepThree.used_type.split(","));
             }
 
             set_key(stepThree.keyStatus);
@@ -336,7 +346,7 @@ function CreateYourListStepThitdCtrl() {
                             {
                                 spaceTypeList && Array.isArray(spaceTypeList) && spaceTypeList.map((space, index) => (
 
-                                    <Button variant="no_bg" className={+space.st_id === +st_id ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => set_st_id(space.st_id)}>{space.st_name}</Button>
+                                    <Button variant="no_bg" className={+space.st_id === +st_id ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => set_st_id(space.st_id)}><img src={space.st_path} className="btn-icon" /> {space.st_name}</Button>
 
 
                                 ))
@@ -411,7 +421,7 @@ function CreateYourListStepThitdCtrl() {
 
                                 {
                                     featuresList && Array.isArray(featuresList) && featuresList.map((feature, index) => (
-                                        <Button variant="no_bg" className={is_feature_exists(feature.fs_id) ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => onChangeFeature(feature.fs_id)}>{feature.fs_name}</Button>
+                                        <Button variant="no_bg" className={is_feature_exists(feature.fs_id) ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => onChangeFeature(feature.fs_id)}>  <img src={iconImages(`./${feature.fs_icon}`)} alt={feature.fs_name} className="btn-icon" />  {feature.fs_name}</Button>
                                     ))
                                 }
 

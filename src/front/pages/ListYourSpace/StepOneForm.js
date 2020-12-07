@@ -105,6 +105,11 @@ function StepOneForm() {
     }
 
 
+    const onChangeLocation = (value) => {
+        setLocation(value);
+    }
+
+
     const submitForm = (e) => {
         e.preventDefault();
 
@@ -152,7 +157,7 @@ function StepOneForm() {
 
                         <Form.Group className="my_form_control_styles">
 
-                            <GoogleSearchListing />
+                            <GoogleSearchListing onChangeLocation={onChangeLocation} />
                             {/* <Form.Control type="text" placeholder="Your Location" name="location" value={location} onChange={(e) => setLocation(e.target.value)} onBlur={handleFormFields} /> */}
 
                             {

@@ -26,7 +26,7 @@ function CreateYourListStepSeventhCtrl() {
     const [guestAgreement, setGuestAgreement] = useState(false);
     const [guestAgreementError, setGuestAgreementError] = useState("");
 
-    const [vatRegistered, setVatRegistered] = useState("Yes");
+    const [vatRegistered, setVatRegistered] = useState("No");
 
 
 
@@ -108,15 +108,15 @@ function CreateYourListStepSeventhCtrl() {
             error = true;
         }
 
-        if (!guestTerms) {
-            setGuestTermsError("Please agree guest terms");
-            error = true;
-        }
+        // if (!guestTerms) {
+        //     setGuestTermsError("Please agree guest terms");
+        //     error = true;
+        // }
 
-        if (!guestAgreement) {
-            setGuestAgreementError("Please agree guest agreement");
-            error = true;
-        }
+        // if (!guestAgreement) {
+        //     setGuestAgreementError("Please agree guest agreement");
+        //     error = true;
+        // }
 
 
         if (!error) {
@@ -156,9 +156,9 @@ function CreateYourListStepSeventhCtrl() {
                 <Container>
                     <Row className="justify-content-between">
                         <Col lg="7" md="6">
-                            <h3 className="md_bld_txt mb-3">Photos of the space</h3>
+                            <h3 className="md_bld_txt mb-3">About Host</h3>
                             <div className="photos_of_space_row">
-                                <div className="photos_of_space_img_col">
+                                {/* <div className="photos_of_space_img_col">
                                     <div className="uploader_user">
 
                                         <img src={listDetailData && listDetailData.details ? listDetailData.details.u_pic : no_img} />
@@ -167,7 +167,7 @@ function CreateYourListStepSeventhCtrl() {
                                     <span className="uploader_change_own_img">
                                         <img src={B_step6} />
                                     </span>
-                                </div>
+                                </div> */}
                                 <div className="photos_of_space_text_msg_col">
                                     <textarea placeholder="Write something about you as a Stash.Guru Host....." value={aboutDescription} onChange={(e) => setAboutDescription(e.target.value)}></textarea>
                                     <p>This is publicly visible, so nothing too personal</p>
@@ -182,7 +182,7 @@ function CreateYourListStepSeventhCtrl() {
                 </Container>
             </section>
 
-            <section className="my-5">
+            {/* <section className="my-5">
                 <Container>
                     <Row className="justify-content-between">
                         <Col lg="5" md="6">
@@ -196,7 +196,7 @@ function CreateYourListStepSeventhCtrl() {
                         </Col>
                     </Row>
                 </Container>
-            </section>
+            </section> */}
 
 
 
@@ -220,7 +220,7 @@ function CreateYourListStepSeventhCtrl() {
 
 
 
-            <section className="my-5">
+            {/* <section className="my-5">
                 <Container>
                     <Row className="justify-content-between">
                         <Col lg="5" md="6">
@@ -237,11 +237,11 @@ function CreateYourListStepSeventhCtrl() {
                         </Col>
                     </Row>
                 </Container>
-            </section>
+            </section> */}
 
 
 
-            <section className="my-5">
+            {/* <section className="my-5">
                 <Container>
                     <Row className="justify-content-between">
                         <Col lg="5" md="6">
@@ -258,7 +258,7 @@ function CreateYourListStepSeventhCtrl() {
                         </Col>
                     </Row>
                 </Container>
-            </section>
+            </section> */}
 
 
 

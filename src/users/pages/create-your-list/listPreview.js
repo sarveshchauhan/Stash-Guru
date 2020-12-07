@@ -346,12 +346,12 @@ function ListPreviewCtrl() {
 
                                                         </td>
                                                     </tr>
-                                                    <tr>
+                                                    {/* <tr>
                                                         <th>VAT Registered?</th>
                                                     </tr>
                                                     <tr>
                                                         <td>{vatState}</td>
-                                                    </tr>
+                                                    </tr> */}
                                                 </tbody>
                                             </Table>
                                         </div>

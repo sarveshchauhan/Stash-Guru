@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Button, Carousel, Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import banner_img from '../../../assets/front/images/img/banner_img.svg';
@@ -33,6 +33,13 @@ import ListYourSpace from '../../../assets/front/images/icons/list_your_space.pn
 import SearchComponent from '../../common/components/SearchCompo';
 
 function FrontHomeCtrl() {
+
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window]);
 
     const [index, setIndex] = useState(0);
 

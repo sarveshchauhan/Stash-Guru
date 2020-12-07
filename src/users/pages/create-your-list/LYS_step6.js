@@ -154,7 +154,7 @@ function CreateYourListStepSixthCtrl() {
                                             <div className="PhotosSpaceimg">
                                                 <img src={image.si_path} alt="" />
                                             </div>
-                                            <FormControl className="rectu_form_field" defaultValue={image.si_name} placeholder="Enter caption" onBlur={(e) => updateImageCaption(image.si_id, e.target.value)} ></FormControl>
+                                            {/* <FormControl className="rectu_form_field" defaultValue={image.si_name} placeholder="Enter caption" onBlur={(e) => updateImageCaption(image.si_id, e.target.value)} ></FormControl> */}
                                         </div>
                                     ))
                                 }

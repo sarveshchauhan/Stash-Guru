@@ -173,7 +173,7 @@ function CreateYourListStepFifthCtrl() {
         if (pricing) {
 
             let percentage = (+pricing / 100) * (+pricePercentage);
-            setEarning(+pricing - percentage);
+            setEarning(+pricing + percentage);
         }
         else {
             setEarning("0");
@@ -251,8 +251,8 @@ function CreateYourListStepFifthCtrl() {
                     depth: depth,
                     height: height,
                     total_size: (+width * +depth),
-                    price: pricing,
-                    your_earnings: earning,
+                    price: earning,
+                    your_earnings: pricing,
                     flexible: flexibleBooking === true ? "Yes" : "No",
                     instant: enableInstantBooking,
                     security: security ? "Yes" : "No",
@@ -295,7 +295,7 @@ function CreateYourListStepFifthCtrl() {
                                     </div>
                                     <div className="sizeSpaceWidthUnit">
                                         <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Control as="select" name="widthUnit" value={widthUnit} onChange={(e) => setWidthUnit(e.target.value)}>
+                                            <Form.Control as="select" disabled={true} name="widthUnit" value={widthUnit} onChange={(e) => setWidthUnit(e.target.value)}>
                                                 {
                                                     unitList && Array.isArray(unitList) && unitList.map((unit, index) => (
                                                         <option value={unit.mu_id} key={index}>{unit.mu_name}</option>
@@ -324,7 +324,7 @@ function CreateYourListStepFifthCtrl() {
                                     </div>
                                     <div className="sizeSpaceWidthUnit">
                                         <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Control as="select" name="depthUnit" value={depthUnit} onChange={(e) => setDepthUnit(e.target.value)}>
+                                            <Form.Control as="select" disabled={true} name="depthUnit" value={depthUnit} onChange={(e) => setDepthUnit(e.target.value)}>
                                                 {
                                                     unitList && Array.isArray(unitList) && unitList.map((unit, index) => (
                                                         <option value={unit.mu_id} key={index}>{unit.mu_name}</option>
@@ -356,7 +356,7 @@ function CreateYourListStepFifthCtrl() {
                                     </div>
                                     <div className="sizeSpaceWidthUnit">
                                         <Form.Group controlId="exampleForm.ControlSelect1">
-                                            <Form.Control as="select" name="heightUnit" value={heightUnit} onChange={(e) => setHeightUnit(e.target.value)}>
+                                            <Form.Control as="select" disabled={true} name="heightUnit" value={heightUnit} onChange={(e) => setHeightUnit(e.target.value)}>
                                                 {
                                                     unitList && Array.isArray(unitList) && unitList.map((unit, index) => (
                                                         <option value={unit.mu_id} key={index}>{unit.mu_name}</option>
@@ -448,18 +448,20 @@ function CreateYourListStepFifthCtrl() {
                                     <div>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</div>
                                 </Accordion.Collapse>
                             </Accordion>
-                            <div className="mt-3">
+
+                            {/* <div className="mt-3">
                                 <h6>Get Your Earnings</h6>
                                 <div className="GetYourEarningsRow">
                                     <div className="GetYourEarningsCol">
                                         <Button variant="success" className="">
-                                            {/* <i className="fa fa-usd" aria-hidden="true"></i>  */}
-
                                             {earning}  Lei </Button>
                                     </div>
                                     <b>Per Month</b>
                                 </div>
-                            </div>
+                            </div> */}
+
+
+
                         </Col>
                         <Col lg="4" md="5" className="offset-lg-1">
                             <h5 className=""><b>Lorem ipsum dolor sit</b></h5>
@@ -476,7 +478,7 @@ function CreateYourListStepFifthCtrl() {
                         <Col lg="5" md="6">
                             <h3 className="md_bld_txt">Security deposit</h3>
                             <Form.Group controlId="" className="mb-0" name="security-check">
-                                <Form.Check type="checkbox" checked={security} label={`Include 1 month security deposit of (${pricing} Lei)`} onChange={() => setSecurity(!security)} />
+                                <Form.Check type="checkbox" checked={security} label={`Include 1 month security deposit of (${earning} Lei)`} onChange={() => setSecurity(!security)} />
                             </Form.Group>
                             <Accordion>
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
@@ -496,7 +498,7 @@ function CreateYourListStepFifthCtrl() {
             </section>
 
 
-            <section className="my-5">
+            {/* <section className="my-5">
                 <Container>
                     <Row className="justify-content-between">
                         <Col lg="5" md="6">
@@ -519,7 +521,7 @@ function CreateYourListStepFifthCtrl() {
                         </Col>
                     </Row>
                 </Container>
-            </section>
+            </section> */}
 
             <section className="my-5">
                 <Container>

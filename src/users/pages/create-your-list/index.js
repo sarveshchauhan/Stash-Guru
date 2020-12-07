@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 // import { MapContainer } from '../../../front/common/components/map';
 import GoogleMap from '../../../front/common/components/google-map/GoogleMap';
+import GoogleSearch from '../../../front/common/components/GoogleSearch';
 import { getCoordinates } from '../../../redux';
 import './createList.scss';
 import ManualAddressForm from './ManualAddressForm';
@@ -14,7 +15,8 @@ function UserCreateYourListCtrl() {
     const history = useHistory();
     const { coordinates, coordinatesError, coordinatesLoading, stepOne, address, addressLoading } = useSelector(state => state.listspace);
 
-    const [manually, setManually] = useState([!false]);
+
+    const [manually, setManually] = useState(false);
     const [search, setSearch] = useState("");
     const [addressName, setAddressName] = useState("");
 
@@ -114,6 +116,7 @@ function UserCreateYourListCtrl() {
                             <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, <br /> sed diam nonumy eirmod.</p>
                             <Form className="py-2">
                                 <Form.Label>Add Your Location</Form.Label>
+
                                 <InputGroup className="Create_list_location_search_bar mb-2">
                                     <InputGroup.Prepend>
                                         <InputGroup.Text id="">
@@ -143,15 +146,15 @@ function UserCreateYourListCtrl() {
 
 
 
-                                {/* <p>Can't find your address?
+                                <p>Can't find your address?
                                 <span className="text_color_shamrock pl-2" style={{ cursor: 'pointer' }} id="manualBtn" onClick={() => setManually(!manually)}>Enter it manually.</span>
-                                </p> */}
+                                </p>
 
 
 
                             </Form>
-                            <div className={`d-block`}>
-                                <ManualAddressForm />
+                            <div className={'d-block'}>
+                                <ManualAddressForm showManualForm={manually} />
                             </div>
                         </Col>
 

@@ -93,7 +93,11 @@ const initialState = {
 
     address: "",
     addressLoading: false,
-    addressError: ""
+    addressError: "",
+
+
+    addressData: ""
+
 
 
 }
@@ -557,7 +561,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 addressLoading: false,
-                address: action.payload
+                address: action.payload.address,
+                addressData: action.payload.data
             }
 
         case ADDRESS_FAILURE:
