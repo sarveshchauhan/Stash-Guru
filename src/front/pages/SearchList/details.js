@@ -85,6 +85,8 @@ function FrontSearchDetailsCtrl() {
 
     const { schDetails, detailsResponse, vat, features, access, images, measurement_unit, used_type, loading } = useSelector(state => state.search);
     const { bookingInfo } = useSelector(state => state.booking);
+    const { authResponse } = useSelector(state => state.auth);
+
 
     useEffect(() => {
         dispatch(searchDetails(searchId));
@@ -250,7 +252,7 @@ function FrontSearchDetailsCtrl() {
                                     {features.map((details, index) =>
                                         <Col sm={3} key={index}>
                                             <div className="features_icon">
-                                                <img src={iconImages(`./${details.fs_icon}`)} alt={details.fs_name} />
+                                                <img src={details.fs_icon} alt={details.fs_name} />
                                                 <p>{details.fs_name}</p>
                                             </div>
                                         </Col>
@@ -368,6 +370,8 @@ function FrontSearchDetailsCtrl() {
                                 <hr />
                             </div>
 
+
+
                             <div className="details_content">
                                 <h5 className="mt-4 sm2_hdng">Host</h5>
                                 <Row>
@@ -377,20 +381,24 @@ function FrontSearchDetailsCtrl() {
                                             <div className="access_card_text">
                                                 <h4>{details && details.u_name}</h4>
                                                 <small>{verifyStatus}</small>
-                                                <Button variant="success" onClick={() => window.location.href = `/chat/list/${searchId}`}>Message Mary Ann..</Button>
+
+                                                <Button variant="success" onClick={() => dispatch(toggleBookingModal(true))}>Message {authResponse && authResponse.users && authResponse.users.name}</Button>
+
+
+
                                             </div>
                                         </div>
                                     </Col>
                                 </Row>
 
-                                <Row className="mt-4">
+                                {/* <Row className="mt-4">
                                     <Col sm={12}>
                                         <MessageForm />
                                     </Col>
                                 </Row>
 
 
-                                <MessageList />
+                                <MessageList /> */}
 
 
                             </div>

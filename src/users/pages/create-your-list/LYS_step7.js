@@ -15,6 +15,7 @@ function CreateYourListStepSeventhCtrl() {
     const history = useHistory();
     const dispatch = useDispatch();
     const { stepSix, publishSuccess, publishError, publishLoading, stepSeven, listDetailData } = useSelector(state => state.listspace);
+    const { authResponse } = useSelector(state => state.auth);
     const [aboutDescription, setAboutDescription] = useState("");
 
     const [bookingTerms, setBookingTerms] = useState(false);
@@ -220,24 +221,29 @@ function CreateYourListStepSeventhCtrl() {
 
 
 
-            {/* <section className="my-5">
-                <Container>
-                    <Row className="justify-content-between">
-                        <Col lg="5" md="6">
-                            <h3 className="md_bld_txt">ID Verification</h3>
+            {
+                authResponse && authResponse.users && authResponse.users.verify !== "Yes" && <section className="my-5">
+                    <Container>
+                        <Row className="justify-content-between">
+                            <Col lg="5" md="6">
+                                <h3 className="md_bld_txt">ID Verification</h3>
 
-                            <p>We ask all StashGuru Hosts to verify their account before they can respond to Guest enquires and take bookings. You'll only have to do this once, and it only takes a minute or two.</p>
-                            <Button className="btn_l_orange px-4" onClick={() => window.open('/verification')}>Verify My Account</Button>
-                            <p>Required to fully enable instant Book. <a href="#">Learn more.</a></p>
+                                <p>We ask all StashGuru Hosts to verify their account before they can respond to Guest enquires and take bookings. You'll only have to do this once, and it only takes a minute or two.</p>
+                                <Button className="btn_l_orange px-4" onClick={() => window.location.href = `/verification`}>Verify My Account</Button>
+                                <p>Required to fully enable instant Book. <a href="#">Learn more.</a></p>
 
-                        </Col>
-                        <Col lg="4" md="5" className="offset-lg-1">
-                            <h5 className=""><b>Lorem ipsum dolor sit</b></h5>
-                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                        </Col>
-                    </Row>
-                </Container>
-            </section> */}
+                            </Col>
+                            <Col lg="4" md="5" className="offset-lg-1">
+                                <h5 className=""><b>Lorem ipsum dolor sit</b></h5>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.</p>
+                            </Col>
+                        </Row>
+                    </Container>
+                </section>
+            }
+
+
+
 
 
 

@@ -198,7 +198,7 @@ function FrontSearchListCtrl() {
                                                                     }
                                                                 </div>
                                                                 <div className="px-0">
-                                                                    <strong>{details.store_size}<small> {details.measurement_unit.mu_name}<sup>2</sup> </small> </strong>
+                                                                    <strong>{details.store_size}<small> {details.measurement_unit && details.measurement_unit.mu_name}<sup>2</sup> </small> </strong>
                                                                 </div>
                                                             </div>
                                                         </div>

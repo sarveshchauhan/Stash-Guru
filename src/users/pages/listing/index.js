@@ -5,12 +5,15 @@ import SearchList1 from '../../../assets/users/images/dummy/SearchList1.jpg'
 import { useDispatch, useSelector } from 'react-redux';
 import LoaderCtrl from '../../../front/common/components/loader';
 import { getDraftStatus, listAllSpace, setListDetailClient } from '../../../redux';
+import { useHistory } from 'react-router';
 
 
 function UserListingtrl() {
 
     const dispatch = useDispatch();
-    const { listAllSpaceLoading, allSpaceList, listAllSpaceError, draftStatus, draftStatusError } = useSelector(state => state.listspace);
+    const { listAllSpaceLoading, allSpaceList, allSpaceListDraft, listAllSpaceError, draftStatus, draftStatusError } = useSelector(state => state.listspace);
+    const { authResponse } = useSelector(state => state.auth);
+    const history = useHistory();
 
 
     useEffect(() => {
@@ -45,6 +48,25 @@ function UserListingtrl() {
 
         dispatch(setListDetailClient(id));
         window.location.href = `/list-preview/${id}`
+
+    }
+
+
+    const getCurrentStep = (store_id) => {
+        if (!allSpaceListDraft) {
+            console.log('list not found');
+            return null;
+        }
+
+
+        const resultList = allSpaceListDraft && Array.isArray(allSpaceListDraft) && allSpaceListDraft.find(i => +i.store_id === +store_id);
+
+        if (resultList) {
+            return resultList.draft_step;
+        }
+
+
+        return false;
 
     }
 
@@ -95,13 +117,20 @@ function UserListingtrl() {
 
                     <Card className="listing_card listing_card_progress" key={index}>
                         <Card.Header className="listing_card_header">
-                            <p><i className="fa fa-exclamation-circle pr-2"></i> Unfinished Listing</p>
+                            <p><i className="fa fa-exclamation-circle pr-2"></i> {list.store_status}</p>
                             <div className="listing_card_header_righr">
 
+                                {/* {
+                                    list.store_status === "Draft" ? <Button className="btn_milky_grn mr-2" onClick={(e) => get_draft_status(list.store_id, e)}>Finish Listing</Button> : ""
+                                } */}
+
                                 {
-                                    list.store_status === "Progress" ? <Button className="btn_milky_grn mr-2" onClick={(e) => get_draft_status(list.store_id, e)}>Finish Listing</Button> : ""
+                                    authResponse && authResponse.users && authResponse.users.verify !== "Yes" && <Button className="btn_milky_grn mr-2 btn-danger" onClick={(e) => history.push(`/verification`)}>Verify Account</Button>
                                 }
 
+                                {
+                                    getCurrentStep(list.store_id) && getCurrentStep(list.store_id) < 7 ? <Button className="btn_milky_grn mr-2" onClick={(e) => get_draft_status(list.store_id, e)}>Finish Listing</Button> : ""
+                                }
 
 
 

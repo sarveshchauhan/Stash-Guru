@@ -1010,19 +1010,20 @@ const publishFailure = (response) => {
 
 export const publishSpace = (saveData) => {
 
+
     const requestConfig = {
         'Content-Type': 'application/json'
     };
 
     return async (dispatch) => {
-        dispatch(publishRequest())
+        dispatch(publishRequest());
+
         await axios.post(`${config.apiUrl}/front/list_your_space/publish`, saveData, requestConfig)
             .then(response => {
                 const serverResponse = response.data;
                 if (+serverResponse.status) {
 
                     if (store.getState().auth.authResponse.users.verify === "Yes") {
-
 
                         dispatch(publishSuccess(serverResponse.storeid));
                         dispatch(clearListSpaceSteps());
@@ -1033,7 +1034,6 @@ export const publishSpace = (saveData) => {
                     }
                     else {
 
-
                         Swal.fire({
                             title: 'Verification required!',
                             text: "Your account is not verified. Please verify account before publish!",
@@ -1042,7 +1042,8 @@ export const publishSpace = (saveData) => {
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
                             confirmButtonText: 'Yes, Verify',
-                            cancelButtonText: 'Skip & Save'
+                            cancelButtonText: 'Skip & Save',
+                            backdrop: false,
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 window.location.href = "/verification";
@@ -1138,7 +1139,12 @@ export const listAllSpace = (saveData) => {
                 const serverResponse = response.data;
                 if (+serverResponse.status) {
 
-                    dispatch(listAllSpaceSuccess(serverResponse.list));
+                    let listData = {
+                        list: serverResponse.list,
+                        draft: serverResponse.draft
+                    };
+
+                    dispatch(listAllSpaceSuccess(listData));
 
                 }
                 else {
@@ -1222,6 +1228,10 @@ export const getDraftStatus = (data) => {
                             break;
 
                         case 6:
+                            redirect_url = "/create-your-list-step7";
+                            break;
+
+                        case 7:
                             redirect_url = "/create-your-list-step7";
                             break;
 

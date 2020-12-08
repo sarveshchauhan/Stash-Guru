@@ -426,13 +426,16 @@ function CreateYourListStepFifthCtrl() {
                             <div className="PricingRow">
                                 <div className="PricingCol">
                                     <InputGroup className="">
+
+                                        <FormControl name="pricing" onChange={(e) => setPricing(e.target.value)} value={pricing} onBlur={() => vaildateErrors("pricing")} />
+
                                         <InputGroup.Prepend>
                                             <InputGroup.Text style={{ width: '50px', justifyContent: 'center' }}>
                                                 {/* <i className="fa fa-usd" aria-hidden="true"></i> */}
                                             Lei
                                             </InputGroup.Text>
                                         </InputGroup.Prepend>
-                                        <FormControl name="pricing" onChange={(e) => setPricing(e.target.value)} value={pricing} onBlur={() => vaildateErrors("pricing")} />
+
                                     </InputGroup>
                                     {
                                         pricingError && <small className="text-danger">{pricingError}</small>

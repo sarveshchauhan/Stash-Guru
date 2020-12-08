@@ -77,6 +77,7 @@ const initialState = {
 
     listAllSpaceLoading: false,
     allSpaceList: "",
+    allSpaceListDraft: "",
     listAllSpaceError: "",
 
     draftStatusLoading: false,
@@ -470,7 +471,8 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 listAllSpaceLoading: false,
-                allSpaceList: action.payload
+                allSpaceList: action.payload.list,
+                allSpaceListDraft: action.payload.draft
             }
 
         case LIST_ALL_SPACE_FAILURE:
