@@ -64,11 +64,33 @@
     padding: 0px;
     overflow: hidden;
 }
+.box_Img_Card.WorkspaceWarehouse_bookingCard{
+    overflow: visible;
+}
 .box_Img_Card_body{
     padding: 15px;
 }
+.move_in_checklist .dropdown-item{
+}
+.move_in_checklist .dropdown-item{
+    display: flex;
+    align-items: center;
+}
+.move_in_checklist .dropdown-item:focus{
+    background: #1BBDF6;
+}
+.move_in_checklist .dropdown-item i,
+.move_in_checklist .dropdown-item img{
+    margin-right: 10px;
+    font-size: 20px;
+}
 
-
+.move_in_checklist .dropdown-item.cancelBooking:focus{
+    background: #FF784F;
+}
+.cancelBooking{
+    color: #FF784F;
+}
 
 
 .box_Img_Card_body table.table{

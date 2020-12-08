@@ -1,12 +1,18 @@
 import React, { useEffect } from 'react';
-import { Button, Col, FormControl, InputGroup, Table, Row } from 'react-bootstrap';
+import { Button, Col, FormControl, Dropdown, Table, Row } from 'react-bootstrap';
 import { NavLink, useParams } from 'react-router-dom';
 import './booking.scss';
 import video_bg from '../../../assets/users/images/dummy/video_bg.png';
 import deposit from '../../../assets/users/images/chat/deposit.png';
-import G_calender from '../../../assets/users/images/chat/G_calender.png';
+
+import calender from '../../../assets/users/images/icons/moveChecklist/calender.png';
+import acceptTC from '../../../assets/users/images/icons/moveChecklist/acceptTC.png';
+import add_invest from '../../../assets/users/images/icons/moveChecklist/add_invest.png';
+import signBD from '../../../assets/users/images/icons/moveChecklist/signBD.png';
+import verify_AC from '../../../assets/users/images/icons/moveChecklist/verify_AC.png';
+import viewLP from '../../../assets/users/images/icons/moveChecklist/viewLP.png';
+
 import send_message from '../../../assets/users/images/chat/send_message.png';
-import calendar from '../../../assets/users/images/chat/calendar.png';
 import g_sm_verify from '../../../assets/users/images/chat/g_sm_verify.png';
 import r_sm_verify from '../../../assets/users/images/chat/r_sm_verify.png';
 
@@ -49,10 +55,8 @@ function UserBookingChatCtrl() {
                         <BookingChatBox />
                     </Col>
 
-
-
                     <Col md={4}>
-                        <div className="box_Img_Card WorkspaceWarehouse_bookingCard">
+                        <div className="box_Img_Card WorkspaceWarehouse_bookingCard" >
                             <img src={video_bg} alt="" />
                             <div className="box_Img_Card_body">
                                 <h5>{schDetails && schDetails.store_title}</h5>
@@ -73,7 +77,6 @@ function UserBookingChatCtrl() {
                                                     </tbody>
                                                 </Table>
                                             </td>
-
 
                                             <td width="120">
                                                 <Table size="sm" className="no_bdr">
@@ -108,9 +111,52 @@ function UserBookingChatCtrl() {
                                         </tr>
                                     </tbody>
                                 </Table>
-                                <small className="d-block"><img src={deposit} width="30" /> Security Deposit ${schDetails && schDetails.store_cost}</small>
+                                <small className="d-block">
+                                    <img src={deposit} width="30" /> Security Deposit ${schDetails && schDetails.store_cost}
+                                </small>
                                 {/* <small className="d-block"><img src={G_calender} width="30" /> Minimum Rental Period 2Months</small> */}
-                                <Button size="sm" className="btn_milky_grn mt-3">Read More</Button>
+                                <div className="d-flex-wrap justify-content-between">
+                                    <Button size="sm" className="btn_milky_grn mt-3">Read More</Button>
+                                    <Dropdown>
+                                        <Dropdown.Toggle  size="sm" className="btn_milky_bl mt-3">
+                                            Move-in-Checklist
+                                        </Dropdown.Toggle>
+
+                                        <Dropdown.Menu className="move_in_checklist">
+                                            <Dropdown.Item href="#/action-1">
+                                                <img height="15" src={calender} />
+                                                Edit Start Date
+                                            </Dropdown.Item>
+                                            <Dropdown.Divider />
+                                            <Dropdown.Item href="#/action-1">
+                                                <img height="15" src={add_invest} />
+                                                Add Inventory
+                                            </Dropdown.Item>
+                                            <Dropdown.Item href="#/action-1">
+                                                <img height="15" src={verify_AC} />
+                                                verify Account
+                                            </Dropdown.Item>
+                                            <Dropdown.Item href="#/action-1">
+                                                <img height="15" src={acceptTC} />
+                                                Accept Terms & Conditions
+                                            </Dropdown.Item>
+                                            <Dropdown.Item href="#/action-1">
+                                                <img height="15" src={signBD} />
+                                                Sign Booking Document
+                                            </Dropdown.Item>
+                                            <Dropdown.Item href="#/action-1">
+                                                <img height="15" src={viewLP} />
+                                                View Listing Page
+                                            </Dropdown.Item>
+                                            <Dropdown.Divider />
+                                            <Dropdown.Item href="#/action-2" className="cancelBooking">
+                                                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                                Cancel Booking
+                                            </Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+
+                                </div>
 
                                 <Button variant="success" className="btn-block my-3" onClick={() => dispatch(toggleBookingModal(true))}>Book Space</Button>
 
