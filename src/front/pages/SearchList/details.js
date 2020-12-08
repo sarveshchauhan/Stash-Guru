@@ -382,8 +382,9 @@ function FrontSearchDetailsCtrl() {
                                                 <h4>{details && details.u_name}</h4>
                                                 <small>{verifyStatus}</small>
 
-                                                <Button variant="success" onClick={() => dispatch(toggleBookingModal(true))}>Message {authResponse && authResponse.users && authResponse.users.name}</Button>
+                                                {/* <Button variant="success" onClick={() => dispatch(toggleBookingModal(true))}>Message {authResponse && authResponse.users && authResponse.users.name}</Button> */}
 
+                                                <Button variant="success" onClick={() => window.location.href = `/chat/list/${searchId}`}>Message {authResponse && authResponse.users && authResponse.users.name}</Button>
 
 
                                             </div>
