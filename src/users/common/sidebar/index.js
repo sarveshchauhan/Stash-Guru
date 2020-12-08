@@ -29,17 +29,17 @@ function PageSideMenuCtrl() {
     const [isSticky, setSticky] = useState(false);
     const ref = useRef(null);
     const handleScroll = () => {
-      if (ref.current) {
-        setSticky(ref.current.getBoundingClientRect().top <= 0);
-      }
+        if (ref.current) {
+            setSticky(ref.current.getBoundingClientRect().top <= 0);
+        }
     };
-  
+
     useEffect(() => {
-      window.addEventListener('scroll', handleScroll);
-  
-      return () => {
-        window.removeEventListener('scroll', () => handleScroll);
-      };
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', () => handleScroll);
+        };
     }, []);
 
 
@@ -63,6 +63,12 @@ function PageSideMenuCtrl() {
                         <img className="img_deactive" src={B_listing} />
                         <img className="img_active" src={G_listing} />
                         Listing
+                    </NavLink>
+
+                    <NavLink className="nav-link" to="/booked-listing">
+                        <img className="img_deactive" src={B_listing} />
+                        <img className="img_active" src={G_listing} />
+                        Booked Listing
                     </NavLink>
 
                     <NavLink className="nav-link" to="/verification">

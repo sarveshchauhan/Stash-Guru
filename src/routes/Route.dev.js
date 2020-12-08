@@ -67,6 +67,7 @@ import ForgotPassword from '../front/pages/register/ForgotPassword';
 import ResetPassword from '../front/pages/register/ResetPassword';
 import ChatCtrl from '../users/pages/chat';
 import { socketIO } from '../helpers/socketHelper';
+import UserBookedListCtrl from '../users/pages/booking/bookedList';
 
 
 const socket = socketIO;
@@ -125,6 +126,12 @@ const Root = () => {
             <PrivateRoute exact path="/listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserListingtrl} />
             <PrivateRoute exact path="/booking/:guid" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingCtrl} />
             <PrivateRoute exact path="/booking" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingListCtrl} />
+
+
+            <PrivateRoute exact path="/booked-listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookedListCtrl} />
+
+
+
             <PrivateRoute exact path="/no-any-list" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserNoBookingListCtrl} />
 
             <PrivateRoute exact path="/chat/list/:listId" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingChatCtrl} />

@@ -1,4 +1,4 @@
-import { BOOKING_FAILURE, BOOKING_INFO, BOOKING_LIST, BOOKING_REQUEST, CHARGE_FAILURE, CHARGE_REQUEST, CHARGE_SUCCESS, NEW_BOOKING_RESPONSE, TOGGLE_BOOKING_MODAL } from "./bookingTypes";
+import { BOOKING_FAILURE, BOOKING_INFO, BOOKING_LIST, BOOKING_REQUEST, CHARGE_FAILURE, CHARGE_REQUEST, CHARGE_SUCCESS, HOST_BOOKING_LIST_FAILURE, HOST_BOOKING_LIST_REQUEST, HOST_BOOKING_LIST_SUCCESS, NEW_BOOKING_RESPONSE, TOGGLE_BOOKING_MODAL, UPDATE_BOOKING_FAILURE, UPDATE_BOOKING_REQUEST, UPDATE_BOOKING_SUCCESS } from "./bookingTypes";
 
 const initialState = {
 
@@ -14,7 +14,15 @@ const initialState = {
     chargeInfo: "",
     chargeError: "",
 
-    bookingList: ""
+    bookingList: "",
+
+    hostBookingListLoading: false,
+    hostBookingList: "",
+    hostBookingListError: "",
+
+    updateBookingLoading: false,
+    updateBookingResponse: "",
+    updateBookingError: ""
 
 }
 
@@ -84,6 +92,46 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 bookingList: action.payload,
                 bookingLoading: false,
+            }
+
+        case HOST_BOOKING_LIST_REQUEST:
+            return {
+                ...state,
+                hostBookingListLoading: true
+            }
+
+        case HOST_BOOKING_LIST_SUCCESS:
+            return {
+                ...state,
+                hostBookingListLoading: false,
+                hostBookingList: action.payload
+            }
+
+        case HOST_BOOKING_LIST_FAILURE:
+            return {
+                ...state,
+                hostBookingListLoading: false,
+                hostBookingListError: action.payload
+            }
+
+        case UPDATE_BOOKING_REQUEST:
+            return {
+                ...state,
+                updateBookingLoading: true
+            }
+
+        case UPDATE_BOOKING_SUCCESS:
+            return {
+                ...state,
+                updateBookingLoading: false,
+                updateBookingResponse: action.payload
+            }
+
+        case UPDATE_BOOKING_FAILURE:
+            return {
+                ...state,
+                updateBookingLoading: false,
+                updateBookingError: action.payload
             }
 
 
