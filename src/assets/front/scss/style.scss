@@ -1309,3 +1309,124 @@ a.link{
     color: #595959;
     font-size: 14px;
 }
+
+
+
+
+
+
+.can_store,
+.how_ds_work,
+.why_use_sguru{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.how_ds_work{
+    background-color: #FCFFFE;
+}
+.can_store_card{
+    margin: 15px auto;
+}
+.can_store_card .can_store_card_body{
+    padding: 20px;
+    margin: 15px auto;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 15px auto;
+    border-radius: 5px;
+}
+
+.can_store .can_store_card:first-child .can_store_card_body{
+    background-image: linear-gradient(238deg, rgba(27,189,246,0.8) 0%, rgba(52,215,137,0.8) 100%),url('../images/img/what_can_stroe2.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.can_store .can_store_card:nth-child(2) .can_store_card_body{
+    background-image: linear-gradient(238deg, rgba(27,189,246,0.8) 0%, rgba(52,215,137,0.8) 100%),url('../images/img/what_can_stroe2.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.can_store .can_store_card:nth-child(3) .can_store_card_body{
+    background-image: linear-gradient(238deg, rgba(27,189,246,0.8) 0%, rgba(52,215,137,0.8) 100%),url('../images/img/what_can_stroe3.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.can_store_card .can_store_card_body h5{
+    margin-bottom: 0px;
+    color: #ffffff;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.can_store_card .can_store_card_body p{
+    margin: 0;
+    color: #ffffff;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+
+.can_store_list ul li{
+    position: relative;
+    padding: 30px 40px 30px 30px;
+}
+.can_store_list ul li::after{
+    content: '';
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-image: url('../images/icons/approved.png');
+    background-size: contain;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+
+
+
+
+.how_ds_work_card{
+    text-align: center;
+}
+.how_ds_work_icon{
+    width: 90px;
+    height: 90px;
+    line-height: 90px;
+    background-color: #c7f4e4;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+}
+.how_ds_work_icon img {
+    max-width: 40px;
+}
+
+
+
+
+
+
+.why_use_sguru_card{
+    height: 100%;
+    padding: 15px 0;
+}
+.why_use_sguru_card_body{
+    padding: 20px;
+    margin: 15px auto;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #34d789;
+    margin: 15px auto;
+}
+.why_use_sguru_icon{
+    max-width: 50px;
+    margin: 0 auto;
+}
