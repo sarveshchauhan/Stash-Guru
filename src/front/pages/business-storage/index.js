@@ -273,7 +273,7 @@ function FrontBusinessStorageCtrl() {
                                     <div className="why_use_sguru_content">
                                         <h3 class="pg_bg_hdng">Need Some Help Finding Storage?</h3>
                                         <p>We get that finding somewhere to store your things can be a real pain, that’s why we’re here to help keep things simple. Chat to us 7 days a week for help and support.</p>
-                                        <Button>Contact Us</Button>
+                                        <Button className="btn_success px-5">Contact Us</Button>
                                     </div>
                                 </div>
                             </div>
