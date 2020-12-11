@@ -56,7 +56,7 @@ function FooterComponent() {
                                         <h4 className="mt-3">Rent A Space</h4>
                                         <Nav className="flex-column">
                                             <NavLink to="" className="nav-link">Start Storing</NavLink>
-                                            <NavLink to="" className="nav-link">Domestic Storage</NavLink>
+                                            <NavLink to="/domestic-storage" className="nav-link">Domestic Storage</NavLink>
                                             <NavLink to="/business-storage" className="nav-link">Business Storage</NavLink>
                                             <NavLink to="" className="nav-link">Rent A Parking Space</NavLink>
                                             <NavLink to="" className="nav-link">Storage Space In London</NavLink>
@@ -104,7 +104,7 @@ function FooterComponent() {
                                             <Accordion.Collapse eventKey="0">
                                                 <Nav className="flex-column">
                                                     <NavLink to="" className="nav-link">Start Storing</NavLink>
-                                                    <NavLink to="" className="nav-link">Domestic Storage</NavLink>
+                                                    <NavLink to="/domestic-storage" className="nav-link">Domestic Storage</NavLink>
                                                     <NavLink to="/business-storage" className="nav-link">Business Storage</NavLink>
                                                     <NavLink to="" className="nav-link">Rent A Parking Space</NavLink>
                                                     <NavLink to="" className="nav-link">Storage Space In London</NavLink>
