@@ -168,10 +168,10 @@ function UserVerificationCtrl() {
 
 
 
-                    <span className="text_color_gray"> (denise.gibson@mail.com)</span>
+                    <span className="text_color_gray"> ({authResponse && authResponse.users && authResponse.users.email})</span>
                 </div>
                 <div>
-                    <Button className="btn_success">Change Email</Button>
+                    {/* <Button className="btn_success">Change Email</Button> */}
                 </div>
             </div>
 

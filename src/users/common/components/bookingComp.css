@@ -1,0 +1,9 @@
+.modal-header{
+   background-color: #34D789;
+   color: #ffffff; 
+}
+
+.terms-div{
+    max-height: 500px;
+    overflow-y: auto;
+}

@@ -96,6 +96,15 @@ export const registerUser = (user) => {
         user.redirect_url = encodeURIComponent(`${config.appUrl}/dashboard`);
     }
 
+    if (query.get("referral")) {
+        user.is_referral = "Yes";
+        user.referral_id = query.get("referral");
+    }
+    else {
+        user.is_referral = "No";
+        user.referral_id = "";
+    }
+
 
     const requestConfig = {
         'Content-Type': 'application/json'
@@ -131,9 +140,25 @@ export const googleRegisterUser = (token) => {
         'Content-Type': 'application/json'
     };
 
+    let reqData = {
+        googleToken: token
+    };
+
+    const queryy = new URLSearchParams(window.location.search);
+
+
+    if (queryy.get("referral")) {
+        reqData.is_referral = "Yes";
+        reqData.referral_id = queryy.get("referral");
+    }
+    else {
+        reqData.is_referral = "No";
+        reqData.referral_id = "";
+    }
+
     return (dispatch) => {
         dispatch(googleRegisterRequest());
-        axios.post(`${config.apiUrl}/front/users/googleLogin`, { googleToken: token }, requestConfig)
+        axios.post(`${config.apiUrl}/front/users/googleLogin`, reqData, requestConfig)
             .then(response => {
 
                 const loginResponse = response.data;
@@ -179,9 +204,28 @@ export const facebookRegisterUser = (data) => {
         'Content-Type': 'application/json'
     };
 
+
+    let reqData = {
+        fbdata: data
+    };
+
+    const queryy = new URLSearchParams(window.location.search);
+
+
+    if (queryy.get("referral")) {
+        reqData.is_referral = "Yes";
+        reqData.referral_id = queryy.get("referral");
+    }
+    else {
+        reqData.is_referral = "No";
+        reqData.referral_id = "";
+    }
+
+
+
     return (dispatch) => {
         dispatch(facebookRegisterRequest());
-        axios.post(`${config.apiUrl}/front/users/facebookLogin`, { fbdata: data }, requestConfig)
+        axios.post(`${config.apiUrl}/front/users/facebookLogin`, reqData, requestConfig)
             .then(response => {
 
                 const loginResponse = response.data;

@@ -464,7 +464,10 @@ const reducer = (state = initialState, action) => {
         case LIST_ALL_SPACE_REQUEST:
             return {
                 ...state,
-                listAllSpaceLoading: true
+                listAllSpaceLoading: true,
+                listAllSpaceError: "",
+                allSpaceList: "",
+                allSpaceListDraft: ""
             }
 
         case LIST_ALL_SPACE_SUCCESS:

@@ -1,4 +1,4 @@
-import { BOOKING_FAILURE, BOOKING_INFO, BOOKING_LIST, BOOKING_REQUEST, CHARGE_FAILURE, CHARGE_REQUEST, CHARGE_SUCCESS, HOST_BOOKING_LIST_FAILURE, HOST_BOOKING_LIST_REQUEST, HOST_BOOKING_LIST_SUCCESS, NEW_BOOKING_RESPONSE, TOGGLE_BOOKING_MODAL, UPDATE_BOOKING_FAILURE, UPDATE_BOOKING_REQUEST, UPDATE_BOOKING_SUCCESS } from "./bookingTypes";
+import { ADD_INVENTORY_FAILURE, ADD_INVENTORY_REQUEST, ADD_INVENTORY_SUCCESS, BOOKING_FAILURE, BOOKING_INFO, BOOKING_LIST, BOOKING_REQUEST, CHANGE_DATE_FAILURE, CHANGE_DATE_REQUEST, CHANGE_DATE_SUCCESS, CHARGE_FAILURE, CHARGE_REQUEST, CHARGE_SUCCESS, HOST_BOOKING_LIST_FAILURE, HOST_BOOKING_LIST_REQUEST, HOST_BOOKING_LIST_SUCCESS, NEW_BOOKING_RESPONSE, SIGN_IN_FAILURE, SIGN_IN_HOST_FAILURE, SIGN_IN_HOST_REQUEST, SIGN_IN_HOST_SUCCESS, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, TOGGLE_BOOKING_DATE_EDIT_MODAL, TOGGLE_BOOKING_MODAL, TOGGLE_BOOKING_TERMS_MODAL, TOGGLE_BOOKING_TERMS_MODAL_HOST, TOGGLE_INVENTORY_MODAL, TOGGLE_INVENTORY_VIEW_MODAL, UPDATE_BOOKING_FAILURE, UPDATE_BOOKING_REQUEST, UPDATE_BOOKING_SUCCESS } from "./bookingTypes";
 
 const initialState = {
 
@@ -22,7 +22,40 @@ const initialState = {
 
     updateBookingLoading: false,
     updateBookingResponse: "",
-    updateBookingError: ""
+    updateBookingError: "",
+
+    showBookingDateEditModal: false,
+
+    changeBookingDateLoading: false,
+    changeBookingDateResponse: "",
+    changeBookingDateError: "",
+
+    showInventoryModal: false,
+
+    addInventoryLoading: false,
+    addInventoryResponse: "",
+    addInventoryError: "",
+
+    showBookingTermsModal: false,
+
+    signInLoading: false,
+    signInResponse: "",
+    signInError: "",
+
+    hostBookingTermsModal: {
+        show: false,
+        bookingId: ""
+    },
+
+    inventoryViewModal: {
+        show: false,
+        inventory: ""
+    },
+
+    signInHostLoading: false,
+    signInHostResponse: "",
+    signInHostError: "",
+
 
 }
 
@@ -132,6 +165,119 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 updateBookingLoading: false,
                 updateBookingError: action.payload
+            }
+
+        case TOGGLE_BOOKING_DATE_EDIT_MODAL:
+            return {
+                ...state,
+                showBookingDateEditModal: action.payload
+            }
+
+        case CHANGE_DATE_REQUEST:
+            return {
+                ...state,
+                changeBookingDateLoading: true
+            }
+
+        case CHANGE_DATE_SUCCESS:
+            return {
+                ...state,
+                changeBookingDateLoading: false,
+                changeBookingDateResponse: action.payload
+            }
+
+        case CHANGE_DATE_FAILURE:
+            return {
+                ...state,
+                changeBookingDateLoading: false,
+                changeBookingDateError: action.payload
+            }
+
+        case TOGGLE_INVENTORY_MODAL:
+            return {
+                ...state,
+                showInventoryModal: action.payload
+            }
+
+        case ADD_INVENTORY_REQUEST:
+            return {
+                ...state,
+                addInventoryLoading: true,
+                addInventoryResponse: "",
+                addInventoryError: ""
+            }
+
+        case ADD_INVENTORY_SUCCESS:
+            return {
+                ...state,
+                addInventoryLoading: false,
+                addInventoryResponse: action.payload
+            }
+
+        case ADD_INVENTORY_FAILURE:
+            return {
+                ...state,
+                addInventoryLoading: false,
+                addInventoryError: action.payload
+            }
+
+        case TOGGLE_BOOKING_TERMS_MODAL:
+            return {
+                ...state,
+                showBookingTermsModal: action.payload
+            }
+
+        case SIGN_IN_REQUEST:
+            return {
+                ...state,
+                signInLoading: true
+            }
+
+        case SIGN_IN_SUCCESS:
+            return {
+                ...state,
+                signInLoading: false,
+                signInResponse: action.payload
+            }
+
+        case SIGN_IN_FAILURE:
+            return {
+                ...state,
+                signInLoading: false,
+                signInError: ""
+            }
+
+        case TOGGLE_BOOKING_TERMS_MODAL_HOST:
+            return {
+                ...state,
+                hostBookingTermsModal: action.payload
+            }
+
+        case TOGGLE_INVENTORY_VIEW_MODAL:
+            return {
+                ...state,
+                inventoryViewModal: action.payload
+            }
+
+        case SIGN_IN_HOST_REQUEST:
+            return {
+                ...state,
+                signInHostLoading: true
+            }
+
+        case SIGN_IN_HOST_SUCCESS:
+            return {
+                ...state,
+                signInHostLoading: false,
+                signInHostResponse: action.payload
+
+            }
+
+        case SIGN_IN_HOST_FAILURE:
+            return {
+                ...state,
+                signInHostLoading: false,
+                signInHostError: action.payload
             }
 
 

@@ -31,11 +31,11 @@ function CreateYourListStepFifthCtrl() {
     const [depthError, setDepthError] = useState("");
     const [heightError, setHeightError] = useState("");
 
-    const [pricing, setPricing] = useState("");
+    const [pricing, setPricing] = useState("0");
     const [pricingError, setPricingError] = useState("");
 
     const [earning, setEarning] = useState("0");
-
+    const [fee, setFee] = useState(0);
 
     const [enableInstantBooking, setEnableInstantBooking] = useState("No");
     const [flexibleBooking, setFlexibleBooking] = useState(false);
@@ -100,6 +100,7 @@ function CreateYourListStepFifthCtrl() {
             setExactSpaces(stepFive.total_size);
             setEarning(stepFive.your_earnings);
             setFlexibleBooking(stepFive && stepFive.flexible === "Yes" ? true : false);
+            setFee(stepFive.fees);
 
             if (stepFive.security) {
                 if (stepFive.security === "Yes") {
@@ -170,16 +171,26 @@ function CreateYourListStepFifthCtrl() {
 
     useEffect(() => {
 
-        if (pricing) {
+        if (earning && +pricePercentage) {
 
-            let percentage = (+pricing / 100) * (+pricePercentage);
-            setEarning(+pricing + percentage);
-        }
-        else {
-            setEarning("0");
+            if (earning) {
+
+                let percentage = (+earning / 100) * (+pricePercentage);
+                setPricing(+earning + percentage);
+                setFee(percentage);
+            }
+            else {
+                setPricing("0");
+            }
+
         }
 
-    }, [pricing]);
+
+
+    }, [earning]);
+
+
+
 
     const vaildateErrors = (name) => {
 
@@ -215,7 +226,7 @@ function CreateYourListStepFifthCtrl() {
                 }
                 break;
 
-            case "pricing":
+            case "earning":
                 setPricingError("");
                 if (!pricing) {
                     setPricingError("Pricing is required!");
@@ -237,7 +248,7 @@ function CreateYourListStepFifthCtrl() {
         vaildateErrors("depth");
         vaildateErrors("height");
         vaildateErrors("exactSpaces");
-        vaildateErrors("pricing");
+        vaildateErrors("earning");
 
         if (width && depth && height && exactSpaces && pricing) {
 
@@ -251,8 +262,9 @@ function CreateYourListStepFifthCtrl() {
                     depth: depth,
                     height: height,
                     total_size: (+width * +depth),
-                    price: earning,
-                    your_earnings: pricing,
+                    price: pricing,
+                    your_earnings: earning,
+                    fees: fee,
                     flexible: flexibleBooking === true ? "Yes" : "No",
                     instant: enableInstantBooking,
                     security: security ? "Yes" : "No",
@@ -427,7 +439,7 @@ function CreateYourListStepFifthCtrl() {
                                 <div className="PricingCol">
                                     <InputGroup className="">
 
-                                        <FormControl name="pricing" onChange={(e) => setPricing(e.target.value)} value={pricing} onBlur={() => vaildateErrors("pricing")} />
+                                        <FormControl name="earning" onChange={(e) => setEarning(e.target.value)} value={earning} onBlur={() => vaildateErrors("earning")} />
 
                                         <InputGroup.Prepend>
                                             <InputGroup.Text style={{ width: '50px', justifyContent: 'center' }}>
@@ -481,7 +493,7 @@ function CreateYourListStepFifthCtrl() {
                         <Col lg="5" md="6">
                             <h3 className="md_bld_txt">Security deposit</h3>
                             <Form.Group controlId="" className="mb-0" name="security-check">
-                                <Form.Check type="checkbox" checked={security} label={`Include 1 month security deposit of (${earning} Lei)`} onChange={() => setSecurity(!security)} />
+                                <Form.Check type="checkbox" checked={security} label={`Include 1 month security deposit of (${pricing} Lei)`} onChange={() => setSecurity(!security)} />
                             </Form.Group>
                             <Accordion>
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">

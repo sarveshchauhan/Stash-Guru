@@ -21,6 +21,8 @@ function BookingChatBox() {
     const [message, setMessage] = useState("");
     const { listId } = useParams();
     const { cgInfo, messageList } = useSelector(state => state.chat);
+    const { schDetails, images } = useSelector(state => state.search);
+    const { authResponse } = useSelector(state => state.auth);
 
 
     useEffect(() => {
@@ -84,8 +86,21 @@ function BookingChatBox() {
 
         if (cgInfo && cgInfo.cg_id) {
 
+
+            let type = "GUEST";
+
+            if (authResponse && authResponse.users && +authResponse.users.id) {
+                if (schDetails && schDetails.u_id) {
+                    if (+authResponse.users.id === +schDetails.u_id) {
+                        type = "HOST";
+                    }
+                }
+            }
+
+
+
             socket.emit("chat", {
-                type: "GUEST",
+                type: type,
                 message: message,
                 listId: listId,
                 chatGroupId: +cgInfo.cg_id,

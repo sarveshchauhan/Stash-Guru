@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form, Card, Alert } from 'react-bootstrap';
 import './listing.scss';
 import SearchList1 from '../../../assets/users/images/dummy/SearchList1.jpg'
@@ -14,7 +14,7 @@ function UserListingtrl() {
     const { listAllSpaceLoading, allSpaceList, allSpaceListDraft, listAllSpaceError, draftStatus, draftStatusError } = useSelector(state => state.listspace);
     const { authResponse } = useSelector(state => state.auth);
     const history = useHistory();
-
+    const [status, setStatus] = useState("All");
 
     useEffect(() => {
 
@@ -26,10 +26,11 @@ function UserListingtrl() {
     useEffect(() => {
 
         dispatch(listAllSpace({
-            token: JSON.parse(localStorage.getItem("stashGuruToken"))
+            token: JSON.parse(localStorage.getItem("stashGuruToken")),
+            status: status
         }));
 
-    }, [dispatch]);
+    }, [dispatch, status]);
 
 
 
@@ -79,13 +80,12 @@ function UserListingtrl() {
                 <div className="d-inline-block user_page_hdng_left">
                     <Form className="d-inline-block float-left" style={{ width: '150px' }}>
                         <Form.Group className="mb-0" controlId="" >
-                            <Form.Control as="select">
-                                <option>All</option>
-                                <option>list1</option>
-                                <option>list2</option>
-                                <option>list3</option>
-                                <option>list4</option>
-                                <option>list5</option>
+                            <Form.Control as="select" onChange={(e) => setStatus(e.target.value)} value={status}>
+                                <option value="All">All</option>
+                                <option value="Draft">Draft</option>
+                                <option value="Under Review">Under Review</option>
+                                <option value="Published">Published</option>
+                                <option value="Deactivated">Deactivated</option>
                             </Form.Control>
                         </Form.Group>
                     </Form>
@@ -94,14 +94,18 @@ function UserListingtrl() {
             </div>
 
 
-            <div className="warning_strip">
-                <div>
-                    <p className="m-0"><i className="fa fa-exclamation-triangle pr-2"></i> Just a couple of steps, and you'll be set to accept bookings and receive payouts</p>
+            {
+                authResponse && authResponse.users && authResponse.users.verify !== "Yes" && <div className="warning_strip">
+
+                    <div>
+                        <p className="m-0"><i className="fa fa-exclamation-triangle pr-2"></i> Please verify your account.</p>
+                    </div>
+                    <Button className="btn btn-outline-white" onClick={() => window.location.href = "/verification"}>Verify Account</Button>
                 </div>
-                <Button className="btn btn-outline-white">Complete Setup</Button>
-            </div>
 
+            }
 
+            
             {
                 listAllSpaceError && <Alert variant="danger">{listAllSpaceError}</Alert>
             }

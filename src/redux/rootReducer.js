@@ -6,6 +6,7 @@ import listspaceReducer from './listspace/listspaceReducers';
 import chatReducer from './chat/chatReducer';
 import documentReducer from './document/documentReducer';
 import bookingReducer from './booking/bookingReducer';
+import walletReducer from './wallet/walletReducer';
 
 export default combineReducers({
     auth: authReducer,
@@ -14,6 +15,7 @@ export default combineReducers({
     listspace: listspaceReducer,
     chat: chatReducer,
     document: documentReducer,
-    booking: bookingReducer
+    booking: bookingReducer,
+    wallet: walletReducer
 
 });

@@ -139,7 +139,7 @@ function UserBookingListCtrl() {
                                     {
                                         booking.booking_status === "PENDING" && <>
                                             <Button className="btn-block btn_milky_grn" onClick={() => history.push(`/booking/${booking.guid}`)}>Book Space</Button>
-                                            <Button className="btn-block btn_success_milky_outline" onClick={() => history.push(`/chat/list/${booking.store_id}`)}>Send Message</Button>
+                                            <Button className="btn-block btn_success_milky_outline" onClick={() => history.push(`/book/${booking.store_id}/${booking.guid}`)}>Send Message</Button>
                                             <small className="d-block mt-4">Enquiry will expire in 2 days</small>
                                         </>
                                     }

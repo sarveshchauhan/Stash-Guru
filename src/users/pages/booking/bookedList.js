@@ -8,6 +8,10 @@ import dateFormat from 'dateformat';
 import { get_store_size } from '../../../helpers/storeHelper';
 import { useHistory } from 'react-router';
 import { config } from '../../../config/config';
+import MoveInCheckList from './MoveInCheckList';
+import BookingTermsModalHost from '../../common/components/BookingTermsModalHost';
+import BookingTermsModal from '../../common/components/BookingTermsModal';
+import InventoryViewModal from '../../common/components/InventoryViewModal';
 
 
 function UserBookedListCtrl() {
@@ -37,6 +41,8 @@ function UserBookedListCtrl() {
 
     return (
         <>
+            <BookingTermsModalHost />
+            <InventoryViewModal />
             <div className="user_page_hdng justify-content-between align-items-center">
                 <div className="w-100 d-flex-wrap justify-content-between">
                     <h2 className="user_page_hdng_txt">Bookings</h2>
@@ -148,6 +154,9 @@ function UserBookedListCtrl() {
                             </Col>
                             <Col sm="4" className="px-0 book_space_ctrl text-white text-center ">
                                 <div className="m-4 mx-5 pt-3">
+                                    {
+                                        booking.booking_status === "PENDING" && <Button className="btn-block btn_milky_grn" type="button" onClick={() => history.push(`/book/${booking.store_id}/${booking.guid}`)}>Send Message</Button>
+                                    }
 
                                     {
                                         booking.booking_status === "Proccessing" && <>
@@ -175,7 +184,9 @@ function UserBookedListCtrl() {
                                         </>
                                     }
 
-
+                                    {
+                                        <MoveInCheckList bookingId={booking.booking_id} inventory={booking.inventory} host_sign_in={booking.host_sign_in} />
+                                    }
 
 
                                 </div>

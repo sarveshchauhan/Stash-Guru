@@ -19,6 +19,9 @@ import PaymentForm from './PaymentForm';
 
 function UserBookingCtrl() {
     const [isSticky, setSticky] = useState(false);
+
+
+
     const ref = useRef(null);
     const handleScroll = () => {
         if (ref.current) {
@@ -146,7 +149,7 @@ function UserBookingCtrl() {
 
                         <div className="box_Card">
                             <div className="Cancellations_Policy_Card">
-                                <label class="form-label">Cancellations & Refunds Policy</label>
+                                <label className="form-label">Cancellations & Refunds Policy</label>
                                 <ul>
                                     <li><b>Security Deposit:</b> fully refundable for 24 hours. After that, partially refundable depending on when you cancel</li>
                                     <li><b>First Monthly Rental:</b> fully refundable until 11th Nov. </li>

@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe } from 'react-stripe-elements';
 import { Form, Row, Col, Button, Spinner, Alert } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { chargePayment } from '../../../redux/booking/bookingActions';
 import { useHistory, useParams } from 'react-router';
+import { getWallet } from '../../../redux';
 
 function PaymentForm({ stripe }) {
 
@@ -13,6 +14,24 @@ function PaymentForm({ stripe }) {
 
 
     const { bookingInfo, chargeLoading, chargeError } = useSelector(state => state.booking);
+    const { walletResponse } = useSelector(state => state.wallet);
+    const [totalAmount, setTotalAmount] = useState(0);
+    const [walletAmount, setWalletAmount] = useState(0);
+
+    const [applyWallet, setApplyWallet] = useState(true);
+
+    useEffect(() => {
+
+        setWalletAmount(walletAmount + +walletResponse);
+
+    }, [walletResponse]);
+
+
+    useEffect(() => {
+
+        dispatch(getWallet());
+
+    }, [dispatch]);
 
 
     const handleSubmit = async (e) => {
@@ -30,8 +49,19 @@ function PaymentForm({ stripe }) {
 
         if (token) {
 
+            // console.log({
+            //     amount: totalAmount,
+            //     wallet_amount: applyWallet ? +walletAmount : 0,
+            //     is_wallet: applyWallet ? "Yes" : "No",
+            //     source: token.id,
+            //     receipt_email: localStorage.getItem("userEmail"),
+            //     guid: guid
+            // });
+
             dispatch(chargePayment({
-                amount: amount,
+                amount: +totalAmount * 100,
+                wallet_amount: applyWallet ? +walletAmount : 0,
+                is_wallet: applyWallet ? "Yes" : "No",
                 source: token.id,
                 receipt_email: localStorage.getItem("userEmail"),
                 guid: guid
@@ -49,13 +79,50 @@ function PaymentForm({ stripe }) {
     useEffect(() => {
 
         if (bookingInfo) {
-            if (bookingInfo.status === "PAID") {
+            if (bookingInfo.status === "Proccessing" || bookingInfo.status === "PAID") {
                 history.push('/booking');
             }
         }
 
     }, [bookingInfo]);
 
+
+    useEffect(() => {
+
+        // setTotalAmount(0);
+        if (bookingInfo && walletResponse && bookingInfo.listingInfo.store_cost) {
+
+            let amount = +bookingInfo.listingInfo.store_cost;
+
+            if (bookingInfo.listingInfo.store_security_deposit === "Yes") {
+                amount += +bookingInfo.listingInfo.store_cost;
+            }
+
+            if (+walletResponse > +bookingInfo.listingInfo.store_fees) {
+                setWalletAmount(bookingInfo.listingInfo.store_fees);
+                amount = amount - +bookingInfo.listingInfo.store_fees;
+            }
+            else {
+                setWalletAmount(+walletResponse);
+                amount = amount - +walletResponse;
+            }
+
+            setTotalAmount(amount);
+        }
+
+    }, [bookingInfo.listingInfo, walletResponse]);
+
+
+    useEffect(() => {
+
+        if (applyWallet) {
+            setTotalAmount(+totalAmount - +walletAmount);
+        }
+        else {
+            setTotalAmount(+totalAmount + +walletAmount);
+        }
+
+    }, [applyWallet]);
 
 
     return (
@@ -73,6 +140,7 @@ function PaymentForm({ stripe }) {
                         </Form.Group>
                     </Col>
                      */}
+
                     <Col sm="12">
                         <Form.Group controlId="formBasicPassword">
                             <Form.Label>Payment Method</Form.Label>
@@ -123,6 +191,23 @@ function PaymentForm({ stripe }) {
                             <strong>{bookingInfo && bookingInfo.listingInfo.store_cost} Lei</strong>
                         </div>
                     </Col>
+
+
+
+
+                    {
+                        (bookingInfo && walletResponse) && <Col sm="12">
+                            <div className="whatUBePayingCard">
+                                <Form.Check label="Apply Wallet" checked={applyWallet} onChange={(e) => setApplyWallet(e.target.checked)} />
+                                {
+                                    applyWallet ? <strong>{walletAmount} Lei</strong> : <strike><strong>{walletAmount} Lei</strong></strike>
+                                }
+
+                            </div>
+                        </Col>
+                    }
+
+
                     {/* <Col sm="12">
                                     <div className="whatUBePayingCard">
                                         <b>Security Deposit for Key</b>
@@ -147,7 +232,7 @@ function PaymentForm({ stripe }) {
                     <Col sm="12">
                         <div className="whatUBePayingCard">
                             <b className="text_color_shamrock">TOTAL</b>
-                            <strong>{bookingInfo && (+bookingInfo.listingInfo.store_cost + +(bookingInfo.listingInfo.store_security_deposit === "Yes" ? bookingInfo.listingInfo.store_cost : 0))} Lei</strong>
+                            <strong>{totalAmount} Lei</strong>
                         </div>
                     </Col>
 
