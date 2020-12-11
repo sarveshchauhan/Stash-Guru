@@ -279,17 +279,6 @@ function FrontBusinessStorageCtrl() {
                             </div>
                         </Col>
                         <Col md={5}>
-                            <div className="why_use_sguru_card">
-                                <div className="why_use_sguru_card_body">
-                                    <div className="why_use_sguru_icon">
-                                        <img src={affordable} alt="" />
-                                    </div>
-                                    <div className="why_use_sguru_content">
-                                        <h4>AFFORDABLE</h4>
-                                        <p>Save on average 50% on your storage bill</p>
-                                    </div>
-                                </div>
-                            </div>
                         </Col>
                     </Row>
                 </Container>
