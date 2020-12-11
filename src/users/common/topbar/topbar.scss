@@ -108,6 +108,28 @@ img.dash_avtar_user{
     display: block;
     color: #5c5c5c;
 }
+.dash_menu_list .accordion{
+    cursor: pointer;
+}
+.dash_menu_list .accordion>.nav-link{
+    position: relative;
+}
+.dash_menu_list .accordion>.nav-link::after{
+    content: "\f107";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    right: 10px;
+    top: 10px;
+}
+.dash_menu_list .accordion .nav .nav-item .nav-link{
+    margin-left: 15px;
+}
 
 
 .stickyAdd,

@@ -13,13 +13,13 @@ import store from '../../../assets/front/images/icons/store.svg';
 
 import local from '../../../assets/front/images/icons/listUrSpace.png';
 import affordable from '../../../assets/front/images/icons/payment.png';
-import flexible from '../../../assets/front/images/icons/flexible.png';
+import G_payment from '../../../assets/users/images/icons/menu/G_payment.png';
 
 import vetted from '../../../assets/front/images/icons/verify.png';
 import insured from '../../../assets/front/images/icons/insurance.png';
 import support from '../../../assets/front/images/icons/support.png';
 
-function FrontBusinessStorageCtrl() {
+function FrontDomesticStorageCtrl() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -33,8 +33,8 @@ function FrontBusinessStorageCtrl() {
                     <Row className="justify-content-between pb-5">
                         <Col lg={6}>
                             <div className="page_banner_content">
-                                <h2>Business Storage <br /> Units, Nearby!</h2>
-                                <p className="sm_font">We may all be working from home a lot more in the future, but some things won’t change. For one, businesses of all types will still need commercial storage. Whether you’re looking for somewhere safe to put your office furniture while waiting to reopen, or more long-term storage solutions, Stashbee is the right place to start your search.</p>
+                                <h2>Find Storage Space to <br /> Rent, Nearby!</h2>
+                                <p className="sm_font">When your house is heaving at the seams but you’re not quite ready to go full-on Marie Kondo… stow your stuff with StasGuru in a storage space near you.</p>
                                 <div className="mt-4">
                                     <SearchComponent />
                                 </div>
@@ -97,15 +97,15 @@ function FrontBusinessStorageCtrl() {
                     <Row className="justify-content-center">
                         <Col md={4} className="can_store_card">
                             <div className="can_store_card_body">
-                                <h5>Business Stock</h5>
-                                <p>Need somewhere to store stock for your business? Store with one of our vetted Storage Hosts</p>
+                                <h5>Household Items</h5>
+                                <p>Need to clear some space in your house or just store your things elsewhere for a while? Store your items in one of our trusted hosts storage spaces.</p>
                             </div>
                         </Col>
 
                         <Col md={4} className="can_store_card">
                             <div className="can_store_card_body">
-                                <h5>Tools & Supplie</h5>
-                                <p>Store tools supplies with our vetted Storage Hosts. Empty garages and lock-ups are our most popular spaces for tools.</p>
+                                <h5>Furniture</h5>
+                                <p>Moving house or just need somewhere to store some furniture for a while. Find a Storage Host near you.</p>
                             </div>
                         </Col>
                         <Col md={4} className="can_store_card">
@@ -131,47 +131,26 @@ function FrontBusinessStorageCtrl() {
                 </Container>
             </section>
 
-            <section className="how_ds_work">
-                <h3 class="pg_bg_hdng text-center mb-5">How Does It Work ?</h3>
+            <section className="findingStorage">
                 <Container>
                     <Row className="justify-content-center">
-                        <Col md={4}>
-                            <div className="how_ds_work_card">
-                                <div className="how_ds_work_icon">
-                                    <img src={browse} alt="" />
-                                </div>
-                                <div className="how_ds_work_content">
-                                    <h4>Browse</h4>
-                                    <p>Use the search map to find local spaces, browse different options, and compare prices.</p>
-                                </div>
+                        <Col md={6} className="">
+                            <div className="">
+                                <h3 class="pg_bg_hdng">Finding Storage just got easier!</h3>
+                                <p>We get it - stuff is necessary. The solution to your storage woes is not always to rehome or recycle everything you own. Sometimes you wish you could magic up a few more square feet of space, just for a while. Well, with StashGuru you can.</p> 
+                                    
+                                <p>Simply enter your postcode below and browse a range of storage space to rent near you, from storage units and unused garages to empty lofts and warehouse space. Looking for something within walking distance of your home, or just around the corner from your office? No problem! You can use the filters to choose the space type, size and price of a storage solution to suit you.</p> 
+                                    
+                                <p>All of our hosts are verified and vetted and we will insure your stuff against damage, so you can rest assured that your belongings are safe as houses after they leave your home. All fees are clearly laid out at the get go, and payment is taken securely online - no hidden costs, no fuss or hassle. It couldn’t be easier to find self-storage nearby. </p>
+                                    
+                                <p>If at any point you have a question, simply drop Team StashGuru an email or give us a call. We’re on hand to help you achieve the no-clutter, no-stress home space that you deserve.</p>
+                                <Button variant='milky' className="px-4">Start Browsing</Button>
                             </div>
                         </Col>
-                        <Col md={4}>
-                            <div className="how_ds_work_card">
-                                <div className="how_ds_work_icon">
-                                    <img src={connect} alt="" />
-                                </div>
-                                <div className="how_ds_work_content">
-                                    <h4>Connect</h4>
-                                    <p>Chat, ask questions, and find out more. You can even arrange a viewing, if you like!</p>
-                                </div>
+
+                        <Col md={6} className="">
+                            <div className="">
                             </div>
-                        </Col>
-                        <Col md={4}>
-                            <div className="how_ds_work_card">
-                                <div className="how_ds_work_icon">
-                                    <img src={store} alt="" />
-                                </div>
-                                <div className="how_ds_work_content">
-                                    <h4>Store</h4>
-                                    <p>Confirm your booking and move in to the space on your start date. Easy peasy!</p>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col md="12" className="mt-5">
-                            <p>Our innovative model matches those searching for business storage to those hosts able to provide it. You can set your search preferences to prioritise price, location, and more, and it’s never been easier or more cost effective to find the right storage unit for you. With everything from climate-controlled high-tech locations to more simple commercial storage units and warehouse storage, we have options suited to anything you could possibly want. </p>
-                            <p>If you’re concerned about security, we’ve got that covered, too. When searching, you can seek out locations with extra security options such as intruder alarms, lights, and CCTV cameras. We also provide safe transactions, with all exchanges handled securely online by debit or credit card. And don’t worry about access, either - all of our storage spots have guaranteed parking space, even in tightly packed central locations.</p>
-                            <p>At StashGuru, we know how hard it can be to find the right commercial storage units for your business. We’re committed to streamlining every stage of that process, with our modern and interactive approach helping match our clients to the perfect options easily and safely. Why not explore our options now?</p>
                         </Col>
                     </Row>
                 </Container>
@@ -179,7 +158,6 @@ function FrontBusinessStorageCtrl() {
 
 
             <section className="bg-white why_use_sguru">
-                <h3 class="pg_bg_hdng text-center mb-5">Why Use StashGuru?</h3>
                 <Container>
                     <Row className="justify-content-center">
                         <Col md={4}>
@@ -190,8 +168,8 @@ function FrontBusinessStorageCtrl() {
                                             <img src={local} alt="" />
                                         </div>
                                         <div className="why_use_sguru_content">
-                                            <h4>LOCAL</h4>
-                                            <p>There are hundreds of local storage Hosts to choose from</p>
+                                            <h4>LOCAL SPACES</h4>
+                                            <p>Browse convenient spaces nearby</p>
                                         </div>
                                     </div>
                                 </div>
@@ -202,26 +180,11 @@ function FrontBusinessStorageCtrl() {
                                 <div className="why_use_sguru_card_body">
                                     <div>
                                         <div className="why_use_sguru_icon">
-                                            <img src={affordable} alt="" />
+                                            <img src={G_payment} alt="" />
                                         </div>
                                         <div className="why_use_sguru_content">
-                                            <h4>AFFORDABLE</h4>
-                                            <p>Save on average 50% on your storage bill</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col md={4}>
-                            <div className="why_use_sguru_card">
-                                <div className="why_use_sguru_card_body">
-                                    <div>
-                                        <div className="why_use_sguru_icon">
-                                            <img src={flexible} alt="" />
-                                        </div>
-                                        <div className="why_use_sguru_content">
-                                            <h4>FLEXIBLE</h4>
-                                            <p>Clear contracts, no hidden charges or fees</p>
+                                            <h4>SMOOTH TRANSACTIONS</h4>
+                                            <p>Manage payments safely and securely</p>
                                         </div>
                                     </div>
                                 </div>
@@ -235,8 +198,23 @@ function FrontBusinessStorageCtrl() {
                                             <img src={vetted} alt="" />
                                         </div>
                                         <div className="why_use_sguru_content">
-                                            <h4>VETTED</h4>
-                                            <p>Spaces are quality controlled and approved by StashGuru</p>
+                                            <h4>Verified Hosts</h4>
+                                            <p>Connect with pre-verified Hosts</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col md={4}>
+                            <div className="why_use_sguru_card">
+                                <div className="why_use_sguru_card_body">
+                                    <div>
+                                        <div className="why_use_sguru_icon">
+                                            <img src={affordable} alt="" />
+                                        </div>
+                                        <div className="why_use_sguru_content">
+                                            <h4>SIMPLE PRICES</h4>
+                                            <p>Pay a preset price with no hidden fees</p>
                                         </div>
                                     </div>
                                 </div>
@@ -250,8 +228,8 @@ function FrontBusinessStorageCtrl() {
                                             <img src={insured} alt="" />
                                         </div>
                                         <div className="why_use_sguru_content">
-                                            <h4>INSURED</h4>
-                                            <p>All bookings covered by GuardHog insurance, underwritten by Hiscox</p>
+                                            <h4>INSURANCE INCLUDED</h4>
+                                            <p>Feel protected knowing your stuff’s insured</p>
                                         </div>
                                     </div>
                                 </div>
@@ -266,7 +244,7 @@ function FrontBusinessStorageCtrl() {
                                         </div>
                                         <div className="why_use_sguru_content">
                                             <h4>STASHGURU SUPPORT</h4>
-                                            <p>Our team is here to help Guests and Hosts if any questions or issues arise with storage</p>
+                                            <p>Chat to the team for help and support</p>
                                         </div>
                                     </div>
                                 </div>
@@ -336,4 +314,4 @@ function FrontBusinessStorageCtrl() {
     )
 }
 
-export default FrontBusinessStorageCtrl;
+export default FrontDomesticStorageCtrl;

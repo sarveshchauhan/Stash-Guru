@@ -30,7 +30,8 @@ import FrontSearchDetailsCtrl from '../front/pages/SearchList/details';
 import ListYourSpaceComponentCtrl from '../front/pages/ListYourSpace';
 import FrontBecomeHostCtrl from '../front/pages/become-host';
 
-import FrontBusinessStorageCtrl from '../front/pages/business-storage'
+import FrontBusinessStorageCtrl from '../front/pages/business-storage';
+import FrontDomesticStorageCtrl from '../front/pages/domestic-storage';
 
 
 // user layout
@@ -120,6 +121,7 @@ const Root = () => {
             <Route exact path="/hosting-a-space/details" render={(props) => (< FrontPagesLayoutCtrl children={FrontHostingSpaceDetailsCtrl} {...props} />)} />
             <Route exact path="/common-questions" render={(props) => (< FrontPagesLayoutCtrl children={FrontCommonQuestionsCtrl} {...props} />)} />
             <Route exact path="/business-storage" render={(props) => (< FrontPagesLayoutCtrl children={FrontBusinessStorageCtrl} {...props} />)} />
+            <Route exact path="/domestic-storage" render={(props) => (< FrontPagesLayoutCtrl children={FrontDomesticStorageCtrl} {...props} />)} />
 
             {/* <PrivateRoute exact path="/dashboard" parentComponent={SideMenuLayoutCtrl} childComponent={UserHomeCtrl} /> */}
             <PrivateRoute exact path="/dashboard" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserHomeCtrl} />

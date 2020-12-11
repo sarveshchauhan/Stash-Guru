@@ -21,7 +21,7 @@ import G_share from '../../../assets/users/images/icons/menu/G_share.png';
 import B_payment from '../../../assets/users/images/icons/menu/B_payment.png';
 import G_payment from '../../../assets/users/images/icons/menu/G_payment.png';
 
-import { Nav } from 'react-bootstrap';
+import { Nav ,Accordion ,Col,ListGroup} from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 
@@ -58,6 +58,36 @@ function PageSideMenuCtrl() {
                         <img className="img_active" src={G_hand} />
                         Booking
                     </NavLink>
+
+                    <Accordion defaultActiveKey="">
+                        <Accordion.Toggle as={Col} eventKey="1" className="nav-link"> 
+                            <img className="img_deactive" src={B_profile} />
+                            <img className="img_active" src={G_profile} />
+                            Host
+                        </Accordion.Toggle>
+                        <Accordion.Collapse eventKey="1">
+                            <Nav>
+                                <Nav.Item>
+                                    <NavLink className="nav-link" to="/listing">
+                                        <img className="img_deactive" src={B_listing} />
+                                        <img className="img_active" src={G_listing} />
+                                        Listing
+                                    </NavLink>
+
+                                    <NavLink className="nav-link" to="/booked-listing">
+                                        <img className="img_deactive" src={B_listing} />
+                                        <img className="img_active" src={G_listing} />
+                                        Booked Listing
+                                    </NavLink>
+                                    <NavLink className="nav-link" to="/payment">
+                                        <img className="img_deactive" src={B_payment} />
+                                        <img className="img_active" src={G_payment} />
+                                        Payment
+                                    </NavLink>
+                                </Nav.Item>
+                            </Nav>
+                        </Accordion.Collapse>
+                    </Accordion>
 
                     <NavLink className="nav-link" to="/listing">
                         <img className="img_deactive" src={B_listing} />
@@ -100,6 +130,7 @@ function PageSideMenuCtrl() {
                         <img className="img_active" src={G_payment} />
                         Chat
                     </NavLink>
+                        
                 </Nav.Item>
             </Nav>
         </>
