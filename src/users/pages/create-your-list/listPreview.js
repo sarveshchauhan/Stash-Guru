@@ -143,6 +143,22 @@ function ListPreviewCtrl() {
                                 <div className="ListPreviewCardBody">
                                     <Table size="sm">
                                         <tbody>
+
+                                            <tr>
+                                                <th width="100">Title</th>
+                                                <td>
+                                                    {
+
+                                                        details && <div dangerouslySetInnerHTML={{ __html: details.store_title }} />
+
+
+                                                    }
+
+
+                                                </td>
+                                            </tr>
+
+
                                             <tr>
                                                 <th width="100">Description</th>
                                                 <td>
@@ -263,7 +279,7 @@ function ListPreviewCtrl() {
                                             </tr>
                                             <tr>
                                                 <th width="100">Price</th>
-                                                <td><strong>${details && details.store_cost}</strong> /month</td>
+                                                <td><strong>{details && details.store_cost} Lei</strong> /month</td>
                                             </tr>
                                             <tr>
                                                 <th width="100">Quantity</th>

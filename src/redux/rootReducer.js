@@ -7,8 +7,11 @@ import chatReducer from './chat/chatReducer';
 import documentReducer from './document/documentReducer';
 import bookingReducer from './booking/bookingReducer';
 import walletReducer from './wallet/walletReducer';
+import paymentReducer from './payment/paymentReducer';
+
 
 export default combineReducers({
+
     auth: authReducer,
     register: registerReducer,
     search: searchReducer,
@@ -16,6 +19,7 @@ export default combineReducers({
     chat: chatReducer,
     document: documentReducer,
     booking: bookingReducer,
-    wallet: walletReducer
+    wallet: walletReducer,
+    payment: paymentReducer
 
 });

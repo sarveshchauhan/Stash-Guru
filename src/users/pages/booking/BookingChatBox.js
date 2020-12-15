@@ -8,6 +8,7 @@ import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChatMessageList, pushMessageIntoList, pushRemoteChat } from '../../../redux';
 import dateFormat from 'dateformat';
+import store from '../../../redux/store';
 
 
 
@@ -23,18 +24,32 @@ function BookingChatBox() {
     const { cgInfo, messageList } = useSelector(state => state.chat);
     const { schDetails, images } = useSelector(state => state.search);
     const { authResponse } = useSelector(state => state.auth);
+    const { booking_id } = useSelector(state => state.booking.bookingInfo);
 
 
     useEffect(() => {
 
 
+        socket.emit("userLogin", {
+            email: localStorage.getItem("userEmail")
+        });
+
+
 
         socket.on("chat", (data) => {
 
+            console.log(data);
+            console.log('my bookingid ' + store.getState().booking.bookingInfo.booking_id);
+            console.log('data bookingid ' + data.booking_id);
+            console.log('data email ' + data.email);
+            console.log('my email ' + localStorage.getItem("userEmail"));
 
 
-            if (data.email !== localStorage.getItem("userEmail")) {
 
+
+            if (data.email !== localStorage.getItem("userEmail") && +data.booking_id === +store.getState().booking.bookingInfo.booking_id) {
+
+                console.log('booking id matched');
 
                 let messageInfo = {
                     cm_id: data.data.cm_id,
@@ -60,18 +75,14 @@ function BookingChatBox() {
 
     useEffect(() => {
 
-        if (cgInfo.cg_id) {
-
+        if (booking_id) {
             dispatch(getChatMessageList({
                 token: JSON.parse(localStorage.getItem("stashGuruToken")),
-                chat_id: cgInfo.cg_id,
-                list_id: +listId
+                booking_id: +booking_id
             }))
-
         }
 
-    }, [cgInfo]);
-
+    }, [booking_id]);
 
     useEffect(() => {
 
@@ -102,9 +113,8 @@ function BookingChatBox() {
             socket.emit("chat", {
                 type: type,
                 message: message,
-                listId: listId,
-                chatGroupId: +cgInfo.cg_id,
-                token: JSON.parse(localStorage.getItem("stashGuruToken"))
+                token: JSON.parse(localStorage.getItem("stashGuruToken")),
+                booking_id: booking_id
             });
 
 

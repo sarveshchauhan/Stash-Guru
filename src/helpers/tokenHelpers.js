@@ -28,6 +28,7 @@ export const validateClientToken = async () => {
             return localStorage.getItem('stashGuruToken').replace(/["']/g, "");
         }
         else {
+
             let redirectURL = `/signup?redirect_url=${encodeURIComponent(window.location.href)}`;
             window.location.href = redirectURL;
         }

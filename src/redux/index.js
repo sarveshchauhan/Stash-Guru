@@ -5,4 +5,5 @@ export * from './listspace/listspaceActions';
 export * from './chat/chatActions';
 export * from './document/documentActions';
 export * from './booking/bookingActions';
-export * from './wallet/walletActions'; 
+export * from './wallet/walletActions';
+export * from './payment/paymentActions'; 

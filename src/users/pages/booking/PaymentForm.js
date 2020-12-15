@@ -19,6 +19,8 @@ function PaymentForm({ stripe }) {
     const [walletAmount, setWalletAmount] = useState(0);
 
     const [applyWallet, setApplyWallet] = useState(true);
+    const [applyFirstMonthRental, setApplyFirstMonthRental] = useState(true);
+
 
     useEffect(() => {
 
@@ -53,6 +55,7 @@ function PaymentForm({ stripe }) {
             //     amount: totalAmount,
             //     wallet_amount: applyWallet ? +walletAmount : 0,
             //     is_wallet: applyWallet ? "Yes" : "No",
+            //     is_first_month: applyFirstMonthRental ? "Yes" : "No",
             //     source: token.id,
             //     receipt_email: localStorage.getItem("userEmail"),
             //     guid: guid
@@ -62,6 +65,7 @@ function PaymentForm({ stripe }) {
                 amount: +totalAmount * 100,
                 wallet_amount: applyWallet ? +walletAmount : 0,
                 is_wallet: applyWallet ? "Yes" : "No",
+                is_first_month: applyFirstMonthRental ? "Yes" : "No",
                 source: token.id,
                 receipt_email: localStorage.getItem("userEmail"),
                 guid: guid
@@ -95,7 +99,7 @@ function PaymentForm({ stripe }) {
             let amount = +bookingInfo.listingInfo.store_cost;
 
             if (bookingInfo.listingInfo.store_security_deposit === "Yes") {
-                amount += +bookingInfo.listingInfo.store_cost;
+                amount += +bookingInfo.listingInfo.store_earnings_deposit;
             }
 
             if (+walletResponse > +bookingInfo.listingInfo.store_fees) {
@@ -123,6 +127,24 @@ function PaymentForm({ stripe }) {
         }
 
     }, [applyWallet]);
+
+
+    useEffect(() => {
+
+        if (bookingInfo && bookingInfo.listingInfo && bookingInfo.listingInfo.store_cost) {
+
+            if (applyFirstMonthRental) {
+                setTotalAmount(+totalAmount + +bookingInfo.listingInfo.store_cost);
+            }
+            else {
+                setTotalAmount(+totalAmount - +bookingInfo.listingInfo.store_cost);
+            }
+
+        }
+
+
+
+    }, [applyFirstMonthRental]);
 
 
     return (
@@ -179,7 +201,7 @@ function PaymentForm({ stripe }) {
                         bookingInfo && bookingInfo.listingInfo.store_security_deposit === "Yes" && <Col sm="12">
                             <div className="whatUBePayingCard">
                                 <b>1 month Security Deposit</b>
-                                <strong>{bookingInfo.listingInfo.store_cost} Lei</strong>
+                                <strong>{bookingInfo.listingInfo.store_earnings_deposit} Lei</strong>
                             </div>
                         </Col>
                     }
@@ -187,8 +209,8 @@ function PaymentForm({ stripe }) {
 
                     <Col sm="12">
                         <div className="whatUBePayingCard">
-                            <b>First Month Rental</b>
-                            <strong>{bookingInfo && bookingInfo.listingInfo.store_cost} Lei</strong>
+                            <Form.Check label="First Month Rental" checked={applyFirstMonthRental} onChange={(e) => setApplyFirstMonthRental(e.target.checked)} />
+                            <strong>{applyFirstMonthRental ? "" : "-"}{bookingInfo && bookingInfo.listingInfo.store_cost} Lei</strong>
                         </div>
                     </Col>
 
@@ -196,15 +218,17 @@ function PaymentForm({ stripe }) {
 
 
                     {
-                        (bookingInfo && walletResponse) && <Col sm="12">
+                        (bookingInfo && walletResponse) ? <Col sm="12">
                             <div className="whatUBePayingCard">
                                 <Form.Check label="Apply Wallet" checked={applyWallet} onChange={(e) => setApplyWallet(e.target.checked)} />
                                 {
-                                    applyWallet ? <strong>{walletAmount} Lei</strong> : <strike><strong>{walletAmount} Lei</strong></strike>
+                                    applyWallet ? <strong>-{walletAmount} Lei</strong> : <strike><strong>{walletAmount} Lei</strong></strike>
                                 }
 
                             </div>
                         </Col>
+                            :
+                            ""
                     }
 
 

@@ -21,7 +21,7 @@ import G_share from '../../../assets/users/images/icons/menu/G_share.png';
 import B_payment from '../../../assets/users/images/icons/menu/B_payment.png';
 import G_payment from '../../../assets/users/images/icons/menu/G_payment.png';
 
-import { Nav ,Accordion ,Col,ListGroup} from 'react-bootstrap';
+import { Nav, Accordion, Col, ListGroup } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 
@@ -60,7 +60,7 @@ function PageSideMenuCtrl() {
                     </NavLink>
 
                     <Accordion defaultActiveKey="">
-                        <Accordion.Toggle as={Col} eventKey="1" className="nav-link"> 
+                        <Accordion.Toggle as={Col} eventKey="1" className="nav-link">
                             <img className="img_deactive" src={B_profile} />
                             <img className="img_active" src={G_profile} />
                             Host
@@ -79,7 +79,7 @@ function PageSideMenuCtrl() {
                                         <img className="img_active" src={G_listing} />
                                         Booked Listing
                                     </NavLink>
-                                    <NavLink className="nav-link" to="/payment">
+                                    <NavLink className="nav-link" to="/host_payment">
                                         <img className="img_deactive" src={B_payment} />
                                         <img className="img_active" src={G_payment} />
                                         Payment
@@ -89,7 +89,7 @@ function PageSideMenuCtrl() {
                         </Accordion.Collapse>
                     </Accordion>
 
-                    <NavLink className="nav-link" to="/listing">
+                    {/* <NavLink className="nav-link" to="/listing">
                         <img className="img_deactive" src={B_listing} />
                         <img className="img_active" src={G_listing} />
                         Listing
@@ -99,7 +99,7 @@ function PageSideMenuCtrl() {
                         <img className="img_deactive" src={B_listing} />
                         <img className="img_active" src={G_listing} />
                         Booked Listing
-                    </NavLink>
+                    </NavLink> */}
 
                     <NavLink className="nav-link" to="/verification">
                         <img className="img_deactive" src={B_verify} />
@@ -119,18 +119,18 @@ function PageSideMenuCtrl() {
                         Referrals
                     </NavLink>
 
-                    <NavLink className="nav-link" to="/payment">
+                    <NavLink className="nav-link" to="/guest_payment">
                         <img className="img_deactive" src={B_payment} />
                         <img className="img_active" src={G_payment} />
                         Payment
                     </NavLink>
 
-                    <NavLink className="nav-link" to="/chat/host">
+                    {/* <NavLink className="nav-link" to="/chat/host">
                         <img className="img_deactive" src={B_payment} />
                         <img className="img_active" src={G_payment} />
                         Chat
-                    </NavLink>
-                        
+                    </NavLink> */}
+
                 </Nav.Item>
             </Nav>
         </>

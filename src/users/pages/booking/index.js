@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBookingInfoByGuid } from '../../../redux';
 import { useParams } from 'react-router';
 import dateFormat from 'dateformat';
-import { StripeProvider, Elements, CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe } from 'react-stripe-elements';
+import { StripeProvider, Elements } from 'react-stripe-elements';
 
 import { get_store_size } from '../../../helpers/storeHelper';
 import { config } from '../../../config/config';

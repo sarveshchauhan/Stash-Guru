@@ -1,4 +1,4 @@
-import { ADD_INVENTORY_FAILURE, ADD_INVENTORY_REQUEST, ADD_INVENTORY_SUCCESS, BOOKING_FAILURE, BOOKING_INFO, BOOKING_LIST, BOOKING_REQUEST, CHANGE_DATE_FAILURE, CHANGE_DATE_REQUEST, CHANGE_DATE_SUCCESS, CHARGE_FAILURE, CHARGE_REQUEST, CHARGE_SUCCESS, HOST_BOOKING_LIST_FAILURE, HOST_BOOKING_LIST_REQUEST, HOST_BOOKING_LIST_SUCCESS, NEW_BOOKING_RESPONSE, SIGN_IN_FAILURE, SIGN_IN_HOST_FAILURE, SIGN_IN_HOST_REQUEST, SIGN_IN_HOST_SUCCESS, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, TOGGLE_BOOKING_DATE_EDIT_MODAL, TOGGLE_BOOKING_MODAL, TOGGLE_BOOKING_TERMS_MODAL, TOGGLE_BOOKING_TERMS_MODAL_HOST, TOGGLE_INVENTORY_MODAL, TOGGLE_INVENTORY_VIEW_MODAL, UPDATE_BOOKING_FAILURE, UPDATE_BOOKING_REQUEST, UPDATE_BOOKING_SUCCESS } from "./bookingTypes";
+import { ADD_INVENTORY_FAILURE, ADD_INVENTORY_REQUEST, ADD_INVENTORY_SUCCESS, BOOKING_FAILURE, BOOKING_INFO, BOOKING_LIST, BOOKING_REQUEST, CHANGE_DATE_FAILURE, CHANGE_DATE_REQUEST, CHANGE_DATE_SUCCESS, CHARGE_FAILURE, CHARGE_REQUEST, CHARGE_SUCCESS, GUEST_PAYMENT_FAILURE, GUEST_PAYMENT_REQUEST, GUEST_PAYMENT_SUCCESS, HOST_BOOKING_LIST_FAILURE, HOST_BOOKING_LIST_REQUEST, HOST_BOOKING_LIST_SUCCESS, HOST_PAYMENT_FAILURE, HOST_PAYMENT_REQUEST, HOST_PAYMENT_SUCCESS, NEW_BOOKING_RESPONSE, SIGN_IN_FAILURE, SIGN_IN_HOST_FAILURE, SIGN_IN_HOST_REQUEST, SIGN_IN_HOST_SUCCESS, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, TOGGLE_BOOKING_DATE_EDIT_MODAL, TOGGLE_BOOKING_MODAL, TOGGLE_BOOKING_TERMS_MODAL, TOGGLE_BOOKING_TERMS_MODAL_HOST, TOGGLE_INVENTORY_MODAL, TOGGLE_INVENTORY_VIEW_MODAL, UPDATE_BOOKING_FAILURE, UPDATE_BOOKING_REQUEST, UPDATE_BOOKING_SUCCESS } from "./bookingTypes";
 
 const initialState = {
 
@@ -55,6 +55,15 @@ const initialState = {
     signInHostLoading: false,
     signInHostResponse: "",
     signInHostError: "",
+
+    guestPaymentList: "",
+    guestPaymentLoading: false,
+    guestPaymentError: "",
+
+    hostPaymentList: "",
+    hostPaymentLoading: false,
+    hostPaymentError: ""
+
 
 
 }
@@ -278,6 +287,46 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 signInHostLoading: false,
                 signInHostError: action.payload
+            }
+
+        case GUEST_PAYMENT_REQUEST:
+            return {
+                ...state,
+                guestPaymentLoading: true
+            }
+
+        case GUEST_PAYMENT_SUCCESS:
+            return {
+                ...state,
+                guestPaymentLoading: false,
+                guestPaymentList: action.payload
+            }
+
+        case GUEST_PAYMENT_FAILURE:
+            return {
+                ...state,
+                guestPaymentLoading: false,
+                guestPaymentError: action.payload
+            }
+
+        case HOST_PAYMENT_REQUEST:
+            return {
+                ...state,
+                hostPaymentLoading: true
+            }
+
+        case HOST_PAYMENT_SUCCESS:
+            return {
+                ...state,
+                hostPaymentLoading: false,
+                hostPaymentList: action.payload
+            }
+
+        case HOST_PAYMENT_FAILURE:
+            return {
+                ...state,
+                hostPaymentLoading: false,
+                hostPaymentError: action.payload
             }
 
 

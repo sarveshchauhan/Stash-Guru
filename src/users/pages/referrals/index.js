@@ -81,12 +81,12 @@ function UserReferralsCtrl() {
                             <div className="box_CardBody text-center">
                                 <div className="w-100">
                                     <h6 className="">Spread The Word &</h6>
-                                    <h2>Earn $50</h2>
+                                    <h2>Earn 50 Lei</h2>
                                     <h5>For Every New Host You Refer!</h5>
                                     <div className="referals_img">
                                         <img src={referals} alt="" />
                                         <strong>Share This Link</strong>
-                                        <span>You’ll earn £50.00 from anyone who starts Hosting with Stas.Guru using this unique link (and they’ll get £50.00 too!).<br /> Click to copy and share!</span>
+                                        <span>You’ll earn 50.00 Lei from anyone who starts Hosting with Stas.Guru using this unique link (and they’ll get £50.00 too!).<br /> Click to copy and share!</span>
                                     </div>
                                     <div className="copy_your_share_link">
 
@@ -155,13 +155,13 @@ function UserReferralsCtrl() {
                                     </Col>
                                 </Row>
                             </div>
-                            <div className="PendingEarningsBox">
+                            {/* <div className="PendingEarningsBox">
                                 <div className="w-100">
                                     <h6>Pending Earnings</h6>
                                     <h4>$10</h4>
                                     <small>(based on all pending invites)</small>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="box_Card YourReferralsBox">

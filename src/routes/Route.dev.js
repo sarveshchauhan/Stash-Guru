@@ -69,6 +69,7 @@ import ResetPassword from '../front/pages/register/ResetPassword';
 import ChatCtrl from '../users/pages/chat';
 import { socketIO } from '../helpers/socketHelper';
 import UserBookedListCtrl from '../users/pages/booking/bookedList';
+import UserPaymentHostPayoutListCtrl from '../users/pages/payment/paymentHostPayoutList';
 
 
 const socket = socketIO;
@@ -142,7 +143,8 @@ const Root = () => {
             <PrivateRoute exact path="/verification" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserVerificationCtrl} />
             <PrivateRoute exact path="/profile" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserProfileCtrl} />
             {/* <PrivateRoute exact path="/payment" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserPaymentPayoutCtrl} /> */}
-            <PrivateRoute exact path="/payment" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserPaymentPayoutListCtrl} />
+            <PrivateRoute exact path="/guest_payment" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserPaymentPayoutListCtrl} />
+            <PrivateRoute exact path="/host_payment" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserPaymentHostPayoutListCtrl} />
             <PrivateRoute exact path="/referrals" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserReferralsCtrl} />
 
             {/* <Route exact path="/dashboard" render={(props)=> (<UserPagesLayoutCtrl children={UserHomeCtrl} {...props} />)} /> */}

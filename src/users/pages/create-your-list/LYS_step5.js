@@ -40,7 +40,7 @@ function CreateYourListStepFifthCtrl() {
     const [enableInstantBooking, setEnableInstantBooking] = useState("No");
     const [flexibleBooking, setFlexibleBooking] = useState(false);
 
-    const [security, setSecurity] = useState(false);
+    const [security, setSecurity] = useState(true);
     const [securityPrice, setSecurityPrice] = useState(0);
 
     const [unit, setUnit] = useState("");
@@ -493,7 +493,7 @@ function CreateYourListStepFifthCtrl() {
                         <Col lg="5" md="6">
                             <h3 className="md_bld_txt">Security deposit</h3>
                             <Form.Group controlId="" className="mb-0" name="security-check">
-                                <Form.Check type="checkbox" checked={security} label={`Include 1 month security deposit of (${pricing} Lei)`} onChange={() => setSecurity(!security)} />
+                                <Form.Check readOnly={true} disabled={true} type="checkbox" checked={security} label={`Include 1 month security deposit of (${earning} Lei)`} onChange={() => setSecurity(!security)} />
                             </Form.Group>
                             <Accordion>
                                 <Accordion.Toggle as={Button} variant="link" eventKey="0" className="p-0">
