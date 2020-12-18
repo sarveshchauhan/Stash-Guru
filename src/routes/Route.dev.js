@@ -90,16 +90,16 @@ const Root = () => {
             });
 
 
-            socket.on("chat", (data) => {
+            // socket.on("chat", (data) => {
 
-                let paramsList = window.location.href.split("/");
-
-                alert('chat received ' + window.location.href + " ");
-                console.log('url params are');
-                console.log(paramsList);
-                console.log('params end');
-                console.log(data);
-            });
+            //     let paramsList = window.location.href.split("/");
+            //     // 3 is book
+            //     alert('chat received ' + window.location.href + " ");
+            //     console.log('url params are');
+            //     console.log(paramsList);
+            //     console.log('params end');
+            //     console.log(data);
+            // });
 
         }
 
