@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { config } from '../../config/config';
 import { validateClientToken } from '../../helpers/tokenHelpers';
-import { TOGGLE_BOOKING_MODAL, BOOKING_REQUEST, BOOKING_FAILURE, NEW_BOOKING_RESPONSE, BOOKING_INFO, CHARGE_REQUEST, CHARGE_SUCCESS, CHARGE_FAILURE, BOOKING_LIST, HOST_BOOKING_LIST_REQUEST, HOST_BOOKING_LIST_SUCCESS, HOST_BOOKING_LIST_FAILURE, UPDATE_BOOKING_REQUEST, UPDATE_BOOKING_SUCCESS, UPDATE_BOOKING_FAILURE, TOGGLE_BOOKING_DATE_EDIT_MODAL, CHANGE_DATE_REQUEST, CHANGE_DATE_SUCCESS, CHANGE_DATE_FAILURE, TOGGLE_INVENTORY_MODAL, ADD_INVENTORY_REQUEST, ADD_INVENTORY_SUCCESS, ADD_INVENTORY_FAILURE, TOGGLE_BOOKING_TERMS_MODAL, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, SIGN_IN_FAILURE, TOGGLE_BOOKING_TERMS_MODAL_HOST, TOGGLE_INVENTORY_VIEW_MODAL, SIGN_IN_HOST_REQUEST, SIGN_IN_HOST_SUCCESS, SIGN_IN_HOST_FAILURE, GUEST_PAYMENT_REQUEST, GUEST_PAYMENT_SUCCESS, GUEST_PAYMENT_FAILURE, HOST_PAYMENT_REQUEST, HOST_PAYMENT_SUCCESS, HOST_PAYMENT_FAILURE } from './bookingTypes';
+import { TOGGLE_BOOKING_MODAL, BOOKING_REQUEST, BOOKING_FAILURE, NEW_BOOKING_RESPONSE, BOOKING_INFO, CHARGE_REQUEST, CHARGE_SUCCESS, CHARGE_FAILURE, BOOKING_LIST, HOST_BOOKING_LIST_REQUEST, HOST_BOOKING_LIST_SUCCESS, HOST_BOOKING_LIST_FAILURE, UPDATE_BOOKING_REQUEST, UPDATE_BOOKING_SUCCESS, UPDATE_BOOKING_FAILURE, TOGGLE_BOOKING_DATE_EDIT_MODAL, CHANGE_DATE_REQUEST, CHANGE_DATE_SUCCESS, CHANGE_DATE_FAILURE, TOGGLE_INVENTORY_MODAL, ADD_INVENTORY_REQUEST, ADD_INVENTORY_SUCCESS, ADD_INVENTORY_FAILURE, TOGGLE_BOOKING_TERMS_MODAL, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, SIGN_IN_FAILURE, TOGGLE_BOOKING_TERMS_MODAL_HOST, TOGGLE_INVENTORY_VIEW_MODAL, SIGN_IN_HOST_REQUEST, SIGN_IN_HOST_SUCCESS, SIGN_IN_HOST_FAILURE, GUEST_PAYMENT_REQUEST, GUEST_PAYMENT_SUCCESS, GUEST_PAYMENT_FAILURE, HOST_PAYMENT_REQUEST, HOST_PAYMENT_SUCCESS, HOST_PAYMENT_FAILURE, CANCEL_BOOKING_HOST_REQUEST, CANCEL_BOOKING_HOST_SUCCESS, CANCEL_BOOKING_HOST_FAILURE, TOGGLE_CANCEL_HOST_BOOKING_MODAL, TOGGLE_CANCEL_GUEST_BOOKING_MODAL, CANCEL_BOOKING_GUEST_REQUEST, CANCEL_BOOKING_GUEST_SUCCESS, CANCEL_BOOKING_GUEST_FAILURE, BOOKING_COUNT_REQUEST, BOOKING_COUNT_SUCCESS, BOOKING_COUNT_FAILURE } from './bookingTypes';
 import Swal from 'sweetalert2';
 import store from '../store';
 
@@ -299,7 +299,7 @@ const hostbookingListFailure = (response) => {
 
 
 
-export const getHostBookingList = (reqData) => {
+export const getHostBookingList = (reqData = {}) => {
 
     reqData.token = JSON.parse(localStorage.getItem("stashGuruToken"));
 
@@ -785,7 +785,7 @@ const guestPaymentFailure = (response) => {
 
 
 
-export const getGuestPaymentList = (reqData = {}) => {
+export const getGuestPaymentList = (reqData = {}, query = "") => {
 
     reqData.token = JSON.parse(localStorage.getItem("stashGuruToken"));
 
@@ -800,7 +800,7 @@ export const getGuestPaymentList = (reqData = {}) => {
         reqData.token = await validateClientToken();
 
 
-        await axios.post(`${config.apiUrl}/front/booking/guest_payment_list`, reqData, requestConfig)
+        await axios.post(`${config.apiUrl}/front/booking/guest_payment_list?${query}`, reqData, requestConfig)
             .then(response => {
                 const serverResponse = response.data;
                 if (+serverResponse.status) {
@@ -846,7 +846,7 @@ const hostPaymentFailure = (response) => {
 
 
 
-export const getHostPaymentList = (reqData = {}) => {
+export const getHostPaymentList = (reqData = {}, query = "") => {
 
     reqData.token = JSON.parse(localStorage.getItem("stashGuruToken"));
 
@@ -861,7 +861,7 @@ export const getHostPaymentList = (reqData = {}) => {
         reqData.token = await validateClientToken();
 
 
-        await axios.post(`${config.apiUrl}/front/booking/host_payment_list`, reqData, requestConfig)
+        await axios.post(`${config.apiUrl}/front/booking/host_payment_list?${query}`, reqData, requestConfig)
             .then(response => {
                 const serverResponse = response.data;
                 if (+serverResponse.status) {
@@ -875,6 +875,249 @@ export const getHostPaymentList = (reqData = {}) => {
             }).catch(error => {
                 const errorMsg = error.message;
                 dispatch(hostPaymentFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+
+
+
+const cancelBookingHostRequest = () => {
+    return {
+        type: CANCEL_BOOKING_HOST_REQUEST
+    }
+}
+
+const cancelBookingHostSuccess = (response) => {
+    return {
+        type: CANCEL_BOOKING_HOST_SUCCESS,
+        payload: response
+    }
+}
+
+const cancelBookingHostFailure = (response) => {
+    return {
+        type: CANCEL_BOOKING_HOST_FAILURE,
+        payload: response
+    }
+}
+
+
+
+
+export const cancelBookingHost = (reqData = {}, query = "") => {
+
+    reqData.token = JSON.parse(localStorage.getItem("stashGuruToken"));
+
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(cancelBookingHostRequest());
+
+        reqData.token = await validateClientToken();
+
+
+        await axios.post(`${config.apiUrl}/front/booking/host_cancelation?${query}`, reqData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Booking cancelled successfully!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+
+                    dispatch(toggleCancelHostBookingModal({
+                        show: false,
+                        booking_id: ""
+                    }));
+
+
+
+                    dispatch(getHostBookingList());
+                    dispatch(cancelBookingHostSuccess(true));
+                }
+                else {
+                    dispatch(cancelBookingHostFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(cancelBookingHostFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+
+
+
+const cancelBookingGuestRequest = () => {
+    return {
+        type: CANCEL_BOOKING_GUEST_REQUEST
+    }
+}
+
+const cancelBookingGuestSuccess = (response) => {
+    return {
+        type: CANCEL_BOOKING_GUEST_SUCCESS,
+        payload: response
+    }
+}
+
+const cancelBookingGuestFailure = (response) => {
+    return {
+        type: CANCEL_BOOKING_GUEST_FAILURE,
+        payload: response
+    }
+}
+
+
+
+
+export const cancelBookingGuest = (reqData = {}, query = "") => {
+
+    reqData.token = JSON.parse(localStorage.getItem("stashGuruToken"));
+
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(cancelBookingGuestRequest());
+
+        reqData.token = await validateClientToken();
+
+
+        await axios.post(`${config.apiUrl}/front/booking/guest_cancelation?${query}`, reqData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Booking cancelled successfully!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+
+                    dispatch(toggleCancelGuestBookingModal({
+                        show: false,
+                        booking_id: ""
+                    }));
+                    dispatch(getBookingList({}));
+                    dispatch(cancelBookingGuestSuccess(true));
+                }
+                else {
+                    dispatch(cancelBookingGuestFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(cancelBookingGuestFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+
+
+
+export const toggleCancelHostBookingModal = (response) => {
+    return {
+        type: TOGGLE_CANCEL_HOST_BOOKING_MODAL,
+        payload: response
+    }
+}
+
+
+export const toggleCancelGuestBookingModal = (response) => {
+    return {
+        type: TOGGLE_CANCEL_GUEST_BOOKING_MODAL,
+        payload: response
+    }
+}
+
+
+
+
+
+
+const bookingCountRequest = () => {
+    return {
+        type: BOOKING_COUNT_REQUEST
+    }
+}
+
+const bookingCountSuccess = (response) => {
+    return {
+        type: BOOKING_COUNT_SUCCESS,
+        payload: response
+    }
+}
+
+const bookingCountFailure = (response) => {
+    return {
+        type: BOOKING_COUNT_FAILURE,
+        payload: response
+    }
+}
+
+
+
+
+export const getBookingCount = (reqData = {}, query = "") => {
+
+    reqData.token = JSON.parse(localStorage.getItem("stashGuruToken"));
+
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(bookingCountRequest());
+
+        reqData.token = await validateClientToken();
+
+
+        await axios.post(`${config.apiUrl}/front/users/booking_count?${query}`, reqData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+
+                    dispatch(bookingCountSuccess(serverResponse.data.count));
+
+                }
+                else {
+                    dispatch(bookingCountFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(bookingCountFailure(errorMsg));
 
             });
     }

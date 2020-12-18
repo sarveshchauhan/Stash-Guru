@@ -233,7 +233,7 @@ function CreateYourListStepForthCtrl() {
                     <Row className="justify-content-between">
                         <Col lg="6" md="6" className="text-left">
                             <NavLink to="/create-your-list-step3">
-                                <Button className="btn_outline_success mr-2  mt-2 px-5">
+                                <Button className="btn_previous mr-2  mt-2">
                                     <i className="fa fa-long-arrow-left mr-2" aria-hidden="true"></i>Previous
                                 </Button>
                             </NavLink>

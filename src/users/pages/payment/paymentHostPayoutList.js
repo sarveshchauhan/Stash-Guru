@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
-import { Button, Col, Form, Modal, Row, Dropdown, Table, Spinner } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Button, Col, Form, Modal, Row, Dropdown, Table, Spinner, Badge } from 'react-bootstrap';
+import { Link, NavLink } from 'react-router-dom';
 
 import invoice from '../../../assets/users/images/icons/invoice.png';
 import visa_cards_citibank from '../../../assets/users/images/dummy/visa_cards_citibank.jpg';
@@ -16,16 +16,17 @@ import dateFormat from 'dateformat';
 
 import AddBankModal from './AddBankModal';
 import { config } from '../../../config/config';
-import { deleteBank, getBankList, toggleBankModal } from '../../../redux/payment/paymentActions';
+import { deleteBank, getBankList, setDefaultBank, toggleBankModal } from '../../../redux/payment/paymentActions';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import { getHostPaymentList } from '../../../redux/booking/bookingActions';
+import PaymentHostFilter from './PaymentHostFilter';
 
 
 function UserPaymentHostPayoutListCtrl() {
 
     const dispatch = useDispatch();
-    const { bankList, bankListError, bankListLoading } = useSelector(state => state.payment);
+    const { bankList, bankListError, bankListLoading, defaultBankLoading } = useSelector(state => state.payment);
     const { hostPaymentList, hostPaymentLoading } = useSelector(state => state.booking);
 
 
@@ -102,18 +103,14 @@ function UserPaymentHostPayoutListCtrl() {
                     <Col md={8}>
                         <div className="box_Card paymentPayoutList_card">
                             <div className="paymentPayoutList_CardHeader">
-                                <h6 className="m-0">Invoice</h6>
-                                <div className="">
-                                    {/* <Dropdown>
-                                        <Dropdown.Toggle variant="no_bg" id="dropdown-basic">
-                                            Host
-                                        </Dropdown.Toggle>
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">Host</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-2">Guest</Dropdown.Item>
-                                        </Dropdown.Menu>
-                                    </Dropdown> */}
-                                </div>
+                                <Row>
+                                    <Col md="3">
+                                        <h4 className="m-0">Invoice</h4>
+                                    </Col>
+                                    <Col md="9">
+                                        <PaymentHostFilter />
+                                    </Col>
+                                </Row>
                             </div>
                             <div className="box_CardBody text-center">
                                 <div className="w-100">
@@ -138,7 +135,9 @@ function UserPaymentHostPayoutListCtrl() {
                                                     {
                                                         hostPaymentList && Array.isArray(hostPaymentList) && hostPaymentList.map((host, index) => (
                                                             <tr key={index}>
-                                                                <td className="text-left">{host.store_title}</td>
+                                                                <td className="text-left">
+                                                                    <Link target="_blank" to={`/search-details/${host.store_id}`}>{host.store_title}</Link>
+                                                                </td>
                                                                 <td className="text-left">{dateFormat(host.payout_date, "dd/mm/yyyy")}</td>
                                                                 <td className="text-center"><strong>{host.payout_amount} Lei</strong></td>
                                                                 <td className="text-center"><strong>{host.payout_status}</strong></td>
@@ -168,17 +167,26 @@ function UserPaymentHostPayoutListCtrl() {
                     <Col md={4}>
                         <div className={`${isSticky ? ' stickyRemove' : ' stickyAdd'}`} ref={ref}>
 
-                            <div className="d-block w-100">
-                                <div className="text-center">
-                                    <Button className="btn_success px-4" onClick={() => dispatch(toggleBankModal(true))}>+ Add Bank</Button>
-                                </div>
-                            </div>
+
 
                             {
-                                bankListLoading ? <div className="text-center mt-2"><Spinner animation="border" variant="success" /></div> : (bankList && Array.isArray(bankList) && bankList.map((bank, index) => (
+                                (bankListLoading || defaultBankLoading) ? <div className="text-center mt-2"><Spinner animation="border" variant="success" /></div> : (bankList && Array.isArray(bankList) && bankList.map((bank, index) => (
                                     <div className="box_Card AddBankDetailsBox" key={index}>
                                         <h6>Bank Details</h6>
+
+                                        {
+                                            bank.localInfo && bank.localInfo.is_default === "Yes" ? <Badge variant="primary">Default</Badge> : <Button className="btn-sm" onClick={() => dispatch(setDefaultBank({
+                                                bank_id: bank.id
+                                            }))}>Set as Default</Button>
+                                        }
+
+
+
                                         <div className="box_CardBody align-items-end">
+
+
+
+
                                             <Table size="sm" className="no_bdr">
                                                 <tbody>
                                                     <tr>
@@ -226,7 +234,11 @@ function UserPaymentHostPayoutListCtrl() {
                                 )))
                             }
 
-
+                            <div className="d-block w-100">
+                                <div className="text-center">
+                                    <Button className="btn_success px-4" onClick={() => dispatch(toggleBankModal(true))}>+ Add Bank</Button>
+                                </div>
+                            </div>
 
                         </div>
                     </Col>

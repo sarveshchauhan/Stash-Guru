@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILURE, FORGOT_PASSWORD_SUCCESS, CLEAR_FORGOT_PASSWORD_MESSAGE, CLEAR_RESET_PASSWORD_MESSAGE, SAVE_PROFILE_PIC_REQUEST, SAVE_PROFILE_PIC_SUCCESS, SAVE_PROFILE_PIC_FAILURE, SAVE_PROFILE_REQUEST, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAILURE, TOGGLE_PROFILE_MODAL } from "./authTypes"
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILURE, FORGOT_PASSWORD_SUCCESS, CLEAR_FORGOT_PASSWORD_MESSAGE, CLEAR_RESET_PASSWORD_MESSAGE, SAVE_PROFILE_PIC_REQUEST, SAVE_PROFILE_PIC_SUCCESS, SAVE_PROFILE_PIC_FAILURE, SAVE_PROFILE_REQUEST, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAILURE, TOGGLE_PROFILE_MODAL, GET_COUNTRY_CODE } from "./authTypes"
 import { set_login_token, remove_login_token } from "../../helpers/tokenHelpers";
 import { config } from '../../config/config';
 
@@ -236,7 +236,7 @@ export const getUsers = () => {
                     if (usersResponse.status) {
 
                         const response = {
-                            users: { id: usersResponse.users.u_id, name: usersResponse.users.u_name, profile_pic: usersResponse.users.u_pic, email: usersResponse.users.u_email, mobile: usersResponse.users.u_mobile, about: usersResponse.users.u_about, verify: usersResponse.users.u_verify, referral: usersResponse.users.u_refferal }
+                            users: { id: usersResponse.users.u_id, name: usersResponse.users.u_name, profile_pic: usersResponse.users.u_pic, email: usersResponse.users.u_email, mobile: usersResponse.users.u_mobile, about: usersResponse.users.u_about, verify: usersResponse.users.u_verify, referral: usersResponse.users.u_refferal, country_code: usersResponse.users.u_country_code }
                         };
 
                         dispatch(getUserSuccess(response));
@@ -535,3 +535,4 @@ export const toggleProfileModal = (response) => {
         payload: response
     }
 }
+

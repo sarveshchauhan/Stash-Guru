@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { Button, Form, InputGroup, FormControl, Row, Col, Table, Spinner } from 'react-bootstrap';
+import { Button, Form, InputGroup, FormControl, Row, Col, Table, Spinner, Alert } from 'react-bootstrap';
 import './booking.scss';
 import dummy1 from '../../../assets/users/images/dummy/dummy1.jpg'
 import { useDispatch, useSelector } from 'react-redux';
-import { getBookingList, getHostBookingList, updateBookingStatus } from '../../../redux';
+import { cancelBookingHost, getBookingList, getHostBookingList, toggleCancelHostBookingModal, updateBookingStatus } from '../../../redux';
 import dateFormat from 'dateformat';
 import { get_store_size } from '../../../helpers/storeHelper';
 import { useHistory } from 'react-router';
@@ -12,6 +12,7 @@ import MoveInCheckList from './MoveInCheckList';
 import BookingTermsModalHost from '../../common/components/BookingTermsModalHost';
 import BookingTermsModal from '../../common/components/BookingTermsModal';
 import InventoryViewModal from '../../common/components/InventoryViewModal';
+import CancelHostBookingModal from './CancelHostBookingModal';
 
 
 function UserBookedListCtrl() {
@@ -19,7 +20,7 @@ function UserBookedListCtrl() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const { hostBookingListLoading, hostBookingListError, hostBookingList, updateBookingLoading } = useSelector(state => state.booking);
+    const { hostBookingListLoading, cancelHostBookingLoading, cancelHostBookingError, hostBookingListError, hostBookingList, updateBookingLoading } = useSelector(state => state.booking);
 
     useEffect(() => {
 
@@ -43,6 +44,7 @@ function UserBookedListCtrl() {
         <>
             <BookingTermsModalHost />
             <InventoryViewModal />
+            <CancelHostBookingModal />
             <div className="user_page_hdng justify-content-between align-items-center">
                 <div className="w-100 d-flex-wrap justify-content-between">
                     <h2 className="user_page_hdng_txt">Bookings</h2>
@@ -67,6 +69,26 @@ function UserBookedListCtrl() {
                     </div>
                 </div>
             </div>
+
+            {
+                hostBookingListError && <div>
+                    <Alert variant="danger">{JSON.stringify(hostBookingListError)}</Alert>
+                </div>
+            }
+
+            {
+                cancelHostBookingError && <div>
+                    <Alert variant="danger">{JSON.stringify(cancelHostBookingError)}</Alert>
+                </div>
+            }
+
+
+            {
+                (hostBookingListLoading || cancelHostBookingLoading) && <div className="text-center mt-4">
+                    <Spinner animation="border" variant="success" />
+                </div>
+            }
+
 
             {
                 hostBookingList && Array.isArray(hostBookingList) && hostBookingList.map((booking, index) => (
@@ -154,9 +176,7 @@ function UserBookedListCtrl() {
                             </Col>
                             <Col sm="4" className="px-0 book_space_ctrl text-white text-center ">
                                 <div className="m-4 mx-5 pt-3">
-                                    {
-                                        booking.booking_status === "PENDING" && <Button className="btn-block btn_milky_grn" type="button" onClick={() => history.push(`/book/${booking.store_id}/${booking.guid}`)}>Send Message</Button>
-                                    }
+                                    <Button className="btn-block btn_milky_grn" type="button" onClick={() => history.push(`/book/${booking.store_id}/${booking.guid}`)}>Send Message</Button>
 
                                     {
                                         booking.booking_status === "Proccessing" && <>
@@ -173,10 +193,34 @@ function UserBookedListCtrl() {
 
                                     {
                                         booking.booking_status === "PAID" && <>
-                                            <Button className="btn-block btn_milky_grn">Booked</Button>
+                                            <Button className="btn-block btn_milky_grn">Confirmed</Button>
                                         </>
                                     }
+                                    {/* planned_start_date */}
 
+                                    {
+                                        booking.booking_status === "PAID" && ((new Date().getTime()) <= (new Date(booking.planned_start_date).getTime())) && <>
+                                            <Button className="btn-block btn_milky_grn" style={{ backgroundColor: "#ec737f", color: "#ffffff" }} onClick={() => dispatch(toggleCancelHostBookingModal({
+                                                show: true,
+                                                booking_id: booking.booking_id
+                                            }))}>Cancel Booking</Button>
+                                        </>
+
+                                    }
+
+                                    {
+                                        booking.booking_status === "PAID" && ((new Date().getTime()) >= (new Date(booking.planned_start_date).getTime())) && <>
+                                            <Button className="btn-block btn_milky_grn" style={{ backgroundColor: "#ec737f", color: "#ffffff" }}>Notice Period</Button>
+                                        </>
+
+                                    }
+
+
+                                    {
+                                        booking.booking_status === "CANCELLED Proccessing" && <>
+                                            <Button className="btn-block btn_milky_grn">Refund will be processed in 4 to 5 days.</Button>
+                                        </>
+                                    }
 
                                     {
                                         booking.booking_status === "REFUNDED" && <>

@@ -1,4 +1,4 @@
-import { ADD_BANK_FAILURE, ADD_BANK_REQUEST, ADD_BANK_SUCCESS, ADD_CARD_FAILURE, ADD_CARD_REQUEST, ADD_CARD_SUCCESS, BANK_LIST_FAILURE, BANK_LIST_REQUEST, BANK_LIST_SUCCESS, CARD_INFO_FAILURE, CARD_INFO_REQUEST, CARD_INFO_SUCCESS, DELETE_BANK_FAILURE, DELETE_BANK_REQUEST, DELETE_BANK_SUCCESS, TOGGLE_BANK_MODAL, TOGGLE_NEW_CARD_MODAL } from "./paymentTypes";
+import { ADD_BANK_FAILURE, ADD_BANK_REQUEST, ADD_BANK_SUCCESS, ADD_CARD_FAILURE, ADD_CARD_REQUEST, ADD_CARD_SUCCESS, BANK_LIST_FAILURE, BANK_LIST_REQUEST, BANK_LIST_SUCCESS, CARD_INFO_FAILURE, CARD_INFO_REQUEST, CARD_INFO_SUCCESS, DELETE_BANK_FAILURE, DELETE_BANK_REQUEST, DELETE_BANK_SUCCESS, GUEST_PAYMENT_LISTING_FAILURE, GUEST_PAYMENT_LISTING_REQUEST, GUEST_PAYMENT_LISTING_SUCCESS, HOST_PAYMENT_LISTING_FAILURE, HOST_PAYMENT_LISTING_REQUEST, HOST_PAYMENT_LISTING_SUCCESS, SET_DEFAULT_BANK_FAILURE, SET_DEFAULT_BANK_REQUEST, SET_DEFAULT_BANK_SUCCESS, TOGGLE_BANK_MODAL, TOGGLE_NEW_CARD_MODAL } from "./paymentTypes";
 
 const initialState = {
 
@@ -25,7 +25,20 @@ const initialState = {
 
     deleteBankLoading: false,
     deleteBankResponse: "",
-    deleteBankError: ""
+    deleteBankError: "",
+
+    guestPaymentListingLoading: false,
+    guestPaymentListing: "",
+    guestPaymentListingError: "",
+
+
+    hostPaymentListingLoading: false,
+    hostPaymentListing: "",
+    hostPaymentListingError: "",
+
+    defaultBankLoading: false,
+    defaultBankResponse: "",
+    defaultBankError: ""
 
 
 }
@@ -147,6 +160,66 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 deleteBankLoading: false,
                 deleteBankError: action.payload
+            }
+
+        case GUEST_PAYMENT_LISTING_REQUEST:
+            return {
+                ...state,
+                guestPaymentListingLoading: true
+            }
+
+        case GUEST_PAYMENT_LISTING_SUCCESS:
+            return {
+                ...state,
+                guestPaymentListingLoading: false,
+                guestPaymentListing: action.payload
+            }
+
+        case GUEST_PAYMENT_LISTING_FAILURE:
+            return {
+                ...state,
+                guestPaymentListingLoading: false,
+                guestPaymentListingError: action.payload
+            }
+
+        case HOST_PAYMENT_LISTING_REQUEST:
+            return {
+                ...state,
+                hostPaymentListingLoading: true
+            }
+
+        case HOST_PAYMENT_LISTING_SUCCESS:
+            return {
+                ...state,
+                hostPaymentListingLoading: false,
+                hostPaymentListing: action.payload
+            }
+
+        case HOST_PAYMENT_LISTING_FAILURE:
+            return {
+                ...state,
+                hostPaymentListingLoading: false,
+                hostPaymentListingError: action.payload
+            }
+
+        case SET_DEFAULT_BANK_REQUEST:
+            return {
+                ...state,
+                defaultBankLoading: true
+            }
+
+        case SET_DEFAULT_BANK_SUCCESS:
+            return {
+                ...state,
+                defaultBankLoading: false,
+                defaultBankResponse: action.payload
+            }
+
+        case SET_DEFAULT_BANK_FAILURE:
+            return {
+                ...state,
+                defaultBankLoading: false,
+                defaultBankError: action.payload
             }
 
         default:

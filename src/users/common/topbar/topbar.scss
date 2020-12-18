@@ -138,3 +138,19 @@ img.dash_avtar_user{
     position: sticky;
     top: 100px;
 }
+
+.notification{
+    margin-top: 15px;
+    margin-right: 12px;
+}
+
+.notification i{
+    color: #2196c0; 
+}
+
+.notification .badge{
+    position: relative;
+    border-radius: 45%;
+    top: -10px;
+    right: 10px;
+}

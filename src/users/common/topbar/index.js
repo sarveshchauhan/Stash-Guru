@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {Navbar,NavDropdown,Nav, Row} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Navbar, NavDropdown, Nav, Row, Badge } from 'react-bootstrap';
 import './topbar.scss';
 import { NavLink } from 'react-router-dom';
 import logo from '../../../assets/front/images/colored_logo.svg';
@@ -35,43 +35,82 @@ import G_logout from '../../../assets/users/images/icons/menu/G_logout.png';
 
 
 
-import { getUsers, logoutUser } from '../../../redux';
+import { getNotificationCount, getUsers, insertNotification, logoutUser } from '../../../redux';
 import { useDispatch, useSelector } from 'react-redux';
+import { socketIO } from '../../../helpers/socketHelper';
 const profileImages = require.context('../../../assets/users/images/profile', true);
 
-function UserTopbarHeaderComponent(){   
+const socket = socketIO;
+
+function UserTopbarHeaderComponent() {
     const [dispName, setDispName] = useState('');
     const [dispImg, setDispImg] = useState('no_img.png');
     const dispatch = useDispatch();
     const { authResponse, islogin } = useSelector(state => state.auth);
+    const { notificationCount } = useSelector(state => state.notification);
+
+    useEffect(() => {
+
+        if (localStorage.getItem("userEmail")) {
+
+            socket.emit("userLogin", {
+                email: localStorage.getItem("userEmail")
+            });
+
+        }
+
+        socket.on('notification', (data) => {
+            console.log(`notification working`);
+            console.log(data);
+            dispatch(insertNotification(data));
+        });
+
+
+    }, [socket]);
 
     useEffect(() => {
         dispatch(getUsers());
-        if(authResponse.users){
+        dispatch(getNotificationCount());
+        if (authResponse.users) {
             setDispName(authResponse.users.name);
             setDispImg(authResponse.users.profile_pic);
         }
-    }, [islogin]);
+    }, [dispatch, islogin]);
 
     const logoutHandle = (e) => {
         dispatch(logoutUser());
     }
 
-    return(
+    return (
         <>
-            <Navbar sticky="top" style={{borderBottom:'2px solid #00000008'}}>
+            <Navbar sticky="top" style={{ borderBottom: '2px solid #00000008' }}>
                 <div className="nav_container ">
                     <Row className="align-items-center  justify-content-sm-center justify-content-between">
                         <div className="col-lg-6 col-md-6 col-sm-12 text-center text-lg-left text-md-left">
                             <NavLink className="navbar-brand" to="/">
-                                <img width="100%" src={logo} alt=""  />
+                                <img width="100%" src={logo} alt="" />
                             </NavLink>
                         </div>
                         <div className="col-lg-6 col-md-6 col-sm-12 my-2">
                             <Nav className="ml-2 justify-content-center justify-content-lg-end justify-content-md-end">
+
+                                <Nav.Item className="notification">
+                                    <NavLink to="/notifications">
+                                        <>
+                                            <i className="fa fa-bell"></i>
+                                            {
+                                                +notificationCount > 0 && <Badge variant="primary">{notificationCount}</Badge>
+                                            }
+
+                                        </>
+
+                                    </NavLink>
+                                </Nav.Item>
+
+
                                 <Nav.Item className="dash_avtar_user_list">
-                                    <img className="dash_avtar_user" src={dispImg=='no_img.png' ? profileImages(`./${dispImg}`)  : dispImg} />
-                                    <NavDropdown title={dispName}  id="collasible-nav-dropdown">
+                                    <img className="dash_avtar_user" src={dispImg == 'no_img.png' ? profileImages(`./${dispImg}`) : dispImg} />
+                                    <NavDropdown title={dispName} id="collasible-nav-dropdown">
                                         <NavLink className="dropdown-item" to="/dashboard">
                                             <img className="img_deactive" src={B_home} />
                                             <img className="img_active" src={G_home} />
@@ -83,35 +122,42 @@ function UserTopbarHeaderComponent(){
                                             <img className="img_active" src={G_hand} />
                                             Booking
                                         </NavLink>
-                                        
+
                                         <NavLink className="dropdown-item" to="/listing">
                                             <img className="img_deactive" src={B_listing} />
                                             <img className="img_active" src={G_listing} />
                                             Listing
                                         </NavLink>
-                                        
+
                                         <NavLink className="dropdown-item" to="/verification">
                                             <img className="img_deactive" src={B_verify} />
                                             <img className="img_active" src={G_verify} />
                                             Verification
                                         </NavLink>
-                                        
+
                                         <NavLink className="dropdown-item" to="/profile">
                                             <img className="img_deactive" src={B_profile} />
                                             <img className="img_active" src={G_profile} />
                                             Profile
                                         </NavLink>
-                                        
+
                                         <NavLink className="dropdown-item" to="/referrals">
                                             <img className="img_deactive" src={B_share} />
                                             <img className="img_active" src={G_share} />
                                             Referrals
                                         </NavLink>
-                                        
+
                                         <NavLink className="dropdown-item" to="/payment">
                                             <img className="img_deactive" src={B_payment} />
                                             <img className="img_active" src={G_payment} />
                                             Payment
+                                        </NavLink>
+
+
+                                        <NavLink className="dropdown-item" to="/notifications">
+                                            <img className="img_deactive" src={B_payment} />
+                                            <img className="img_active" src={G_payment} />
+                                            Notifications
                                         </NavLink>
 
                                         <NavLink className="dropdown-item" to="/logout" onClick={logoutHandle}>

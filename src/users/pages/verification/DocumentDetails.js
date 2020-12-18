@@ -126,8 +126,8 @@ function DocumentDetails() {
                                 <Form.Control as="select" style={{ borderRadius: '5px' }} value={documentType} onChange={(e) => setDocumentType(e.target.value)}>
                                     <option value="">Select Document Type</option>
                                     {
-                                        documentList && Array.isArray(documentList) && documentList.map((document) => (
-                                            <option value={document.dl_id}>{document.dl_name}</option>
+                                        documentList && Array.isArray(documentList) && documentList.map((document, index) => (
+                                            <option value={document.dl_id} key={index}>{document.dl_name}</option>
                                         ))
                                     }
                                 </Form.Control>

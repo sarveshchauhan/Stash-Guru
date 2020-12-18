@@ -102,7 +102,7 @@ function BookingModal() {
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Label>Estimated Duration</Form.Label>
                                 <Form.Control className="rectu_form_field" as="select" value={month} onChange={(e) => setMonth(e.target.value)} onBlur={() => validateMonth()}>
-                                    <option value="">Select Durations</option>
+                                    <option value="">Select Duration</option>
 
                                     {
                                         months.map((month, index) => (

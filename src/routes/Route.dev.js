@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, useParams } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 
 
@@ -63,6 +63,9 @@ import CreateYourListStepForthCtrl from '../users/pages/create-your-list/LYS_ste
 import CreateYourListStepFifthCtrl from '../users/pages/create-your-list/LYS_step5';
 import CreateYourListStepSixthCtrl from '../users/pages/create-your-list/LYS_step6';
 import CreateYourListStepSeventhCtrl from '../users/pages/create-your-list/LYS_step7';
+
+import Notifications from '../users/pages/Notifications';
+
 import ListPreviewCtrl from '../users/pages/create-your-list/listPreview';
 import ForgotPassword from '../front/pages/register/ForgotPassword';
 import ResetPassword from '../front/pages/register/ResetPassword';
@@ -77,11 +80,25 @@ const socket = socketIO;
 const Root = () => {
 
 
+
+
     useEffect(() => {
         if (localStorage.getItem("userEmail")) {
 
             socket.emit("userLogin", {
                 email: localStorage.getItem("userEmail")
+            });
+
+
+            socket.on("chat", (data) => {
+
+                let paramsList = window.location.href.split("/");
+
+                alert('chat received ' + window.location.href + " ");
+                console.log('url params are');
+                console.log(paramsList);
+                console.log('params end');
+                console.log(data);
             });
 
         }
@@ -129,6 +146,7 @@ const Root = () => {
             <PrivateRoute exact path="/listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserListingtrl} />
             <PrivateRoute exact path="/booking/:guid" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingCtrl} />
             <PrivateRoute exact path="/booking" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingListCtrl} />
+            <PrivateRoute exact path="/notifications" parentComponent={SideMenuPageLayoutCtrl} childComponent={Notifications} />
 
 
             <PrivateRoute exact path="/booked-listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookedListCtrl} />

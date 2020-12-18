@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Modal, Button, Form, Alert, Spinner } from 'react-bootstrap';
+import { Modal, Button, Form, Alert, Spinner, Row, Col } from 'react-bootstrap';
 
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMobileVerifyModal, verifyMobile } from '../../../redux';
+import { config } from '../../../config/config';
 
 const firebaseConfig = {
     apiKey: "AIzaSyA_hBc__NA3mqaHVb97hIM_cdAhXbGNihw",
@@ -32,14 +33,35 @@ function MobileVerification() {
     const [showConfirmBox, setShowConfirmBox] = useState(false);
     const [verificationCode, setVerificationCode] = useState("");
     const [loading, setLoading] = useState(false);
-
     const [error, setError] = useState("");
+    const [countryCode, setCountryCode] = useState("+40");
+    const [countryCodeList, setCountryCodeList] = useState([]);
 
+
+    useEffect(() => {
+
+
+        async function getCountryCode() {
+
+            const countryCodes = await fetch(`${config.appUrl}/countryCode.json`);
+            const result = await countryCodes.json();
+            setCountryCodeList(result);
+
+        }
+
+        getCountryCode();
+
+
+    }, [fetch]);
 
     useEffect(() => {
 
         if (authResponse && authResponse.users) {
             setMobile(authResponse.users.mobile);
+            if (authResponse.users.country_code) {
+                setCountryCode(authResponse.users.country_code);
+            }
+
         }
 
     }, [authResponse]);
@@ -64,6 +86,7 @@ function MobileVerification() {
             dispatch(toggleMobileVerifyModal(false));
             dispatch(verifyMobile({
                 mobile: mobile,
+                country_code: countryCode,
                 type: "Phone"
             }));
 
@@ -83,13 +106,13 @@ function MobileVerification() {
         setError("");
         setLoading(true);
 
-        firebase.auth().signInWithPhoneNumber(mobile, appVerifier).then(confirmationResult => {
+        firebase.auth().signInWithPhoneNumber(`${countryCode}${mobile}`, appVerifier).then(confirmationResult => {
             window.confirmationResult = confirmationResult;
             setShowConfirmBox(true);
             setLoading(false);
         }).catch(error => {
             setLoading(false);
-            setError(error);
+            setError(error.message);
             // console.log(error);
         });
     }
@@ -105,7 +128,7 @@ function MobileVerification() {
                 onShow={onModalShow}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Verfiy Mobile</Modal.Title>
+                    <Modal.Title>Verify Mobile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
@@ -123,8 +146,23 @@ function MobileVerification() {
                     <Form onSubmit={onSubmitForm} hidden={showConfirmBox}>
 
                         <Form.Group>
-                            <Form.Label>Mobile (with Country Code)</Form.Label>
-                            <Form.Control placeholder="+XXXXXXXXXXXX" readOnly={false} value={mobile} onChange={(e) => setMobile(e.target.value)} />
+                            <Form.Label>Mobile No</Form.Label>
+                            <Row>
+                                <Col md={4} sm={4}>
+                                    <Form.Control as="select" value={countryCode} onChange={(e) => setCountryCode(e.target.value)} >
+                                        {
+                                            countryCodeList.map((country, index) => (
+                                                <option key={index} value={country.dial_code}>{`${country.code} (${country.dial_code}) `}</option>
+                                            ))
+                                        }
+                                    </Form.Control>
+                                </Col>
+
+                                <Col md={8} sm={8} style={{ paddingLeft: "0px" }}>
+                                    <Form.Control style={{ borderRadius: "5px" }} maxLength="10" placeholder="XXXXXXXXXX" readOnly={false} value={mobile} onChange={(e) => setMobile(e.target.value)} />
+                                </Col>
+
+                            </Row>
                         </Form.Group>
 
                         <Form.Group>

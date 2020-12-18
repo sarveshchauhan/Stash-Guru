@@ -23,10 +23,13 @@ function ListPreviewCtrl() {
 
     const { stepSeven, publishLoading, stepSix } = useSelector(state => state.listspace);
     const { details, features, images, measurement_unit, used_type } = useSelector(state => state.listspace.listDetailData);
-
+    const { authResponse } = useSelector(state => state.auth);
 
     const [aboutState, setAboutState] = useState("");
     const [vatState, setVatState] = useState("");
+
+
+
 
     useEffect(() => {
 
@@ -240,7 +243,7 @@ function ListPreviewCtrl() {
 
                                         <Col sm="4 p-0">
                                             <div className="PreviewAddedPhotosCard">
-                                                <Button variant="no_style_btn text_color_shamrock">
+                                                <Button variant="no_style_btn text_color_shamrock" onClick={() => window.location.href = "/create-your-list-step6"}>
                                                     +Add More
                                                 </Button>
                                             </div>
@@ -344,7 +347,7 @@ function ListPreviewCtrl() {
                                     <div className='d-flex-wrap'>
                                         <div className="col PreviewProfileImg">
                                             {
-                                                details && details.u_pic ? <img src={details.u_pic} /> : <img src={user1} />
+                                                <img src={authResponse && authResponse.users && authResponse.users.profile_pic ? authResponse.users.profile_pic : user1} />
                                             }
 
 

@@ -1,4 +1,5 @@
-import { ADD_INVENTORY_FAILURE, ADD_INVENTORY_REQUEST, ADD_INVENTORY_SUCCESS, BOOKING_FAILURE, BOOKING_INFO, BOOKING_LIST, BOOKING_REQUEST, CHANGE_DATE_FAILURE, CHANGE_DATE_REQUEST, CHANGE_DATE_SUCCESS, CHARGE_FAILURE, CHARGE_REQUEST, CHARGE_SUCCESS, GUEST_PAYMENT_FAILURE, GUEST_PAYMENT_REQUEST, GUEST_PAYMENT_SUCCESS, HOST_BOOKING_LIST_FAILURE, HOST_BOOKING_LIST_REQUEST, HOST_BOOKING_LIST_SUCCESS, HOST_PAYMENT_FAILURE, HOST_PAYMENT_REQUEST, HOST_PAYMENT_SUCCESS, NEW_BOOKING_RESPONSE, SIGN_IN_FAILURE, SIGN_IN_HOST_FAILURE, SIGN_IN_HOST_REQUEST, SIGN_IN_HOST_SUCCESS, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, TOGGLE_BOOKING_DATE_EDIT_MODAL, TOGGLE_BOOKING_MODAL, TOGGLE_BOOKING_TERMS_MODAL, TOGGLE_BOOKING_TERMS_MODAL_HOST, TOGGLE_INVENTORY_MODAL, TOGGLE_INVENTORY_VIEW_MODAL, UPDATE_BOOKING_FAILURE, UPDATE_BOOKING_REQUEST, UPDATE_BOOKING_SUCCESS } from "./bookingTypes";
+import FrontHomePagesLayoutCtrl from "../../front/layout/HomeLayout";
+import { ADD_INVENTORY_FAILURE, ADD_INVENTORY_REQUEST, ADD_INVENTORY_SUCCESS, BOOKING_COUNT_FAILURE, BOOKING_COUNT_REQUEST, BOOKING_COUNT_SUCCESS, BOOKING_FAILURE, BOOKING_INFO, BOOKING_LIST, BOOKING_REQUEST, CANCEL_BOOKING_GUEST_FAILURE, CANCEL_BOOKING_GUEST_REQUEST, CANCEL_BOOKING_GUEST_SUCCESS, CANCEL_BOOKING_HOST_FAILURE, CANCEL_BOOKING_HOST_REQUEST, CANCEL_BOOKING_HOST_SUCCESS, CHANGE_DATE_FAILURE, CHANGE_DATE_REQUEST, CHANGE_DATE_SUCCESS, CHARGE_FAILURE, CHARGE_REQUEST, CHARGE_SUCCESS, GUEST_PAYMENT_FAILURE, GUEST_PAYMENT_REQUEST, GUEST_PAYMENT_SUCCESS, HOST_BOOKING_LIST_FAILURE, HOST_BOOKING_LIST_REQUEST, HOST_BOOKING_LIST_SUCCESS, HOST_PAYMENT_FAILURE, HOST_PAYMENT_REQUEST, HOST_PAYMENT_SUCCESS, NEW_BOOKING_RESPONSE, SIGN_IN_FAILURE, SIGN_IN_HOST_FAILURE, SIGN_IN_HOST_REQUEST, SIGN_IN_HOST_SUCCESS, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, TOGGLE_BOOKING_DATE_EDIT_MODAL, TOGGLE_BOOKING_MODAL, TOGGLE_BOOKING_TERMS_MODAL, TOGGLE_BOOKING_TERMS_MODAL_HOST, TOGGLE_CANCEL_GUEST_BOOKING_MODAL, TOGGLE_CANCEL_HOST_BOOKING_MODAL, TOGGLE_INVENTORY_MODAL, TOGGLE_INVENTORY_VIEW_MODAL, UPDATE_BOOKING_FAILURE, UPDATE_BOOKING_REQUEST, UPDATE_BOOKING_SUCCESS } from "./bookingTypes";
 
 const initialState = {
 
@@ -62,7 +63,32 @@ const initialState = {
 
     hostPaymentList: "",
     hostPaymentLoading: false,
-    hostPaymentError: ""
+    hostPaymentError: "",
+
+    cancelHostBookingLoading: false,
+    cancelHostBookingResponse: "",
+    cancelHostBookingError: "",
+
+    cancelGuestBookingLoading: false,
+    cancelGuestBookingResponse: "",
+    cancelGuestBookingError: "",
+
+
+    showCancelHostBookingModal: {
+        show: false,
+        booking_id: ""
+    },
+
+    showCancelGuestBookingModal: {
+        show: false,
+        booking_id: ""
+    },
+
+
+    bookingCountLoading: false,
+    bookingCount: 0,
+    bookingCountError: ""
+
 
 
 
@@ -327,6 +353,79 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 hostPaymentLoading: false,
                 hostPaymentError: action.payload
+            }
+
+        case CANCEL_BOOKING_HOST_REQUEST:
+            return {
+                ...state,
+                cancelHostBookingLoading: true
+            }
+
+        case CANCEL_BOOKING_HOST_SUCCESS:
+            return {
+                ...state,
+                cancelHostBookingLoading: false,
+                cancelHostBookingResponse: action.payload
+            }
+
+        case CANCEL_BOOKING_HOST_FAILURE:
+            return {
+                ...state,
+                cancelHostBookingLoading: false,
+                cancelHostBookingError: action.payload
+            }
+
+
+        case CANCEL_BOOKING_GUEST_REQUEST:
+            return {
+                ...state,
+                cancelGuestBookingLoading: true
+            }
+
+        case CANCEL_BOOKING_GUEST_SUCCESS:
+            return {
+                ...state,
+                cancelGuestBookingLoading: false,
+                cancelGuestBookingResponse: action.payload
+            }
+
+        case CANCEL_BOOKING_GUEST_FAILURE:
+            return {
+                ...state,
+                cancelGuestBookingLoading: false,
+                cancelGuestBookingError: action.payload
+            }
+
+        case TOGGLE_CANCEL_HOST_BOOKING_MODAL:
+            return {
+                ...state,
+                showCancelHostBookingModal: action.payload
+            }
+
+        case TOGGLE_CANCEL_GUEST_BOOKING_MODAL:
+            return {
+                ...state,
+                showCancelGuestBookingModal: action.payload
+            }
+
+        case BOOKING_COUNT_REQUEST:
+            return {
+                ...state,
+                bookingCountLoading: true
+            }
+
+        case BOOKING_COUNT_SUCCESS:
+            return {
+                ...state,
+                bookingCountLoading: false,
+                bookingCount: action.payload
+            }
+
+        case BOOKING_COUNT_FAILURE:
+            return {
+                ...state,
+                bookingCountLoading: false,
+                bookingCountError: action.payload
             }
 
 

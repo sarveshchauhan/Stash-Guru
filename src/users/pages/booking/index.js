@@ -141,6 +141,16 @@ function UserBookingCtrl() {
                                             </tr>
                                         }
 
+
+                                        {
+                                            bookingInfo && bookingInfo.hostInfo && <tr>
+                                                <th>Host Name</th>
+                                                <td>
+                                                    <strong>{bookingInfo.hostInfo.u_name}</strong>
+                                                </td>
+                                            </tr>
+                                        }
+
                                     </tbody>
                                 </Table>
                             </div>

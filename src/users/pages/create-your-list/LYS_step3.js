@@ -59,13 +59,13 @@ function CreateYourListStepThitdCtrl() {
     const [guest_access, set_guest_access] = useState("");
 
     const [specificHours, setSpecificHours] = useState([
-        { day: "Monday", selected: true, from: 9, fromType: "am", to: 6, toType: "pm" },
-        { day: "Tuesday", selected: true, from: 9, fromType: "am", to: 6, toType: "pm" },
-        { day: "Wednesday", selected: true, from: 9, fromType: "am", to: 6, toType: "pm" },
-        { day: "Thursday", selected: true, from: 9, fromType: "am", to: 6, toType: "pm" },
-        { day: "Friday", selected: true, from: 9, fromType: "am", to: 6, toType: "pm" },
-        { day: "Saturday", selected: true, from: 9, fromType: "am", to: 6, toType: "pm" },
-        { day: "Sunday", selected: true, from: 9, fromType: "am", to: 6, toType: "pm" }
+        { day: "Monday", selected: true, from: 9, fromType: "AM", to: 6, toType: "PM" },
+        { day: "Tuesday", selected: true, from: 9, fromType: "AM", to: 6, toType: "PM" },
+        { day: "Wednesday", selected: true, from: 9, fromType: "AM", to: 6, toType: "PM" },
+        { day: "Thursday", selected: true, from: 9, fromType: "AM", to: 6, toType: "PM" },
+        { day: "Friday", selected: true, from: 9, fromType: "AM", to: 6, toType: "PM" },
+        { day: "Saturday", selected: true, from: 9, fromType: "AM", to: 6, toType: "PM" },
+        { day: "Sunday", selected: true, from: 9, fromType: "AM", to: 6, toType: "PM" }
     ])
 
     useEffect(() => {
@@ -535,8 +535,8 @@ function CreateYourListStepThitdCtrl() {
                                                                             }
                                                                         </Form.Control> */}
                                                                         <Form.Control className="rectu_form_field" size="sm" as="select" defaultValue={specHour.fromType} value={specHour.fromType} onChange={(e) => onChangeSpecificHours(specHour.day, e)} name="fromType">
-                                                                            <option value="am">am</option>
-                                                                            <option value="pm">pm</option>
+                                                                            <option value="AM">AM</option>
+                                                                            <option value="PM">PM</option>
                                                                         </Form.Control>
                                                                     </InputGroup>
                                                                 </Form.Group>
@@ -554,8 +554,8 @@ function CreateYourListStepThitdCtrl() {
                                                                             }
                                                                         </Form.Control> */}
                                                                         <Form.Control className="rectu_form_field" size="sm" as="select" defaultValue={specHour.toType} value={specHour.toType} onChange={(e) => onChangeSpecificHours(specHour.day, e)} name="toType">
-                                                                            <option value="am">am</option>
-                                                                            <option value="pm">pm</option>
+                                                                            <option value="AM">AM</option>
+                                                                            <option value="PM">PM</option>
                                                                         </Form.Control>
                                                                     </InputGroup>
                                                                 </Form.Group>
@@ -669,7 +669,7 @@ function CreateYourListStepThitdCtrl() {
                     <Row className="justify-content-between">
                         <Col lg="6" md="6" className="text-left">
                             <NavLink to="/create-your-list">
-                                <Button className="btn_outline_success mr-2  mt-2 px-5">
+                                <Button className="btn_previous mr-2  mt-2">
                                     <i className="fa fa-long-arrow-left mr-2" aria-hidden="true"></i>Previous
                                 </Button>
                             </NavLink>

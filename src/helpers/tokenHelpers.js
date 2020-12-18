@@ -20,26 +20,39 @@ export const remove_login_token = () => {
 
 
 export const validateClientToken = async () => {
-    if (localStorage.getItem('stashGuruToken')) {
 
-        let responseData = await axios.post(`${config.apiUrl}/front/users/details`, { token: localStorage.getItem('stashGuruToken').replace(/["']/g, "") }, requestConfig);
+    try {
 
-        if (responseData.data.status) {
-            return localStorage.getItem('stashGuruToken').replace(/["']/g, "");
+        if (localStorage.getItem('stashGuruToken')) {
+
+            let responseData = await axios.post(`${config.apiUrl}/front/users/details`, { token: localStorage.getItem('stashGuruToken').replace(/["']/g, "") }, requestConfig);
+
+            if (responseData.data.status) {
+                return localStorage.getItem('stashGuruToken').replace(/["']/g, "");
+            }
+            else {
+
+                let redirectURL = `/signup?redirect_url=${encodeURIComponent(window.location.href)}`;
+                window.location.href = redirectURL;
+            }
+
+
         }
         else {
-
             let redirectURL = `/signup?redirect_url=${encodeURIComponent(window.location.href)}`;
             window.location.href = redirectURL;
+
         }
 
-
     }
-    else {
+    catch (error) {
+
         let redirectURL = `/signup?redirect_url=${encodeURIComponent(window.location.href)}`;
         window.location.href = redirectURL;
 
     }
+
+
 
 }
 

@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
-import { Button, Form, InputGroup, FormControl, Row, Col, Table } from 'react-bootstrap';
+import { Button, Form, InputGroup, FormControl, Row, Col, Table, Spinner } from 'react-bootstrap';
 import './booking.scss';
 import dummy1 from '../../../assets/users/images/dummy/dummy1.jpg'
 import { useDispatch, useSelector } from 'react-redux';
-import { getBookingList } from '../../../redux';
+import { getBookingList, toggleCancelGuestBookingModal } from '../../../redux';
 import dateFormat from 'dateformat';
 import { get_store_size } from '../../../helpers/storeHelper';
 import { useHistory } from 'react-router';
 import { config } from '../../../config/config';
+import CancelGuestBookingModal from './CancelGuestBookingModal';
 
 
 function UserBookingListCtrl() {
@@ -30,6 +31,7 @@ function UserBookingListCtrl() {
 
     return (
         <>
+            <CancelGuestBookingModal />
             <div className="user_page_hdng justify-content-between align-items-center">
                 <div className="w-100 d-flex-wrap justify-content-between">
                     <h2 className="user_page_hdng_txt">Bookings</h2>
@@ -48,6 +50,11 @@ function UserBookingListCtrl() {
                     </div>
                 </div>
             </div>
+
+
+            {
+                bookingLoading && <div className="text-center"><Spinner animation="border" variant="success" /></div>
+            }
 
             {
                 bookingList && Array.isArray(bookingList) && bookingList.map((booking, index) => (
@@ -139,10 +146,11 @@ function UserBookingListCtrl() {
                                     {
                                         booking.booking_status === "PENDING" && <>
                                             <Button className="btn-block btn_milky_grn" onClick={() => history.push(`/booking/${booking.guid}`)}>Book Space</Button>
-                                            <Button className="btn-block btn_success_milky_outline" onClick={() => history.push(`/book/${booking.store_id}/${booking.guid}`)}>Send Message</Button>
                                             <small className="d-block mt-4">Enquiry will expire in 2 days</small>
                                         </>
                                     }
+
+                                    <Button className="btn-block btn_success_milky_outline" onClick={() => history.push(`/book/${booking.store_id}/${booking.guid}`)}>Send Message</Button>
 
                                     {
                                         booking.booking_status === "REFUNDED" && <small className="d-block mt-4">Payment received in 24 hours</small>
@@ -152,6 +160,23 @@ function UserBookingListCtrl() {
                                     {
                                         booking.booking_status === "PAID" && <Button className="btn-block btn_milky_grn">Booked</Button>
                                     }
+
+                                    {
+                                        booking.booking_status === "PAID" && <Button className="btn-block btn_milky_grn" onClick={() => dispatch(toggleCancelGuestBookingModal({
+                                            show: true,
+                                            booking_id: booking.booking_id
+                                        }))}
+
+                                            style={{ backgroundColor: "#ec737f", color: "#ffffff" }}
+
+                                        >Cancel Booking</Button>
+                                    }
+
+
+                                    {
+                                        booking.booking_status === "CANCELLED Proccessing" && <Button className="btn-block btn_milky_grn" type="button">Cancellation in process. Refund will be given in 4 to 5 days</Button>
+                                    }
+
 
                                     {
                                         booking.booking_status === "Proccessing" && <Button className="btn-block btn_milky_grn" type="button">Waiting for Host Response</Button>

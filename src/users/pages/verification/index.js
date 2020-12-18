@@ -72,7 +72,9 @@ function UserVerificationCtrl() {
 
         dispatch(getVerifyList({
             token: JSON.parse(localStorage.getItem("stashGuruToken"))
-        }))
+        }));
+
+
 
     }, [dispatch]);
 
@@ -98,7 +100,7 @@ function UserVerificationCtrl() {
             <div className="sg_box_flex_card align-items-center justify-content-between">
                 <div className="">
                     <h3 className="text_color_zambezi">ID Verification</h3>
-                    <NavLink to="" className="text_color_deep_skyi">Required for booking ({idVerified})</NavLink>
+                    <NavLink to="#" className="text_color_deep_skyi">Required for booking ({idVerified})</NavLink>
                 </div>
                 <div>
 
@@ -126,7 +128,7 @@ function UserVerificationCtrl() {
             <div className="sg_box_flex_card align-items-center justify-content-between">
                 <div className="">
                     <h3 className="text_color_zambezi">Phone Number Verification</h3>
-                    <NavLink to="" className="text_color_shamrock">
+                    <NavLink to="#" className="text_color_shamrock">
 
                         {
                             phoneVerified && phoneVerified === "Verify" && <NavLink to="" className="text_color_shamrock">Verified</NavLink>
@@ -137,7 +139,14 @@ function UserVerificationCtrl() {
                         }
 
                     </NavLink>
-                    <span className="text_color_gray">({authResponse && authResponse.users && authResponse.users.mobile})</span>
+
+                    {
+                        (authResponse && authResponse.users && authResponse.users.mobile) ? <span className="text_color_gray">({authResponse && authResponse.users && `${authResponse.users.country_code}-${authResponse.users.mobile}`})</span> : ""
+                    }
+
+
+
+
                 </div>
 
 

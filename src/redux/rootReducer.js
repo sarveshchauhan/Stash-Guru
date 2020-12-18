@@ -8,7 +8,7 @@ import documentReducer from './document/documentReducer';
 import bookingReducer from './booking/bookingReducer';
 import walletReducer from './wallet/walletReducer';
 import paymentReducer from './payment/paymentReducer';
-
+import notificationReducer from './notification/notificationReducer';
 
 export default combineReducers({
 
@@ -20,6 +20,7 @@ export default combineReducers({
     document: documentReducer,
     booking: bookingReducer,
     wallet: walletReducer,
-    payment: paymentReducer
+    payment: paymentReducer,
+    notification: notificationReducer
 
 });

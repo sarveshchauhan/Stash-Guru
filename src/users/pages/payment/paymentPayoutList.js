@@ -1,17 +1,13 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { Button, Col, Form, Modal, Row, Dropdown, Table, Spinner } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
-
-import invoice from '../../../assets/users/images/icons/invoice.png';
-import visa_cards_citibank from '../../../assets/users/images/dummy/visa_cards_citibank.jpg';
-import bank from '../../../assets/users/images/icons/bank.png';
+import { Link, NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getGuestPaymentList } from '../../../redux/booking/bookingActions';
 import dateFormat from 'dateformat';
 import AddCardModal from './AddCardModal';
-import { getCardInfo, toggleNewCardModal } from '../../../redux';
+import { getCardInfo, getGuestPaymentListing, toggleNewCardModal } from '../../../redux';
 import { StripeProvider, Elements } from 'react-stripe-elements';
 import { config } from '../../../config/config';
+import PaymentFilter from './PaymentFilter';
 
 
 function UserPaymentPayoutListCtrl() {
@@ -24,7 +20,7 @@ function UserPaymentPayoutListCtrl() {
 
     useEffect(() => {
 
-        dispatch(getGuestPaymentList());
+        dispatch(getGuestPaymentListing());
 
     }, [dispatch]);
 
@@ -84,18 +80,17 @@ function UserPaymentPayoutListCtrl() {
                     <Col md={8}>
                         <div className="box_Card paymentPayoutList_card">
                             <div className="paymentPayoutList_CardHeader">
-                                <h4 className="m-0">Invoice</h4>
-                                <div className="">
-                                    {/* <Dropdown>
-                                        <Dropdown.Toggle variant="no_bg" id="dropdown-basic">
-                                            Host
-                                        </Dropdown.Toggle>
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">Host</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-2">Guest</Dropdown.Item>
-                                        </Dropdown.Menu>
-                                    </Dropdown> */}
-                                </div>
+
+                                <Row>
+                                    <Col md="3">
+                                        <h4 className="m-0">Invoice</h4>
+                                    </Col>
+                                    <Col md="9">
+                                        <PaymentFilter />
+                                    </Col>
+                                </Row>
+
+
                             </div>
                             <div className="box_CardBody text-center">
                                 <div className="w-100">
@@ -105,12 +100,10 @@ function UserPaymentPayoutListCtrl() {
                                             <thead>
                                                 <tr>
                                                     <th className="text-left">Listing</th>
-                                                    <th className="text-left">Location</th>
-                                                    <th className="text-center">Area(sq ft.)</th>
-                                                    <th className="text-center">Qty.</th>
                                                     <th className="text-left">Month</th>
                                                     <th className="text-center">Amount (Lei)</th>
                                                     <th className="text-center">Wallet Amt. (Lei)</th>
+                                                    <th className="text-center">Status</th>
                                                     <th className="text-center">Action</th>
                                                 </tr>
                                             </thead>
@@ -120,16 +113,25 @@ function UserPaymentPayoutListCtrl() {
                                                     guestPaymentList && Array.isArray(guestPaymentList) && guestPaymentList.map((guest, index) => (
 
                                                         <tr key={index}>
-                                                            <td className="text-left"><a href="#" onClick={(e) => dispatch(getCardInfo({
-                                                                charge_id: guest.charge_id
-                                                            }))}>{guest.store_title}</a></td>
-                                                            <td className="text-left">{`${guest.store_address1}`}</td>
-                                                            <td className="text-center">{guest.store_size}</td>
-                                                            <td className="text-center">1</td>
+                                                            <td className="text-left">
+
+                                                                <Link target="_blank" to={`/search-details/${guest.store_id}`}>{guest.store_title}</Link>
+
+                                                            </td>
                                                             <td className="text-left">{dateFormat(guest.created_on, 'dd/mm/yyyy')}</td>
                                                             <td className="text-center"><strong>{guest.amount}</strong></td>
                                                             <td className="text-center"><strong>{guest.wamount}</strong></td>
-                                                            <td className="text-center"><i className="fa fa-print"></i></td>
+                                                            <td className="text-center"><strong>{guest.booking_status}</strong></td>
+
+                                                            <td className="text-center">
+
+
+                                                                <Link to="#" onClick={(e) => dispatch(getCardInfo({
+                                                                    charge_id: guest.charge_id
+                                                                }))}>  <i className="fa fa-eye"></i></Link>
+
+
+                                                            </td>
                                                         </tr>
 
                                                     ))

@@ -87,15 +87,20 @@ function SignUpComponentCtrl() {
                     }
                 }
                 break;
-            case 'mobile':
-                setMobile(e.target.value);
-                if (!e.target.value) {
-                    setMobileError("Mobile is required!");
-                }
-                else {
-                    setMobileError("");
-                }
-                break;
+
+
+            // case 'mobile':
+            // setMobile(e.target.value);
+            // if (!e.target.value) {
+            //     setMobileError("Mobile is required!");
+            // }
+            // else {
+            //     setMobileError("");
+            // }
+            // break;
+
+
+
             case 'fullname':
                 setFullName(e.target.value);
                 if (!e.target.value) {
@@ -140,10 +145,10 @@ function SignUpComponentCtrl() {
             setPasswordError("Password is required!");
         }
 
-        if (!mobile) {
-            error = true;
-            setMobileError("Mobile is required!");
-        }
+        // if (!mobile) {
+        //     error = true;
+        //     setMobileError("Mobile is required!");
+        // }
 
         return error;
     }
@@ -218,14 +223,14 @@ function SignUpComponentCtrl() {
                                                         }
                                                     </Form.Group>
 
-                                                    <Form.Group controlId="">
+                                                    {/* <Form.Group controlId="">
                                                         <Form.Control type="text" isInvalid={mobileError} placeholder="Mobile NUmber" name="mobile" value={mobile} onChange={handleFormField} onBlur={handleFormField} />
                                                         {
                                                             mobileError && <span className="error_msg text-danger">
                                                                 {mobileError}
                                                             </span>
                                                         }
-                                                    </Form.Group>
+                                                    </Form.Group> */}
 
                                                     <Form.Group controlId="">
                                                         <Form.Control type="text" isInvalid={fullnameError} placeholder="Full Name" name="fullname" value={fullname} onChange={handleFormField} onBlur={handleFormField} />

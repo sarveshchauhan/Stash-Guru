@@ -143,7 +143,7 @@ function FrontSearchDetailsCtrl() {
                             <Carousel activeIndex={index} onSelect={search_Details_handleSelect} indicators={true}>
                                 {images.map((details, index) =>
                                     <Carousel.Item key={index}>
-                                        <img className="d-block w-100" src={details.si_path} />
+                                        <img className="d-block w-100 slider-image" src={details.si_path} />
                                     </Carousel.Item>
                                 )}
                             </Carousel>
@@ -384,7 +384,9 @@ function FrontSearchDetailsCtrl() {
 
                                                 {/* <Button variant="success" onClick={() => dispatch(toggleBookingModal(true))}>Message {authResponse && authResponse.users && authResponse.users.name}</Button> */}
 
-                                                <Button variant="success" onClick={() => window.location.href = `/chat/list/${searchId}`}>Message {authResponse && authResponse.users && authResponse.users.name}</Button>
+                                                {
+                                                    details.booked === false && <Button variant="success" onClick={() => window.location.href = `/chat/list/${searchId}`}>Message {authResponse && authResponse.users && authResponse.users.name}</Button>
+                                                }
 
 
                                             </div>
@@ -434,16 +436,21 @@ function FrontSearchDetailsCtrl() {
                                         details.u_email !== localStorage.getItem("userEmail") && bookingInfo ? <Button variant="success" className="btn-block" onClick={() => window.location.href = `/booking/${bookingInfo.guid}`}>View Booking</Button> : <Button variant="success" className="btn-block" onClick={() => dispatch(toggleBookingModal(true))}>Book Space</Button>
                                     } */}
 
+
                                     {
+                                        details.booked ? <Button variant="success" className="btn-block">Booked</Button> : <Button variant="success" className="btn-block" onClick={() => dispatch(toggleBookingModal(true))}>Book Space</Button>
+                                    }
+
+                                    {/* {
                                         details.u_email !== localStorage.getItem("userEmail") ? bookingInfo ? <Button variant="success" className="btn-block" onClick={() => window.location.href = `/booking/${bookingInfo.guid}`}>View Booking</Button> : <Button variant="success" className="btn-block" onClick={() => dispatch(toggleBookingModal(true))}>Book Space</Button> : <Button variant="success" className="btn-block" onClick={() => window.location.href = `/list-preview/${searchId}`}>Edit Listing</Button>
 
-                                    }
+                                    } */}
 
 
 
                                 </div>
                                 <div className="book_space_card_footer">
-                                    <div className="d-flex justify-content-center align-items-center">
+                                    {/* <div className="d-flex justify-content-center align-items-center">
                                         <img className="mr-3" src={helping} alt="" />
                                         <p className="m-0">$400 insurance included</p>
                                     </div>
@@ -461,7 +468,7 @@ function FrontSearchDetailsCtrl() {
                                     <div className="d-flex justify-content-center align-items-center">
                                         <img className="mr-3" src={agreement} alt="" />
                                         <p className="m-0">$400 insurance included</p>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </Col>

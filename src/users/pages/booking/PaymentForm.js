@@ -24,7 +24,15 @@ function PaymentForm({ stripe }) {
 
     useEffect(() => {
 
-        setWalletAmount(walletAmount + +walletResponse);
+        if (+walletResponse > 0) {
+            setApplyWallet(true);
+            setWalletAmount(walletAmount + +walletResponse);
+        }
+        else {
+            setApplyWallet(false);
+            setWalletAmount(0);
+        }
+
 
     }, [walletResponse]);
 
@@ -210,7 +218,22 @@ function PaymentForm({ stripe }) {
                     <Col sm="12">
                         <div className="whatUBePayingCard">
                             <Form.Check label="First Month Rental" checked={applyFirstMonthRental} onChange={(e) => setApplyFirstMonthRental(e.target.checked)} />
-                            <strong>{applyFirstMonthRental ? "" : "-"}{bookingInfo && bookingInfo.listingInfo.store_cost} Lei</strong>
+
+                            {
+                                applyFirstMonthRental ? <strong>
+                                    {bookingInfo && bookingInfo.listingInfo.store_cost} Lei
+                                </strong>
+                                    :
+                                    <strike>
+                                        <strong>
+                                            -{bookingInfo && bookingInfo.listingInfo.store_cost} Lei
+                                        </strong>
+                                    </strike>
+                            }
+
+
+
+
                         </div>
                     </Col>
 
@@ -218,7 +241,7 @@ function PaymentForm({ stripe }) {
 
 
                     {
-                        (bookingInfo && walletResponse) ? <Col sm="12">
+                        (bookingInfo && walletResponse && +walletResponse > 0) ? <Col sm="12">
                             <div className="whatUBePayingCard">
                                 <Form.Check label="Apply Wallet" checked={applyWallet} onChange={(e) => setApplyWallet(e.target.checked)} />
                                 {
