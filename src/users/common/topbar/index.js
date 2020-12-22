@@ -35,7 +35,7 @@ import G_logout from '../../../assets/users/images/icons/menu/G_logout.png';
 
 
 
-import { getNotificationCount, getUsers, insertNotification, logoutUser } from '../../../redux';
+import { getNotificationCount, getUnseenMessageList, getUsers, insertNotification, logoutUser } from '../../../redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { socketIO } from '../../../helpers/socketHelper';
 const profileImages = require.context('../../../assets/users/images/profile', true);
@@ -47,7 +47,7 @@ function UserTopbarHeaderComponent() {
     const [dispImg, setDispImg] = useState('no_img.png');
     const dispatch = useDispatch();
     const { authResponse, islogin } = useSelector(state => state.auth);
-    const { notificationCount } = useSelector(state => state.notification);
+    const { notificationCount, unseenMessageCount } = useSelector(state => state.notification);
 
     useEffect(() => {
 
@@ -71,6 +71,7 @@ function UserTopbarHeaderComponent() {
     useEffect(() => {
         dispatch(getUsers());
         dispatch(getNotificationCount());
+        dispatch(getUnseenMessageList());
         if (authResponse.users) {
             setDispName(authResponse.users.name);
             setDispImg(authResponse.users.profile_pic);
@@ -93,6 +94,21 @@ function UserTopbarHeaderComponent() {
                         </div>
                         <div className="col-lg-6 col-md-6 col-sm-12 my-2">
                             <Nav className="ml-2 justify-content-center justify-content-lg-end justify-content-md-end">
+
+
+                                <Nav.Item className="notification">
+                                    <NavLink to="/new_messages">
+                                        <>
+                                            <i className="fa fa-comment"></i>
+                                            {
+                                                +unseenMessageCount > 0 && <Badge variant="primary">{unseenMessageCount}</Badge>
+                                            }
+
+                                        </>
+
+                                    </NavLink>
+                                </Nav.Item>
+
 
                                 <Nav.Item className="notification">
                                     <NavLink to="/notifications">

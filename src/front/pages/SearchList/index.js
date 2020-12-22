@@ -6,7 +6,7 @@ import Slider from '@material-ui/core/Slider';
 
 import { Container, Row, Col, Navbar, Button, Dropdown } from 'react-bootstrap';
 
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 
 // Assets Include
 import '../../common/topbar/topbar.scss';
@@ -155,7 +155,7 @@ function FrontSearchListCtrl() {
                                     {list.map(details =>
                                         <div className="col-sm-6 col-xl-4 SearchListPlace_col" key={details.store_id} onMouseOver={() => setCurrentList(details)}>
                                             <div className="SearchListPlace_card">
-                                                <a href={'/search-details/' + details.store_id} >
+                                                <Link to={'/search-details/' + details.store_id} >
                                                     <img width="100%" src={details.images && details.images.length > 0 ? details.images[0].si_path : PlaceholderImage} alt="" />
                                                     <div className="SearchListPlace_card_body">
                                                         <div className="SearchListPlaceUserArea">
@@ -203,7 +203,7 @@ function FrontSearchListCtrl() {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </a>
+                                                </Link>
                                             </div>
                                         </div>
                                     )}

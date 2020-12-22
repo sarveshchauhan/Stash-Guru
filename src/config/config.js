@@ -1,12 +1,12 @@
 export const config = {
 
-    apiUrl: 'https://sgapi.dizicraft.com',
-    appUrl: 'https://sguru.dizicraft.com',
-    socketUrl: "https://sgapi.dizicraft.com/stream",
+    // apiUrl: 'https://sgapi.dizicraft.com',
+    // appUrl: 'https://sguru.dizicraft.com',
+    // socketUrl: "https://sgapi.dizicraft.com/stream",
 
-    // apiUrl: 'http://localhost:5000',
-    // appUrl: 'http://localhost:3006',
-    // socketUrl: "http://localhost:5000/stream",
+    apiUrl: 'http://localhost:5000',
+    appUrl: 'http://localhost:3006',
+    socketUrl: "http://localhost:5000/stream",
 
 
     googleMapApiKey: "AIzaSyB103Ei2FmqUW2l1PHQAaf2u4xo3RzkEkg",

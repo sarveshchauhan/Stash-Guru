@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react';
-import { Button, Col, Form, Modal, Row, Dropdown, Table, Spinner } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Button, Col, Row, Table, Spinner } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import dateFormat from 'dateformat';
 import AddCardModal from './AddCardModal';
@@ -8,6 +8,8 @@ import { getCardInfo, getGuestPaymentListing, toggleNewCardModal } from '../../.
 import { StripeProvider, Elements } from 'react-stripe-elements';
 import { config } from '../../../config/config';
 import PaymentFilter from './PaymentFilter';
+
+
 
 
 function UserPaymentPayoutListCtrl() {
@@ -59,15 +61,6 @@ function UserPaymentPayoutListCtrl() {
     }, []);
 
 
-
-
-    const [AddCardmodal, setAddCardDmodal] = useState(false);
-    const handlesetAddCardDmodalClose = () => setAddCardDmodal(false);
-    const handlesetAddCardDmodalShow = () => setAddCardDmodal(true);
-
-    const [AddBankmodal, setAddBankDmodal] = useState(false);
-    const handlesetAddBankmodalClose = () => setAddBankDmodal(false);
-    const handlesetAddBankmodalShow = () => setAddBankDmodal(true);
 
     return (
         <>
@@ -217,91 +210,7 @@ function UserPaymentPayoutListCtrl() {
                 </Elements>
             </StripeProvider>
 
-            <Modal className="user_modal" show={AddBankmodal} onHide={handlesetAddBankmodalClose} backdrop="static" keyboard={false}>
-                <button className="user_modal_close_btn" onClick={handlesetAddBankmodalClose}>
-                    <i className="fa fa-times" aria-hidden="true"></i>
-                </button>
-                <Modal.Header className="justify-content-start">
-                    <div className="text-left">
-                        <Modal.Title>Add Bank Account</Modal.Title>
-                    </div>
-                </Modal.Header>
-                <Modal.Body>
-                    <div className="text-left">
-                        <Form>
-                            <Row>
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Account Type</Form.Label>
-                                        <Form.Control className="rectu_form_field" as="select">
-                                            <option>Individual</option>
-                                        </Form.Control>
-                                    </Form.Group>
-                                </Col>
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Country</Form.Label>
-                                        <Form.Control className="rectu_form_field" as="select">
-                                            <option>United Kingdom</option>
-                                            <option>United State</option>
-                                            <option>India</option>
-                                        </Form.Control>
-                                    </Form.Group>
-                                </Col>
-                                <Col md={12}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Date Of Birth</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="01-01-1980" />
-                                    </Form.Group>
-                                </Col>
 
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Account Number</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="1451245754512455" />
-                                    </Form.Group>
-                                </Col>
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Sort Code</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="41451451" />
-                                    </Form.Group>
-                                </Col>
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Address Line 1</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="22 Main Street" />
-                                    </Form.Group>
-                                </Col>
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Address Line 2</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="Lorem ipsum" />
-                                    </Form.Group>
-                                </Col>
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>City</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="London" />
-                                    </Form.Group>
-                                </Col>
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Postcode</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="AS245FV" />
-                                    </Form.Group>
-                                </Col>
-
-
-                                <Col md={12} className="text-center">
-                                    <Button className="btn_success px-5"> Add Bank Account </Button>
-                                </Col>
-                            </Row>
-
-                        </Form>
-                    </div>
-                </Modal.Body>
-            </Modal>
         </>
     )
 }

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { config } from '../../config/config';
 import { validateClientToken } from '../../helpers/tokenHelpers';
-import { TOGGLE_BOOKING_MODAL, BOOKING_REQUEST, BOOKING_FAILURE, NEW_BOOKING_RESPONSE, BOOKING_INFO, CHARGE_REQUEST, CHARGE_SUCCESS, CHARGE_FAILURE, BOOKING_LIST, HOST_BOOKING_LIST_REQUEST, HOST_BOOKING_LIST_SUCCESS, HOST_BOOKING_LIST_FAILURE, UPDATE_BOOKING_REQUEST, UPDATE_BOOKING_SUCCESS, UPDATE_BOOKING_FAILURE, TOGGLE_BOOKING_DATE_EDIT_MODAL, CHANGE_DATE_REQUEST, CHANGE_DATE_SUCCESS, CHANGE_DATE_FAILURE, TOGGLE_INVENTORY_MODAL, ADD_INVENTORY_REQUEST, ADD_INVENTORY_SUCCESS, ADD_INVENTORY_FAILURE, TOGGLE_BOOKING_TERMS_MODAL, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, SIGN_IN_FAILURE, TOGGLE_BOOKING_TERMS_MODAL_HOST, TOGGLE_INVENTORY_VIEW_MODAL, SIGN_IN_HOST_REQUEST, SIGN_IN_HOST_SUCCESS, SIGN_IN_HOST_FAILURE, GUEST_PAYMENT_REQUEST, GUEST_PAYMENT_SUCCESS, GUEST_PAYMENT_FAILURE, HOST_PAYMENT_REQUEST, HOST_PAYMENT_SUCCESS, HOST_PAYMENT_FAILURE, CANCEL_BOOKING_HOST_REQUEST, CANCEL_BOOKING_HOST_SUCCESS, CANCEL_BOOKING_HOST_FAILURE, TOGGLE_CANCEL_HOST_BOOKING_MODAL, TOGGLE_CANCEL_GUEST_BOOKING_MODAL, CANCEL_BOOKING_GUEST_REQUEST, CANCEL_BOOKING_GUEST_SUCCESS, CANCEL_BOOKING_GUEST_FAILURE, BOOKING_COUNT_REQUEST, BOOKING_COUNT_SUCCESS, BOOKING_COUNT_FAILURE } from './bookingTypes';
+import { TOGGLE_BOOKING_MODAL, BOOKING_REQUEST, BOOKING_FAILURE, NEW_BOOKING_RESPONSE, BOOKING_INFO, CHARGE_REQUEST, CHARGE_SUCCESS, CHARGE_FAILURE, BOOKING_LIST, HOST_BOOKING_LIST_REQUEST, HOST_BOOKING_LIST_SUCCESS, HOST_BOOKING_LIST_FAILURE, UPDATE_BOOKING_REQUEST, UPDATE_BOOKING_SUCCESS, UPDATE_BOOKING_FAILURE, TOGGLE_BOOKING_DATE_EDIT_MODAL, CHANGE_DATE_REQUEST, CHANGE_DATE_SUCCESS, CHANGE_DATE_FAILURE, TOGGLE_INVENTORY_MODAL, ADD_INVENTORY_REQUEST, ADD_INVENTORY_SUCCESS, ADD_INVENTORY_FAILURE, TOGGLE_BOOKING_TERMS_MODAL, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, SIGN_IN_FAILURE, TOGGLE_BOOKING_TERMS_MODAL_HOST, TOGGLE_INVENTORY_VIEW_MODAL, SIGN_IN_HOST_REQUEST, SIGN_IN_HOST_SUCCESS, SIGN_IN_HOST_FAILURE, GUEST_PAYMENT_REQUEST, GUEST_PAYMENT_SUCCESS, GUEST_PAYMENT_FAILURE, HOST_PAYMENT_REQUEST, HOST_PAYMENT_SUCCESS, HOST_PAYMENT_FAILURE, CANCEL_BOOKING_HOST_REQUEST, CANCEL_BOOKING_HOST_SUCCESS, CANCEL_BOOKING_HOST_FAILURE, TOGGLE_CANCEL_HOST_BOOKING_MODAL, TOGGLE_CANCEL_GUEST_BOOKING_MODAL, CANCEL_BOOKING_GUEST_REQUEST, CANCEL_BOOKING_GUEST_SUCCESS, CANCEL_BOOKING_GUEST_FAILURE, BOOKING_COUNT_REQUEST, BOOKING_COUNT_SUCCESS, BOOKING_COUNT_FAILURE, TERMS_REQUEST, TERMS_SUCCESS, TERMS_FAILURE } from './bookingTypes';
 import Swal from 'sweetalert2';
 import store from '../store';
 
@@ -1118,6 +1118,70 @@ export const getBookingCount = (reqData = {}, query = "") => {
             }).catch(error => {
                 const errorMsg = error.message;
                 dispatch(bookingCountFailure(errorMsg));
+
+            });
+    }
+
+}
+
+
+
+
+
+
+
+const termsRequest = () => {
+    return {
+        type: TERMS_REQUEST
+    }
+}
+
+const termsSuccess = (response) => {
+    return {
+        type: TERMS_SUCCESS,
+        payload: response
+    }
+}
+
+const termsFailure = (response) => {
+    return {
+        type: TERMS_FAILURE,
+        payload: response
+    }
+}
+
+
+
+
+export const getSignInTerms = (reqData = {}) => {
+
+    reqData.token = JSON.parse(localStorage.getItem("stashGuruToken"));
+
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(termsRequest());
+
+        reqData.token = await validateClientToken();
+
+
+
+        await axios.post(`${config.apiUrl}/front/users/sign_in_terms`, reqData, requestConfig)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {
+                    dispatch(termsSuccess(serverResponse.data));
+                }
+                else {
+                    dispatch(termsFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(termsFailure(errorMsg));
 
             });
     }

@@ -18,7 +18,7 @@ import r_sm_verify from '../../../assets/users/images/chat/r_sm_verify.png';
 
 import user1 from '../../../assets/users/images/dummy/user1.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBookingInfoByGuid, getCgInfo, getListDetails, searchDetails, toggleBookingDateEditModal, toggleBookingModal, toggleBookingTermsModal, toggleInventoryModal } from '../../../redux';
+import { clearUnseenMessages, getBookingInfoByGuid, getCgInfo, getListDetails, searchDetails, toggleBookingDateEditModal, toggleBookingModal, toggleBookingTermsModal, toggleInventoryModal } from '../../../redux';
 import BookingChatBox from './BookingChatBox';
 import BookingModal from '../../../front/pages/SearchList/BookingModal';
 import BookingDateEditModal from '../../common/components/BookingDateEditModal';
@@ -60,6 +60,11 @@ function UserBookingChatCtrl() {
         dispatch(getBookingInfoByGuid({
             guid: bookId
         }));
+
+        dispatch(clearUnseenMessages({
+            guid: bookId
+        }));
+
 
         // dispatch(getListDetails({
         //     id: listId,

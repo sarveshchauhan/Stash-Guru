@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Switch, Route, useParams } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
 
 
@@ -52,7 +52,6 @@ import UserBookingChatCtrl from '../users/pages/booking/bookingChat';
 
 import UserVerificationCtrl from '../users/pages/verification';
 import UserProfileCtrl from '../users/pages/profile';
-import UserPaymentPayoutCtrl from '../users/pages/payment';
 import UserPaymentPayoutListCtrl from '../users/pages//payment/paymentPayoutList';
 import UserReferralsCtrl from '../users/pages/referrals';
 // side menu bar layout End
@@ -70,51 +69,25 @@ import ListPreviewCtrl from '../users/pages/create-your-list/listPreview';
 import ForgotPassword from '../front/pages/register/ForgotPassword';
 import ResetPassword from '../front/pages/register/ResetPassword';
 import ChatCtrl from '../users/pages/chat';
-import { socketIO } from '../helpers/socketHelper';
 import UserBookedListCtrl from '../users/pages/booking/bookedList';
 import UserPaymentHostPayoutListCtrl from '../users/pages/payment/paymentHostPayoutList';
+import NewMessageList from '../users/pages/NewMessageList';
+import MessageHelper from '../users/common/helperComponents/MessageHelper';
 
 
-const socket = socketIO;
+
 
 const Root = () => {
 
 
-
-
-    useEffect(() => {
-        if (localStorage.getItem("userEmail")) {
-
-            socket.emit("userLogin", {
-                email: localStorage.getItem("userEmail")
-            });
-
-
-            // socket.on("chat", (data) => {
-
-            //     let paramsList = window.location.href.split("/");
-            //     // 3 is book
-            //     alert('chat received ' + window.location.href + " ");
-            //     console.log('url params are');
-            //     console.log(paramsList);
-            //     console.log('params end');
-            //     console.log(data);
-            // });
-
-        }
-
-
-    }, [socket]);
-
-
     return (<BrowserRouter>
+
+        <MessageHelper />
+
         <Switch>
             {/* <PrivateRoute exact path="/login" parentComponent={RegisterPagesLayoutCtrl} childComponent={LoginComponentCtrl} /> */}
 
             <Route exact path="/login" render={(props) => (< RegisterPagesLayoutCtrl children={LoginComponentCtrl} {...props} />)} />
-
-
-
             <Route exact path="/signup" render={(props) => (< RegisterPagesLayoutCtrl children={SignUpComponentCtrl} {...props} />)} />
             <Route exact path="/forgotpassword" render={(props) => (< RegisterPagesLayoutCtrl children={ForgotPassword} {...props} />)} />
             <Route exact path="/resetpassword/:token" render={(props) => (< RegisterPagesLayoutCtrl children={ResetPassword} {...props} />)} />
@@ -147,6 +120,7 @@ const Root = () => {
             <PrivateRoute exact path="/booking/:guid" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingCtrl} />
             <PrivateRoute exact path="/booking" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingListCtrl} />
             <PrivateRoute exact path="/notifications" parentComponent={SideMenuPageLayoutCtrl} childComponent={Notifications} />
+            <PrivateRoute exact path="/new_messages" parentComponent={SideMenuPageLayoutCtrl} childComponent={NewMessageList} />
 
 
             <PrivateRoute exact path="/booked-listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookedListCtrl} />

@@ -1,5 +1,5 @@
 import FrontHomePagesLayoutCtrl from "../../front/layout/HomeLayout";
-import { ADD_INVENTORY_FAILURE, ADD_INVENTORY_REQUEST, ADD_INVENTORY_SUCCESS, BOOKING_COUNT_FAILURE, BOOKING_COUNT_REQUEST, BOOKING_COUNT_SUCCESS, BOOKING_FAILURE, BOOKING_INFO, BOOKING_LIST, BOOKING_REQUEST, CANCEL_BOOKING_GUEST_FAILURE, CANCEL_BOOKING_GUEST_REQUEST, CANCEL_BOOKING_GUEST_SUCCESS, CANCEL_BOOKING_HOST_FAILURE, CANCEL_BOOKING_HOST_REQUEST, CANCEL_BOOKING_HOST_SUCCESS, CHANGE_DATE_FAILURE, CHANGE_DATE_REQUEST, CHANGE_DATE_SUCCESS, CHARGE_FAILURE, CHARGE_REQUEST, CHARGE_SUCCESS, GUEST_PAYMENT_FAILURE, GUEST_PAYMENT_REQUEST, GUEST_PAYMENT_SUCCESS, HOST_BOOKING_LIST_FAILURE, HOST_BOOKING_LIST_REQUEST, HOST_BOOKING_LIST_SUCCESS, HOST_PAYMENT_FAILURE, HOST_PAYMENT_REQUEST, HOST_PAYMENT_SUCCESS, NEW_BOOKING_RESPONSE, SIGN_IN_FAILURE, SIGN_IN_HOST_FAILURE, SIGN_IN_HOST_REQUEST, SIGN_IN_HOST_SUCCESS, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, TOGGLE_BOOKING_DATE_EDIT_MODAL, TOGGLE_BOOKING_MODAL, TOGGLE_BOOKING_TERMS_MODAL, TOGGLE_BOOKING_TERMS_MODAL_HOST, TOGGLE_CANCEL_GUEST_BOOKING_MODAL, TOGGLE_CANCEL_HOST_BOOKING_MODAL, TOGGLE_INVENTORY_MODAL, TOGGLE_INVENTORY_VIEW_MODAL, UPDATE_BOOKING_FAILURE, UPDATE_BOOKING_REQUEST, UPDATE_BOOKING_SUCCESS } from "./bookingTypes";
+import { ADD_INVENTORY_FAILURE, ADD_INVENTORY_REQUEST, ADD_INVENTORY_SUCCESS, BOOKING_COUNT_FAILURE, BOOKING_COUNT_REQUEST, BOOKING_COUNT_SUCCESS, BOOKING_FAILURE, BOOKING_INFO, BOOKING_LIST, BOOKING_REQUEST, CANCEL_BOOKING_GUEST_FAILURE, CANCEL_BOOKING_GUEST_REQUEST, CANCEL_BOOKING_GUEST_SUCCESS, CANCEL_BOOKING_HOST_FAILURE, CANCEL_BOOKING_HOST_REQUEST, CANCEL_BOOKING_HOST_SUCCESS, CHANGE_DATE_FAILURE, CHANGE_DATE_REQUEST, CHANGE_DATE_SUCCESS, CHARGE_FAILURE, CHARGE_REQUEST, CHARGE_SUCCESS, GUEST_PAYMENT_FAILURE, GUEST_PAYMENT_REQUEST, GUEST_PAYMENT_SUCCESS, HOST_BOOKING_LIST_FAILURE, HOST_BOOKING_LIST_REQUEST, HOST_BOOKING_LIST_SUCCESS, HOST_PAYMENT_FAILURE, HOST_PAYMENT_REQUEST, HOST_PAYMENT_SUCCESS, NEW_BOOKING_RESPONSE, SIGN_IN_FAILURE, SIGN_IN_HOST_FAILURE, SIGN_IN_HOST_REQUEST, SIGN_IN_HOST_SUCCESS, SIGN_IN_REQUEST, SIGN_IN_SUCCESS, TERMS_FAILURE, TERMS_REQUEST, TERMS_SUCCESS, TOGGLE_BOOKING_DATE_EDIT_MODAL, TOGGLE_BOOKING_MODAL, TOGGLE_BOOKING_TERMS_MODAL, TOGGLE_BOOKING_TERMS_MODAL_HOST, TOGGLE_CANCEL_GUEST_BOOKING_MODAL, TOGGLE_CANCEL_HOST_BOOKING_MODAL, TOGGLE_INVENTORY_MODAL, TOGGLE_INVENTORY_VIEW_MODAL, UPDATE_BOOKING_FAILURE, UPDATE_BOOKING_REQUEST, UPDATE_BOOKING_SUCCESS } from "./bookingTypes";
 
 const initialState = {
 
@@ -87,7 +87,12 @@ const initialState = {
 
     bookingCountLoading: false,
     bookingCount: 0,
-    bookingCountError: ""
+    bookingCountError: "",
+
+
+    termsLoading: false,
+    termsDetail: "",
+    termsError: ""
 
 
 
@@ -265,7 +270,9 @@ const reducer = (state = initialState, action) => {
         case SIGN_IN_REQUEST:
             return {
                 ...state,
-                signInLoading: true
+                signInLoading: true,
+                signInResponse: "",
+                signInError: ""
             }
 
         case SIGN_IN_SUCCESS:
@@ -279,7 +286,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 signInLoading: false,
-                signInError: ""
+                signInError: action.payload
             }
 
         case TOGGLE_BOOKING_TERMS_MODAL_HOST:
@@ -338,7 +345,7 @@ const reducer = (state = initialState, action) => {
         case HOST_PAYMENT_REQUEST:
             return {
                 ...state,
-                hostPaymentLoading: true
+                hostPaymentLoading: true,
             }
 
         case HOST_PAYMENT_SUCCESS:
@@ -426,6 +433,26 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 bookingCountLoading: false,
                 bookingCountError: action.payload
+            }
+
+        case TERMS_REQUEST:
+            return {
+                ...state,
+                termsLoading: true
+            }
+
+        case TERMS_SUCCESS:
+            return {
+                ...state,
+                termsLoading: false,
+                termsDetail: action.payload
+            }
+
+        case TERMS_FAILURE:
+            return {
+                ...state,
+                termsLoading: false,
+                termsError: action.payload
             }
 
 

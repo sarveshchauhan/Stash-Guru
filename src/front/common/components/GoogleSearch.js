@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { config } from '../../../config/config';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { Button } from 'react-bootstrap';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 
 function GoogleSearch() {
 
     const [address, setAddress] = useState("");
     const { key } = useParams();
+    const history = useHistory();
 
 
     useEffect(() => {
@@ -29,7 +30,8 @@ function GoogleSearch() {
     };
 
     const search = () => {
-        window.location.href = `/search/${address}`;
+        // window.location.href = `/search/${address}`;
+        history.push(`/search/${address}`);
     }
 
 

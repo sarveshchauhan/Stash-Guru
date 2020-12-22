@@ -5,13 +5,10 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { clearlistSpaceMessageFields, getFeatures, getFloors, getGuestAccess, getGuests, getSpaceType, getSpaceUsedFor, stepThreeSave, stepThreeUpdate } from '../../../redux/listspace/listspaceActions';
 
 import StepsNavListCtrl from './steps_nav_list';
-import G_infinite from '../../../assets/users/images/icons/create_list_step/G_infinite.png';
-import infinite from '../../../assets/users/images/icons/create_list_step/infinite.png';
 
 import './liststep.css';
 
 
-const iconImages = require.context('../../../assets/front/images/icons/list-details', true);
 
 
 
@@ -25,9 +22,6 @@ function CreateYourListStepThitdCtrl() {
     const history = useHistory();
 
 
-
-    const hrList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-
     const [title, set_title] = useState("");
     const [title_error, set_title_error] = useState("");
 
@@ -35,7 +29,7 @@ function CreateYourListStepThitdCtrl() {
     const [st_id_error, set_st_id_error] = useState("");
 
 
-    const [sut_id, set_sut_id] = useState("");
+
     const [sut_id_error, set_sut_id_error] = useState("");
 
 
@@ -44,8 +38,6 @@ function CreateYourListStepThitdCtrl() {
     const [floor_id, set_floor_id] = useState("");
     const [floor_id_error, set_floor_id_error] = useState("");
 
-
-    const [feature_id, set_feature_id] = useState("");
     const [feature_id_error, set_feature_id_error] = useState("");
 
 
@@ -83,7 +75,7 @@ function CreateYourListStepThitdCtrl() {
 
         }
 
-    }, [stepTwo])
+    }, [stepTwo, history])
 
 
     useEffect(() => {
@@ -136,7 +128,7 @@ function CreateYourListStepThitdCtrl() {
             dispatch(clearlistSpaceMessageFields());
         }
 
-    }, [stepThreeSuccess])
+    }, [stepThreeSuccess, dispatch])
 
 
     useEffect(() => {
@@ -154,7 +146,7 @@ function CreateYourListStepThitdCtrl() {
 
         window.scrollTo(0, 0);
 
-    }, [window]);
+    }, []);
 
 
     const is_feature_exists = (featureid) => {
@@ -218,7 +210,7 @@ function CreateYourListStepThitdCtrl() {
             set_sut_list([...sut_list, sutid]);
 
         }
-
+        return true;
 
     }
 
@@ -243,6 +235,8 @@ function CreateYourListStepThitdCtrl() {
         });
 
         setSpecificHours(newHrs);
+
+        return true;
     }
 
 
@@ -326,7 +320,7 @@ function CreateYourListStepThitdCtrl() {
 
         }
 
-
+        return true;
     }
 
     return (

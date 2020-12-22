@@ -44,25 +44,35 @@ function BookingChatBox() {
             console.log('data email ' + data.email);
             console.log('my email ' + localStorage.getItem("userEmail"));
 
-
-
-
             if (data.email !== localStorage.getItem("userEmail") && +data.booking_id === +store.getState().booking.bookingInfo.booking_id) {
 
-                console.log('booking id matched');
 
-                let messageInfo = {
-                    cm_id: data.data.cm_id,
-                    cm_message: data.data.cm_message,
-                    cm_status: 0,
-                    u_email: data.email,
-                    u_name: data.name,
-                    store_id: +data.store_id,
-                    cg_id: +data.data.cg_id
-                };
+                let urlParams = window.location.href;
+
+                if (urlParams.includes(`/book/${data.store_id}/${data.booking_guid}`)) {
+
+                    let messageInfo = {
+                        cm_id: data.data.cm_id,
+                        cm_message: data.data.cm_message,
+                        cm_status: 0,
+                        u_email: data.email,
+                        u_name: data.name,
+                        store_id: +data.store_id,
+                        cg_id: +data.data.cg_id
+                    };
 
 
-                dispatch(pushMessageIntoList(messageInfo));
+                    dispatch(pushMessageIntoList(messageInfo));
+
+                    socket.emit('chat_seen', {
+                        token: JSON.parse(localStorage.getItem('stashGuruToken')),
+                        data: data.data
+                    });
+
+                }
+
+
+
                 // dispatch(pushRemoteChat(messageInfo));
 
 
