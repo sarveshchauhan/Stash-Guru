@@ -6,6 +6,7 @@ import ListYourSpaceImage from '../../../../assets/front/images/icons/warehouse.
 
 import dummy1 from '../../../../assets//users/images/dummy/dummy1.jpg';
 import { LIST_DETAIL_SUCCESS } from '../../../../redux/listspace/listspaceTypes';
+import { config } from '../../../../config/config';
 
 const mapStyles = {
     map: {
@@ -143,5 +144,5 @@ export function GoogleMap(props) {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyB103Ei2FmqUW2l1PHQAaf2u4xo3RzkEkg'
+    apiKey: config.googleMapApiKey
 })(GoogleMap);

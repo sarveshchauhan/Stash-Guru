@@ -9,6 +9,7 @@ import bookingReducer from './booking/bookingReducer';
 import walletReducer from './wallet/walletReducer';
 import paymentReducer from './payment/paymentReducer';
 import notificationReducer from './notification/notificationReducer';
+import frontReducer from './front/frontReducer';
 
 export default combineReducers({
 
@@ -21,6 +22,7 @@ export default combineReducers({
     booking: bookingReducer,
     wallet: walletReducer,
     payment: paymentReducer,
-    notification: notificationReducer
+    notification: notificationReducer,
+    front: frontReducer
 
 });

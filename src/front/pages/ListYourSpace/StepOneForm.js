@@ -6,7 +6,7 @@ import { getSpaceType, stepOneSave } from '../../../redux/listspace/listspaceAct
 import GoogleSearchListing from '../../common/components/GoogleSearchListing';
 
 
-function StepOneForm() {
+function StepOneForm({ spaceTypeId = 0, disableSpaceControl = false }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -35,13 +35,17 @@ function StepOneForm() {
 
     }, [dispatch])
 
+
     useEffect(() => {
 
-        if (spaceTypeList && Array.isArray(spaceTypeList) && spaceTypeList.length > 0) {
+        if (spaceTypeList && Array.isArray(spaceTypeList) && spaceTypeList.length > 0 && spaceTypeId > 0) {
+            setSpaceType(spaceTypeId)
+        }
+        else if (spaceTypeList && Array.isArray(spaceTypeList) && spaceTypeList.length > 0) {
             setSpaceType(spaceTypeList[0].st_id);
         }
 
-    }, [spaceTypeList]);
+    }, [spaceTypeList, spaceTypeId]);
 
 
     const handleFormFields = (e) => {
@@ -135,7 +139,7 @@ function StepOneForm() {
                     <Form onSubmit={submitForm}>
                         <h5 className="pb-4">Lorem ipsum dolor sit amet</h5>
                         <Form.Group className="custom_select" style={{ height: '48px' }}>
-                            <Form.Control as="select" name="spaceType" value={spaceType} onChange={(e) => setSpaceType(e.target.value)} onBlur={handleFormFields}>
+                            <Form.Control as="select" disabled={disableSpaceControl} name="spaceType" value={spaceType} onChange={(e) => setSpaceType(e.target.value)} onBlur={handleFormFields}>
 
                                 {
                                     spaceTypeList && Array.isArray(spaceTypeList) && spaceTypeList.map((st, index) => (

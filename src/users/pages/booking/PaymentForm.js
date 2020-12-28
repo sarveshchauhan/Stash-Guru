@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe } from 'react-stripe-elements';
 import { Form, Row, Col, Button, Spinner, Alert } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { chargePayment } from '../../../redux/booking/bookingActions';
+import { chargePayment, applyCouponCode } from '../../../redux/booking/bookingActions';
 import { useHistory, useParams } from 'react-router';
 import { getWallet } from '../../../redux';
+import { Link } from 'react-router-dom';
 
 function PaymentForm({ stripe }) {
 
@@ -13,13 +14,66 @@ function PaymentForm({ stripe }) {
     const history = useHistory();
 
 
-    const { bookingInfo, chargeLoading, chargeError } = useSelector(state => state.booking);
+    const { bookingInfo, chargeLoading, chargeError, couponLoading, couponData, couponError } = useSelector(state => state.booking);
     const { walletResponse } = useSelector(state => state.wallet);
     const [totalAmount, setTotalAmount] = useState(0);
     const [walletAmount, setWalletAmount] = useState(0);
 
     const [applyWallet, setApplyWallet] = useState(true);
     const [applyFirstMonthRental, setApplyFirstMonthRental] = useState(true);
+
+    const [showCouponDiv, setShowCouponDiv] = useState(false);
+    const [couponAmount, setCouponAmount] = useState(0);
+    const [couponCode, setCouponCode] = useState("");
+    const [couponApplied, setCouponApplied] = useState(false);
+
+
+    useEffect(() => {
+
+        if (couponData) {
+            if (couponData.percent) {
+                let percent = +couponData.percent;
+                let cAmount = (totalAmount / 100) * percent;
+                setCouponAmount(cAmount);
+                setCouponApplied(true);
+            }
+        }
+        else {
+            setCouponApplied(false);
+        }
+
+    }, [couponData]);
+
+
+
+
+    useEffect(() => {
+
+        if (couponAmount) {
+            setTotalAmount(totalAmount - couponAmount);
+        }
+
+    }, [couponAmount]);
+
+    useEffect(() => {
+
+        if (!couponApplied) {
+            setTotalAmount(totalAmount + couponAmount);
+            setCouponAmount(0);
+            setCouponCode("");
+        }
+
+
+    }, [couponApplied]);
+
+
+    useEffect(() => {
+
+        if (!showCouponDiv) {
+            setCouponApplied(false);
+        }
+
+    }, [showCouponDiv]);
 
 
     useEffect(() => {
@@ -44,6 +98,7 @@ function PaymentForm({ stripe }) {
     }, [dispatch]);
 
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -59,21 +114,14 @@ function PaymentForm({ stripe }) {
 
         if (token) {
 
-            // console.log({
-            //     amount: totalAmount,
-            //     wallet_amount: applyWallet ? +walletAmount : 0,
-            //     is_wallet: applyWallet ? "Yes" : "No",
-            //     is_first_month: applyFirstMonthRental ? "Yes" : "No",
-            //     source: token.id,
-            //     receipt_email: localStorage.getItem("userEmail"),
-            //     guid: guid
-            // });
-
             dispatch(chargePayment({
                 amount: +totalAmount * 100,
                 wallet_amount: applyWallet ? +walletAmount : 0,
                 is_wallet: applyWallet ? "Yes" : "No",
                 is_first_month: applyFirstMonthRental ? "Yes" : "No",
+                coupon_applied: couponApplied ? "Yes" : "No",
+                coupon_amount: couponAmount,
+                coupon_code: couponCode,
                 source: token.id,
                 receipt_email: localStorage.getItem("userEmail"),
                 guid: guid
@@ -255,25 +303,68 @@ function PaymentForm({ stripe }) {
                     }
 
 
-                    {/* <Col sm="12">
-                                    <div className="whatUBePayingCard">
-                                        <b>Security Deposit for Key</b>
-                                        <strong>$500</strong>
-                                    </div>
-                                </Col> */}
-                    {/* <Col sm="12">
-                                    <div className="whatUBePayingCard">
-                                        <b>Other Deposit</b>
-                                        <strong>$5000</strong>
-                                    </div>
-                                </Col> */}
 
-                    {/* <Col sm="12">
-                                    <div className="whatUBePayingCard">
-                                        <b>Security Deposit</b>
-                                        <strong>$12000</strong>
-                                    </div>
-                                </Col> */}
+
+
+
+                    <Col sm={12} hidden={showCouponDiv}>
+                        <Link href="#" onClick={() => setShowCouponDiv(true)} style={{
+                            textDecoration: "none"
+                        }}>Apply Promotional code</Link>
+                    </Col>
+
+
+                    <Col sm="12" hidden={!showCouponDiv}>
+                        <div className="whatUBePayingCardCoupon">
+
+                            <Row style={{ width: "100%" }}>
+                                <Col md={6}>
+                                    <Row>
+                                        <Col sm={8}>
+                                            <input type="text" placeholder="Promotional Code" readOnly={couponApplied} value={couponCode} onChange={(e) => setCouponCode(e.target.value.toUpperCase())} />
+
+                                            {
+                                                couponError && <span style={{ fontSize: "12px" }} className="text-danger">{couponError}</span>
+                                            }
+                                            {
+                                                couponApplied && <span style={{ fontSize: "12px" }} className="text-success">Coupon Applied!</span>
+                                            }
+
+                                        </Col>
+
+
+                                        {
+                                            couponLoading ? <Spinner variant="success" animation="border" /> : (!couponApplied) && <Col sm={4}>
+                                                <Button type="button" className="btn-sm" onClick={(e) => dispatch(applyCouponCode({ coupon_code: couponCode }))}>Apply</Button>
+                                            </Col>
+
+
+                                        }
+
+
+
+
+
+                                    </Row>
+                                </Col>
+
+                                <Col md={6}>
+                                    <p>
+                                        <strong className="float-right">
+                                            {couponAmount} Lei
+
+                                            &nbsp;&nbsp;<i className="fa fa-times" style={{ cursor: "pointer" }} onClick={() => setShowCouponDiv(false)}></i>
+
+                                        </strong>
+
+                                    </p>
+                                </Col>
+                            </Row>
+
+
+                        </div>
+                    </Col>
+
 
 
                     <Col sm="12">

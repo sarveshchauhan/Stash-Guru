@@ -65,27 +65,6 @@ function SearchComponent() {
 
 
 
-
-                {/* <InputGroup className="location_search_bar">
-                    <InputGroup.Prepend>
-                        <InputGroup.Text>
-                            <i className="fa fa-map-marker"></i>
-                        </InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl aria-describedby="basic-addon1" isInvalid={errorSearch} name="txtSearch" value={txtSearch ? txtSearch : ""} onChange={handleFormField} onBlur={handleFormField} placeholder="Your Location" />
-
-
-
-
-                    <InputGroup.Append>
-                        <Button variant="success" type="submit">
-                            <i className="fa fa-search"></i>
-                        </Button>
-                    </InputGroup.Append>
-                </InputGroup> */}
-
-
-
                 {
                     errorSearch && <span className="error_msg text-danger">
                         {errorSearch}

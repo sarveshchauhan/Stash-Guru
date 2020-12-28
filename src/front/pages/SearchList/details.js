@@ -440,7 +440,7 @@ function FrontSearchDetailsCtrl() {
                                     {
                                         details.is_book === "Yes" ? <Button variant="success" className="btn-block">Booked</Button> : <>
                                             {
-                                                details.u_email !== localStorage.getItem("userEmail") ? <Button variant="success" className="btn-block" onClick={() => dispatch(toggleBookingModal(true))}>Book Space</Button> : ""
+                                                details.u_email !== localStorage.getItem("userEmail") ? <Button variant="success" className="btn-block" onClick={() => dispatch(toggleBookingModal(true))}>Book Space</Button> : <Button variant="success" className="btn-block" onClick={() => history.push(`/list-preview/${searchId}`)}>Edit Listing</Button>
                                             }
                                         </>
                                     }

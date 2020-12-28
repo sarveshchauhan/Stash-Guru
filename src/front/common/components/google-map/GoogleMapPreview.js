@@ -1,5 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import { config } from '../../../../config/config';
 
 
 
@@ -49,5 +50,5 @@ export function GoogleMapPreview(props) {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyB103Ei2FmqUW2l1PHQAaf2u4xo3RzkEkg'
+    apiKey: config.googleMapApiKey
 })(GoogleMapPreview);

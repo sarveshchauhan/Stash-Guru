@@ -2,6 +2,7 @@ import React, { Component, useEffect, useState } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAddress, updateCoordinatesClient } from '../../../../redux';
+import { config } from '../../../../config/config';
 // import logo from '../../../../assets/front/images/colored_logo.svg';
 
 const mapStyles = {
@@ -98,5 +99,5 @@ export function GoogleMap(props) {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyB103Ei2FmqUW2l1PHQAaf2u4xo3RzkEkg'
+    apiKey: config.googleMapApiKey
 })(GoogleMap);

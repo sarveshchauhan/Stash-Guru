@@ -58,25 +58,25 @@ function FooterComponent() {
                                             <NavLink to="" className="nav-link">Start Storing</NavLink>
                                             <NavLink to="/domestic-storage" className="nav-link">Domestic Storage</NavLink>
                                             <NavLink to="/business-storage" className="nav-link">Business Storage</NavLink>
-                                            <NavLink to="" className="nav-link">Rent A Parking Space</NavLink>
-                                            <NavLink to="" className="nav-link">Storage Space In London</NavLink>
-                                            <NavLink to="" className="nav-link">Rent A Garage</NavLink>
-                                            <NavLink to="" className="nav-link">Rent A Warehouse</NavLink>
-                                            <NavLink to="" className="nav-link">Rent A Spare Room</NavLink>
+                                            <NavLink to="/parking-spaces" className="nav-link">Rent A Parking Space</NavLink>
+                                            <NavLink to="/storage-space" className="nav-link">Storage Space</NavLink>
+                                            <NavLink to="/garage" className="nav-link">Rent A Garage</NavLink>
+                                            <NavLink to="/warehouse" className="nav-link">Rent A Warehouse</NavLink>
+                                            <NavLink to="/spare-rooms" className="nav-link">Rent A Spare Room</NavLink>
                                         </Nav>
                                     </Col>
                                     <Col sm={4} className="footer_links">
                                         <h4 className="mt-3">Hosting</h4>
                                         <Nav className="flex-column">
                                             <NavLink to="/become-a-host" className="nav-link">Become A Host</NavLink>
-                                            <NavLink to="" className="nav-link">Rent Your Garage</NavLink>
-                                            <NavLink to="" className="nav-link">Rent Your Parking Space</NavLink>
-                                            <NavLink to="" className="nav-link">Rent Your Warehouse</NavLink>
-                                            <NavLink to="" className="nav-link">Rent Your Spare Room</NavLink>
-                                            <NavLink to="" className="nav-link">Rent Your Outhouse</NavLink>
-                                            <NavLink to="" className="nav-link">Rent Your Lock-Up</NavLink>
-                                            <NavLink to="" className="nav-link">Rent Your Loft</NavLink>
-                                            <NavLink to="" className="nav-link">Rent Your Basement</NavLink>
+                                            <NavLink to="/rent-my-garage" className="nav-link">Rent Your Garage</NavLink>
+                                            <NavLink to="/rent-my-parking-space" className="nav-link">Rent Your Parking Space</NavLink>
+                                            <NavLink to="/rent-my-warehouse" className="nav-link">Rent Your Warehouse</NavLink>
+                                            <NavLink to="/rent-my-spare-room" className="nav-link">Rent Your Spare Room</NavLink>
+                                            <NavLink to="/rent-my-outhouse" className="nav-link">Rent Your Outhouse</NavLink>
+                                            <NavLink to="/rent-my-lockup" className="nav-link">Rent Your Lock-Up</NavLink>
+                                            <NavLink to="/rent-my-loft" className="nav-link">Rent Your Loft</NavLink>
+                                            <NavLink to="/rent-my-basement" className="nav-link">Rent Your Basement</NavLink>
                                         </Nav>
                                     </Col>
                                     <Col sm={4} className="footer_links">

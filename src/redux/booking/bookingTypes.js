@@ -85,3 +85,8 @@ export const TERMS_SUCCESS = 'TERMS_SUCCESS';
 export const TERMS_FAILURE = 'TERMS_FAILURE';
 
 
+export const COUPON_REQUEST = 'COUPON_REQUEST';
+export const COUPON_SUCCESS = 'COUPON_SUCCESS';
+export const COUPON_FAILURE = 'COUPON_FAILURE';
+
+

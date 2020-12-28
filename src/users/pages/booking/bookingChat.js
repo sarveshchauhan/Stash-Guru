@@ -35,17 +35,14 @@ function UserBookingChatCtrl() {
     const { bookingInfo } = useSelector(state => state.booking);
     const { authResponse } = useSelector(state => state.auth);
 
-
-
     const history = useHistory();
+
 
     useEffect(() => {
 
         window.scrollTo(0, 0);
 
     }, [window]);
-
-
 
 
 
@@ -64,12 +61,6 @@ function UserBookingChatCtrl() {
         dispatch(clearUnseenMessages({
             guid: bookId
         }));
-
-
-        // dispatch(getListDetails({
-        //     id: listId,
-        //     token: JSON.parse(localStorage.getItem("stashGuruToken"))
-        // }));
 
 
     }, [dispatch]);
@@ -230,7 +221,7 @@ function UserBookingChatCtrl() {
 
 
                                 {
-                                    authResponse && authResponse.users && schDetails && schDetails.u_id && +schDetails.u_id !== +authResponse.users.id && <Button variant="success" className="btn-block my-3" onClick={() => history.push(`/booking/${bookId}`)}>Pay Now</Button>
+                                    authResponse && authResponse.users && schDetails && schDetails.u_id && +schDetails.u_id !== +authResponse.users.id && bookingInfo && bookingInfo.status === "PENDING" && <Button variant="success" className="btn-block my-3" onClick={() => history.push(`/booking/${bookId}`)}>Pay Now</Button>
                                 }
 
 

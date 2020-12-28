@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Button, Carousel, Nav } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import banner_img from '../../../assets/front/images/img/banner_img.svg';
 
 import browse from '../../../assets/front/images/icons/browse.svg';
@@ -31,15 +31,26 @@ import ListYourSpace from '../../../assets/front/images/icons/list_your_space.pn
 
 
 import SearchComponent from '../../common/components/SearchCompo';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTestimonials } from '../../../redux/front/frontActions';
 
 function FrontHomeCtrl() {
 
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const { testimonialData } = useSelector(state => state.front);
+
+    useEffect(() => {
+
+        dispatch(getTestimonials());
+
+    }, [dispatch]);
 
     useEffect(() => {
 
         window.scrollTo(0, 0);
 
-    }, [window]);
+    }, []);
 
     const [index, setIndex] = useState(0);
 
@@ -121,6 +132,9 @@ function FrontHomeCtrl() {
                                     <h3>Connecting people</h3>
                                     <small>who need space, with people that have space.</small>
                                 </div>
+
+
+
                                 <div className="connecting_people_card">
                                     <div className="connecting_people_img">
                                         <img src={boy} alt="" />
@@ -145,6 +159,10 @@ function FrontHomeCtrl() {
                                         <p>Her spare room is dry, safe, secure and she can store Vlad's things for 8 months.</p>
                                     </div>
                                 </div>
+
+
+
+
                             </div>
                         </Col>
                         <Col md={6}>
@@ -166,7 +184,7 @@ function FrontHomeCtrl() {
                                 <h3>Get Some Empty Space?</h3>
                                 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
                                     sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-                                <button className="btn btn_milky">Get Statrted</button>
+                                <button className="btn btn_milky">Get Started</button>
                                 <button className="btn btn_success">Chat Us</button>
                             </div>
                         </Col>
@@ -320,7 +338,7 @@ function FrontHomeCtrl() {
                 </Container>
             </section>
 
-            <section className="featured_storages_cities">
+            {/* <section className="featured_storages_cities">
                 <Container>
                     <Row className="justify-content-center">
                         <Col md={12}>
@@ -381,6 +399,9 @@ function FrontHomeCtrl() {
                 </Container>
             </section>
 
+ */}
+
+
             <section className="connecting_people_slider stash_guru_user_slider">
                 <Container>
                     <Row className="justify-content-center">
@@ -392,54 +413,23 @@ function FrontHomeCtrl() {
                         </Col>
                         <Col md={12}>
                             <Carousel activeIndex={index} controls={false} interval={3000} onSelect={connectingPeople}>
-                                <Carousel.Item>
-                                    <Row className="justify-content-center">
-                                        <Col sm={8} md={5}>
-                                            <img className="d-block w-100" src={boy} alt="" />
-                                            <h3>Steve Henderson</h3>
-                                            <b>Velit imperdiet magna</b>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-                                        </Col>
-                                    </Row>
-                                </Carousel.Item>
-                                <Carousel.Item>
-                                    <Row className="justify-content-center">
-                                        <Col sm={8} md={5}>
-                                            <img className="d-block w-100" src={girl} alt="" />
-                                            <h3>Steve Henderson</h3>
-                                            <b>Velit imperdiet magna</b>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-                                        </Col>
-                                    </Row>
-                                </Carousel.Item>
-                                <Carousel.Item>
-                                    <Row className="justify-content-center">
-                                        <Col sm={8} md={5}>
-                                            <img className="d-block w-100" src={boy} alt="" />
-                                            <h3>Steve Henderson</h3>
-                                            <b>Velit imperdiet magna</b>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-                                        </Col>
-                                    </Row>
-                                </Carousel.Item>
-                                <Carousel.Item>
-                                    <Row className="justify-content-center">
-                                        <Col sm={8} md={5}>
-                                            <img className="d-block w-100" src={girl} alt="" />
-                                            <h3>Steve Henderson</h3>
-                                            <b>Velit imperdiet magna</b>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-                                        </Col>
-                                    </Row>
-                                </Carousel.Item>
+
+                                {
+                                    testimonialData && Array.isArray(testimonialData) && testimonialData.map((testimonial, index) => (
+                                        <Carousel.Item key={index}>
+                                            <Row className="justify-content-center">
+                                                <Col sm={8} md={5}>
+                                                    <img className="d-block w-100" src={testimonial.tm_image} alt="" />
+                                                    <h3>{testimonial.tm_name}</h3>
+                                                    <b>{testimonial.tm_heading}</b>
+                                                    <p>{testimonial.tm_description}</p>
+                                                </Col>
+                                            </Row>
+                                        </Carousel.Item>
+                                    ))
+                                }
+
+
                             </Carousel>
                         </Col>
 
@@ -472,7 +462,7 @@ function FrontHomeCtrl() {
                                         <SearchComponent />
                                     </Col>
                                     <Col lg={5} className="mt-2">
-                                        <Button className="btn-block btn-outline-light">
+                                        <Button className="btn-block btn-outline-light" onClick={() => history.push('list-your-space')}>
                                             <img width="15" className="mr-2" src={ListYourSpace} /> List Your Space
                                         </Button>
                                     </Col>

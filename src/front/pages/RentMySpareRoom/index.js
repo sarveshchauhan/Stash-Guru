@@ -24,11 +24,11 @@ import Support from '../../../assets/front/images/icons/support.png';
 
 import boy from '../../../assets/front/images/img/boy.svg';
 import girl from '../../../assets/front/images/img/girl.svg';
-import StepOneForm from './StepOneForm';
+import StepOneForm from '../ListYourSpace/StepOneForm';
 import { useDispatch } from 'react-redux';
 import { clearListSpaceSteps } from '../../../redux';
 
-function ListYourSpaceComponentCtrl() {
+function RentMySpareRoomComponentCtrl() {
 
     const dispatch = useDispatch();
     const [index, setIndex] = useState(0);
@@ -63,7 +63,7 @@ function ListYourSpaceComponentCtrl() {
                                 <Col sm={8}>
                                     <div className="my-5">
                                         <h2 className="clr_bg_stash_hdng">
-                                            Make Money on<br /> <span> Stash.Guru </span>
+                                            <span> Earn Money </span> Renting Out Your Spare Room
                                         </h2>
                                         <p className="mt-3">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</p>
                                     </div>
@@ -74,7 +74,7 @@ function ListYourSpaceComponentCtrl() {
                             <Row className="justify-content-center">
                                 <Col sm={8}>
                                     <div className="clr_bg_stash_form_card">
-                                        <StepOneForm />
+                                        <StepOneForm spaceTypeId={6} disableSpaceControl={true} />
                                     </div>
                                 </Col>
                             </Row>
@@ -315,4 +315,4 @@ function ListYourSpaceComponentCtrl() {
     )
 }
 
-export default ListYourSpaceComponentCtrl;
+export default RentMySpareRoomComponentCtrl;

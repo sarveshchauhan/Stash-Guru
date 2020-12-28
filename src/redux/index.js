@@ -7,4 +7,5 @@ export * from './document/documentActions';
 export * from './booking/bookingActions';
 export * from './wallet/walletActions';
 export * from './payment/paymentActions';
-export * from './notification/notificationActions'; 
+export * from './notification/notificationActions';
+export * from './front/frontReducer'; 

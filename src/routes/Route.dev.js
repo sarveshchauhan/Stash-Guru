@@ -73,6 +73,19 @@ import UserBookedListCtrl from '../users/pages/booking/bookedList';
 import UserPaymentHostPayoutListCtrl from '../users/pages/payment/paymentHostPayoutList';
 import NewMessageList from '../users/pages/NewMessageList';
 import MessageHelper from '../users/common/helperComponents/MessageHelper';
+import FrontStorageSpaceCtrl from '../front/pages/storage-space';
+import RentMyGarageComponentCtrl from '../front/pages/RentMyGarage';
+import RentMyParkingSpaceComponentCtrl from '../front/pages/RentMyParkingSpace';
+import RentMyWarehouseComponentCtrl from '../front/pages/RentMyWarehouse';
+import RentMySpareRoomComponentCtrl from '../front/pages/RentMySpareRoom';
+import RentMyOuthouseComponentCtrl from '../front/pages/RentMyOuthouse';
+import RentMyLockupComponentCtrl from '../front/pages/RentMyLockup';
+import RentMyLoftComponentCtrl from '../front/pages/RentMyLoft';
+import RentMyBasementComponentCtrl from '../front/pages/RentMyBasement';
+import FrontParkingSpaceCtrl from '../front/pages/parking-spaces';
+import FrontGarageCtrl from '../front/pages/garage';
+import FrontWarehouseCtrl from '../front/pages/warehouse';
+import FrontSpareRoomCtrl from '../front/pages/spareroom';
 
 
 
@@ -85,47 +98,95 @@ const Root = () => {
         <MessageHelper />
 
         <Switch>
-            {/* <PrivateRoute exact path="/login" parentComponent={RegisterPagesLayoutCtrl} childComponent={LoginComponentCtrl} /> */}
 
             <Route exact path="/login" render={(props) => (< RegisterPagesLayoutCtrl children={LoginComponentCtrl} {...props} />)} />
-            <Route exact path="/signup" render={(props) => (< RegisterPagesLayoutCtrl children={SignUpComponentCtrl} {...props} />)} />
-            <Route exact path="/forgotpassword" render={(props) => (< RegisterPagesLayoutCtrl children={ForgotPassword} {...props} />)} />
-            <Route exact path="/resetpassword/:token" render={(props) => (< RegisterPagesLayoutCtrl children={ResetPassword} {...props} />)} />
 
+            <Route exact path="/signup" render={(props) => (< RegisterPagesLayoutCtrl children={SignUpComponentCtrl} {...props} />)} />
+
+            <Route exact path="/forgotpassword" render={(props) => (< RegisterPagesLayoutCtrl children={ForgotPassword} {...props} />)} />
+
+            <Route exact path="/resetpassword/:token" render={(props) => (< RegisterPagesLayoutCtrl children={ResetPassword} {...props} />)} />
 
             <Route exact path="/verifyEmail/:token" render={(props) => (< RegisterPagesLayoutCtrl children={EmailVerifyCtrl} {...props} />)} />
 
             <Route exact path="/" render={(props) => (<FrontHomePagesLayoutCtrl children={FrontHomeCtrl} {...props} />)} />
-            {/* <Route exact path="/search/:key"  render={FrontSearchListCtrl } /> */}
+
+
             <Route exact path="/search/:key" render={(props) => (< FrontPagesMaxLayoutCtrl children={FrontSearchListCtrl} {...props} />)} />
+
+
             <Route exact path="/list-your-space" render={(props) => (<FrontPagesLayoutCtrl children={ListYourSpaceComponentCtrl} {...props} />)} />
+
+            <Route exact path="/rent-my-garage" render={(props) => (<FrontPagesLayoutCtrl children={RentMyGarageComponentCtrl} {...props} />)} />
+
+            <Route exact path="/rent-my-parking-space" render={(props) => (<FrontPagesLayoutCtrl children={RentMyParkingSpaceComponentCtrl} {...props} />)} />
+
+            <Route exact path="/rent-my-warehouse" render={(props) => (<FrontPagesLayoutCtrl children={RentMyWarehouseComponentCtrl} {...props} />)} />
+
+            <Route exact path="/rent-my-spare-room" render={(props) => (<FrontPagesLayoutCtrl children={RentMySpareRoomComponentCtrl} {...props} />)} />
+
+            <Route exact path="/rent-my-outhouse" render={(props) => (<FrontPagesLayoutCtrl children={RentMyOuthouseComponentCtrl} {...props} />)} />
+
+            <Route exact path="/rent-my-lockup" render={(props) => (<FrontPagesLayoutCtrl children={RentMyLockupComponentCtrl} {...props} />)} />
+
+            <Route exact path="/rent-my-loft" render={(props) => (<FrontPagesLayoutCtrl children={RentMyLoftComponentCtrl} {...props} />)} />
+
+
+            <Route exact path="/rent-my-basement" render={(props) => (<FrontPagesLayoutCtrl children={RentMyBasementComponentCtrl} {...props} />)} />
+
+
             <Route exact path="/about" render={(props) => (<FrontPagesLayoutCtrl children={FrontAboutCtrl} {...props} />)} />
+
             <Route exact path="/search-details/:searchId" render={(props) => (< FrontPagesLayoutCtrl children={FrontSearchDetailsCtrl} {...props} />)} />
+
             <Route exact path="/FAQS" render={(props) => (< FrontPagesLayoutCtrl children={FrontFaqsCtrl} {...props} />)} />
+
             <Route exact path="/sitemap" render={(props) => (< FrontPagesLayoutCtrl children={FrontSitemapCtrl} {...props} />)} />
+
             <Route exact path="/refund-policy" render={(props) => (< FrontPagesLayoutCtrl children={FrontRefundPolicyCtrl} {...props} />)} />
+
             <Route exact path="/become-a-host" render={(props) => (< FrontHomePagesLayoutCtrl children={FrontBecomeHostCtrl} {...props} />)} />
+
             <Route exact path="/say-hello" render={(props) => (< FrontPagesLayoutCtrl children={FrontsayHelloCtrl} {...props} />)} />
+
             <Route exact path="/manage-your-booking" render={(props) => (< FrontPagesLayoutCtrl children={FrontHelpCenterCtrl} {...props} />)} />
+
             <Route exact path="/manage-your-booking/details" render={(props) => (< FrontPagesLayoutCtrl children={FrontBookingSpaceDetailsCtrl} {...props} />)} />
+
             <Route exact path="/hosting-a-space" render={(props) => (< FrontPagesLayoutCtrl children={FrontHostingSpaceCtrl} {...props} />)} />
+
             <Route exact path="/hosting-a-space/details" render={(props) => (< FrontPagesLayoutCtrl children={FrontHostingSpaceDetailsCtrl} {...props} />)} />
+
             <Route exact path="/common-questions" render={(props) => (< FrontPagesLayoutCtrl children={FrontCommonQuestionsCtrl} {...props} />)} />
+
             <Route exact path="/business-storage" render={(props) => (< FrontPagesLayoutCtrl children={FrontBusinessStorageCtrl} {...props} />)} />
+
             <Route exact path="/domestic-storage" render={(props) => (< FrontPagesLayoutCtrl children={FrontDomesticStorageCtrl} {...props} />)} />
 
-            {/* <PrivateRoute exact path="/dashboard" parentComponent={SideMenuLayoutCtrl} childComponent={UserHomeCtrl} /> */}
+            <Route exact path="/storage-space" render={(props) => (< FrontPagesLayoutCtrl children={FrontStorageSpaceCtrl} {...props} />)} />
+
+            <Route exact path="/parking-spaces" render={(props) => (< FrontPagesLayoutCtrl children={FrontParkingSpaceCtrl} {...props} />)} />
+
+            <Route exact path="/garage" render={(props) => (< FrontPagesLayoutCtrl children={FrontGarageCtrl} {...props} />)} />
+
+            <Route exact path="/warehouse" render={(props) => (< FrontPagesLayoutCtrl children={FrontWarehouseCtrl} {...props} />)} />
+
+            <Route exact path="/spare-rooms" render={(props) => (< FrontPagesLayoutCtrl children={FrontSpareRoomCtrl} {...props} />)} />
+
             <PrivateRoute exact path="/dashboard" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserHomeCtrl} />
+
             <PrivateRoute exact path="/listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserListingtrl} />
+
             <PrivateRoute exact path="/booking/:guid" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingCtrl} />
+
             <PrivateRoute exact path="/booking" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookingListCtrl} />
+
             <PrivateRoute exact path="/notifications" parentComponent={SideMenuPageLayoutCtrl} childComponent={Notifications} />
+
             <PrivateRoute exact path="/new_messages" parentComponent={SideMenuPageLayoutCtrl} childComponent={NewMessageList} />
 
 
             <PrivateRoute exact path="/booked-listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookedListCtrl} />
-
-
 
             <PrivateRoute exact path="/no-any-list" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserNoBookingListCtrl} />
 
@@ -133,40 +194,37 @@ const Root = () => {
 
 
             <PrivateRoute exact path="/verification" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserVerificationCtrl} />
+
             <PrivateRoute exact path="/profile" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserProfileCtrl} />
-            {/* <PrivateRoute exact path="/payment" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserPaymentPayoutCtrl} /> */}
+
             <PrivateRoute exact path="/guest_payment" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserPaymentPayoutListCtrl} />
+
             <PrivateRoute exact path="/host_payment" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserPaymentHostPayoutListCtrl} />
+
             <PrivateRoute exact path="/referrals" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserReferralsCtrl} />
-
-            {/* <Route exact path="/dashboard" render={(props)=> (<UserPagesLayoutCtrl children={UserHomeCtrl} {...props} />)} /> */}
-
-            {/* <Route exact path="/create-your-list" render={(props) => (<UserPagesLayoutCtrl children={UserCreateYourListCtrl} {...props} />)} /> */}
 
             <PrivateRoute exact path="/create-your-list" parentComponent={UserPagesLayoutCtrl} childComponent={UserCreateYourListCtrl} />
 
-            {/* <Route exact path="/create-your-list-step3" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepThitdCtrl} {...props} />)} /> */}
             <PrivateRoute exact path="/create-your-list-step3" parentComponent={UserPagesLayoutCtrl} childComponent={CreateYourListStepThitdCtrl} />
 
-
-            {/* <Route exact path="/create-your-list-step4" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepForthCtrl} {...props} />)} /> */}
             <PrivateRoute exact path="/create-your-list-step4" parentComponent={UserPagesLayoutCtrl} childComponent={CreateYourListStepForthCtrl} />
 
 
-            {/* <Route exact path="/create-your-list-step5" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepFifthCtrl} {...props} />)} /> */}
             <PrivateRoute exact path="/create-your-list-step5" parentComponent={UserPagesLayoutCtrl} childComponent={CreateYourListStepFifthCtrl} />
 
 
-            {/* <Route exact path="/create-your-list-step6" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepSixthCtrl} {...props} />)} /> */}
             <PrivateRoute exact path="/create-your-list-step6" parentComponent={UserPagesLayoutCtrl} childComponent={CreateYourListStepSixthCtrl} />
 
-            {/* <Route exact path="/create-your-list-step7" render={(props) => (<UserPagesLayoutCtrl children={CreateYourListStepSeventhCtrl} {...props} />)} /> */}
+
+
             <PrivateRoute exact path="/create-your-list-step7" parentComponent={UserPagesLayoutCtrl} childComponent={CreateYourListStepSeventhCtrl} />
+
+
             <PrivateRoute exact path="/list-preview/:id" parentComponent={UserPagesLayoutCtrl} childComponent={ListPreviewCtrl} />
 
 
             <PrivateRoute exact path="/chat/host" parentComponent={SideMenuPageLayoutCtrl} childComponent={ChatCtrl} />
-            {/* <Route exact path="/list-preview/:id" render={(props) => (<UserPagesLayoutCtrl children={ListPreviewCtrl} {...props} />)} /> */}
+
 
 
         </Switch>

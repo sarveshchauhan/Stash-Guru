@@ -1,15 +1,10 @@
 export const config = {
 
-    // apiUrl: 'https://sgapi.dizicraft.com',
-    // appUrl: 'https://sguru.dizicraft.com',
-    // socketUrl: "https://sgapi.dizicraft.com/stream",
+    apiUrl: process.env.REACT_APP_API_URL,
+    appUrl: process.env.REACT_APP_APP_URL,
+    socketUrl: process.env.REACT_APP_SOCKET_URL,
+    googleMapApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
+    stripePublishableKey: process.env.REACT_APP_STRIPE_KEY_PUB_KEY
 
-    apiUrl: 'http://localhost:5000',
-    appUrl: 'http://localhost:3006',
-    socketUrl: "http://localhost:5000/stream",
-
-
-    googleMapApiKey: "AIzaSyB103Ei2FmqUW2l1PHQAaf2u4xo3RzkEkg",
-    stripePublishableKey: "pk_test_51Ht4R7DKV669DigPMnoV4rd7RQyRyPzJxojr7CwdEVi2AERqJTh98g6ENhglXDpa4KWv8WRSTJ2ieIPc6r4ytvGu00QrOmw8HU"
 }
 

@@ -38,11 +38,6 @@ function BookingChatBox() {
 
         socket.on("chat", (data) => {
 
-            console.log(data);
-            console.log('my bookingid ' + store.getState().booking.bookingInfo.booking_id);
-            console.log('data bookingid ' + data.booking_id);
-            console.log('data email ' + data.email);
-            console.log('my email ' + localStorage.getItem("userEmail"));
 
             if (data.email !== localStorage.getItem("userEmail") && +data.booking_id === +store.getState().booking.bookingInfo.booking_id) {
 
@@ -70,10 +65,6 @@ function BookingChatBox() {
                     });
 
                 }
-
-
-
-                // dispatch(pushRemoteChat(messageInfo));
 
 
             }

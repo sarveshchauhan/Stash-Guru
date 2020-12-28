@@ -10,6 +10,19 @@
     margin: 5px auto;
     color: #595959;
 }
+
+.whatUBePaying .whatUBePayingCardCoupon{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin: 5px auto;
+    color: #595959;
+}
+
 .whatUBePaying .whatUBePayingCard b{
     font-size: 15px;
 }
