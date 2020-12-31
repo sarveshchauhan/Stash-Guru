@@ -266,7 +266,7 @@ function SignUpComponentCtrl() {
                                         <Row>
                                             <Col sm={12} className="mt-2">
                                                 <GoogleLogin
-                                                    clientId="450430578559-00gdj07dktsen73dudn1cpcko05tb5qi.apps.googleusercontent.com"
+                                                    clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                                                     buttonText="Sign In With Google"
                                                     onSuccess={responseGoogle}
                                                     onFailure={responseGoogle}

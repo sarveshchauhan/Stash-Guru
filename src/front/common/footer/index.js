@@ -77,6 +77,7 @@ function FooterComponent() {
                                             <NavLink to="/rent-my-lockup" className="nav-link">Rent Your Lock-Up</NavLink>
                                             <NavLink to="/rent-my-loft" className="nav-link">Rent Your Loft</NavLink>
                                             <NavLink to="/rent-my-basement" className="nav-link">Rent Your Basement</NavLink>
+                                            <NavLink to="/rent-my-container" className="nav-link">Rent Your Container</NavLink>
                                         </Nav>
                                     </Col>
                                     <Col sm={4} className="footer_links">
