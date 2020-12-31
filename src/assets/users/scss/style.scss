@@ -834,6 +834,11 @@ button.P_verify_btn:hover{
     border: 0px;
     color: $shamrock_color;
 }
+.copy_your_share_link .form-control:disabled, 
+.copy_your_share_link .form-control[readonly] {
+    background-color: #ffffff;
+}
+
 .copy_your_share_link .btn.btn_success{
     border-radius: 25px;
     font-size: 15px;
