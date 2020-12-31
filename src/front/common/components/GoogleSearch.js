@@ -31,7 +31,13 @@ function GoogleSearch() {
 
     const search = () => {
         // window.location.href = `/search/${address}`;
-        history.push(`/search/${address}`);
+        if (address) {
+            history.push(`/search/${address}`);
+        }
+        else {
+            history.push('/search/Cluj-Napoca, Romania');
+        }
+
     }
 
 

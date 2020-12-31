@@ -130,9 +130,17 @@ function FrontSearchListCtrl() {
                         </Navbar>
                         <Row>
                             <Col lg={12} className="pt-3">
+
+                                {
+                                    list && list.length === 0 && <div className="text-center mt-4">
+                                        <h3>No spaces found in this search.</h3>
+                                    </div>
+                                }
+
+
                                 <div className="SearchListPlace_row">
                                     {list.map(details =>
-                                        <div className="col-sm-6 col-xl-4 SearchListPlace_col" key={details.store_id} onMouseOver={() => setCurrentList(details)}>
+                                        <div className="col-sm-6 col-xl-4 SearchListPlace_col" key={details.store_id} onMouseLeave={() => setCurrentList(null)} onMouseOver={() => setCurrentList(details)}>
                                             <div className="SearchListPlace_card">
                                                 <Link to={'/search-details/' + details.store_id} >
                                                     <img width="100%" src={details.images && details.images.length > 0 ? details.images[0].si_path : PlaceholderImage} alt="" />

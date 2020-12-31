@@ -35,7 +35,7 @@ export function GoogleMap(props) {
             handleToggleOpen(null, props.list);
         }
         else {
-
+            setIsOpen(false);
         }
 
     }, [props]);
@@ -107,6 +107,7 @@ export function GoogleMap(props) {
 
                 <InfoWindow
                     position={{ lat: popupDetail.lat, lng: popupDetail.lng }}
+                    pixelOffset={new props.google.maps.Size(-25, -15)}
                     visible={isOpen}>
                     <img src={popupDetail.image} />
                     <div className="gm_style_iw_body">

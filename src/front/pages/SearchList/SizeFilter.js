@@ -59,7 +59,7 @@ function SizeFilter() {
                 <Dropdown.Menu className="priceSizeRS_card">
                     <div className="priceSizeRS_card_body">
                         <div className={classes.root}>
-                            <Typography className="mb-5">Space Size</Typography>
+                            <Typography className="mb-5">Space Size (m<sup>2</sup>)</Typography>
                             <Slider value={value} max={1000} min={0} onChange={handleChange} valueLabelDisplay="auto" aria-labelledby="discrete-slider-always" getAriaValueText={valuetext} valueLabelDisplay="on"
                             />
                         </div>
