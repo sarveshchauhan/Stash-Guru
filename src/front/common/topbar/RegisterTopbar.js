@@ -30,7 +30,7 @@ function RegisterTopbarHeaderComponent(){
                             <Nav className="justify-content-md-end justify-content-center align-items-center">
                                 <NavLink className="nav-link list_your_space" to="/list-your-space">List your space</NavLink>
                                 <AuthComponent/>
-                                <FrontSideBarMenu/>
+                                {/* <FrontSideBarMenu/> */}
                             </Nav>
                         </div>
                     </Row>
