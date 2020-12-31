@@ -213,7 +213,7 @@ function FrontHomeCtrl() {
                             <Row className="justify-content-center align-items-center">
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" >Garage</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-garage')} >Garage</Button>
                                         <img src={Garage} alt="" />
                                     </div>
                                 </Col>

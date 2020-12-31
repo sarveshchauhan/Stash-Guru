@@ -134,7 +134,7 @@ export const getBookingInfoByGuid = (reqData) => {
 
 export const getBookingInfoByStore = (reqData) => {
 
-    reqData.token = JSON.parse(localStorage.getItem("stashGuruToken"));
+    // reqData.token = JSON.parse(localStorage.getItem("stashGuruToken"));
 
 
     const requestConfig = {
@@ -144,7 +144,7 @@ export const getBookingInfoByStore = (reqData) => {
     return async (dispatch) => {
         dispatch(bookingRequest());
 
-        reqData.token = await validateClientToken();
+        // reqData.token = await validateClientToken();
 
 
         await axios.post(`${config.apiUrl}/front/booking/info_by_store`, reqData, requestConfig)

@@ -86,6 +86,7 @@ import FrontParkingSpaceCtrl from '../front/pages/parking-spaces';
 import FrontGarageCtrl from '../front/pages/garage';
 import FrontWarehouseCtrl from '../front/pages/warehouse';
 import FrontSpareRoomCtrl from '../front/pages/spareroom';
+import NotFoundComponent from '../front/pages/NotFound';
 
 
 
@@ -225,7 +226,7 @@ const Root = () => {
 
             <PrivateRoute exact path="/chat/host" parentComponent={SideMenuPageLayoutCtrl} childComponent={ChatCtrl} />
 
-
+            <Route render={(props) => (<FrontHomePagesLayoutCtrl children={NotFoundComponent} {...props} />)} />
 
         </Switch>
     </BrowserRouter>)

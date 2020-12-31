@@ -1,11 +1,6 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAddress, updateCoordinatesClient } from '../../../../redux';
-import ListYourSpaceImage from '../../../../assets/front/images/icons/warehouse.svg';
-
-import dummy1 from '../../../../assets//users/images/dummy/dummy1.jpg';
-import { LIST_DETAIL_SUCCESS } from '../../../../redux/listspace/listspaceTypes';
+import { useSelector } from 'react-redux';
 import { config } from '../../../../config/config';
 
 const mapStyles = {
@@ -18,12 +13,11 @@ const mapStyles = {
 
 export function GoogleMap(props) {
 
-    const dispatch = useDispatch();
 
     const [isOpen, setIsOpen] = useState(false);
     const { coordinates } = useSelector(state => state.listspace);
 
-    const { searchList, vat, loading } = useSelector(state => state.search);
+    const { searchList } = useSelector(state => state.search);
 
     const initialPopupDetail = {
         lat: "",
@@ -49,8 +43,6 @@ export function GoogleMap(props) {
 
     const handleToggleOpen = (arg, listDetail) => {
 
-        // console.log(arg);
-
 
         setPopupDetail({
             lat: listDetail.store_lat,
@@ -66,10 +58,10 @@ export function GoogleMap(props) {
         setIsOpen(true);
     }
 
-    const handleToggleClose = () => {
-        setPopupDetail(initialPopupDetail);
-        setIsOpen(false);
-    }
+    // const handleToggleClose = () => {
+    //     setPopupDetail(initialPopupDetail);
+    //     setIsOpen(false);
+    // }
 
 
 

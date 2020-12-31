@@ -53,7 +53,7 @@ function StepsNavListCtrl() {
                                     <span>
                                         <img className="complete_step_img" src={G_step4} alt="" />
                                         <img className="incomplete_step_img" src={B_step4} alt="" />
-                                    </span>Discription
+                                    </span>Description
                                 </Nav.Item>
                                 <Nav.Item as="li" className={stepFive ? "completed" : ""} onClick={() => stepFive ? window.location.href = "/create-your-list-step5" : false}>
                                     <span>

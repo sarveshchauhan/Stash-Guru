@@ -40,28 +40,29 @@ function DocumentPhoto(props) {
 
 
 
-    const onChangeFront = (e) => {
+    const onChangeFront = (file) => {
+
 
         setFrontImageError("");
-        console.log(e.target.files[0].size);
+        // console.log(e.target.files[0].size);
 
-        if (e.target.files[0]) {
+        if (file) {
 
-            if (validateFileType(e.target.files[0].name)) {
+            if (validateFileType(file.name)) {
 
-                if (e.target.files[0].size >= 1000000) {
+                if (file.size >= 1000000) {
                     setFrontImageError("File should not be greater than 1 MB");
                     return false;
                 }
                 else {
 
-                    props.frontPhoto(e.target.files[0]);
+                    props.frontPhoto(file);
 
                     let reader = new FileReader();
                     reader.onload = function (e) {
                         setFrontImage(e.target.result);
                     };
-                    reader.readAsDataURL(e.target.files[0]);
+                    reader.readAsDataURL(file);
 
                 }
 
@@ -79,28 +80,28 @@ function DocumentPhoto(props) {
 
     }
 
-    const onChangeBack = (e) => {
+    const onChangeBack = (file) => {
 
         setBackImageError("");
-        console.log(e.target.files[0].size);
+        // console.log(e.target.files[0].size);
 
-        if (e.target.files[0]) {
+        if (file) {
 
-            if (validateFileType(e.target.files[0].name)) {
+            if (validateFileType(file.name)) {
 
-                if (e.target.files[0].size >= 1000000) {
+                if (file.size >= 1000000) {
                     setBackImageError("File should not be greater than 1 MB");
                     return false;
                 }
                 else {
 
-                    props.backPhoto(e.target.files[0]);
+                    props.backPhoto(file);
 
                     let reader = new FileReader();
                     reader.onload = function (e) {
                         setBackImage(e.target.result);
                     };
-                    reader.readAsDataURL(e.target.files[0]);
+                    reader.readAsDataURL(file);
 
                 }
 
@@ -183,11 +184,11 @@ function DocumentPhoto(props) {
 
 
                             {
-                                frontImage ? <><img src={frontImage} /></> : <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
+                                frontImage ? <><img src={frontImage} /></> : <Dropzone onDrop={acceptedFiles => onChangeFront(acceptedFiles[0])}>
                                     {({ getRootProps, getInputProps }) => (
                                         <section {...getRootProps()}>
                                             <div>
-                                                <input {...getInputProps()} onChange={onChangeFront} multiple={false} />
+                                                <input {...getInputProps()} onChange={(e) => onChangeFront(e.target.files[0])} multiple={false} />
                                                 <div>
                                                     <img className="upload_img_icon" src={img_icon} alt="" />
                                                 </div>
@@ -219,11 +220,11 @@ function DocumentPhoto(props) {
                         <div className="dropzone upload_verify_id">
 
                             {
-                                backImage ? <><img src={backImage} /></> : <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
+                                backImage ? <><img src={backImage} /></> : <Dropzone onDrop={acceptedFiles => onChangeBack(acceptedFiles[0])}>
                                     {({ getRootProps, getInputProps }) => (
                                         <section {...getRootProps()}>
                                             <div>
-                                                <input {...getInputProps()} onChange={onChangeBack} />
+                                                <input {...getInputProps()} onChange={(e) => onChangeBack(e.target.files[0])} />
                                                 <div>
                                                     <img className="upload_img_icon" src={img_icon} alt="" />
                                                 </div>

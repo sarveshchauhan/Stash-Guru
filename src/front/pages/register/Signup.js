@@ -113,7 +113,7 @@ function SignUpComponentCtrl() {
             case 'password':
                 setPassword(e.target.value);
                 if (!e.target.value) {
-                    setPasswordError("Last Name is required!");
+                    setPasswordError("Password is required!");
                 }
                 else if (e.target.value.length < 6) {
                     setPasswordError("Password must be 6 characters long!");
@@ -242,7 +242,7 @@ function SignUpComponentCtrl() {
                                                     </Form.Group>
 
                                                     <Form.Group controlId="">
-                                                        <Form.Control type="password" isInvalid={passwordError} placeholder="Create password (min. 8 characters)" name="password" value={password} onChange={handleFormField} onBlur={handleFormField} />
+                                                        <Form.Control type="password" isInvalid={passwordError} placeholder="Create password (min. 6 characters)" name="password" value={password} onChange={handleFormField} onBlur={handleFormField} />
                                                         {
                                                             passwordError && <span className="error_msg text-danger">
                                                                 {passwordError}

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
 
 
-import { Container, Row, Col, Navbar, Button, Dropdown } from 'react-bootstrap';
+import { Container, Row, Col, Navbar, Button } from 'react-bootstrap';
 
 import { Link, useHistory, useParams } from 'react-router-dom';
 
@@ -13,30 +11,19 @@ import '../../common/topbar/topbar.scss';
 import './SearchList.scss';
 import './Filter.css';
 
-import b_garage from '../../../assets/front/images/icons/storage_type/b_garage.png';
 
 // Assets Include End
 
 import SearchComponent from '../../common/components/SearchCompo';
-import MapContainer from '../../common/components/map';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCoordinates, searchListing } from '../../../redux';
 import LoaderCtrl from '../../common/components/loader';
 import GoogleMapListing from '../../common/components/google-map/GoogleMapListing';
 import PlaceholderImage from '../../../assets/front/images/placeholder.png';
-import lieIcon from '../../../assets/front/images/icons/lieIcon.png';
 import StorageTypeFilter from './StorageTypeFilter';
 import FeaturesFilter from './FeaturesFilter';
 import PriceFilter from './PriceFilter';
 import SizeFilter from './SizeFilter';
-
-
-
-
-
-const storeImages = require.context('../../../assets/front/images/store', true);
-const profileImages = require.context('../../../assets/users/images/profile', true);
-
 
 
 
@@ -53,15 +40,7 @@ function FrontSearchListCtrl() {
             width: 300,
         },
     });
-    function valuetext(value) {
-        return `${value}°C`;
-    }
-    const classes = useStyles();
-    const [value, setValue] = React.useState([20, 37]);
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
     // rangeSlider  end
 
 

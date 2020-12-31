@@ -72,8 +72,13 @@ class LoginComponentCtrl extends React.Component {
         const { name, value } = event.target;
         let errors = this.state.errors;
 
+        this.setState({
+            [name]: value
+        });
+
         switch (name) {
             case 'email':
+
                 errors.email =
                     validEmailRegex.test(value)
                         ? ''
@@ -89,16 +94,28 @@ class LoginComponentCtrl extends React.Component {
                 break;
         }
 
-        this.setState({ errors, [name]: value }, () => {
+        console.log(this.state.errors.email);
+        console.log(this.state.errors.password);
 
-            let validStatus = validateForm(this.state);
-            if (!this.state.errors.email && !this.state.errors.password && validStatus) {
-                this.setState({ loginBtn: false });
-            }
-            else {
-                this.setState({ loginBtn: true });
-            }
-        })
+        if (!this.state.errors.email && !this.state.errors.password) {
+            this.setState({
+                loginBtn: false
+            })
+        }
+
+        // this.setState({ errors, [name]: value }, () => {
+
+        //     let validStatus = validateForm(this.state);
+        //     if (!this.state.errors.email && !this.state.errors.password && validStatus) {
+        //         this.setState({ loginBtn: false });
+        //     }
+        //     else {
+        //         this.setState({ loginBtn: true });
+        //     }
+        // }); 
+
+
+
     }
 
     responseGoogle(response) {
@@ -137,6 +154,7 @@ class LoginComponentCtrl extends React.Component {
                             <Col sm={8} md={6} xl={4} className="my-2">
                                 <div className="register_card">
                                     <Row>
+
                                         <Col sm={12}>
                                             <div>
                                                 <h2 className="register_hdng">
@@ -171,6 +189,7 @@ class LoginComponentCtrl extends React.Component {
                                                             Login
                                                         </Button>
                                                     </Col>
+
                                                 </Row>
 
 
