@@ -140,19 +140,7 @@ img{
     background: $shamrock_color;;
 }
 
-.btn,
-.btn:focus{
-     box-shadow: none !important;
-    //  height: 40px;
-    //  padding-left: 20px;
-    //  padding-right: 20px;
-}
 
-
-.show>.btn-primary.dropdown-toggle{
-    background-color: $deep_sky_color;
-    border-color: $deep_sky_color;
-}
 
 .bg_milky{
     background: $milky_color;
@@ -373,6 +361,23 @@ img{
 .btn i.fa.fa-angle-right{
     margin-left: 10px;
 }
+.btn,
+.btn:focus{
+    box-shadow: none !important;
+    transition: all 300ms;
+    transform: scale(1);
+    //  height: 40px;
+    //  padding-left: 20px;
+    //  padding-right: 20px;
+}
+.btn:hover{
+    transform: scale(1.05);
+}
+.show>.btn-primary.dropdown-toggle{
+    background-color: $deep_sky_color;
+    border-color: $deep_sky_color;
+}
+
 
 select.form-control,
 input.form-control{

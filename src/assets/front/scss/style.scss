@@ -135,16 +135,41 @@
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     font-size: 20px;
+    transform: none !important;
 }
 .autocomplete-dropdown-container{
     position: absolute;
     width: 100%;
     top: 50px;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: #ffffff;
     z-index: +9;
 }
+.autocomplete-dropdown-container div{
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 0px;
+    background-color: #ffffff;
+    display: block;
+    padding: 10px;
+    position: relative;
+    padding-left: 25px;
+    font-size: 14px;
+}
+.autocomplete-dropdown-container div:first-child{
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+.autocomplete-dropdown-container div::after {
+    position: absolute;
+    content: "\f041";
+    left: 10px;
+    top: 20px;
+    transform: translateY(-50%);
+    display: inline-block;
+    font: normal normal normal 17px/1 FontAwesome;
+    font-size: 15px;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    color: #34D789;
+}
+
 
 .here_to_help_you .autocomplete-dropdown-container{
     color: #333333;
@@ -508,6 +533,7 @@
     margin-bottom: 20px;
     position: relative;
     border-radius: 0px;
+    transform: none !important;
 }
 
 .our_space_types_card button:hover{
