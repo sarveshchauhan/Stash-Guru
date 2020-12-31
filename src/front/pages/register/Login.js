@@ -1,8 +1,7 @@
 import React from 'react';
 import { Button, Col, Container, Row, Form, Alert } from 'react-bootstrap';
 
-import catoons from '../../../assets/front/images/img/catoons.svg';
-import family from '../../../assets/front/images/img/family.svg';
+
 
 import { loginUser, googleLogin, loginWithFaceBook, clearResetPasswordMessage } from '../../../redux';
 import { connect } from 'react-redux';
@@ -214,7 +213,7 @@ class LoginComponentCtrl extends React.Component {
                                             <Row>
                                                 <Col sm={12} className="mt-2">
                                                     <GoogleLogin
-                                                        clientId="450430578559-00gdj07dktsen73dudn1cpcko05tb5qi.apps.googleusercontent.com"
+                                                        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
                                                         buttonText="Sign In With Google"
                                                         onSuccess={(response) => this.responseGoogle(response)}
                                                         cookiePolicy={'single_host_origin'}

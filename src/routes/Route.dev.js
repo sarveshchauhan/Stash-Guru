@@ -87,6 +87,7 @@ import FrontGarageCtrl from '../front/pages/garage';
 import FrontWarehouseCtrl from '../front/pages/warehouse';
 import FrontSpareRoomCtrl from '../front/pages/spareroom';
 import NotFoundComponent from '../front/pages/NotFound';
+import RentMyContainerComponentCtrl from '../front/pages/RentMyContainer';
 
 
 
@@ -131,6 +132,8 @@ const Root = () => {
             <Route exact path="/rent-my-lockup" render={(props) => (<FrontPagesLayoutCtrl children={RentMyLockupComponentCtrl} {...props} />)} />
 
             <Route exact path="/rent-my-loft" render={(props) => (<FrontPagesLayoutCtrl children={RentMyLoftComponentCtrl} {...props} />)} />
+
+            <Route exact path="/rent-my-container" render={(props) => (<FrontPagesLayoutCtrl children={RentMyContainerComponentCtrl} {...props} />)} />
 
 
             <Route exact path="/rent-my-basement" render={(props) => (<FrontPagesLayoutCtrl children={RentMyBasementComponentCtrl} {...props} />)} />

@@ -213,55 +213,55 @@ function FrontHomeCtrl() {
                             <Row className="justify-content-center align-items-center">
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" onClick={() => history.push('/rent-my-garage')} >Garage</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-garage')}>Garage</Button>
                                         <img src={Garage} alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" >Warehouse</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-warehouse')}>Warehouse</Button>
                                         <img src={Warehouse} alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" >Lock Ups</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-lockup')}>Lock Ups</Button>
                                         <img src={LockUps} alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" >Parking Space</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-parking-space')}>Parking Space</Button>
                                         <img src={ParkingSpace} alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" >Out housed</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-outhouse')}>Out housed</Button>
                                         <img src={OutHoused} alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" >Spare rooms</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-spare-room')}>Spare rooms</Button>
                                         <img src={SpareRooms} alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" >Basement</Button>
-                                        <img src={Basements} alt="" />
+                                        <img src={Basements} alt="" onClick={() => history.push('/rent-my-basement')} />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" >Lofts</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-loft')}>Lofts</Button>
                                         <img src={Lofts} alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" >Container</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-container')}>Container</Button>
                                         <img src={ContainerImg} alt="" />
                                     </div>
                                 </Col>
