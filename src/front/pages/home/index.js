@@ -401,42 +401,43 @@ function FrontHomeCtrl() {
 
  */}
 
+            {(testimonialData && Array.isArray(testimonialData) && testimonialData.length > 0) &&
+                <section className="connecting_people_slider stash_guru_user_slider">
+                    <Container>
+                        <Row className="justify-content-center">
+                            <Col md={12}>
+                                <div className="stash_hdng">
+                                    <h3>Connecting people</h3>
+                                    <small>who need space, with people that have space.</small>
+                                </div>
+                            </Col>
+                            <Col md={12}>
+                                <Carousel activeIndex={index} controls={false} interval={3000} onSelect={connectingPeople}>
 
-            <section className="connecting_people_slider stash_guru_user_slider">
-                <Container>
-                    <Row className="justify-content-center">
-                        <Col md={12}>
-                            <div className="stash_hdng">
-                                <h3>Connecting people</h3>
-                                <small>who need space, with people that have space.</small>
-                            </div>
-                        </Col>
-                        <Col md={12}>
-                            <Carousel activeIndex={index} controls={false} interval={3000} onSelect={connectingPeople}>
-
-                                {
-                                    testimonialData && Array.isArray(testimonialData) && testimonialData.map((testimonial, index) => (
-                                        <Carousel.Item key={index}>
-                                            <Row className="justify-content-center">
-                                                <Col sm={8} md={5}>
-                                                    <img className="d-block w-100" src={testimonial.tm_image} alt="" />
-                                                    <h3>{testimonial.tm_name}</h3>
-                                                    <b>{testimonial.tm_heading}</b>
-                                                    <p>{testimonial.tm_description}</p>
-                                                </Col>
-                                            </Row>
-                                        </Carousel.Item>
-                                    ))
-                                }
+                                    {
+                                        testimonialData && Array.isArray(testimonialData) && testimonialData.map((testimonial, index) => (
+                                            <Carousel.Item key={index}>
+                                                <Row className="justify-content-center">
+                                                    <Col sm={8} md={5}>
+                                                        <img className="d-block w-100" src={testimonial.tm_image} alt="" />
+                                                        <h3>{testimonial.tm_name}</h3>
+                                                        <b>{testimonial.tm_heading}</b>
+                                                        <p>{testimonial.tm_description}</p>
+                                                    </Col>
+                                                </Row>
+                                            </Carousel.Item>
+                                        ))
+                                    }
 
 
-                            </Carousel>
-                        </Col>
+                                </Carousel>
+                            </Col>
 
-                    </Row>
-                </Container>
-            </section>
+                        </Row>
+                    </Container>
+                </section>
 
+            }
 
 
             <section className="right_hf_sky_blue_card">

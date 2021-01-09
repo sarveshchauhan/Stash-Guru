@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navbar,Nav, Row, Col} from 'react-bootstrap';
+import { Navbar, Nav, Row, Col } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 // Assets Include
@@ -13,23 +13,23 @@ import AuthComponent from '../components/AuthComponent';
 // Component Include End
 
 
-function RegisterTopbarHeaderComponent(){
+function RegisterTopbarHeaderComponent() {
 
-    
-    return(
+
+    return (
         <>
-            <Navbar sticky="top" style={{borderBottom:'2px solid rgba(0, 0, 0, 0.03)'}}>
+            <Navbar sticky="top" style={{ borderBottom: '2px solid rgba(0, 0, 0, 0.03)' }}>
                 <div className="nav_container lg_screen_menu">
                     <Row className="align-items-center justify-content-between">
                         <div className="col-3 text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">
-                                <img width="100%" src={logo} alt=""  />
+                                <img width="100%" src={logo} alt="" />
                             </NavLink>
                         </div>
                         <div className="col-4 my-2">
                             <Nav className="justify-content-md-end justify-content-center align-items-center">
                                 <NavLink className="nav-link list_your_space" to="/list-your-space">List your space</NavLink>
-                                <AuthComponent/>
+                                {/* <AuthComponent/> */}
                                 {/* <FrontSideBarMenu/> */}
                             </Nav>
                         </div>
@@ -41,9 +41,9 @@ function RegisterTopbarHeaderComponent(){
                     <Row className="align-items-center justify-content-between">
                         <Col className="col-12 text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">
-                                <img width="100%" src={logo} alt=""  />
+                                <img width="100%" src={logo} alt="" />
                             </NavLink>
-                            <span  className="mob_toggler">
+                            <span className="mob_toggler">
                                 <FrontSideBarMenu />
                             </span>
                         </Col>

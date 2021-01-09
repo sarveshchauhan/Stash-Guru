@@ -63,7 +63,7 @@ function RentMyOuthouseComponentCtrl() {
                                 <Col sm={8}>
                                     <div className="my-5">
                                         <h2 className="clr_bg_stash_hdng">
-                                             <span> Earn Money </span> Renting Out Your Out House
+                                            <span> Earn Money </span> Renting Out Your Out House
                                         </h2>
                                         <p className="mt-3">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</p>
                                     </div>
@@ -252,65 +252,7 @@ function RentMyOuthouseComponentCtrl() {
                 </Container>
             </section>
 
-            <section className="stash_guru_user_slider bg_milky ">
-                <Container>
-                    <Row className="justify-content-center">
-                        <Col md={12}>
-                            <Carousel activeIndex={index} controls={false} interval={3000} onSelect={connectingPeople}>
-                                <Carousel.Item>
-                                    <Row className="justify-content-center">
-                                        <Col sm={8} md={5}>
-                                            <img className="d-block w-100" src={boy} alt="" />
-                                            <h3>Steve Henderson</h3>
-                                            <b>Velit imperdiet magna</b>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-                                        </Col>
-                                    </Row>
-                                </Carousel.Item>
-                                <Carousel.Item>
-                                    <Row className="justify-content-center">
-                                        <Col sm={8} md={5}>
-                                            <img className="d-block w-100" src={girl} alt="" />
-                                            <h3>Steve Henderson</h3>
-                                            <b>Velit imperdiet magna</b>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-                                        </Col>
-                                    </Row>
-                                </Carousel.Item>
-                                <Carousel.Item>
-                                    <Row className="justify-content-center">
-                                        <Col sm={8} md={5}>
-                                            <img className="d-block w-100" src={boy} alt="" />
-                                            <h3>Steve Henderson</h3>
-                                            <b>Velit imperdiet magna</b>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-                                        </Col>
-                                    </Row>
-                                </Carousel.Item>
-                                <Carousel.Item>
-                                    <Row className="justify-content-center">
-                                        <Col sm={8} md={5}>
-                                            <img className="d-block w-100" src={girl} alt="" />
-                                            <h3>Steve Henderson</h3>
-                                            <b>Velit imperdiet magna</b>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                            sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-                                        </Col>
-                                    </Row>
-                                </Carousel.Item>
-                            </Carousel>
-                        </Col>
 
-                    </Row>
-                </Container>
-            </section>
         </>
     )
 }
