@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import LoaderCtrl from '../../../front/common/components/loader';
 import { getDraftStatus, listAllSpace, setListDetailClient } from '../../../redux';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 
 function UserListingtrl() {
@@ -105,9 +106,13 @@ function UserListingtrl() {
 
             }
 
-            
+
             {
-                listAllSpaceError && <Alert variant="danger">{listAllSpaceError}</Alert>
+                listAllSpaceError && <div className="card-body" style={{ background: "linear-gradient(50deg, transparent, #22bff6)", marginTop: "15px" }}>
+                    <h4>Create Your First Listing</h4>
+                    <p>List your storage or parking space and connect with verified Guests who are looking for spaces to rent</p>
+                    <button className="btn btn-success btn-sm" onClick={() => history.push('/list-your-space')}>Create A Listing</button>
+                </div>
             }
 
             <LoaderCtrl loaderStatus={listAllSpaceLoading} />
