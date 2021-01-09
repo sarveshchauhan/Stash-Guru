@@ -60,12 +60,9 @@ function UserBookedListCtrl() {
                             </InputGroup>
                         </Form>
                         <Button variant="outline-success" className="ml-2" style={{ minWidth: '150px' }}><i className="fa fa-filter" aria-hidden="true"></i> Filters</Button>
-
                         {
                             updateBookingLoading && <Spinner animation="border" variant="success" className="ml-2"></Spinner>
                         }
-
-
                     </div>
                 </div>
             </div>

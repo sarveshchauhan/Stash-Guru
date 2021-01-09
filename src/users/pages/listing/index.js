@@ -108,10 +108,14 @@ function UserListingtrl() {
 
 
             {
-                listAllSpaceError && <div className="card-body" style={{ background: "linear-gradient(50deg, transparent, #22bff6)", marginTop: "15px" }}>
-                    <h4>Create Your First Listing</h4>
-                    <p>List your storage or parking space and connect with verified Guests who are looking for spaces to rent</p>
-                    <button className="btn btn-success btn-sm" onClick={() => history.push('/list-your-space')}>Create A Listing</button>
+                listAllSpaceError && <div className="card-body listing_bg">
+                    <div className="row">
+                        <div className="col-md-6 text-white">
+                            <h2>Create Your First Listing</h2>
+                            <p>List your storage or parking space and connect with verified Guests who are looking for spaces to rent</p>
+                        <button className="btn btn-success px-4" onClick={() => history.push('/list-your-space')}>Create A Listing</button>
+                        </div>
+                    </div>
                 </div>
             }
 
