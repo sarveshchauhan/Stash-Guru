@@ -88,6 +88,7 @@ import FrontWarehouseCtrl from '../front/pages/warehouse';
 import FrontSpareRoomCtrl from '../front/pages/spareroom';
 import NotFoundComponent from '../front/pages/NotFound';
 import RentMyContainerComponentCtrl from '../front/pages/RentMyContainer';
+import TermsCtrl from '../front/pages/terms';
 
 
 
@@ -148,6 +149,9 @@ const Root = () => {
             <Route exact path="/sitemap" render={(props) => (< FrontPagesLayoutCtrl children={FrontSitemapCtrl} {...props} />)} />
 
             <Route exact path="/refund-policy" render={(props) => (< FrontPagesLayoutCtrl children={FrontRefundPolicyCtrl} {...props} />)} />
+
+            <Route exact path="/terms" render={(props) => (< FrontPagesLayoutCtrl children={TermsCtrl} {...props} />)} />
+
 
             <Route exact path="/become-a-host" render={(props) => (< FrontHomePagesLayoutCtrl children={FrontBecomeHostCtrl} {...props} />)} />
 

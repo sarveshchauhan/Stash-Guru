@@ -120,7 +120,7 @@ function UserProfileCtrl() {
                                         <h4>{authResponse && authResponse.users && authResponse.users.email}</h4>
                                     </div>
                                     <div>
-                                        {/* <Button className="P_verify_btn">Verify</Button> */}
+                                        {/* <Button className="P_ver    ify_btn">Verify</Button> */}
                                     </div>
                                 </div>
                             </div>

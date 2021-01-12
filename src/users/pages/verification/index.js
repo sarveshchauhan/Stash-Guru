@@ -7,7 +7,7 @@ import verified from '../../../assets/users/images/icons/verified.png';
 import verify_id from '../../../assets/users/images/verify/verify_id.png';
 import DocumentDetails from './DocumentDetails';
 import { useDispatch, useSelector } from 'react-redux';
-import { getVerifyList, toggleDocumentDetailModal, toggleMobileVerifyModal } from '../../../redux/document/documentActions';
+import { getVerifyList, toggleDocumentDetailModal, toggleMobileVerifyModal, toggleVerifyIdModal } from '../../../redux/document/documentActions';
 import DocumentUpload from './DocumentUpload';
 import VerifyIdModal from './VerifyIdModal';
 import MobileVerification from './MobileVerification';
@@ -106,7 +106,7 @@ function UserVerificationCtrl() {
 
 
                     {
-                        !idData && !id1Data && <Button className="btn_l_orange" onClick={() => dispatch(toggleDocumentDetailModal(true))}>Verify Account</Button>
+                        !idData && !id1Data && <Button className="btn_l_orange" onClick={() => dispatch(toggleVerifyIdModal(true))}>Verify Account</Button>
                     }
 
                     {

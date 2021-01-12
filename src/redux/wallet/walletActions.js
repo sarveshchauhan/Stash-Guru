@@ -184,7 +184,13 @@ export const inviteReferral = (reqData = {}) => {
         dispatch(referralInviteRequest());
 
         if (!reqData.email) {
-            return dispatch(referralInviteFailure("Email is required!"));
+            dispatch(referralInviteFailure("Email is required!"));
+
+            setTimeout(() => {
+                dispatch(referralInviteFailure(""));
+            }, 3000);
+
+            return false;
         }
 
         reqData.token = await validateClientToken();
@@ -196,6 +202,12 @@ export const inviteReferral = (reqData = {}) => {
                 if (+serverResponse.status) {
 
                     dispatch(referralInviteSuccess(serverResponse.message));
+
+                    setTimeout(() => {
+
+                        dispatch(referralInviteSuccess(""));
+
+                    }, 3000);
 
                 }
                 else {

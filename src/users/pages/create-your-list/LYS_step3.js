@@ -51,6 +51,7 @@ function CreateYourListStepThitdCtrl() {
     const [guest_access, set_guest_access] = useState("");
 
     const [hoveredSpaceType, setHoveredSpaceType] = useState("");
+    const [hoveredFeature, setHoveredFeature] = useState("");
 
 
     const [specificHours, setSpecificHours] = useState([
@@ -332,6 +333,11 @@ function CreateYourListStepThitdCtrl() {
         setHoveredSpaceType(path);
     }
 
+    const featureMouseOver = (path) => {
+
+        setHoveredFeature(path);
+    }
+
 
     return (
         <>
@@ -443,7 +449,24 @@ function CreateYourListStepThitdCtrl() {
 
                                 {
                                     featuresList && Array.isArray(featuresList) && featuresList.map((feature, index) => (
-                                        <Button variant="no_bg" className={is_feature_exists(feature.fs_id) ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => onChangeFeature(feature.fs_id)}>  <img src={feature.fs_icon} alt={feature.fs_name} className="btn-icon" />  {feature.fs_name}</Button>
+
+                                        <Button
+                                            variant="no_bg"
+                                            className={is_feature_exists(feature.fs_id) ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"}
+                                            key={index} onClick={() => onChangeFeature(feature.fs_id)}
+                                            onMouseOver={() => featureMouseOver(feature.fs_white)}
+                                        >
+
+                                            <img
+                                                src={hoveredFeature === feature.fs_white || is_feature_exists(feature.fs_id) ? feature.fs_white : feature.fs_icon}
+                                                alt={feature.fs_name}
+                                                className="btn-icon"
+                                            />
+
+                                            {feature.fs_name}
+                                        </Button>
+
+
                                     ))
                                 }
 

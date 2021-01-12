@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Col, Form, Row, FormControl, InputGroup, Nav, Spinner, Alert } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import referals from '../../../assets/users/images/icons/referals.png';
 import earing_graph from '../../../assets/users/images/icons/earing-graph.png';
@@ -131,7 +131,13 @@ function UserReferralsCtrl() {
                             </div>
 
                             <div className="text-right">
-                                <span className="p-3 text_color_gray ">Terms Apply</span>
+
+                                <Link to="/terms">
+                                    <span className="p-3 text_color_gray ">Terms Apply</span>
+                                </Link>
+
+
+
                             </div>
                         </div>
                     </Col>
