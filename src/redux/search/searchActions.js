@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE, SEARCH_DETAILS_REQUEST, SEARCH_DETAILS_SUCCESS, SEARCH_DETAILS_FAILURE } from "./searchTypes";
+import { SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE, SEARCH_DETAILS_REQUEST, SEARCH_DETAILS_SUCCESS, SEARCH_DETAILS_FAILURE, NEARBY_REQUEST, NEARBY_SUCCESS, NEARBY_FAILURE } from "./searchTypes";
 import { config } from '../../config/config';
 
 const searchRequest = () => {
@@ -18,6 +18,27 @@ const searchSuccess = response => {
 const searchFailure = error => {
     return {
         type: SEARCH_FAILURE,
+        payload: error
+    }
+}
+
+
+const nearbyRequest = () => {
+    return {
+        type: NEARBY_REQUEST
+    }
+}
+
+const nearbySuccess = response => {
+    return {
+        type: NEARBY_SUCCESS,
+        payload: response
+    }
+}
+
+const nearbyFailure = error => {
+    return {
+        type: NEARBY_FAILURE,
         payload: error
     }
 }
@@ -82,6 +103,67 @@ export const searchListing = (data) => {
     }
 
 }
+
+
+
+
+
+export const nearbyListing = (data) => {
+
+    const requestConfig = {
+        'Content-Type': 'application/json'
+    };
+
+    return async (dispatch) => {
+        dispatch(nearbyRequest());
+
+        try {
+            const response = await axios.post(`${config.apiUrl}/front/search/nearby`, data, requestConfig);
+            const listResponse = response.data;
+
+            if (listResponse.status) {
+                const settings = await axios.post(`${config.apiUrl}/front/settings/details`, { key: 'vat' }, requestConfig);
+                let vat = 0;
+                if (settings.data.status) {
+                    vat = settings.data.details.set_details
+                }
+                const listData = {
+                    response: listResponse.message,
+                    list: listResponse.list,
+                    vat: vat
+                };
+
+                dispatch(nearbySuccess(listData));
+
+            }
+            else {
+                dispatch(nearbyFailure(listResponse.message));
+            }
+
+        }
+        catch (error) {
+            const errorMsg = error.message;
+            dispatch(nearbyFailure(errorMsg));
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export const searchDetails = (id) => {
     const requestConfig = {

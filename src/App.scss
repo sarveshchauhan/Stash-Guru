@@ -426,7 +426,7 @@ select.form-control, input.form-control.rectu_form_field{
     border-radius: 5px;;
 }
 textarea.form-control{
-    border-radius: 25px;;
+    border-radius: 10px;;
 }
 .d-flex-wrap{
     display: flex;
@@ -528,3 +528,12 @@ select:-webkit-autofill:focus {
 .rdw-editor-wrapper{
     border-radius: 10px;
 }
+
+
+@media only screen and (max-width: 430px) {
+    .chat-us-btn-front {
+      margin-top: 10px;
+    }
+}
+
+

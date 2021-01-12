@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Form, Row, InputGroup, FormControl, Button, Container, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-// import { MapContainer } from '../../../front/common/components/map';
+import { NavLink, useHistory } from 'react-router-dom';
 import GoogleMap from '../../../front/common/components/google-map/GoogleMap';
-import GoogleSearch from '../../../front/common/components/GoogleSearch';
 import { getCoordinates } from '../../../redux';
 import './createList.scss';
 import ManualAddressForm from './ManualAddressForm';
@@ -24,6 +22,14 @@ function UserCreateYourListCtrl() {
     const [lat, setLat] = useState("");
     const [lng, setLng] = useState("");
 
+    const [submitForm, setSubmitForm] = useState("");
+
+    const submitAddressForm = (e) => {
+
+        e.preventDefault();
+        setSubmitForm(Math.random() * 100);
+
+    }
 
     useEffect(() => {
 
@@ -154,7 +160,7 @@ function UserCreateYourListCtrl() {
 
                             </Form>
                             <div className={'d-block'}>
-                                <ManualAddressForm showManualForm={manually} />
+                                <ManualAddressForm showManualForm={manually} submitForm={submitForm} />
                             </div>
                         </Col>
 
@@ -165,6 +171,32 @@ function UserCreateYourListCtrl() {
                         </Col>
 
                     </Row>
+
+
+                    <Row>
+                        <Col md={12} className="mt-2 mb-2">
+
+                            <NavLink to="/list-your-space" className="float-left">
+                                <Button className="btn_previous mr-2  mt-2">
+                                    <i className="fa fa-long-arrow-left mr-2" aria-hidden="true"></i>Previous
+                                </Button>
+                            </NavLink>
+
+                            {
+                                coordinatesLoading && <> &nbsp; <Spinner variant="success" className="float-right mt-2" animation="border"></Spinner> </>
+                            }
+
+
+                            <Button className="btn_outline_success mr-2 mt-2 px-5 float-right" onClick={submitAddressForm}>
+                                Next <i className="fa fa-long-arrow-right ml-2" aria-hidden="true"></i>
+                            </Button>
+
+
+
+
+                        </Col>
+                    </Row>
+
 
 
                     {/* <div className="create_your_list_map">

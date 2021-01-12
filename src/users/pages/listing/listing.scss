@@ -67,16 +67,17 @@
 .listing_card_body{
     display: flex;
     align-items: center;
+    height:150px;
 }
 .listing_img_area{
-    width: 170px;
-    border-radius: 5px;
+    width: 180px;;
+    border-radius: 10px;
     overflow: hidden;
-    padding: 10px;
+    margin-left: 10px;
 }
 .listing_img_area img{
-    width: 150px;
-    height: 150px;
+    height: 115px;
+    width: 180px;
 }
 .listing_content_area{
     width: calc(100% - 150px);

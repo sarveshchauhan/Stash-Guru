@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Col, Row, Table, Spinner } from 'react-bootstrap';
+import { Button, Col, Row, Table, Spinner, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import dateFormat from 'dateformat';
@@ -88,6 +88,9 @@ function UserPaymentPayoutListCtrl() {
                             <div className="box_CardBody text-center">
                                 <div className="w-100">
 
+
+
+
                                     {
                                         guestPaymentLoading ? <Spinner animation="border" variant="success" /> : <Table size="sm" className="no_bdr">
                                             <thead>
@@ -103,7 +106,7 @@ function UserPaymentPayoutListCtrl() {
                                             <tbody>
 
                                                 {
-                                                    guestPaymentList && Array.isArray(guestPaymentList) && guestPaymentList.map((guest, index) => (
+                                                    guestPaymentList && Array.isArray(guestPaymentList) && guestPaymentList.length > 0 ? guestPaymentList.map((guest, index) => (
 
                                                         <tr key={index}>
                                                             <td className="text-left">
@@ -128,6 +131,14 @@ function UserPaymentPayoutListCtrl() {
                                                         </tr>
 
                                                     ))
+                                                        :
+                                                        <tr>
+                                                            <td colSpan="6" className="text-center">{
+
+                                                                <Alert variant="warning mt-2">No payments</Alert>
+
+                                                            }</td>
+                                                        </tr>
                                                 }
 
 

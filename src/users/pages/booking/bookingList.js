@@ -57,10 +57,15 @@ function UserBookingListCtrl() {
             }
 
             {
-                (!bookingList || bookingList.length === 0) && <div className="card-body" style={{ background: "linear-gradient(50deg, transparent, #22bff6)", marginTop: "15px" }}>
-                    <h4>No Bookings Yet</h4>
-                    <p>You haven't made or received any bookings yet.</p>
-                    <button className="btn btn-success btn-sm" onClick={() => history.push('/')}>Search Spaces</button>
+                (!bookingList || bookingList.length === 0) && <div className="card-body listing_bg">
+                    <div className="row">
+                        <div className="col-md-6 text-white">
+                            <h4>No Bookings Yet</h4>
+                            <p>You haven't made or received any bookings yet.</p>
+                            <button className="btn btn-success px-4" onClick={() => history.push('/')}>Search Spaces</button>
+                        </div>
+                    </div>
+
                 </div>
             }
 

@@ -50,6 +50,9 @@ function CreateYourListStepThitdCtrl() {
     const [guest, set_guest] = useState("");
     const [guest_access, set_guest_access] = useState("");
 
+    const [hoveredSpaceType, setHoveredSpaceType] = useState("");
+
+
     const [specificHours, setSpecificHours] = useState([
         { day: "Monday", selected: true, from: 9, fromType: "AM", to: 6, toType: "PM" },
         { day: "Tuesday", selected: true, from: 9, fromType: "AM", to: 6, toType: "PM" },
@@ -323,6 +326,13 @@ function CreateYourListStepThitdCtrl() {
         return true;
     }
 
+
+    const spaceTypeMouseOver = (path) => {
+
+        setHoveredSpaceType(path);
+    }
+
+
     return (
         <>
             <StepsNavListCtrl />
@@ -340,7 +350,25 @@ function CreateYourListStepThitdCtrl() {
                             {
                                 spaceTypeList && Array.isArray(spaceTypeList) && spaceTypeList.map((space, index) => (
 
-                                    <Button variant="no_bg" className={+space.st_id === +st_id ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => set_st_id(space.st_id)}><img src={space.st_path} className="btn-icon" /> {space.st_name}</Button>
+                                    <Button
+                                        variant="no_bg"
+                                        className={+space.st_id === +st_id ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"}
+
+                                        key={index}
+                                        onClick={() => set_st_id(space.st_id)}
+                                        onMouseOver={() => spaceTypeMouseOver(space.st_white)}
+
+                                    >
+
+
+                                        <img
+                                            src={+space.st_id === +st_id || hoveredSpaceType === space.st_white ? space.st_white : space.st_path}
+                                            className="btn-icon"
+                                        />
+                                        &nbsp;
+                                        {space.st_name}
+
+                                    </Button>
 
 
                                 ))

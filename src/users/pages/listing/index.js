@@ -113,7 +113,7 @@ function UserListingtrl() {
                         <div className="col-md-6 text-white">
                             <h2>Create Your First Listing</h2>
                             <p>List your storage or parking space and connect with verified Guests who are looking for spaces to rent</p>
-                        <button className="btn btn-success px-4" onClick={() => history.push('/list-your-space')}>Create A Listing</button>
+                            <button className="btn btn-success px-4" onClick={() => history.push('/list-your-space')}>Create A Listing</button>
                         </div>
                     </div>
                 </div>
@@ -137,9 +137,9 @@ function UserListingtrl() {
                                     list.store_status === "Draft" ? <Button className="btn_milky_grn mr-2" onClick={(e) => get_draft_status(list.store_id, e)}>Finish Listing</Button> : ""
                                 } */}
 
-                                {
+                                {/* {
                                     authResponse && authResponse.users && authResponse.users.verify !== "Yes" && <Button className="btn_milky_grn mr-2 btn-danger" onClick={(e) => history.push(`/verification`)}>Verify Account</Button>
-                                }
+                                } */}
 
                                 {
                                     getCurrentStep(list.store_id) && getCurrentStep(list.store_id) < 7 ? <Button className="btn_milky_grn mr-2" onClick={(e) => get_draft_status(list.store_id, e)}>Finish Listing</Button> : ""

@@ -1,17 +1,12 @@
-
-import React, { Fragment, useEffect, useRef, useState } from 'react';
-import { Col, Container, Row, Carousel, InputGroup, FormControl, Button, Modal, Form } from 'react-bootstrap';
+import React, { useEffect, useRef, useState } from 'react';
+import { Col, Container, Row, Carousel, InputGroup, FormControl, Button } from 'react-bootstrap';
 
 
 // Assets Include
 import './SearchList.scss';
-import map from '../../../assets/front/images/dummy/map.jpg';
 import browse from '../../../assets/front/images/icons/browse.svg';
 import connect from '../../../assets/front/images/icons/connect.svg';
 import store from '../../../assets/front/images/icons/store.svg';
-import SearchList1 from '../../../assets/front/images/dummy/SearchList1.jpg';
-import SearchList2 from '../../../assets/front/images/dummy/SearchList2.jpg';
-import user_r1 from '../../../assets/front/images/dummy/user_r1.png';
 
 import Local from '../../../assets/front/images/icons/localstorages.png';
 import Affordable from '../../../assets/front/images/icons/payment.png';
@@ -22,26 +17,16 @@ import Support from '../../../assets/front/images/icons/support.png';
 
 import some_empty_space from '../../../assets/front/images/img/some_empty_space.svg';
 
-import helping from '../../../assets/front/images/icons/helping.png';
-import support from '../../../assets/front/images/icons/support.png';
-import secure_payment from '../../../assets/front/images/icons/list-details/secure-payment.png';
-import agreement from '../../../assets/front/images/icons/list-details/agreement.png';
 
 // Assets Include End
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookingInfoByStore, searchDetails, toggleBookingModal } from '../../../redux';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import LoaderCtrl from '../../common/components/loader';
 import GoogleMapDetail from '../../common/components/google-map/GoogleMapDetail';
-import ProfilePlaceholder from '../../../assets/front/images/profile-placeholder.png';
-import MessageForm from './MessageForm';
-import MessageList from './MessageList';
 import BookingModal from './BookingModal';
+import OtherListing from './OtherListing';
 
-
-
-const iconImages = require.context('../../../assets/front/images/icons/list-details', true);
-const storeImages = require.context('../../../assets/front/images/store', true);
 const profileImages = require.context('../../../assets/users/images/profile', true);
 
 
@@ -49,12 +34,6 @@ const profileImages = require.context('../../../assets/users/images/profile', tr
 function FrontSearchDetailsCtrl() {
 
 
-
-    useEffect(() => {
-
-        window.scrollTo(0, 0);
-
-    }, [window]);
 
 
     const [isSticky, setSticky] = useState(false);
@@ -86,6 +65,14 @@ function FrontSearchDetailsCtrl() {
     const { schDetails, detailsResponse, vat, features, access, images, measurement_unit, used_type, loading } = useSelector(state => state.search);
     const { bookingInfo } = useSelector(state => state.booking);
     const { authResponse } = useSelector(state => state.auth);
+
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, [window, searchId]);
+
 
 
     useEffect(() => {
@@ -319,57 +306,8 @@ function FrontSearchDetailsCtrl() {
                                 <hr />
                             </div>
 
-                            <div className="details_content">
-                                <h5 className="mt-4 sm2_hdng">Other Listings At This Location</h5>
-                                <Row>
-                                    <Col sm={6}>
-                                        <div className="SearchListPlace_card">
-                                            <img width="100%" src={SearchList1} alt="" />
-                                            <div className="SearchListPlace_card_body">
-                                                <div className="SearchListPlaceUserArea">
-                                                    <img width="100%" className="profileImg" src={user_r1} alt="" />
-                                                    <span className="profileName">Mary Ann Wagner</span>
-                                                </div>
 
-                                                <div className="SearchListPlaceAreaPlace">
-                                                    <div>
-                                                        <Button size="sm">Garage</Button>
-                                                        <span><i className="fa fa-map-marker"></i> California </span>
-                                                    </div>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaCost">
-                                                    <strong>$45.00/Month </strong>
-                                                    <span>20x25</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Col>
-                                    <Col sm={6}>
-                                        <div className="SearchListPlace_card">
-                                            <img width="100%" src={SearchList2} alt="" />
-                                            <div className="SearchListPlace_card_body">
-                                                <div className="SearchListPlaceUserArea">
-                                                    <img className="profileImg" src={user_r1} alt="" />
-                                                    <span className="profileName">Mary Ann Wagner</span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaPlace">
-                                                    <Button size="sm">Warehouse</Button>
-                                                    <span><i className="fa fa-map-marker"></i> California </span>
-                                                </div>
-
-                                                <div className="SearchListPlaceAreaCost">
-                                                    <strong>$105.00/Month </strong>
-                                                    <span>100x25</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Col>
-                                </Row>
-                                <hr />
-                            </div>
-
+                            <OtherListing />
 
 
                             <div className="details_content">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Form, Button, Spinner, Alert, Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 
 
 function ManualAddressForm(props) {
+
+    const formRef = useRef();
 
     const dispatch = useDispatch();
     const { coordinates, manualCoordinates, coordinatesError, coordinatesLoading, stepTwo } = useSelector(state => state.listspace);
@@ -34,6 +36,18 @@ function ManualAddressForm(props) {
     const [postal_code_error, set_postal_code_error] = useState("");
 
     const [showAddressForm, setShowAddressForm] = useState(false);
+
+
+    useEffect(() => {
+
+        if (props.submitForm) {
+
+            // formRef.current.submit();
+            onSubmitForm(null);
+        }
+
+
+    }, [props.submitForm]);
 
 
     useEffect(() => {
@@ -142,8 +156,10 @@ function ManualAddressForm(props) {
 
 
     const onSubmitForm = (e) => {
+        if (e) {
+            e.preventDefault();
+        }
 
-        e.preventDefault();
 
         if (!showAddressForm) {
 
@@ -251,7 +267,7 @@ function ManualAddressForm(props) {
 
     return (
         <>
-            <Form className="pb-5" onSubmit={onSubmitForm}>
+            <Form className="pb-5" onSubmit={onSubmitForm} ref={formRef}>
 
                 <div hidden={!showAddressForm}>
 
@@ -301,13 +317,13 @@ function ManualAddressForm(props) {
                 </div>
 
                 <Form.Group>
-                    <Button variant="next" type="submit">
+                    {/* <Button variant="next" type="submit">
                         Next
                 </Button>
 
                     {
                         coordinatesLoading && <> &nbsp; <Spinner variant="success" animation="border"></Spinner> </>
-                    }
+                    } */}
 
                 </Form.Group>
 
@@ -315,6 +331,10 @@ function ManualAddressForm(props) {
                 {
                     coordinatesError && <Alert variant="danger">{coordinatesError}</Alert>
                 }
+
+
+
+
 
             </Form>
         </>

@@ -119,6 +119,14 @@ function ListPreviewCtrl() {
     }
 
 
+    const getSpaceUsedTypes = (used_types) => {
+        return used_types.map((sut) => sut.sut_name).join(", ");
+    }
+
+    const getFeatures = (features) => {
+        return features.map((fs) => fs.fs_name).join(", ");
+    }
+
     return (
         <>
 
@@ -182,25 +190,22 @@ function ListPreviewCtrl() {
                                             <tr>
                                                 <th width="100">Can be Used For</th>
                                                 <td>
-
-                                                    {
-                                                        used_type && Array.isArray(used_type) && used_type.map((sut) => (
-                                                            <span className="g_dt">{sut.sut_name}</span>
-                                                        ))
-                                                    }
+                                                    {used_type && Array.isArray(used_type) && getSpaceUsedTypes(used_type)}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th width="100">Features</th>
                                                 <td>
 
-                                                    {
+                                                    {/* {
                                                         features && Array.isArray(features) && features.map((feature, index) => (
                                                             <span className="g_dt" key={index}>{feature.fs_name}</span>
                                                         ))
+                                                    } */}
+
+                                                    {
+                                                        features && Array.isArray(features) && getFeatures(features)
                                                     }
-
-
 
                                                 </td>
                                             </tr>

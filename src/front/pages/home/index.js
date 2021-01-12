@@ -185,7 +185,7 @@ function FrontHomeCtrl() {
                                 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
                                     sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
                                 <button className="btn btn_milky">Get Started</button>
-                                <button className="btn btn_success">Chat Us</button>
+                                <button className="btn btn_success chat-us-btn-front">Chat Us</button>
                             </div>
                         </Col>
                         <Col md={6}>

@@ -130,15 +130,21 @@ function UserVerificationCtrl() {
                     <h3 className="text_color_zambezi">Phone Number Verification</h3>
                     <NavLink to="#" className="text_color_shamrock">
 
-                        {
-                            phoneVerified && phoneVerified === "Verify" && <NavLink to="" className="text_color_shamrock">Verified</NavLink>
-                        }
+
+
+
 
                         {
-                            phoneVerified && phoneVerified === "Pending" && <p className="text-danger">Pending</p>
+                            authResponse && authResponse.users && authResponse.users.mobile ?
+                                phoneVerified && phoneVerified === "Verify" ? <NavLink to="" className="text_color_shamrock">Verified</NavLink> : <p className="text-danger">Pending</p>
+                                :
+                                <p className="text-danger">Not Yet</p>
                         }
+
 
                     </NavLink>
+
+                    &nbsp;
 
                     {
                         (authResponse && authResponse.users && authResponse.users.mobile) ? <span className="text_color_gray">({authResponse && authResponse.users && `${authResponse.users.country_code}-${authResponse.users.mobile}`})</span> : ""

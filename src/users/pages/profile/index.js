@@ -91,7 +91,19 @@ function UserProfileCtrl() {
                                     </div>
                                     <div>
                                         <small>Mobile</small>
-                                        <h4> {authResponse && authResponse.users && `${authResponse.users.country_code}-${authResponse.users.mobile}`} </h4>
+                                        <h4>
+
+                                            {
+                                                authResponse && authResponse.users && authResponse.users.mobile && authResponse.users.country_code ?
+
+                                                    `${authResponse.users.country_code}-${authResponse.users.mobile}`
+                                                    :
+
+                                                    "Not Yet"
+                                            }
+
+
+                                        </h4>
                                     </div>
                                     <div>
                                         <Button className="P_verify_btn" onClick={(e) => dispatch(toggleMobileVerifyModal(true))}>Edit</Button>

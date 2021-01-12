@@ -101,7 +101,7 @@ function AuthComponent() {
                             Referrals
                         </NavLink>
 
-                            <NavLink className="dropdown-item" to="/payment">
+                            <NavLink className="dropdown-item" to="/guest_payment">
                                 <img className="img_deactive" src={B_payment} />
                                 <img className="img_active" src={G_payment} />
                             Payment

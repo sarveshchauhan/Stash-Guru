@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useRef, useState } from 'react';
-import { Button, Col, Form, Modal, Row, Dropdown, Table, Spinner, Badge } from 'react-bootstrap';
+import { Button, Col, Form, Modal, Row, Dropdown, Alert, Table, Spinner, Badge } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 
 import invoice from '../../../assets/users/images/icons/invoice.png';
@@ -133,7 +133,7 @@ function UserPaymentHostPayoutListCtrl() {
                                                 <tbody>
 
                                                     {
-                                                        hostPaymentList && Array.isArray(hostPaymentList) && hostPaymentList.map((host, index) => (
+                                                        hostPaymentList && Array.isArray(hostPaymentList) && hostPaymentList.length > 0 ? hostPaymentList.map((host, index) => (
                                                             <tr key={index}>
                                                                 <td className="text-left">
                                                                     <Link target="_blank" to={`/search-details/${host.store_id}`}>{host.store_title}</Link>
@@ -144,6 +144,12 @@ function UserPaymentHostPayoutListCtrl() {
                                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                                             </tr>
                                                         ))
+                                                            :
+                                                            <tr>
+                                                                <td colSpan="5">
+                                                                    <Alert variant="warning mt-2">No Payments</Alert>
+                                                                </td>
+                                                            </tr>
                                                     }
 
 
