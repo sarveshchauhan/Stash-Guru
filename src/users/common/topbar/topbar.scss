@@ -12,6 +12,39 @@
     position: relative;
     padding: 11px 15px 11px 50px;
 }
+
+
+.notification{
+    margin-top: 15px;
+    margin-right: 12px;
+}
+.notification i{
+    color: #2196c0; 
+}
+
+.notification .badge{
+    position: relative;
+    border-radius: 45%;
+    top: -10px;
+    right: 10px;
+}
+@media (max-width: 500px){
+    .dash_avtar_user_list .dropdown-toggle.nav-link{
+        padding: 5px 5px 5px 5px;
+        font-size: 7px;
+    }
+    .dash_avtar_user_list .dash_avtar_user{
+        display: none;
+    }
+    
+    .notification{
+        margin-top: 0px;
+        margin-right: 12px;
+    }
+}
+
+
+
 .dash_avtar_user_list .dropdown-toggle::after{
     vertical-align: middle;
 }
@@ -137,20 +170,4 @@ img.dash_avtar_user{
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 100px;
-}
-
-.notification{
-    margin-top: 15px;
-    margin-right: 12px;
-}
-
-.notification i{
-    color: #2196c0; 
-}
-
-.notification .badge{
-    position: relative;
-    border-radius: 45%;
-    top: -10px;
-    right: 10px;
 }

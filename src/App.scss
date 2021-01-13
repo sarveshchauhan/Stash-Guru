@@ -141,7 +141,9 @@ img{
 }
 
 
-
+.bg_shamrock_color{
+    background: $shamrock_color;
+}
 .bg_milky{
     background: $milky_color;
 }
@@ -536,4 +538,19 @@ select:-webkit-autofill:focus {
     }
 }
 
+.fade.modal-backdrop.show,
+.swal2-container.swal2-backdrop-show, 
+.swal2-container.swal2-noanimation {
+    background: rgba(0, 0, 0, 0.9);
+}
 
+.modal-backdrop.show{
+    opacity: 1;
+}
+body .close,
+.modal .close,
+.modal-content .close{
+    position: fixed !important;
+    right: 10px !important;
+    top: 10px !important;
+}

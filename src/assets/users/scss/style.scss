@@ -85,7 +85,8 @@ img.user_img_avtar{
     min-height: 250px;
     margin-top: 30px;
     border-radius: 18px;
-    background: transparent linear-gradient(236deg, $pacific_blue_color 0%, $deep_sky_color 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(236deg, $pacific_blue_color 0%, 
+    $deep_sky_color 100%) 0% 0% no-repeat padding-box;
 }
 .dash_hm_card_b_bg_img{
     position: absolute;
@@ -424,10 +425,6 @@ button.P_verify_btn:hover{
 
 
 
-
-.fade.modal-backdrop.show{
-    background: #1A9A76;
-}
 .user_modal .modal-header {
     border-bottom: 0px solid #dee2e6;
 }

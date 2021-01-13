@@ -91,7 +91,7 @@ function UserHomeCtrl() {
                             <div className="dash_hm_card_a_cntr">
                                 <p>Profile</p>
                                 <small>Welcome</small>
-                                <b>{authResponse && authResponse.users && authResponse.users.name}</b>
+                                <span>{authResponse && authResponse.users && authResponse.users.name}</span>
                             </div>
                         </Card.Body>
                         <span className="icn_crd_img">
@@ -118,12 +118,12 @@ function UserHomeCtrl() {
                     </Card>
                 </Col>
                 <Col sm={12} lg={5}>
-                    <Card className="dash_hm_card_b">
+                    <Card className="dash_hm_card_b bg_shamrock_color">
                         <Card.Body>
                             <div className="">
                                 <h4>List A Space</h4>
                                 <p>Lorem ipsum dolor sit amet, consetetur</p>
-                                <Button className="btn_milky_grn" onClick={() => history.push('/list-your-space')}>List your Space <i className="fa fa-angle-right" aria-hidden="true"></i></Button>
+                                <Button style={{zIndex:'+99',position: 'relative'}} className="btn_milky_grn" onClick={() => history.push('/list-your-space')}>List your Space <i className="fa fa-angle-right" aria-hidden="true"></i></Button>
                             </div>
                         </Card.Body>
                         <span className="dash_hm_card_b_bg_img">

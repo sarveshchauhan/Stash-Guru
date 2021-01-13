@@ -87,12 +87,12 @@ function UserTopbarHeaderComponent() {
             <Navbar sticky="top" style={{ borderBottom: '2px solid #00000008' }}>
                 <div className="nav_container ">
                     <Row className="align-items-center  justify-content-sm-center justify-content-between">
-                        <div className="col-lg-6 col-md-6 col-sm-12 text-center text-lg-left text-md-left">
+                        <div className="col-6">
                             <NavLink className="navbar-brand" to="/">
                                 <img width="100%" src={logo} alt="" />
                             </NavLink>
                         </div>
-                        <div className="col-lg-6 col-md-6 col-sm-12 my-2">
+                        <div className="col-6 my-2">
                             <Nav className="ml-2 justify-content-center justify-content-lg-end justify-content-md-end">
 
 
