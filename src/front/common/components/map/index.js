@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import { config } from '../../../../config/config';
 // import logo from '../../../../assets/front/images/colored_logo.svg';
 
 const mapStyles = {
@@ -78,5 +79,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyB103Ei2FmqUW2l1PHQAaf2u4xo3RzkEkg'
+  apiKey: config.googleMapApiKey
 })(MapContainer);

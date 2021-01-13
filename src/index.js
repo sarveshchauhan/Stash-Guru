@@ -10,6 +10,8 @@ import Root from './routes/Route.dev';
 import { Provider } from 'react-redux';
 import store from './redux/store'
 
+import "./i18n";
+
 const rootElement = document.getElementById('root')
 ReactDOM.render(
   <Provider store={store}>

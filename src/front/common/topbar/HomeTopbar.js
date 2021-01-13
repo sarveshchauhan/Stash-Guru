@@ -12,6 +12,8 @@ import logo from '../../../assets/front/images/colored_logo.svg';
 import SearchComponent from '../components/SearchCompo';
 import FrontSideBarMenu from '../sidebar';
 import AuthComponent from '../components/AuthComponent';
+import { MenuItem, Select } from '@material-ui/core';
+import TranslateMenu from './TranslateMenu';
 // Component Include End
 
 
@@ -42,6 +44,11 @@ function HomeTopbarHeaderComponent() {
                         </div>
                         <div className="col-4 my-2">
                             <Nav className="justify-content-md-end justify-content-center align-items-center">
+
+
+                                <TranslateMenu />
+
+
                                 <NavLink className="nav-link list_your_space" to="/list-your-space">List your space</NavLink>
                                 <AuthComponent />
                                 {/* <FrontSideBarMenu /> */}

@@ -3,12 +3,16 @@ import { config } from '../../../config/config';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { Button } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
+
 
 function GoogleSearch() {
 
     const [address, setAddress] = useState("");
     const { key } = useParams();
     const history = useHistory();
+
+    const { t } = useTranslation();
 
 
     useEffect(() => {
@@ -55,7 +59,7 @@ function GoogleSearch() {
                         <div>
                             <input
                                 {...getInputProps({
-                                    placeholder: 'Search Places ...',
+                                    placeholder: t('searchPlaceholder'),
                                     className: 'location-search-input',
                                 })}
                             />

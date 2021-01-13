@@ -34,11 +34,17 @@ import SearchComponent from '../../common/components/SearchCompo';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTestimonials } from '../../../redux/front/frontActions';
 
+import { useTranslation, Trans } from 'react-i18next';
+
 function FrontHomeCtrl() {
 
     const history = useHistory();
     const dispatch = useDispatch();
     const { testimonialData } = useSelector(state => state.front);
+
+    const { t } = useTranslation();
+
+
 
     useEffect(() => {
 
@@ -65,8 +71,18 @@ function FrontHomeCtrl() {
                     <Row>
                         <Col lg={6}>
                             <div className="home_banner_content">
-                                <h2>Need Storage Space?</h2>
-                                <p>Store items locally with <b className="text_color_shamrock">trusted</b> storage hosts</p>
+                                <h2>{t('homeHeading')}</h2>
+
+                                <Trans
+
+                                    i18nKey="homeSubHeading"
+                                    default={`<p>Store items locally with <b className="text_color_shamrock">trusted</b> storage hosts</p>`}
+                                    components={{ p: <p />, b: <b /> }}
+
+                                >
+
+                                </Trans>
+
                                 <div className="mt-5">
                                     <SearchComponent />
                                 </div>
@@ -90,8 +106,8 @@ function FrontHomeCtrl() {
                                     <img src={browse} alt="" />
                                 </div>
                                 <div className="ab_strip_card_content">
-                                    <h4>Browse</h4>
-                                    <p>Search for local storage space near you.</p>
+                                    <h4>{t('homeTabOneHeading')}</h4>
+                                    <p>{t('homeTabOneDesc')}</p>
                                 </div>
                             </div>
                         </Col>
@@ -101,8 +117,8 @@ function FrontHomeCtrl() {
                                     <img src={connect} alt="" />
                                 </div>
                                 <div className="ab_strip_card_content">
-                                    <h4>Connect</h4>
-                                    <p>Chat to verified, local Hosts and book when you're ready.</p>
+                                    <h4>{t('homeTabTwoHeading')}</h4>
+                                    <p>{t('homeTabTwoDesc')}</p>
                                 </div>
                             </div>
                         </Col>
@@ -112,8 +128,8 @@ function FrontHomeCtrl() {
                                     <img src={store} alt="" />
                                 </div>
                                 <div className="ab_strip_card_content">
-                                    <h4>Store</h4>
-                                    <p>Start storing in your new space. Simple!</p>
+                                    <h4>{t('homeTabThreeHeading')}</h4>
+                                    <p>{t('homeTabThreeDesc')}</p>
                                 </div>
                             </div>
                         </Col>
@@ -129,8 +145,8 @@ function FrontHomeCtrl() {
 
                             <div className="pl-xl-4">
                                 <div className="stash_hdng">
-                                    <h3>Connecting people</h3>
-                                    <small>who need space, with people that have space.</small>
+                                    <h3>{t('homeConnectPeopleHeading')}</h3>
+                                    <small>{t('homeConnectPeopleSubHeading')}</small>
                                 </div>
 
 
@@ -141,9 +157,19 @@ function FrontHomeCtrl() {
                                     </div>
                                     <div className="connecting_people_text">
                                         <h6>
-                                            <b>Vlad</b> needs space to store some <b>household goods</b>
+
+                                            <Trans
+                                                i18nKey="homeConnectPoepleAvatarOne"
+                                                default="<b>Vlad</b> needs space to store some <b>household goods</b>"
+                                                components={{
+                                                    b: <b />
+                                                }}
+                                            >
+
+                                            </Trans>
+
                                         </h6>
-                                        <p>He needs a dry, safe and secure space for 8 months that is close to his house.</p>
+                                        <p>{t('homeConnectPeopleAvatarOneDesc')}</p>
                                     </div>
                                 </div>
 
@@ -154,9 +180,23 @@ function FrontHomeCtrl() {
                                     </div>
                                     <div className="connecting_people_text">
                                         <h6>
-                                            <b>Roxana</b> has a spare room that is <b>sitting empty</b>
+
+
+
+                                            <Trans
+                                                i18nKey="homeConnectPoepleAvatarTwo"
+                                                default="<b>Roxana</b> has a spare room that is <b>sitting empty</b>"
+                                                components={{
+                                                    b: <b />
+                                                }}
+                                            >
+
+                                            </Trans>
+
+
+
                                         </h6>
-                                        <p>Her spare room is dry, safe, secure and she can store Vlad's things for 8 months.</p>
+                                        <p>{t('homeConnectPeopleAvatarTwoDesc')}</p>
                                     </div>
                                 </div>
 
@@ -181,11 +221,11 @@ function FrontHomeCtrl() {
                     <Row className="justify-content-center align-items-center">
                         <Col md={6} style={{ position: 'relative', zIndex: '+9' }}>
                             <div className="some_empty_space_text">
-                                <h3>Get Some Empty Space?</h3>
+                                <h3>{t('homeGetSpaceHeading')}</h3>
                                 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
                                     sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-                                <button className="btn btn_milky">Get Started</button>
-                                <button className="btn btn_success chat-us-btn-front">Chat Us</button>
+                                <button className="btn btn_milky">{t('homeGetSpaceStartedBtn')}</button>
+                                <button className="btn btn_success chat-us-btn-front">{t('homeGetSpaceChatBtn')}</button>
                             </div>
                         </Col>
                         <Col md={6}>
@@ -203,7 +243,7 @@ function FrontHomeCtrl() {
                     <Row>
                         <Col md={12}>
                             <div className="stash_hdng">
-                                <h3>Our Space Types</h3>
+                                <h3>{t('homeSpaceTypeHeading')}</h3>
                             </div>
                         </Col>
                     </Row>
@@ -213,55 +253,55 @@ function FrontHomeCtrl() {
                             <Row className="justify-content-center align-items-center">
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" onClick={() => history.push('/rent-my-garage')}>Garage</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-garage')}>{t('homeGarageBtn')}</Button>
                                         <img src={Garage} alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" onClick={() => history.push('/rent-my-warehouse')}>Warehouse</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-warehouse')}>{t('homeWarehouseBtn')}</Button>
                                         <img src={Warehouse} alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" onClick={() => history.push('/rent-my-lockup')}>Lock Ups</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-lockup')}>{t('homeLockupBtn')}</Button>
                                         <img src={LockUps} alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" onClick={() => history.push('/rent-my-parking-space')}>Parking Space</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-parking-space')}>{t("homeParkingBtn")}</Button>
                                         <img src={ParkingSpace} alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" onClick={() => history.push('/rent-my-outhouse')}>Out housed</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-outhouse')}>{t('homeOutHouseBtn')}</Button>
                                         <img src={OutHoused} alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" onClick={() => history.push('/rent-my-spare-room')}>Spare rooms</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-spare-room')}>{t('homeSpareRoom')}</Button>
                                         <img src={SpareRooms} alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" >Basement</Button>
+                                        <Button variant="success" >{t('homeBasementBtn')}</Button>
                                         <img src={Basements} alt="" onClick={() => history.push('/rent-my-basement')} />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" onClick={() => history.push('/rent-my-loft')}>Lofts</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-loft')}>{t('homeLoftBtn')}</Button>
                                         <img src={Lofts} alt="" />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" onClick={() => history.push('/rent-my-container')}>Container</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-container')}>{t('homeContainerBtn')}</Button>
                                         <img src={ContainerImg} alt="" />
                                     </div>
                                 </Col>
@@ -279,7 +319,7 @@ function FrontHomeCtrl() {
                     <Row>
                         <Col md={12}>
                             <div className="stash_hdng milky">
-                                <h3>Why stash.guru?</h3>
+                                <h3>{t('homeStFeatureHeading')}</h3>
                             </div>
                         </Col>
                     </Row>
@@ -287,51 +327,110 @@ function FrontHomeCtrl() {
                         <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
                                 <img src={Local} alt="" />
-                                <h5>Local</h5>
-                                <p>There are hundreds of local storage <br /> Hosts to choose from</p>
+                                <h5>{t('homeStFeatureOneHeading')}</h5>
+
+                                <Trans
+                                    i18nKey="homeStFeatureOneDesc"
+                                    defaultValue="<p>There are hundreds of local storage <br /> Hosts to choose from</p>"
+                                    components={{
+                                        p: <p />,
+                                        br: <br />
+                                    }}
+                                >
+
+                                </Trans>
                             </div>
                         </Col>
 
                         <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
                                 <img src={Affordable} alt="" />
-                                <h5>Affordable</h5>
-                                <p>Save on average 50% on your<br /> storage bill</p>
+                                <h5>{t('homeStFeatureTwoHeading')}</h5>
+
+                                <Trans
+                                    i18nKey="homeStFeatureTwoDesc"
+                                    default="<p>Save on average 50% on your<br /> storage bill</p>"
+                                    components={{
+                                        p: <p />,
+                                        br: <br />
+                                    }}
+
+                                >
+
+                                </Trans>
                             </div>
                         </Col>
 
                         <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
                                 <img src={Flexible} alt="" />
-                                <h5>Flexible</h5>
-                                <p>Clear contracts, no hidden charges<br /> or fees</p>
+                                <h5>{t('homeStFeatureThreeHeading')}</h5>
+
+                                <Trans
+
+                                    i18nKey="homeStFeatureThreeDesc"
+                                    default="<p>Clear contracts, no hidden charges<br /> or fees</p>"
+                                    components={{
+                                        p: <p />,
+                                        br: <br />
+                                    }}
+                                >
+
+                                </Trans>
+
+
                             </div>
                         </Col>
 
                         <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
                                 <img src={Vetted} alt="" />
-                                <h5>Vetted</h5>
-                                <p>Spaces are quality controlled and<br /> approved by stash.guru</p>
+                                <h5>{t('homeStFeatureFourHeading')}</h5>
+                                <Trans
+                                    i18nKey="homeStFeatureFourDesc"
+                                    default="<p>Spaces are quality controlled and<br /> approved by stash.guru</p>"
+                                    components={{
+                                        p: <p />,
+                                        br: <br />
+                                    }}
+                                >
+
+                                </Trans>
+
                             </div>
                         </Col>
 
                         <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
                                 <img src={IDChecks} alt="" />
-                                <h5>ID Checks</h5>
-                                <p>All self storage hosts have their identity verified<br />
-                                 by an independent third party to ensure things<br />
-                                  are nice, safe and secure.</p>
+                                <h5>{t('homeStFeatureFiveHeading')}</h5>
+                                <Trans
+                                    i18nKey="homeStFeatureFiveDesc"
+                                    default="<p>All self storage hosts have their identity verified<br /> by an independent third party to ensure things<br /> are nice, safe and secure.</p>"
+                                    components={{
+                                        p: <p />,
+                                        br: <br />
+                                    }}
+                                >
+
+                                </Trans>
                             </div>
                         </Col>
 
                         <Col sm={6} lg={4}>
                             <div className="stash_guru_card_a">
                                 <img src={Support} alt="" />
-                                <h5>stash.guru Support</h5>
-                                <p>Our team is here to help Guests and Hosts if any<br />
-                                 questions or issues arise with storage</p>
+                                <h5>{t('homeStFeatureSixHeading')}</h5>
+                                <Trans
+                                    i18nKey="homeStFeatureSixDesc"
+                                    default="<p>Our team is here to help Guests and Hosts if any<br /> questions or issues arise with storage</p>"
+                                    components={{
+                                        p: <p />,
+                                        br: <br />
+                                    }}
+                                >
+
+                                </Trans>
                             </div>
                         </Col>
                     </Row>
@@ -407,8 +506,8 @@ function FrontHomeCtrl() {
                         <Row className="justify-content-center">
                             <Col md={12}>
                                 <div className="stash_hdng">
-                                    <h3>Connecting people</h3>
-                                    <small>who need space, with people that have space.</small>
+                                    <h3>{t('homeConnectPeopleHeading')}</h3>
+                                    <small>{t('homeConnectPeopleDesc')}</small>
                                 </div>
                             </Col>
                             <Col md={12}>
@@ -450,7 +549,7 @@ function FrontHomeCtrl() {
                         </Col>
                         <Col md={6}>
                             <div className="here_to_help_you">
-                                <h3>We're here to help you at every step along the way</h3>
+                                <h3>{t('homeHelpHeading')}</h3>
                                 <Nav className="flex-column">
                                     <NavLink to="" className="nav-link">
                                         <i className="fa fa-phone mr-2"></i> 0800 112 3898</NavLink>
@@ -464,7 +563,7 @@ function FrontHomeCtrl() {
                                     </Col>
                                     <Col lg={5} className="mt-2">
                                         <Button className="btn-block btn-outline-light" onClick={() => history.push('list-your-space')}>
-                                            <img width="15" className="mr-2" src={ListYourSpace} /> List Your Space
+                                            <img width="15" className="mr-2" src={ListYourSpace} /> {t('homeHelpListSpaceBtn')}
                                         </Button>
                                     </Col>
                                 </Row>
