@@ -1,11 +1,11 @@
+/* this is fromt/searchlist/ filter.css */
+
 .filter-btn-selected{
 
     color: white !important;
     background-color: #34D789 !important;
 
 }
-
-
 .apply-div{
     width: 100%;
     margin-right: 10px; 

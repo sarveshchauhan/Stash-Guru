@@ -1,4 +1,4 @@
-
+// this is front/ topbar.scss
 
 @import '../../../App.scss';
 @media (min-width: 576px)
@@ -93,11 +93,11 @@
 }
 .list_your_space,
 .login_signup_btn{
-    height: 48px;
+    height: 38px;
     border-radius: 25px;
     padding: 0px 40px;
     display: inline-block;
-    line-height: 48px;
+    line-height: 38px;
     margin-left: 10px;
     border-width: 1px;
     border-style: solid;

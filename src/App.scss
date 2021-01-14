@@ -47,7 +47,8 @@ $light_cyan_color: #ccf5e1;
 
 .btn{
     border-radius: 25px;
-    min-height: 48px;
+    min-height: 38px;
+    font-size: 13px;
 }
 .btn.btn-sm{
     min-height: auto;
@@ -384,7 +385,7 @@ img{
 select.form-control,
 input.form-control{
     border-radius: 25px;
-    min-height: 48px;
+    min-height: 38px;
 }
 .form-control.form-control-sm{
     min-height: auto

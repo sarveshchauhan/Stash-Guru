@@ -1,3 +1,6 @@
+/* this is users/common/topbar/topbar.scss */
+@import '../../../App.scss';
+
 .dash_avtar_user_list .dropdown-toggle.nav-link,
 .dash_avtar_user_list .dropdown-toggle.nav-link:hover,
 .dash_avtar_user_list .dropdown-toggle.nav-link.active,
@@ -10,12 +13,12 @@
     color: #1BBDF6;
     border-radius: 25px;
     position: relative;
-    padding: 11px 15px 11px 50px;
+    padding: 5px 15px 5px 35px;
 }
 
 
 .notification{
-    margin-top: 15px;
+    margin-top: 8px;
     margin-right: 12px;
 }
 .notification i{
@@ -53,8 +56,8 @@
 }
 img.dash_avtar_user{
    position: absolute;
-   width: 35px;
-   height: 35px;
+   width: 30px;
+   height: 30px;
    top: 50%;
    transform: translateY(-50%);
    left: 5px;

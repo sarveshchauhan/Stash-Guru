@@ -1,5 +1,8 @@
-// banner section style start here
+
+// this is front/style.scss
 @import '../../../App.scss';
+
+// banner section style start here
 .user_area{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -105,7 +108,7 @@
     box-shadow: none !important;
     border: 1px solid $shamrock_color;
     width: 100%;
-    min-height: 48px;
+    min-height: 38px;
     border-radius: 28px;
     padding: 0px 15px 0px 35px;
 }
@@ -129,13 +132,14 @@
 .location_search_bar .btn.btn-success{
     position: absolute;
     top: 0;
-    width: 50px;
-    height: 48px;
+    // width: 40px;
+    height: 38px;
     right: 0px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
     font-size: 20px;
     transform: none !important;
+    line-height: 0px;
 }
 .autocomplete-dropdown-container{
     position: absolute;
@@ -784,7 +788,7 @@
     border-radius: 30px;
     color:$shamrock_color;
     padding: 0px 20px;
-    height: 45px;
+    height: 38px;
 }
 
 // .here_to_help_you .btn-outline-light i.fa{
