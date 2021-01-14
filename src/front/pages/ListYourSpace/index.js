@@ -28,7 +28,12 @@ import StepOneForm from './StepOneForm';
 import { useDispatch } from 'react-redux';
 import { clearListSpaceSteps } from '../../../redux';
 
+
+import { useTranslation, Trans } from 'react-i18next';
+
 function ListYourSpaceComponentCtrl() {
+
+    const { t } = useTranslation();
 
     const dispatch = useDispatch();
     const [index, setIndex] = useState(0);
@@ -63,9 +68,28 @@ function ListYourSpaceComponentCtrl() {
                                 <Col sm={8}>
                                     <div className="my-5">
                                         <h2 className="clr_bg_stash_hdng">
-                                            Make Money on<br /> <span> Stash.Guru </span>
+
+                                            <Trans
+
+                                                i18nKey="listYourSpaceHeading"
+                                                default="Make Money on<br /> <span> Stash.Guru </span>"
+                                                components={{
+                                                    span: <span />
+                                                }}
+
+                                            >
+
+                                            </Trans>
+
                                         </h2>
-                                        <p className="mt-3">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</p>
+
+                                        <Trans
+                                            i18nKey="listYourSpaceHeadingDesc"
+                                            default={`<p className="mt-3">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</p>`}
+                                        >
+
+                                        </Trans>
+
                                     </div>
                                 </Col>
                             </Row>
@@ -91,8 +115,8 @@ function ListYourSpaceComponentCtrl() {
                                     <img src={to_do_list} alt="" />
                                 </span>
                                 <div>
-                                    <h5>List for free</h5>
-                                    <p>Lorem ipsum dolor sit amet, consetetur</p>
+                                    <h5>{t('listYourSpaceFeatureOneHeading')}</h5>
+                                    <p>{t('listYourSpaceFeatureOneDesc')}</p>
                                 </div>
                             </div>
                         </Col>
@@ -102,8 +126,8 @@ function ListYourSpaceComponentCtrl() {
                                     <img src={renters} alt="" />
                                 </span>
                                 <div>
-                                    <h5>Respond to renters</h5>
-                                    <p>Lorem ipsum dolor sit amet, consetetur</p>
+                                    <h5>{t('listYourSpaceFeatureTwoHeading')}</h5>
+                                    <p>{t('listYourSpaceFeatureTwoDesc')}</p>
                                 </div>
                             </div>
                         </Col>
@@ -113,8 +137,8 @@ function ListYourSpaceComponentCtrl() {
                                     <img src={money} alt="" />
                                 </span>
                                 <div>
-                                    <h5>Make money</h5>
-                                    <p>Lorem ipsum dolor sit amet, consetetur</p>
+                                    <h5>{t('listYourSpaceFeatureThreeHeading')}</h5>
+                                    <p>{t('listYourSpaceFeatureThreeDesc')}</p>
                                 </div>
                             </div>
                         </Col>
@@ -140,8 +164,8 @@ function ListYourSpaceComponentCtrl() {
                                             <img className="sm_img" src={camera} alt="" />
                                         </div>
                                         <div className="what_need_card_footer">
-                                            <h5>Photo</h5>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
+                                            <h5>{t('listYourSpaceNeedFeatureOneHeading')}</h5>
+                                            <p>{t('listYourSpaceNeedFeatureOneDesc')}</p>
                                         </div>
                                     </div>
                                 </Col>
@@ -152,8 +176,8 @@ function ListYourSpaceComponentCtrl() {
                                             <img className="sm_img" src={dimension} alt="" />
                                         </div>
                                         <div className="what_need_card_footer">
-                                            <h5>Dimensions</h5>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
+                                            <h5>{t('listYourSpaceNeedFeatureTwoHeading')}</h5>
+                                            <p>{t('listYourSpaceNeedFeatureTwoDesc')}</p>
                                         </div>
                                     </div>
                                 </Col>
@@ -164,8 +188,8 @@ function ListYourSpaceComponentCtrl() {
                                             <img className="sm_img" src={location} alt="" />
                                         </div>
                                         <div className="what_need_card_footer">
-                                            <h5>Address</h5>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore</p>
+                                            <h5>{t('listYourSpaceNeedFeatureThreeHeading')}</h5>
+                                            <p>{t('listYourSpaceNeedFeatureThreeDesc')}</p>
                                         </div>
                                     </div>
                                 </Col>
@@ -194,58 +218,109 @@ function ListYourSpaceComponentCtrl() {
                 <Container>
                     <Row>
                         <Col className="text-center">
-                            <h3 className="pg_bg_hdng mb-3">We’ve got it covered!</h3>
+                            <h3 className="pg_bg_hdng mb-3">{t('listYourSpaceCoverHeading')}</h3>
                         </Col>
                     </Row>
                     <Row>
                         <Col md={4}>
                             <div className="stash_guru_card_a">
                                 <img src={verify} alt="" />
-                                <h5>Verified Guests</h5>
-                                <p>There are hundreds of local storage <br /> Hosts to choose from</p>
+                                <h5>{t('listYourSpaceCoverOneHeading')}</h5>
+                                <Trans
+                                    default={`<p>There are hundreds of local storage <br /> Hosts to choose from</p>`}
+                                    i18nKey="listYourSpaceCoverOneDesc"
+                                    components={{
+                                        p: <p />,
+                                        br: <br />
+                                    }}
+                                >
+
+                                </Trans>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
                                 <img src={Affordable} alt="" />
-                                <h5>Smooth Payments</h5>
-                                <p>Save on average 50% on your<br /> storage bill</p>
+                                <h5>{t('listYourSpaceCoverTwoHeading')}</h5>
+                                <Trans
+                                    default={`<p>Save on average 50% on your<br /> storage bill</p>`}
+                                    i18nKey="listYourSpaceCoverTwoDesc"
+                                    components={{
+                                        p: <p />,
+                                        br: <br />
+                                    }}
+                                >
+
+                                </Trans>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
                                 <img src={dashboard} alt="" />
-                                <h5>Booking Dashboard</h5>
-                                <p>Clear contracts, no hidden charges<br /> or fees</p>
+                                <h5>{t('listYourSpaceCoverThreeHeading')}</h5>
+                                <Trans
+                                    i18nKey="listYourSpaceCoverThreeDesc"
+                                    default={`<p>Clear contracts, no hidden charges<br /> or fees</p>`}
+                                    components={{
+                                        p: <p />,
+                                        br: <br />
+                                    }}
+                                >
+
+                                </Trans>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
                                 <img src={stamp} alt="" />
-                                <h5>Legal Framework</h5>
-                                <p>Spaces are quality controlled and<br /> approved by stash.guru</p>
+                                <h5>{t('listYourSpaceCoverFourHeading')}</h5>
+                                <Trans
+                                    i18nKey="listYourSpaceCoverFourDesc"
+                                    default={`<p>Spaces are quality controlled and<br /> approved by stash.guru</p>`}
+                                    components={{
+                                        p: <p />,
+                                        br: <br />
+                                    }}
+                                >
+
+                                </Trans>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
                                 <img src={helping} alt="" />
-                                <h5>Guest Insurance</h5>
-                                <p>All self storage hosts have their identity verified<br />
-                                 by an independent third party to ensure things<br />
-                                  are nice, safe and secure.</p>
+                                <h5>{t('listYourSpaceCoverFiveHeading')}</h5>
+                                <Trans
+                                    i18nKey="listYourSpaceCoverFiveDesc"
+                                    default={`<p>All self storage hosts have their identity verified<br /> by an independent third party to ensure things<br /> are nice, safe and secure.</p>`}
+                                    components={{
+                                        p: <p />,
+                                        br: <br />
+                                    }}
+                                >
+
+                                </Trans>
                             </div>
                         </Col>
 
                         <Col md={4}>
                             <div className="stash_guru_card_a">
                                 <img src={Support} alt="" />
-                                <h5>stash.guru Support</h5>
-                                <p>Our team is here to help Guests and Hosts if any<br />
-                                 questions or issues arise with storage</p>
+                                <h5>{t('listYourSpaceCoverSixHeading')}</h5>
+                                <Trans
+                                    i18nKey="listYourSpaceCoverSixDesc"
+                                    default={`<p>Our team is here to help Guests and Hosts if any<br /> questions or issues arise with storage</p>`}
+                                    components={{
+                                        p: <p />,
+                                        br: <br />
+                                    }}
+                                >
+
+                                </Trans>
                             </div>
                         </Col>
                     </Row>

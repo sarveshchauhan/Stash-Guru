@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getSpaceType, stepOneSave } from '../../../redux/listspace/listspaceActions';
 import GoogleSearchListing from '../../common/components/GoogleSearchListing';
-
+import { useTranslation, Trans } from 'react-i18next';
 
 function StepOneForm({ spaceTypeId = 0, disableSpaceControl = false }) {
+
+    const { t } = useTranslation();
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -14,19 +16,12 @@ function StepOneForm({ spaceTypeId = 0, disableSpaceControl = false }) {
     const { spaceTypeList, stepOne, spaceTypeListLoading } = useSelector(state => state.listspace);
 
 
+
     const [location, setLocation] = useState("");
     const [locationError, setLocationError] = useState("");
     const [spaceType, setSpaceType] = useState("");
     const [spaceTypeError, setSpaceTypeError] = useState("");
 
-    // useEffect(() => {
-
-    //     if (stepOne) {
-    //         setLocation(stepOne.location);
-    //         setSpaceType(stepOne.spaceType);
-    //     }
-
-    // }, [stepOne]);
 
 
     useEffect(() => {
@@ -137,7 +132,7 @@ function StepOneForm({ spaceTypeId = 0, disableSpaceControl = false }) {
             {
                 spaceTypeListLoading ? <div className="text-center"><Spinner animation="border" variant="success"></Spinner></div> :
                     <Form onSubmit={submitForm}>
-                        <h5 className="pb-4">Lorem ipsum dolor sit amet</h5>
+                        <h5 className="pb-4">{t('stepOneFormHeading')}</h5>
                         <Form.Group className="custom_select" style={{ height: '48px' }}>
                             <Form.Control as="select" disabled={disableSpaceControl} name="spaceType" value={spaceType} onChange={(e) => setSpaceType(e.target.value)} onBlur={handleFormFields}>
 
@@ -172,7 +167,7 @@ function StepOneForm({ spaceTypeId = 0, disableSpaceControl = false }) {
 
                         </Form.Group>
 
-                        <Button variant="success" type="submit" className="btn-block mt-4">List your space</Button>
+                        <Button variant="success" type="submit" className="btn-block mt-4">{t('homeHelpListSpaceBtn')}</Button>
                     </Form>
 
             }

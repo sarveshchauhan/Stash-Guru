@@ -1,12 +1,11 @@
-import { MenuItem, Select } from '@material-ui/core'
+import {  MenuItem, Select } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
-
 
 function TranslateMenu() {
 
     const { i18n } = useTranslation();
-    const [value, setValue] = useState("en");
+    const [value, setValue] = useState("en-GB");
 
 
 
@@ -39,8 +38,8 @@ function TranslateMenu() {
                 value={value}
                 onChange={handleChange}
             >
-                <MenuItem value="en">English</MenuItem>
-                <MenuItem value="ro">Romanian</MenuItem>
+                <MenuItem value="en-GB">    EN </MenuItem>
+                <MenuItem value="ro">   RO  </MenuItem>
             </Select>
 
         </>

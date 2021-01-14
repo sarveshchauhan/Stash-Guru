@@ -99,7 +99,7 @@ function UserProfileCtrl() {
                                                     `${authResponse.users.country_code}-${authResponse.users.mobile}`
                                                     :
 
-                                                    "Not Yet"
+                                                    "Not Provided."
                                             }
 
 
@@ -130,9 +130,9 @@ function UserProfileCtrl() {
                     <div className="align-items-center justify-content-between">
                         <div className="">
                             <h3 className="text_color_zambezi user_hdng_2nd">{authResponse && authResponse.users && authResponse.users.name}</h3>
-                            <h6>About You</h6>
+                            <h6><strong>About You</strong></h6>
                             <p>
-                                {authResponse && authResponse.users && authResponse.users.about}
+                                {(authResponse && authResponse.users && authResponse.users.about) ? authResponse.users.about : "No Information Provided"}
                             </p>
 
 

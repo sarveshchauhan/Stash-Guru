@@ -11,11 +11,15 @@ import logo from '../../../assets/front/images/colored_logo.svg';
 import SearchComponent from '../components/SearchCompo';
 import FrontSideBarMenu from '../sidebar';
 import AuthComponent from '../components/AuthComponent';
+import TranslateMenu from './TranslateMenu';
 // Component Include End
+import { useTranslation } from 'react-i18next';
+
 
 
 function PageTopbarHeaderComponent() {
 
+    const { t } = useTranslation();
 
     return (
         <>
@@ -34,7 +38,10 @@ function PageTopbarHeaderComponent() {
                         </div>
                         <div className="col-4 my-2">
                             <Nav className="justify-content-md-end justify-content-center align-items-center">
-                                <NavLink className="nav-link list_your_space" to="/list-your-space">List your space</NavLink>
+
+                                <TranslateMenu />
+
+                                <NavLink className="nav-link list_your_space" to="/list-your-space">{t('homeHelpListSpaceBtn')}</NavLink>
                                 <AuthComponent />
                                 {/* <FrontSideBarMenu /> */}
                             </Nav>

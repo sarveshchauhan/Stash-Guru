@@ -12,12 +12,16 @@ import logo from '../../../assets/front/images/colored_logo.svg';
 import SearchComponent from '../components/SearchCompo';
 import FrontSideBarMenu from '../sidebar';
 import AuthComponent from '../components/AuthComponent';
-import { MenuItem, Select } from '@material-ui/core';
 import TranslateMenu from './TranslateMenu';
+import { useTranslation } from 'react-i18next';
+
 // Component Include End
 
 
+
 function HomeTopbarHeaderComponent() {
+
+    const { t } = useTranslation();
 
     const [scroll, setScroll] = useState(false);
     useEffect(() => {
@@ -49,7 +53,7 @@ function HomeTopbarHeaderComponent() {
                                 <TranslateMenu />
 
 
-                                <NavLink className="nav-link list_your_space" to="/list-your-space">List your space</NavLink>
+                                <NavLink className="nav-link list_your_space" to="/list-your-space">{t('homeHelpListSpaceBtn')}</NavLink>
                                 <AuthComponent />
                                 {/* <FrontSideBarMenu /> */}
                             </Nav>

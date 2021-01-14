@@ -254,55 +254,55 @@ function FrontHomeCtrl() {
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" onClick={() => history.push('/rent-my-garage')}>{t('homeGarageBtn')}</Button>
-                                        <img src={Garage} alt="" />
+                                        <img src={Garage} alt="" style={imageStyle} onClick={() => history.push('/rent-my-garage')} />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" onClick={() => history.push('/rent-my-warehouse')}>{t('homeWarehouseBtn')}</Button>
-                                        <img src={Warehouse} alt="" />
+                                        <img src={Warehouse} alt="" style={imageStyle} onClick={() => history.push('/rent-my-warehouse')} />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" onClick={() => history.push('/rent-my-lockup')}>{t('homeLockupBtn')}</Button>
-                                        <img src={LockUps} alt="" />
+                                        <img src={LockUps} alt="" onClick={() => history.push('/rent-my-lockup')} />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" onClick={() => history.push('/rent-my-parking-space')}>{t("homeParkingBtn")}</Button>
-                                        <img src={ParkingSpace} alt="" />
+                                        <img src={ParkingSpace} alt="" onClick={() => history.push('/rent-my-parking-space')} />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" onClick={() => history.push('/rent-my-outhouse')}>{t('homeOutHouseBtn')}</Button>
-                                        <img src={OutHoused} alt="" />
+                                        <img src={OutHoused} alt="" onClick={() => history.push('/rent-my-outhouse')} />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" onClick={() => history.push('/rent-my-spare-room')}>{t('homeSpareRoom')}</Button>
-                                        <img src={SpareRooms} alt="" />
+                                        <img src={SpareRooms} alt="" onClick={() => history.push('/rent-my-spare-room')} />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
-                                        <Button variant="success" >{t('homeBasementBtn')}</Button>
+                                        <Button variant="success" onClick={() => history.push('/rent-my-basement')}>{t('homeBasementBtn')}</Button>
                                         <img src={Basements} alt="" onClick={() => history.push('/rent-my-basement')} />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" onClick={() => history.push('/rent-my-loft')}>{t('homeLoftBtn')}</Button>
-                                        <img src={Lofts} alt="" />
+                                        <img src={Lofts} alt="" onClick={() => history.push('/rent-my-loft')} />
                                     </div>
                                 </Col>
                                 <Col sm={6} lg={4}>
                                     <div className="our_space_types_card">
                                         <Button variant="success" onClick={() => history.push('/rent-my-container')}>{t('homeContainerBtn')}</Button>
-                                        <img src={ContainerImg} alt="" />
+                                        <img src={ContainerImg} alt="" onClick={() => history.push('/rent-my-container')} />
                                     </div>
                                 </Col>
 
@@ -577,3 +577,10 @@ function FrontHomeCtrl() {
 }
 
 export default FrontHomeCtrl;
+
+
+const imageStyle = {
+
+    cursor: "pointer"
+
+}; 
