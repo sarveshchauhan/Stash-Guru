@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILURE, FORGOT_PASSWORD_SUCCESS, CLEAR_FORGOT_PASSWORD_MESSAGE, CLEAR_RESET_PASSWORD_MESSAGE, SAVE_PROFILE_PIC_REQUEST, SAVE_PROFILE_PIC_SUCCESS, SAVE_PROFILE_PIC_FAILURE, SAVE_PROFILE_REQUEST, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAILURE, TOGGLE_PROFILE_MODAL, GET_COUNTRY_CODE } from "./authTypes"
-import { set_login_token, remove_login_token } from "../../helpers/tokenHelpers";
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILURE, FORGOT_PASSWORD_SUCCESS, CLEAR_FORGOT_PASSWORD_MESSAGE, CLEAR_RESET_PASSWORD_MESSAGE, SAVE_PROFILE_PIC_REQUEST, SAVE_PROFILE_PIC_SUCCESS, SAVE_PROFILE_PIC_FAILURE, SAVE_PROFILE_REQUEST, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAILURE, TOGGLE_PROFILE_MODAL, GET_COUNTRY_CODE, PROFILE_CHECK_SUCCESS, PROIFLE_CHECK_REQUEST, PROFILE_CHECK_FAILURE } from "./authTypes"
+import { set_login_token, remove_login_token, validateClientToken } from "../../helpers/tokenHelpers";
 import { config } from '../../config/config';
 
 const loginUserRequest = () => {
@@ -465,7 +465,57 @@ export const saveProfilePic = (file) => {
 }
 
 
+const profileCheckRequest = () => {
+    return {
+        type: PROIFLE_CHECK_REQUEST
+    }
+}
 
+const profileCheckSuccess = (response) => {
+    return {
+        type: PROFILE_CHECK_SUCCESS,
+        payload: response
+
+    }
+}
+
+const profileCheckFailure = (response) => {
+    return {
+        type: PROFILE_CHECK_FAILURE,
+        payload: response
+    }
+}
+
+
+
+export const profileCheckSave = (data) => {
+
+    return async (dispatch) => {
+
+        data.token = await validateClientToken();
+
+
+        dispatch(profileCheckRequest())
+        await axios.post(`${config.apiUrl}/front/users/update_account`, data)
+            .then(response => {
+                const serverResponse = response.data;
+                if (+serverResponse.status) {   
+
+                    dispatch(profileCheckSuccess(serverResponse.data));
+
+                }
+                else {
+                    dispatch(profileCheckFailure(serverResponse.message));
+                }
+
+            }).catch(error => {
+                const errorMsg = error.message;
+                dispatch(profileCheckFailure(errorMsg));
+
+            });
+    }
+
+}
 
 
 

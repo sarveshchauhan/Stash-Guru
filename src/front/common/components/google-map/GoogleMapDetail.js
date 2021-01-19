@@ -60,14 +60,18 @@ export function GoogleMap(props) {
 
     return (
         <>
+
             <Map
                 google={props.google}
                 style={mapStyles}
                 zoom={14}
+                maxZoom={14}
                 center={{
                     lat: schDetails && schDetails.store_lat ? schDetails.store_lat : 28.535601,
                     lng: schDetails && schDetails.store_long ? schDetails.store_long : 77.209084
                 }}
+                disableDefaultUI={true}
+
             >
 
                 {

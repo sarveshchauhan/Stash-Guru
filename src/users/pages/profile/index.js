@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { Button, Col, Form, Row, Spinner } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
 import G_profile from '../../../assets/users/images/icons/G_profile.png';
 import bell from '../../../assets/users/images/icons/bell.png';
 import promotion from '../../../assets/users/images/icons/promotion.png';
 import user_img from '../../../assets/users/images/dummy/user1.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveProfilePic, toggleMobileVerifyModal, toggleProfileModal } from '../../../redux';
+import { profileCheckSave, saveProfilePic, toggleMobileVerifyModal, toggleProfileModal } from '../../../redux';
 import MobileVerification from '../verification/MobileVerification';
 import ProfileEditModal from './ProfileEditModal';
 
@@ -155,11 +154,30 @@ function UserProfileCtrl() {
                             {['checkbox'].map((type) => (
                                 <div key={type} className="mt-3">
                                     <Row>
-                                        <Col className="p_check">
-                                            <Form.Check custom type={type} id={`custom-${type}ac_support_email`} label={`Email`} />
+                                        <Col clzassName="p_check">
+                                            <Form.Check
+
+                                                onChange={(e) => dispatch(profileCheckSave({
+                                                    u_account_email: e.target.checked ? "Yes" : "No"
+                                                }))}
+                                                custom
+                                                type={type}
+                                                id={`custom-${type}ac_support_email`}
+                                                label={`Email`}
+
+                                            />
                                         </Col>
                                         <Col className="p_check">
-                                            <Form.Check custom type={type} id={`custom-${type}ac_support_sms`} label={`SMS`}
+                                            <Form.Check
+
+                                                custom
+                                                type={type}
+                                                id={`custom-${type}ac_support_sms`}
+                                                label={`SMS`}
+                                                onChange={(e) => dispatch(profileCheckSave({
+                                                    u_account_sms: e.target.checked ? "Yes" : "No"
+                                                }))}
+
                                             />
                                         </Col>
                                     </Row>
@@ -182,10 +200,28 @@ function UserProfileCtrl() {
                                 <div key={type} className="mt-3">
                                     <Row>
                                         <Col className="p_check">
-                                            <Form.Check custom type={type} id={`custom-${type}reminder_email`} label={`Email`} />
+                                            <Form.Check
+
+                                                custom
+                                                type={type}
+                                                id={`custom-${type}reminder_email`}
+                                                label={`Email`}
+                                                onChange={(e) => dispatch(profileCheckSave({
+                                                    u_reminder_email: e.target.checked ? "Yes" : "No"
+                                                }))}
+                                            />
                                         </Col>
                                         <Col className="p_check">
-                                            <Form.Check custom type={type} id={`custom-${type}reminder_sms`} label={`SMS`}
+                                            <Form.Check
+
+                                                custom
+                                                type={type}
+                                                id={`custom-${type}reminder_sms`}
+                                                label={`SMS`}
+                                                onChange={(e) => dispatch(profileCheckSave({
+                                                    u_reminder_sms: e.target.checked ? "Yes" : "No"
+                                                }))}
+
                                             />
                                         </Col>
                                     </Row>
@@ -207,10 +243,29 @@ function UserProfileCtrl() {
                                 <div key={type} className="mt-3">
                                     <Row>
                                         <Col className="p_check">
-                                            <Form.Check custom type={type} id={`custom-${type}marketing_email`} label={`Email`} />
+                                            <Form.Check
+
+                                                custom
+                                                type={type}
+                                                id={`custom-${type}marketing_email`}
+                                                label={`Email`}
+                                                onChange={(e) => dispatch(profileCheckSave({
+                                                    u_marketing_email: e.target.checked ? "Yes" : "No"
+                                                }))}
+
+                                            />
                                         </Col>
                                         <Col className="p_check">
-                                            <Form.Check custom type={type} id={`custom-${type}marketing_sms`} label={`SMS`}
+                                            <Form.Check
+
+                                                custom
+                                                type={type}
+                                                id={`custom-${type}marketing_sms`}
+                                                label={`SMS`}
+                                                onChange={(e) => dispatch(profileCheckSave({
+                                                    u_marketing_sms: e.target.checked ? "Yes" : "No"
+                                                }))}
+
                                             />
                                         </Col>
                                     </Row>
