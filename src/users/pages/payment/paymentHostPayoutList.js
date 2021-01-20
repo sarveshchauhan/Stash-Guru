@@ -133,7 +133,7 @@ function UserPaymentHostPayoutListCtrl() {
                                                 <tbody>
 
                                                     {
-                                                        hostPaymentList && Array.isArray(hostPaymentList) && hostPaymentList.length > 0 ? hostPaymentList.map((host, index) => (
+                                                        hostPaymentList && Array.isArray(hostPaymentList) && hostPaymentList.length > 0 && hostPaymentList.map((host, index) => (
                                                             <tr key={index}>
                                                                 <td className="text-left">
                                                                     <Link target="_blank" to={`/search-details/${host.store_id}`}>{host.store_title}</Link>
@@ -144,12 +144,7 @@ function UserPaymentHostPayoutListCtrl() {
                                                                 <td className="text-center"><i className="fa fa-print"></i></td>
                                                             </tr>
                                                         ))
-                                                            :
-                                                            <tr>
-                                                                <td colSpan="5">
-                                                                    <Alert variant="warning mt-2">No Payments</Alert>
-                                                                </td>
-                                                            </tr>
+
                                                     }
 
 
@@ -162,8 +157,17 @@ function UserPaymentHostPayoutListCtrl() {
 
 
 
+                                    {
+
+                                        hostPaymentList && Array.isArray(hostPaymentList) && hostPaymentList.length === 0 && <div>
+
+                                            <img src={invoice} />
+                                            <br />
+                                            <h2>No any invoice</h2>
+                                        </div>
 
 
+                                    }
 
                                 </div>
 
@@ -240,11 +244,24 @@ function UserPaymentHostPayoutListCtrl() {
                                 )))
                             }
 
-                            <div className="d-block w-100">
-                                <div className="text-center">
-                                    <Button className="btn_success px-4" onClick={() => dispatch(toggleBankModal(true))}>+ Add Bank</Button>
+                            <div className="box_Card AddBankDetailsBox">
+
+                                <div className="d-block w-100">
+                                    <div className="text-center">
+
+                                        <h5>Bank Details</h5>
+                                        <p>This is the account your Host payouts will get paid into</p>
+                                        <img src={bank} className="mb-2" />
+
+                                        <br />
+
+                                        <Button className="btn_success px-4" onClick={() => dispatch(toggleBankModal(true))}>+ Add Bank</Button>
+                                    </div>
                                 </div>
+
                             </div>
+
+
 
                         </div>
                     </Col>

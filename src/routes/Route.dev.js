@@ -90,6 +90,7 @@ import FrontSpareRoomCtrl from '../front/pages/spareroom';
 import NotFoundComponent from '../front/pages/NotFound';
 import RentMyContainerComponentCtrl from '../front/pages/RentMyContainer';
 import TermsCtrl from '../front/pages/terms';
+import Contact from '../front/pages/contact';
 
 
 
@@ -142,6 +143,9 @@ const Root = () => {
 
 
             <Route exact path="/about" render={(props) => (<FrontPagesLayoutCtrl children={FrontAboutCtrl} {...props} />)} />
+
+            <Route exact path="/contact" render={(props) => (<FrontPagesLayoutCtrl children={Contact} {...props} />)} />
+
 
             <Route exact path="/search-details/:searchId" render={(props) => (< FrontPagesLayoutCtrl children={FrontSearchDetailsCtrl} {...props} />)} />
 

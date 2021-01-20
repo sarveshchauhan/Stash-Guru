@@ -88,7 +88,7 @@ function UserBookedListCtrl() {
 
 
             {
-                hostBookingList && Array.isArray(hostBookingList) && hostBookingList.map((booking, index) => (
+                (hostBookingList && Array.isArray(hostBookingList) && hostBookingList.length > 0) ? hostBookingList.map((booking, index) => (
 
 
                     <div className={`space_booking_list active`} key={index}>
@@ -237,6 +237,10 @@ function UserBookedListCtrl() {
 
 
                 ))
+                    :
+                    <div className="alert alert-warning text-center">
+                        No Bookings.
+                </div>
             }
 
 

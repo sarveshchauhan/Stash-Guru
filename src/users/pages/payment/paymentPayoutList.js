@@ -9,6 +9,9 @@ import { StripeProvider, Elements } from 'react-stripe-elements';
 import { config } from '../../../config/config';
 import PaymentFilter from './PaymentFilter';
 
+import invoice from '../../../assets/users/images/icons/invoice.png';
+import visa_cards_citibank from '../../../assets/users/images/dummy/visa_cards_citibank.jpg';
+import card_payment from '../../../assets/users/images/icons/card_payment.png';
 
 
 
@@ -106,7 +109,7 @@ function UserPaymentPayoutListCtrl() {
                                             <tbody>
 
                                                 {
-                                                    guestPaymentList && Array.isArray(guestPaymentList) && guestPaymentList.length > 0 ? guestPaymentList.map((guest, index) => (
+                                                    guestPaymentList && Array.isArray(guestPaymentList) && guestPaymentList.length > 0 && guestPaymentList.map((guest, index) => (
 
                                                         <tr key={index}>
                                                             <td className="text-left">
@@ -131,14 +134,8 @@ function UserPaymentPayoutListCtrl() {
                                                         </tr>
 
                                                     ))
-                                                        :
-                                                        <tr>
-                                                            <td colSpan="6" className="text-center">{
 
-                                                                <Alert variant="warning mt-2">No payments</Alert>
 
-                                                            }</td>
-                                                        </tr>
                                                 }
 
 
@@ -147,6 +144,18 @@ function UserPaymentPayoutListCtrl() {
 
                                             </tbody>
                                         </Table>
+                                    }
+
+
+                                    {
+
+                                        guestPaymentList && Array.isArray(guestPaymentList) && guestPaymentList.length === 0 && <div>
+                                            <img src={invoice} />
+                                            <br />
+                                            No any invoice
+                                        </div>
+
+
                                     }
 
 
@@ -199,16 +208,29 @@ function UserPaymentPayoutListCtrl() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="d-block w-100">
-                                        <div className="text-center">
-                                            <Button className="btn_success px-4" onClick={() => dispatch(toggleNewCardModal(true))}>+ Add New Card</Button>
-                                        </div>
-                                    </div>
                                 </div>
                             }
 
 
 
+                            <div className="box_Card AddBankDetailsBox">
+                                <h6>Card </h6>
+                                <div className="box_CardBody align-items-end">
+
+
+                                    <img src={card_payment} />
+
+
+                                    <br />
+                                    <p>Add a payment card to make payments. We accept Visa, Master Card, American Express and Discover</p>
+
+                                </div>
+                                <div className="d-block w-100">
+                                    <div className="text-center">
+                                        <Button className="btn_success px-4" onClick={() => dispatch(toggleNewCardModal(true))}>+ Add New Card</Button>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </Col>

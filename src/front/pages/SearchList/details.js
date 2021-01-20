@@ -14,7 +14,10 @@ import Flexible from '../../../assets/front/images/icons/flexible.png';
 import Vetted from '../../../assets/front/images/icons/approved.png';
 import IDChecks from '../../../assets/front/images/icons/id-card.png';
 import Support from '../../../assets/front/images/icons/support.png';
-
+import helping from '../../../assets/front/images/icons/list-details/helping.png';
+import support from '../../../assets/front/images/icons/support.png';
+import agreement from '../../../assets/front/images/icons/list-details/agreement.png';
+import secure_payment from '../../../assets/front/images/icons/list-details/secure-payment.png';
 import some_empty_space from '../../../assets/front/images/img/some_empty_space.svg';
 
 
@@ -392,25 +395,25 @@ function FrontSearchDetailsCtrl() {
 
                                 </div>
                                 <div className="book_space_card_footer">
-                                    {/* <div className="d-flex justify-content-center align-items-center">
+                                    <div className="d-flex justify-content-left align-items-center">
                                         <img className="mr-3" src={helping} alt="" />
-                                        <p className="m-0">$400 insurance included</p>
+                                        <p className="m-0"><strong>400 Lei insurance included</strong></p>
                                     </div>
 
-                                    <div className="d-flex justify-content-center align-items-center">
+                                    <div className="d-flex justify-content-left align-items-center">
                                         <img className="mr-3" src={support} alt="" />
-                                        <p className="m-0">$400 insurance included</p>
+                                        <p className="m-0"><strong>7 Days a week support</strong></p>
                                     </div>
 
-                                    <div className="d-flex justify-content-center align-items-center">
+                                    <div className="d-flex justify-content-left align-items-center">
                                         <img className="mr-3" src={secure_payment} alt="" />
-                                        <p className="m-0">$400 insurance included</p>
+                                        <p className="m-0"><strong>Secure monthly payments</strong></p>
                                     </div>
 
-                                    <div className="d-flex justify-content-center align-items-center">
+                                    <div className="d-flex justify-content-left align-items-center">
                                         <img className="mr-3" src={agreement} alt="" />
-                                        <p className="m-0">$400 insurance included</p>
-                                    </div> */}
+                                        <p className="m-0"><strong>Booking agreements</strong></p>
+                                    </div>
                                 </div>
                             </div>
                         </Col>

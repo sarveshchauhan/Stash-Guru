@@ -224,8 +224,8 @@ function FrontHomeCtrl() {
                                 <h3>{t('homeGetSpaceHeading')}</h3>
                                 <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
                                     sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
-                                <button className="btn btn_milky">{t('homeGetSpaceStartedBtn')}</button>
-                                <button className="btn btn_success chat-us-btn-front">{t('homeGetSpaceChatBtn')}</button>
+                                <button className="btn btn_milky" onClick={() => history.push('/list-your-space')}>{t('homeGetSpaceStartedBtn')}</button>
+                                <button className="btn btn_success chat-us-btn-front" onClick={() => history.push('/contact')}>{t('homeGetSpaceChatBtn')}</button>
                             </div>
                         </Col>
                         <Col md={6}>
