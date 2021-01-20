@@ -40,3 +40,46 @@
     }
 }
 
+
+
+@media (max-width: 1024px){
+    .connecting_people,
+    .right_hf_sky_blue_card{
+        padding: 50px 0px 50px 0px;
+    }
+    .Left_hf_sky_blue_card::before,
+    .Left_hf_sky_blue_card::after,
+    .right_hf_sky_blue_card::after,
+    .right_hf_sky_blue_card::before{
+        display: none;
+    }
+    .some_empty_space_text,
+    .here_to_help_you{
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px){
+    
+    .home_banner,
+    .page_banner{
+        padding-top: 50px;
+    }
+    .home_banner_content h2,
+    .page_banner_content h2{
+        font-size: 25px;
+    }
+    .home_banner_content p,
+    .page_banner_content p{
+        font-size: 15px;
+    }
+    .page_banner_content p.sm_font{
+        font-size: 12px;
+    }
+    .stash_guru_user_slider .carousel-item h3,
+    .some_empty_space_text h3,
+    .here_to_help_you h3{
+        font-size: 20px;
+    }
+}
+
