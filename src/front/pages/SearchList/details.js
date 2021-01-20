@@ -253,9 +253,67 @@ function FrontSearchDetailsCtrl() {
 
 
                             <div className="details_content">
-                                <h5 className="mt-4 sm2_hdng">Guest</h5>
+                                <div className="row">
+                                    <div className="col-sm-6">
+                                        <div className="ab_user_card">
+                                            <div className="ab_user_card_icon">
+                                                <img src={Local} alt={Local} />
+                                            </div>
+                                            <div className="ab_user_card_content">
+                                                <h4>Guest</h4>
+                                                <p>{details.gt_name}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="col-sm-6">
+                                        <div className="ab_user_card">
+                                            <div className="ab_user_card_icon">
+                                                <img src={Local} alt={Local} />
+                                            </div>
+                                            <div className="ab_user_card_content">
+                                                <h4>Guest access</h4>
+                                                <p>{details.gta_name}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="col-sm-6">
+                                        <div className="ab_user_card">
+                                            <div className="ab_user_card_icon">
+                                                <img src={Local} alt={Local} />
+                                            </div>
+                                            <div className="ab_user_card_content">
+                                                <h4>Floor</h4>
+                                                <p>{details.fl_name}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="col-sm-6">
+                                        <div className="ab_user_card">
+                                            <div className="ab_user_card_icon">
+                                                <img src={Local} alt={Local} />
+                                            </div>
+                                            <div className="ab_user_card_content">
+                                                <h4>Space Used type</h4>
+                                                <p>{used_type && Array.isArray(used_type) && used_type.map(sut => sut.sut_name).join(", ")}</p>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                <p>{details.gt_name}</p>
+                                    <div className="col-sm-6">
+                                        <div className="ab_user_card">
+                                            <div className="ab_user_card_icon">
+                                                <img src={Local} alt={Local} />
+                                            </div>
+                                            <div className="ab_user_card_content">
+                                                <h4>About host</h4>
+                                                <p>{used_type && Array.isArray(used_type) && used_type.map(sut => sut.sut_name).join(", ")}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 {/* <Row>   
                                     {access.map(details =>
@@ -278,36 +336,11 @@ function FrontSearchDetailsCtrl() {
 
 
 
-                            <div className="details_content">
-                                <h5 className="mt-4 sm2_hdng">Guest access</h5>
-
-                                <p>{details.gta_name}</p>
-                                <hr />
-                            </div>
 
 
 
-                            <div className="details_content">
-                                <h5 className="mt-4 sm2_hdng">Floor</h5>
-
-                                <p>{details.fl_name}</p>
-                                <hr />
-                            </div>
 
 
-                            <div className="details_content">
-                                <h5 className="mt-4 sm2_hdng">Space Used type</h5>
-
-                                <p>{used_type && Array.isArray(used_type) && used_type.map(sut => sut.sut_name).join(", ")}</p>
-                                <hr />
-                            </div>
-
-                            <div className="details_content">
-                                <h5 className="mt-4 sm2_hdng">About host</h5>
-
-                                <p>{details.u_about}</p>
-                                <hr />
-                            </div>
 
 
                             <OtherListing />

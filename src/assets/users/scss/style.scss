@@ -1039,3 +1039,42 @@ button.P_verify_btn:hover{
 .listing_bg img{
     max-width: 350px;
 }
+
+
+
+.ab_user_card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+}
+.ab_user_card_icon{
+    width: 90px;
+    height: 90px;
+    line-height: 90px;
+    display: inline-block;
+    text-align: center;
+}
+.ab_user_card_icon img{
+    max-width: 70px;
+}
+.ab_user_card_content{
+    width: calc(100% - 90px);
+    padding-left: 20px;
+}
+.ab_user_card_content h4{
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0px;
+    color: #212529;
+}
+.ab_user_card_content p{
+    font-size: 15px;
+    margin: 0px;
+    color: #595959;
+}
+
+
