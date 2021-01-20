@@ -648,7 +648,16 @@ button.P_verify_btn:hover{
 // }
 
 
-
+.no_invoice{
+    height: 510px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.no_invoice img{
+    max-width: 150px;
+}
 
 
 
@@ -1011,16 +1020,22 @@ button.P_verify_btn:hover{
     top: 5px;
     right: 0px;
 }
-.listing_bg{
-    background: linear-gradient(to right, 
-    rgba(52, 215, 137, 0.9), 
-    rgba(52, 215, 137, 0.02)), 
-    url('../images/img/listing_bg.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right;
-    padding: 50px 30px;
-    margin-top: 15px;
-    border-radius: 5px;
-}
+// .listing_bg{
+//     background: linear-gradient(to right, 
+//     rgba(52, 215, 137, 0.9), 
+//     rgba(52, 215, 137, 0.02)), 
+//     url('../images/img/listing_bg.png');
+//     background-repeat: no-repeat;
+//     background-size: contain;
+//     background-position: right;
+//     padding: 50px 30px;
+//     margin-top: 15px;
+//     border-radius: 5px;
+// }
 
+.listing_bg{
+    padding: 50px 0;
+}
+.listing_bg img{
+    max-width: 350px;
+}

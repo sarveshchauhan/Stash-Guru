@@ -149,10 +149,11 @@ function UserPaymentPayoutListCtrl() {
 
                                     {
 
-                                        guestPaymentList && Array.isArray(guestPaymentList) && guestPaymentList.length === 0 && <div>
-                                            <img src={invoice} />
-                                            <br />
-                                            No any invoice
+                                        guestPaymentList && Array.isArray(guestPaymentList) && guestPaymentList.length === 0 && <div className="no_invoice">
+                                            <div>
+                                                <img src={invoice} />
+                                               <h5 className="my-3"> No any invoice</h5>
+                                            </div>
                                         </div>
 
 
@@ -217,12 +218,10 @@ function UserPaymentPayoutListCtrl() {
                                 <h6>Card </h6>
                                 <div className="box_CardBody align-items-end">
 
-
-                                    <img src={card_payment} />
-
-
-                                    <br />
-                                    <p>Add a payment card to make payments. We accept Visa, Master Card, American Express and Discover</p>
+                                    <div className="text-center">
+                                        <img src={card_payment} />
+                                        <p className="my-4">Add a payment card to make payments. We accept Visa, Master Card, American Express and Discover</p>
+                                    </div>
 
                                 </div>
                                 <div className="d-block w-100">

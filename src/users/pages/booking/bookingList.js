@@ -9,6 +9,7 @@ import { get_store_size } from '../../../helpers/storeHelper';
 import { useHistory } from 'react-router';
 import { config } from '../../../config/config';
 import CancelGuestBookingModal from './CancelGuestBookingModal';
+import nothing_here from '../../../assets/users/images/img/nothing_here.png'
 
 
 function UserBookingListCtrl() {
@@ -57,12 +58,19 @@ function UserBookingListCtrl() {
             }
 
             {
-                (!bookingList || bookingList.length === 0) && <div className="card-body listing_bg">
+                (!bookingList || bookingList.length === 0) && <div className="card-body">
                     <div className="row">
-                        <div className="col-md-6 text-white">
-                            <h4>No Bookings Yet</h4>
-                            <p>You haven't made or received any bookings yet.</p>
-                            <button className="btn btn-success px-4" onClick={() => history.push('/')}>Search Spaces</button>
+                        <div className="col-md-12">
+                            <div className="text-center listing_bg">
+                                <h4><b>No Bookings Yet</b></h4>
+                                <p>You haven't made or received any bookings yet.</p>
+                                <button className="btn btn-success px-4" onClick={() => history.push('/')}>
+                                    Search Spaces <i className="fa fa-search" aria-hidden="true"></i>
+                                </button>
+                                <div className="mt-5">
+                                    <img src={nothing_here} alt="nothing here" />
+                                </div>
+                            </div>
                         </div>
                     </div>
 
