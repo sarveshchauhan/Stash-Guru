@@ -19,7 +19,9 @@ $nobel_color: #9c9c9c;
 $light_cyan_color: #ccf5e1;
 
 
-
+html{
+    scroll-behavior: smooth;
+}
 .text_color_light_cyan{
     color: $light_cyan_color;
 }
