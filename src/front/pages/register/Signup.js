@@ -8,7 +8,7 @@ import FacebookLogin from 'react-facebook-login';
 
 
 import './Register.scss';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { registerUser, googleRegisterUser, facebookRegisterUser } from '../../../redux';
 import { useDispatch, useSelector } from 'react-redux';
 import LoaderCtrl from '../../common/components/loader';
@@ -30,6 +30,9 @@ function SignUpComponentCtrl() {
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [redirect_url, set_redirect_url] = useState("");
+    const [agreeTerms, setAgreeTerms] = useState(false);
+    const [submitError, setSubmitError] = useState("");
+
 
     const { response, error, loading } = useSelector(state => state.register);
 
@@ -155,6 +158,8 @@ function SignUpComponentCtrl() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSubmitError("");
+
         if (!fullnameError && !mobileError && !emailError && !passwordError && !validateForm()) {
             let data = {
                 name: fullname,
@@ -162,15 +167,43 @@ function SignUpComponentCtrl() {
                 email: email,
                 password: password
             };
+
+
+            if (!agreeTerms) {
+                setSubmitError("Please agree terms");
+                return false;
+            }
+
             dispatch(registerUser(data));
+
+
         }
+
+
     }
 
     const responseGoogle = (response) => {
+
+        // setSubmitError("");
+
+        // if (!agreeTerms) {
+        //     setSubmitError("Please agree terms");
+        //     return false;
+        // }
+
+
         dispatch(googleRegisterUser(response.tokenId));
     }
 
     const responseFacebook = (response) => {
+
+        setSubmitError("");
+
+        if (!agreeTerms) {
+            setSubmitError("Please agree terms");
+            return false;
+        }
+
         dispatch(facebookRegisterUser(response));
     }
 
@@ -249,8 +282,30 @@ function SignUpComponentCtrl() {
                                                             </span>
                                                         }
                                                     </Form.Group>
+
+
+
+                                                    <Form.Group>
+
+                                                        <input type="checkbox" checked={agreeTerms} onChange={(e) => setAgreeTerms(e.target.checked)} /> I agree to the <Link to="/terms">Terms & Conditions</Link>, <Link to="/privacy-policy">Privacy Policy</Link>, and <Link to="/refund-policy">Cancellations & Refund Policy</Link>
+
+                                                    </Form.Group>
                                                 </Col>
                                             </Row>
+
+
+
+                                            {
+                                                submitError && <Row className="mb-2">
+                                                    <Col md={12}>
+                                                        <Alert variant="danger">{submitError}</Alert>
+                                                    </Col>
+                                                </Row>
+                                            }
+
+
+
+
 
                                             <Row className="mb-2">
                                                 <Col sm={12}>

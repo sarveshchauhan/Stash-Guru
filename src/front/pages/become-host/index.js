@@ -167,7 +167,7 @@ function FrontBecomeHostCtrl() {
                     </Row>
                     <Row>
                         <Col className="text-center mt-5">
-                            <Button variant="success" className="px-5">Get Started</Button>
+                            <Button variant="success" className="px-5" onClick={() => history.push('/list-your-space')}>Get Started</Button>
                         </Col>
                     </Row>
                 </Container>
@@ -311,7 +311,7 @@ function FrontBecomeHostCtrl() {
                             <div className="">
                                 <h3 className="pg_bg_hdng mb-3">Chat to us!</h3>
                                 <p>We’re here to make putting your spare space to good use easy, whilst helping you earn an extra income in the process. Fancy a chat before you get started? Get in touch!</p>
-                                <Button variant="success" className="px-5 mt-4">Contact Us</Button>
+                                <Button variant="success" className="px-5 mt-4" onClick={() => history.push('/list-your-space')} >Contact Us</Button>
                             </div>
                         </Col>
                         <Col lg={6}>
@@ -332,7 +332,7 @@ function FrontBecomeHostCtrl() {
                             <div className="">
                                 <h3 className="pg_bg_hdng mb-3">Ready to start earning from your space?</h3>
                                 <p>Get started by creating a listing. We’ll take care of the rest!</p>
-                                <Button variant="success" className="px-5 mt-4">Get Started</Button>
+                                <Button variant="success" className="px-5 mt-4" onClick={() => history.push('/list-your-space')}>Get Started</Button>
                             </div>
                         </Col>
                     </Row>
@@ -362,7 +362,7 @@ function FrontBecomeHostCtrl() {
                             <div className="bx_shd_crd">
                                 <div className="">
                                     <NavLink to="/contact">
-                                        <Button variant="milky" className="btn-block">
+                                        <Button variant="milky" className="btn-block" onClick={() => history.push("/contact")}>
                                             <i className="fa fa-phone mr-1" aria-hidden="true"></i> Contact Us
                                         </Button>
                                     </NavLink>

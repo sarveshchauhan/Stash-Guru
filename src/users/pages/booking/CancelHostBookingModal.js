@@ -55,10 +55,7 @@ function CancelHostBookingModal() {
                         </Form.Group>
 
                         {
-                            cancelHostBookingLoading ? <Spinner animation="border" variant="danger" /> :
-                                <Form.Group>
-                                    <Button type="submit">Cancel Booking</Button>
-                                </Form.Group>
+                            cancelHostBookingLoading && <Spinner animation="border" variant="danger" />
                         }
 
 
@@ -68,6 +65,18 @@ function CancelHostBookingModal() {
 
                     </Form>
                 </Modal.Body>
+
+                <Modal.Footer>
+
+
+                    <Button className="px-5 mdlBtnFooterClose" variant="light" onClick={() => dispatch(toggleCancelHostBookingModal({
+                        show: false,
+                        booking_id: ""
+                    }))}> Close </Button>
+
+                    <Button className="px-5" variant="success" type="button" disabled={cancelHostBookingLoading} onClick={onSubmitForm}>Cancel Booking</Button>
+
+                </Modal.Footer>
 
             </Modal>
         </>

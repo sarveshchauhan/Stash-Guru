@@ -81,13 +81,21 @@ function UserListingtrl() {
                 <div className="d-inline-block user_page_hdng_left">
                     <Form className="d-inline-block float-left" style={{ width: '150px' }}>
                         <Form.Group className="mb-0" controlId="" >
-                            <Form.Control as="select" onChange={(e) => setStatus(e.target.value)} value={status}>
-                                <option value="All">All</option>
-                                <option value="Draft">Draft</option>
-                                <option value="Under Review">Under Review</option>
-                                <option value="Published">Published</option>
-                                <option value="Deactivated">Deactivated</option>
-                            </Form.Control>
+
+                            {
+                                allSpaceList && allSpaceList.length > 0 && <Form.Control as="select" onChange={(e) => setStatus(e.target.value)} value={status}>
+                                    <option value="All">All</option>
+                                    <option value="Draft">Draft</option>
+                                    <option value="Under Review">Under Review</option>
+                                    <option value="Published">Published</option>
+                                    <option value="Deactivated">Deactivated</option>
+                                </Form.Control>
+                            }
+
+
+
+
+
                         </Form.Group>
                     </Form>
                     <Button onClick={() => window.location.href = "/list-your-space"} className="float-left ml-2 btn-success" style={{ minWidth: '150px' }}>+ New Listing</Button>

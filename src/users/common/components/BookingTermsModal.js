@@ -159,7 +159,7 @@ function BookingTermsModal() {
                                 }
 
                                 {
-                                    signInLoading ? <Spinner animation="border" variant="success" /> : <Button type="button" className="mt-2" onClick={onSubmitForm}>Sign Booking Terms</Button>
+                                    signInLoading && <Spinner animation="border" variant="success" />
 
                                 }
 
@@ -174,9 +174,13 @@ function BookingTermsModal() {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => dispatch(toggleBookingTermsModal(false))}>
-                        Close
-          </Button>
+
+
+
+                    <Button className="px-5 mdlBtnFooterClose" variant="light" onClick={() => dispatch(toggleBookingTermsModal(false))}> Close </Button>
+                    <Button className="px-5" variant="success" type="button" disabled={signInLoading} onClick={onSubmitForm}>Sign Booking Terms</Button>
+
+
 
                 </Modal.Footer>
             </Modal>

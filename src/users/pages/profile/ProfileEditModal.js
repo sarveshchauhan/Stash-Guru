@@ -61,7 +61,7 @@ function ProfileEditModal() {
                 <Modal.Body>
 
 
-                    <Form onSubmit={onSubmitForm}>
+                    <Form>
                         <Form.Group>
                             <Form.Label>Name</Form.Label>
                             <Form.Control name="name" value={name} onChange={(e) => setName(e.target.value)} />
@@ -78,19 +78,18 @@ function ProfileEditModal() {
 
                         <Form.Group>
                             {
-                                saveProfileLoading ? <Spinner variant="success" animation="border"></Spinner> : <Button type="submit">Save</Button>
+                                saveProfileLoading && <Spinner variant="success" animation="border"></Spinner>
                             }
-
-
                         </Form.Group>
 
                     </Form>
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => dispatch(toggleProfileModal(false))}>
-                        Close
-          </Button>
+
+
+                    <Button className="px-5 mdlBtnFooterClose" variant="light" onClick={() => dispatch(toggleProfileModal(false))}> Close </Button>
+                    <Button className="px-5" variant="success" type="button" disabled={saveProfileLoading} onClick={onSubmitForm}>Save</Button>
 
                 </Modal.Footer>
             </Modal>

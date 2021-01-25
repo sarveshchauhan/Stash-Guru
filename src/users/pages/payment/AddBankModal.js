@@ -97,7 +97,7 @@ const BankForm = () => {
             </Modal.Header>
             <Modal.Body>
                 <div className="text-left">
-                    <Form onSubmit={onSubmitBank}>
+                    <Form>
                         <Row>
                             <Col md={12}>
                                 <Form.Group controlId="">
@@ -159,7 +159,7 @@ const BankForm = () => {
                             <Col md={12} className="text-center">
 
                                 {
-                                    addBankLoading ? <Spinner animation="border" variant="success" /> : <Button className="btn_success px-5" type="submit"> Add Bank Account </Button>
+                                    addBankLoading && <Spinner animation="border" variant="success" />
                                 }
 
 
@@ -178,6 +178,16 @@ const BankForm = () => {
                     </Form>
                 </div>
             </Modal.Body>
+
+
+            <Modal.Footer>
+                <Button className="px-5 mdlBtnFooterClose" variant="light" onClick={() => dispatch(toggleBankModal(false))}> Close </Button>
+
+                <Button className="px-5" variant="success" disabled={addBankLoading} type="button" onClick={onSubmitBank}>Add Bank Account</Button>
+            </Modal.Footer>
+
+
+
         </Modal>
     )
 }

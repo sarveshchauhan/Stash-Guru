@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ListGroup, Spinner } from 'react-bootstrap';
+import { Alert, ListGroup, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { clearNotificationList, getNotificationList } from '../../../redux/notification/notificationActions';
@@ -38,7 +38,7 @@ function Notifications() {
                     <ListGroup>
 
                         {
-                            notificationList && Array.isArray(notificationList) && notificationList.map((notification, index) => (
+                            (notificationList && Array.isArray(notificationList) && notificationList.length > 0) ? notificationList.map((notification, index) => (
                                 <ListGroup.Item key={index}>
 
                                     <Link to={notification.nt_url ? `/${notification.nt_url}` : "#"} style={{ textDecoration: "none" }}>
@@ -48,7 +48,13 @@ function Notifications() {
                                     </Link>
                                 </ListGroup.Item>
                             ))
+                                :
+                                <Alert variant="warning" className="text-center">
+                                    No Notifications
+                                </Alert>
                         }
+
+
 
                     </ListGroup>
                 </div>

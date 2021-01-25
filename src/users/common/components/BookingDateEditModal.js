@@ -57,7 +57,7 @@ function BookingDateEditModal() {
 
                         <Form.Group>
                             {
-                                changeBookingDateLoading ? <Spinner animation="border" variant="success" /> : <Button type="submit">Submit</Button>
+                                changeBookingDateLoading && <Spinner animation="border" variant="success" />
                             }
 
                         </Form.Group>
@@ -71,9 +71,15 @@ function BookingDateEditModal() {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => dispatch(toggleBookingDateEditModal(false))}>
-                        Close
-          </Button>
+
+
+
+
+                    <Button className="px-5 mdlBtnFooterClose" variant="light" onClick={() => dispatch(toggleBookingDateEditModal(false))}> Close </Button>
+                    <Button className="px-5" variant="success" type="button" disabled={changeBookingDateLoading} onClick={onFormSubmit}>Save</Button>
+
+
+
 
                 </Modal.Footer>
             </Modal>

@@ -113,7 +113,7 @@ function BookingTermsModalHost() {
 
 
                             {
-                                signInHostLoading ? <Spinner animation="border" variant="success" /> : <Button type="button" className="mt-2" onClick={onSubmitForm}>Sign Booking Terms</Button>
+                                signInHostLoading && <Spinner animation="border" variant="success" />
 
                             }
 
@@ -127,12 +127,16 @@ function BookingTermsModalHost() {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => dispatch(toggleBookingTermsModalHost({
+
+
+
+                    <Button className="px-5 mdlBtnFooterClose" variant="light" onClick={() => dispatch(toggleBookingTermsModalHost({
                         bookingId: "",
                         show: false
-                    }))}>
-                        Close
-          </Button>
+                    }))}> Close </Button>
+                    <Button className="px-5" variant="success" type="button" disabled={signInHostLoading} onClick={onSubmitForm}>Sign Booking Terms</Button>
+
+
 
                 </Modal.Footer>
             </Modal>

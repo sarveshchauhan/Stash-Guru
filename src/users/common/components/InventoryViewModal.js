@@ -36,12 +36,14 @@ function InventoryViewModal() {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => dispatch(toggleInventoryViewModal({
+
+
+                    <Button className="px-5 mdlBtnFooterClose" variant="light" onClick={() => dispatch(toggleInventoryViewModal({
                         show: false,
                         inventory: ""
-                    }))}>
-                        Close
-                    </Button>
+                    }))}> Close </Button>
+
+
 
                 </Modal.Footer>
             </Modal>

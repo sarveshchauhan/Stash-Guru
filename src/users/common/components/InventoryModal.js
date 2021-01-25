@@ -52,7 +52,7 @@ function InventoryModal() {
                         <Form.Group>
 
                             {
-                                addInventoryLoading ? <Spinner animation="border" variant="success" /> : <Button type="submit">Save</Button>
+                                addInventoryLoading && <Spinner animation="border" variant="success" />
                             }
 
 
@@ -69,9 +69,11 @@ function InventoryModal() {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => dispatch(toggleInventoryModal(false))}>
-                        Close
-                    </Button>
+
+                    <Button className="px-5 mdlBtnFooterClose" variant="light" onClick={() => dispatch(toggleInventoryModal(false))}> Close </Button>
+                    <Button className="px-5" variant="success" type="button" disabled={addInventoryLoading} onClick={onSubmitForm}>Save</Button>
+
+
 
                 </Modal.Footer>
             </Modal>
