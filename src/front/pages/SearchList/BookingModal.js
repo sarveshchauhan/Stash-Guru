@@ -5,6 +5,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { newBooking, toggleBookingModal } from '../../../redux';
 import DatePicker from 'react-date-picker';
 import user_r1 from '../../../assets/front/images/dummy/user_r1.png';
+import { ButtonBase } from '@material-ui/core';
 
 function BookingModal() {
 
@@ -68,7 +69,7 @@ function BookingModal() {
     return (
         <>
 
-            <Modal className="user_modal" show={showBookingModal} onHide={() => dispatch(toggleBookingModal(false))} backdrop="static" keyboard={false}>
+            <Modal className="user_modal" show={showBookingModal} onHide={() => dispatch(toggleBookingModal(false))} backdrop="static" keyboard={false} centered>
                 <button className="user_modal_close_btn" onClick={() => dispatch(toggleBookingModal(false))}>
                     <i className="fa fa-times" aria-hidden="true"></i>
                 </button>
@@ -79,12 +80,10 @@ function BookingModal() {
                 </Modal.Header>
                 <Modal.Body>
                     <div className="d-flex-wrap w-100">
-
                         <div>
                             {
                                 schDetails && schDetails.u_pic ? <img className="user_img_avtar" src={schDetails.u_pic} /> : <img className="user_img_avtar" src={user_r1} />
                             }
-
                         </div>
                         <div className="pl-3">
                             <h4 className="m-0" style={{ fontWeight: '700', color: '#34D789' }}>{schDetails && schDetails.u_name}</h4>
@@ -110,17 +109,16 @@ function BookingModal() {
                                         ))
                                     }
                                 </Form.Control>
-
                                 {
                                     monthError && <small className="text-danger">{monthError}</small>
                                 }
-
                             </Form.Group>
-
-
-                            <div className="text-center w-100">
+                            {
+                                bookingError && <Alert variant="danger" className="mt-2">{bookingError}</Alert>
+                            }
+                            <Modal.Footer>
+                                <Button className="px-5 mdlBtnFooterClose" variant="dark" onClick={() => dispatch(toggleBookingModal(false))}> Close </Button>
                                 <Button className="px-5" variant="success" type="submit" disabled={bookingLoading}>
-
                                     {
                                         bookingLoading ? <>  <Spinner
                                             as="span"
@@ -136,15 +134,8 @@ function BookingModal() {
                                                 Let's Go
                                     </>
                                     }
-
                                 </Button>
-                            </div>
-
-
-                            {
-                                bookingError && <Alert variant="danger" className="mt-2">{bookingError}</Alert>
-                            }
-
+                            </Modal.Footer>
                         </Form>
                     </div>
                 </Modal.Body>

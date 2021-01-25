@@ -461,7 +461,10 @@ textarea.form-control{
     border: 1px solid #ced4da;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    min-height: 48px;
+    min-height: inherit;
+}
+.react-date-picker__button{
+    padding: 0px;
 }
 .react-date-picker__wrapper .react-date-picker__button svg {
     display: none;
@@ -476,6 +479,11 @@ textarea.form-control{
 .react-date-picker__inputGroup input{
     outline: none;
 }
+
+.react-date-picker__inputGroup *{
+    height: inherit;
+}
+
 .react-date-picker__wrapper .react-date-picker__button.react-date-picker__calendar-button.react-date-picker__button:after {
     content: "\f073";
     display: inline-block;
