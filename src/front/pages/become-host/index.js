@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Button, Carousel, Nav } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 import SearchComponent from '../../common/components/SearchCompo';
 
@@ -38,6 +38,8 @@ import ListYourSpace from '../../../assets/front/images/icons/list_your_space.pn
 
 function FrontBecomeHostCtrl() {
 
+    const history = useHistory();
+
 
     useEffect(() => {
 
@@ -56,8 +58,9 @@ function FrontBecomeHostCtrl() {
                                 <h2>Earn Money From Your Spare Space</h2>
                                 <p>Got some empty space? Get it listed and connect with people looking to rent it for storage or parking.</p>
                                 <div className="mt-5">
-                                    <Button variant="success" className="px-5 ml-0 m-2">Get Started</Button>
-                                    <Button className="btn btn_milky_grn px-5 ml-0 m-2">More Info</Button>
+                                    <Button variant="success" className="px-5 ml-0 m-2" onClick={() => history.push('/list-your-space')} >Get Started</Button>
+                                    {/* <Button className="btn btn_milky_grn px-5 ml-0 m-2" onClick={() => history.push('/become-a-host/#needsection')}>More Info</Button> */}
+                                    <a href="#needsection" className="btn btn_milky_grn px-5 ml-0 m-2">More Info</a>
                                 </div>
                             </div>
                         </Col>
@@ -113,7 +116,7 @@ function FrontBecomeHostCtrl() {
 
 
 
-            <section className="section_padding">
+            <section className="section_padding" id={'needsection'}>
                 <Container>
                     <Row>
                         <Col className="text-center">

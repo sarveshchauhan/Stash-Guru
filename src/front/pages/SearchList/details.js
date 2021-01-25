@@ -254,10 +254,10 @@ function FrontSearchDetailsCtrl() {
 
                             <div className="details_content">
                                 <div className="row">
-                                    <div className="col-sm-6">
+                                    <div className="col-sm-12">
                                         <div className="ab_user_card">
                                             <div className="ab_user_card_icon">
-                                                <img src={Local} alt={Local} />
+                                                <img src={`${process.env.REACT_APP_API_URL}/guest/${details.gt_path}`} alt={Local} />
                                             </div>
                                             <div className="ab_user_card_content">
                                                 <h4>Guest</h4>
@@ -265,11 +265,11 @@ function FrontSearchDetailsCtrl() {
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <div className="col-sm-6">
+
+                                    <div className="col-sm-12">
                                         <div className="ab_user_card">
                                             <div className="ab_user_card_icon">
-                                                <img src={Local} alt={Local} />
+                                                <img src={`${process.env.REACT_APP_API_URL}/guest/${details.gta_path}`} alt={Local} />
                                             </div>
                                             <div className="ab_user_card_content">
                                                 <h4>Guest access</h4>
@@ -277,42 +277,8 @@ function FrontSearchDetailsCtrl() {
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                    <div className="col-sm-6">
-                                        <div className="ab_user_card">
-                                            <div className="ab_user_card_icon">
-                                                <img src={Local} alt={Local} />
-                                            </div>
-                                            <div className="ab_user_card_content">
-                                                <h4>Floor</h4>
-                                                <p>{details.fl_name}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="col-sm-6">
-                                        <div className="ab_user_card">
-                                            <div className="ab_user_card_icon">
-                                                <img src={Local} alt={Local} />
-                                            </div>
-                                            <div className="ab_user_card_content">
-                                                <h4>Space Used type</h4>
-                                                <p>{used_type && Array.isArray(used_type) && used_type.map(sut => sut.sut_name).join(", ")}</p>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    <div className="col-sm-6">
-                                        <div className="ab_user_card">
-                                            <div className="ab_user_card_icon">
-                                                <img src={Local} alt={Local} />
-                                            </div>
-                                            <div className="ab_user_card_content">
-                                                <h4>About host</h4>
-                                                <p>{used_type && Array.isArray(used_type) && used_type.map(sut => sut.sut_name).join(", ")}</p>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
 
                                 {/* <Row>   
@@ -387,7 +353,10 @@ function FrontSearchDetailsCtrl() {
                         <Col lg={4}>
                             <div className={`book_space_card${isSticky ? ' stickyRemove' : ' stickyAdd'}`} ref={ref}>
                                 <div className="book_space_card_body">
-                                    <Button variant="outline-info">Warehouse </Button>
+
+                                    <img src={`${process.env.REACT_APP_API_URL}/storagetype/${details.st_path}`} />
+
+                                    {/* <Button variant="outline-info">Warehouse </Button> */}
 
                                     <div className="d-flex user_area align-items-center">
                                         <img width="30" height="30" src={details && details.u_pic == 'no_img.png' ? profileImages(`./${details.u_pic}`) : details.u_pic} alt="" />
@@ -561,7 +530,7 @@ function FrontSearchDetailsCtrl() {
                         <Col md={6} className="about_stash_content">
                             <p className="text-white">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
                             <p className="text-white"> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam</p>
-                            <Button variant="" className="btn_milky"> <i className="fa fa-phone mr-2"></i>Contact Us</Button>
+                            <Button variant="" className="btn_milky" onClick={() => history.push('/contact')}> <i className="fa fa-phone mr-2"></i>Contact Us</Button>
 
                             <Button variant="" className="btn_trans ml-2" onClick={scrollTop}> <i className="fa fa-angle-up mr-2"></i>Back to Top</Button>
                         </Col>
