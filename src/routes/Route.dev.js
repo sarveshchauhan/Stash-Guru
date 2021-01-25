@@ -198,7 +198,6 @@ const Root = () => {
 
             <PrivateRoute exact path="/new_messages" parentComponent={SideMenuPageLayoutCtrl} childComponent={NewMessageList} />
 
-
             <PrivateRoute exact path="/booked-listing" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserBookedListCtrl} />
 
             <PrivateRoute exact path="/no-any-list" parentComponent={SideMenuPageLayoutCtrl} childComponent={UserNoBookingListCtrl} />

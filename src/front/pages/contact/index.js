@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Container, Button, Row, Col } from 'react-bootstrap'
 import { NavLink } from 'react-router-dom'
 import SearchComponent from '../../common/components/SearchCompo'
 
 function Contact() {
+
+    useEffect(() => {
+
+        window.scrollTo(0, 0);
+
+    }, []);
+
     return (
 
         <>

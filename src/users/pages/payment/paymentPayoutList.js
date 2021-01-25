@@ -152,7 +152,7 @@ function UserPaymentPayoutListCtrl() {
                                         guestPaymentList && Array.isArray(guestPaymentList) && guestPaymentList.length === 0 && <div className="no_invoice">
                                             <div>
                                                 <img src={invoice} />
-                                               <h5 className="my-3"> No any invoice</h5>
+                                                <h5 className="my-3"> No any invoice</h5>
                                             </div>
                                         </div>
 

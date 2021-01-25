@@ -159,11 +159,11 @@ function UserPaymentHostPayoutListCtrl() {
 
                                     {
 
-                                        hostPaymentList && Array.isArray(hostPaymentList) && hostPaymentList.length === 0 && <div className="no_invoice">
-                                            <div>
-                                                <img src={invoice} />
-                                               <h5 className="my-3"> No any invoice</h5>
-                                            </div>
+                                        hostPaymentList && Array.isArray(hostPaymentList) && hostPaymentList.length === 0 && <div>
+
+                                            <img src={invoice} />
+                                            <br />
+                                            <h2>No any invoice</h2>
                                         </div>
 
 
