@@ -132,7 +132,7 @@ function UserReferralsCtrl() {
 
                             <div className="text-right">
 
-                                <Link to="/terms">
+                                <Link to="/referral-terms">
                                     <span className="p-3 text_color_gray ">Terms Apply</span>
                                 </Link>
 

@@ -150,7 +150,7 @@ function ForgotPassword() {
 
 
                                         <div className="or_divider">
-                                            <span>or</span>
+                                            <span>Or</span>
                                         </div>
 
 

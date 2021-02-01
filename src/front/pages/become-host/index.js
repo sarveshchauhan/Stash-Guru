@@ -311,7 +311,7 @@ function FrontBecomeHostCtrl() {
                             <div className="">
                                 <h3 className="pg_bg_hdng mb-3">Chat to us!</h3>
                                 <p>We’re here to make putting your spare space to good use easy, whilst helping you earn an extra income in the process. Fancy a chat before you get started? Get in touch!</p>
-                                <Button variant="success" className="px-5 mt-4" onClick={() => history.push('/list-your-space')} >Contact Us</Button>
+                                <Button variant="success" className="px-5 mt-4" onClick={() => history.push('/contact')} >Contact Us</Button>
                             </div>
                         </Col>
                         <Col lg={6}>

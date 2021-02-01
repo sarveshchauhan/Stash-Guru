@@ -93,6 +93,7 @@ import RentMyContainerComponentCtrl from '../front/pages/RentMyContainer';
 import TermsCtrl from '../front/pages/terms';
 import Contact from '../front/pages/contact';
 import FrontPrivacyPolicyCtrl from '../front/pages/privacy-policy';
+import ReferralTermsCtrl from '../front/pages/referrral-terms';
 
 
 
@@ -162,6 +163,8 @@ const Root = () => {
 
 
             <Route exact path="/terms" render={(props) => (< FrontPagesLayoutCtrl children={TermsCtrl} {...props} />)} />
+
+            <Route exact path="/referral-terms" render={(props) => (< FrontPagesLayoutCtrl children={ReferralTermsCtrl} {...props} />)} />
 
 
             <Route exact path="/become-a-host" render={(props) => (< FrontHomePagesLayoutCtrl children={FrontBecomeHostCtrl} {...props} />)} />

@@ -253,27 +253,32 @@ function FrontSearchDetailsCtrl() {
 
 
                             <div className="details_content">
+
+                                <h5 className="mt-4 sm2_hdng">Access</h5>
+
                                 <div className="row">
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="ab_user_card">
                                             <div className="ab_user_card_icon">
                                                 <img src={`${process.env.REACT_APP_API_URL}/guest/${details.gt_path}`} alt={Local} />
                                             </div>
                                             <div className="ab_user_card_content">
-                                                <h4>Guest</h4>
-                                                <p>{details.gt_name}</p>
+                                                <h4>{details.gt_name}</h4>
+                                                <p>{details.gt_desc}</p>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="col-sm-12">
+                                    <div className="col-sm-6">
                                         <div className="ab_user_card">
                                             <div className="ab_user_card_icon">
                                                 <img src={`${process.env.REACT_APP_API_URL}/guest/${details.gta_path}`} alt={Local} />
                                             </div>
                                             <div className="ab_user_card_content">
-                                                <h4>Guest access</h4>
-                                                <p>{details.gta_name}</p>
+                                                <h4>{details.gta_name}</h4>
+                                                <p>
+                                                    {details.gta_desc}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
