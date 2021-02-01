@@ -236,7 +236,7 @@ export const getUsers = () => {
                     if (usersResponse.status) {
 
                         const response = {
-                            users: { id: usersResponse.users.u_id, name: usersResponse.users.u_name, profile_pic: usersResponse.users.u_pic, email: usersResponse.users.u_email, mobile: usersResponse.users.u_mobile, about: usersResponse.users.u_about, verify: usersResponse.users.u_verify, referral: usersResponse.users.u_refferal, country_code: usersResponse.users.u_country_code }
+                            users: { id: usersResponse.users.u_id, name: usersResponse.users.u_name, profile_pic: `${process.env.REACT_APP_API_URL}${usersResponse.users.u_pic}`, email: usersResponse.users.u_email, mobile: usersResponse.users.u_mobile, about: usersResponse.users.u_about, verify: usersResponse.users.u_verify, referral: usersResponse.users.u_refferal, country_code: usersResponse.users.u_country_code }
                         };
 
                         dispatch(getUserSuccess(response));

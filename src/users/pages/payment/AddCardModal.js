@@ -47,7 +47,7 @@ function AddCardModal({ stripe }) {
                 </Modal.Header>
                 <Modal.Body>
                     <div className="text-left">
-                        <Form onSubmit={onSubmitCard}>
+                        <Form>
                             <Row>
                                 <Col md={12}>
                                     <Form.Group controlId="formBasicPassword">
@@ -108,14 +108,20 @@ function AddCardModal({ stripe }) {
                                         </div>
                                     </Form.Group>
                                 </Col>
-                                <Col md={12} className="text-center">
-                                    <Button className="btn_success px-5" type="submit"> Add Card </Button>
-                                </Col>
+
                             </Row>
 
                         </Form>
                     </div>
                 </Modal.Body>
+
+
+                <Modal.Footer>
+                    <Button className="px-5 mdlBtnFooterClose" variant="light" onClick={() => dispatch(toggleNewCardModal(false))}> Close </Button>
+
+                    <Button className="px-5" variant="success" type="button" onClick={onSubmitCard}>Add Card</Button>
+                </Modal.Footer>
+
             </Modal>
 
 

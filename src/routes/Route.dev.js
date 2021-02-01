@@ -6,6 +6,7 @@ import { PrivateRoute } from './PrivateRoute';
 import RegisterPagesLayoutCtrl from '../front/layout/registerLayout';
 import FrontHomePagesLayoutCtrl from '../front/layout/HomeLayout';
 import FrontPagesLayoutCtrl from '../front/layout/PageLayout';
+import FrontPageLayoutNoSearchCtrl from '../front/layout/PageLayoutNoSearch';
 import FrontPagesMaxLayoutCtrl from '../front/layout/PageLayoutMax';
 
 
@@ -91,6 +92,8 @@ import NotFoundComponent from '../front/pages/NotFound';
 import RentMyContainerComponentCtrl from '../front/pages/RentMyContainer';
 import TermsCtrl from '../front/pages/terms';
 import Contact from '../front/pages/contact';
+import FrontPrivacyPolicyCtrl from '../front/pages/privacy-policy';
+import ReferralTermsCtrl from '../front/pages/referrral-terms';
 
 
 
@@ -122,24 +125,24 @@ const Root = () => {
 
             <Route exact path="/list-your-space" render={(props) => (<FrontPagesLayoutCtrl children={ListYourSpaceComponentCtrl} {...props} />)} />
 
-            <Route exact path="/rent-my-garage" render={(props) => (<FrontPagesLayoutCtrl children={RentMyGarageComponentCtrl} {...props} />)} />
+            <Route exact path="/rent-my-garage" render={(props) => (<FrontPageLayoutNoSearchCtrl children={RentMyGarageComponentCtrl} {...props} />)} />
 
-            <Route exact path="/rent-my-parking-space" render={(props) => (<FrontPagesLayoutCtrl children={RentMyParkingSpaceComponentCtrl} {...props} />)} />
+            <Route exact path="/rent-my-parking-space" render={(props) => (<FrontPageLayoutNoSearchCtrl children={RentMyParkingSpaceComponentCtrl} {...props} />)} />
 
-            <Route exact path="/rent-my-warehouse" render={(props) => (<FrontPagesLayoutCtrl children={RentMyWarehouseComponentCtrl} {...props} />)} />
+            <Route exact path="/rent-my-warehouse" render={(props) => (<FrontPageLayoutNoSearchCtrl children={RentMyWarehouseComponentCtrl} {...props} />)} />
 
-            <Route exact path="/rent-my-spare-room" render={(props) => (<FrontPagesLayoutCtrl children={RentMySpareRoomComponentCtrl} {...props} />)} />
+            <Route exact path="/rent-my-spare-room" render={(props) => (<FrontPageLayoutNoSearchCtrl children={RentMySpareRoomComponentCtrl} {...props} />)} />
 
-            <Route exact path="/rent-my-outhouse" render={(props) => (<FrontPagesLayoutCtrl children={RentMyOuthouseComponentCtrl} {...props} />)} />
+            <Route exact path="/rent-my-outhouse" render={(props) => (<FrontPageLayoutNoSearchCtrl children={RentMyOuthouseComponentCtrl} {...props} />)} />
 
-            <Route exact path="/rent-my-lockup" render={(props) => (<FrontPagesLayoutCtrl children={RentMyLockupComponentCtrl} {...props} />)} />
+            <Route exact path="/rent-my-lockup" render={(props) => (<FrontPageLayoutNoSearchCtrl children={RentMyLockupComponentCtrl} {...props} />)} />
 
-            <Route exact path="/rent-my-loft" render={(props) => (<FrontPagesLayoutCtrl children={RentMyLoftComponentCtrl} {...props} />)} />
+            <Route exact path="/rent-my-loft" render={(props) => (<FrontPageLayoutNoSearchCtrl children={RentMyLoftComponentCtrl} {...props} />)} />
 
-            <Route exact path="/rent-my-container" render={(props) => (<FrontPagesLayoutCtrl children={RentMyContainerComponentCtrl} {...props} />)} />
+            <Route exact path="/rent-my-container" render={(props) => (<FrontPageLayoutNoSearchCtrl children={RentMyContainerComponentCtrl} {...props} />)} />
 
 
-            <Route exact path="/rent-my-basement" render={(props) => (<FrontPagesLayoutCtrl children={RentMyBasementComponentCtrl} {...props} />)} />
+            <Route exact path="/rent-my-basement" render={(props) => (<FrontPageLayoutNoSearchCtrl children={RentMyBasementComponentCtrl} {...props} />)} />
 
 
             <Route exact path="/about" render={(props) => (<FrontPagesLayoutCtrl children={FrontAboutCtrl} {...props} />)} />
@@ -155,7 +158,13 @@ const Root = () => {
 
             <Route exact path="/refund-policy" render={(props) => (< FrontPagesLayoutCtrl children={FrontRefundPolicyCtrl} {...props} />)} />
 
+
+            <Route exact path="/privacy-policy" render={(props) => (< FrontPagesLayoutCtrl children={FrontPrivacyPolicyCtrl} {...props} />)} />
+
+
             <Route exact path="/terms" render={(props) => (< FrontPagesLayoutCtrl children={TermsCtrl} {...props} />)} />
+
+            <Route exact path="/referral-terms" render={(props) => (< FrontPagesLayoutCtrl children={ReferralTermsCtrl} {...props} />)} />
 
 
             <Route exact path="/become-a-host" render={(props) => (< FrontHomePagesLayoutCtrl children={FrontBecomeHostCtrl} {...props} />)} />

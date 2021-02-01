@@ -82,7 +82,7 @@ function OtherListing() {
                                             <div>
                                                 <span><i className="fa fa-map-marker"></i> {list.store_city} </span>
                                             </div>
-                                            
+
 
                                         </div>
                                         <div className="SearchListPlaceAreaCost">

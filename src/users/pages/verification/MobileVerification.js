@@ -143,7 +143,7 @@ function MobileVerification() {
                         </Form.Group>
                     </Form>
 
-                    <Form onSubmit={onSubmitForm} hidden={showConfirmBox}>
+                    <Form hidden={showConfirmBox}>
 
                         <Form.Group>
                             <Form.Label>Mobile No</Form.Label>
@@ -169,11 +169,6 @@ function MobileVerification() {
                             <div id="recaptcha-container"></div>
                         </Form.Group>
 
-                        <Form.Group>
-                            <Button type="submit" disabled={loading}>Submit</Button>
-                        </Form.Group>
-
-
 
                     </Form>
 
@@ -187,10 +182,10 @@ function MobileVerification() {
 
 
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => dispatch(toggleMobileVerifyModal(false))}>
-                        Close
-          </Button>
+                <Modal.Footer className="justify-content-end">
+
+                    <Button className="px-5 mdlBtnFooterClose" variant="light" onClick={() => dispatch(toggleMobileVerifyModal(false))}> Close </Button>
+                    <Button className="px-5" variant="success" type="button" disabled={loading} onClick={onSubmitForm}>Submit</Button>
 
                 </Modal.Footer>
             </Modal>

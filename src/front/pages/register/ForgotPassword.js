@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Row, Col, Form, Container, Button, Alert } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { forgotPassword, clearForgotPasswordMessage } from '../../../redux/auth/authActions';
 
@@ -8,7 +8,8 @@ import { forgotPassword, clearForgotPasswordMessage } from '../../../redux/auth/
 function ForgotPassword() {
 
     const dispatch = useDispatch();
-    const { forgotPasswordSuccess, forgotPasswordError } = useSelector(state => state.auth);
+    const history = useHistory();
+    const { forgotPasswordSuccess, forgotPasswordError, islogin } = useSelector(state => state.auth);
     const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState("");
     const [successMessage, setSuccessMessage] = useState("");
@@ -19,7 +20,16 @@ function ForgotPassword() {
 
         window.scrollTo(0, 0);
 
-    }, [window]);
+    }, []);
+
+    useEffect(() => {
+
+        if (islogin) {
+            history.push('/');
+        }
+
+
+    }, [islogin]);
 
     useEffect(() => {
 
@@ -140,7 +150,7 @@ function ForgotPassword() {
 
 
                                         <div className="or_divider">
-                                            <span>or</span>
+                                            <span>Or</span>
                                         </div>
 
 

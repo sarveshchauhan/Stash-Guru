@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Container, Row, Nav, Accordion } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import './footer.scss';
 import Logo from '../../../assets/front/images/white_logo.png';
 
@@ -9,6 +9,9 @@ import { useTranslation, Trans } from 'react-i18next';
 function FooterComponent() {
 
     const { t } = useTranslation();
+
+    const history = useHistory();
+
 
     return (
         <>
@@ -60,7 +63,7 @@ function FooterComponent() {
                                     <Col sm={4} className="footer_links">
                                         <h4 className="mt-3">{t('footerRentASpace')}</h4>
                                         <Nav className="flex-column">
-                                            <NavLink to="" className="nav-link">{t('footerStartStoring')}</NavLink>
+                                            <NavLink to="/search/Cluj-Napoca, Romania" className="nav-link">{t('footerStartStoring')}</NavLink>
                                             <NavLink to="/domestic-storage" className="nav-link">{t('footerDomesticStorage')}</NavLink>
                                             <NavLink to="/business-storage" className="nav-link">{t('footerBusinessStorage')}</NavLink>
                                             <NavLink to="/parking-spaces" className="nav-link">{t('footerRentAParkingSpace')}</NavLink>
@@ -109,14 +112,16 @@ function FooterComponent() {
                                             </Accordion.Toggle>
                                             <Accordion.Collapse eventKey="0">
                                                 <Nav className="flex-column">
-                                                    <NavLink to="" className="nav-link">Start Storing</NavLink>
-                                                    <NavLink to="/domestic-storage" className="nav-link">Domestic Storage</NavLink>
-                                                    <NavLink to="/business-storage" className="nav-link">Business Storage</NavLink>
-                                                    <NavLink to="" className="nav-link">Rent A Parking Space</NavLink>
-                                                    <NavLink to="" className="nav-link">Storage Space In London</NavLink>
-                                                    <NavLink to="" className="nav-link">Rent A Garage</NavLink>
-                                                    <NavLink to="" className="nav-link">Rent A Warehouse</NavLink>
-                                                    <NavLink to="" className="nav-link">Rent A Spare Room</NavLink>
+
+                                                    <NavLink to="/search/Cluj-Napoca, Romania" className="nav-link">{t('footerStartStoring')}</NavLink>
+                                                    <NavLink to="/domestic-storage" className="nav-link">{t('footerDomesticStorage')}</NavLink>
+                                                    <NavLink to="/business-storage" className="nav-link">{t('footerBusinessStorage')}</NavLink>
+                                                    <NavLink to="/parking-spaces" className="nav-link">{t('footerRentAParkingSpace')}</NavLink>
+                                                    <NavLink to="/storage-space" className="nav-link">{t('footerStorageSpace')}</NavLink>
+                                                    <NavLink to="/garage" className="nav-link">{t('footerRentAGarage')}</NavLink>
+                                                    <NavLink to="/warehouse" className="nav-link">{t('footerRentAWarehouse')}</NavLink>
+                                                    <NavLink to="/spare-rooms" className="nav-link">{t('footerRentSpareRoom')}</NavLink>
+
                                                 </Nav>
                                             </Accordion.Collapse>
                                         </Accordion>
@@ -128,15 +133,21 @@ function FooterComponent() {
                                             </Accordion.Toggle>
                                             <Accordion.Collapse eventKey="1">
                                                 <Nav className="flex-column">
-                                                    <NavLink to="/become-a-host" className="nav-link">Become A Host</NavLink>
-                                                    <NavLink to="" className="nav-link">Rent Your Garage</NavLink>
-                                                    <NavLink to="" className="nav-link">Rent Your Parking Space</NavLink>
-                                                    <NavLink to="" className="nav-link">Rent Your Warehouse</NavLink>
-                                                    <NavLink to="" className="nav-link">Rent Your Spare Room</NavLink>
-                                                    <NavLink to="" className="nav-link">Rent Your Outhouse</NavLink>
-                                                    <NavLink to="" className="nav-link">Rent Your Lock-Up</NavLink>
-                                                    <NavLink to="" className="nav-link">Rent Your Loft</NavLink>
-                                                    <NavLink to="" className="nav-link">Rent Your Basement</NavLink>
+
+
+
+                                                    <NavLink to="/become-a-host" className="nav-link">{t('footerBecomeHost')}</NavLink>
+                                                    <NavLink to="/rent-my-garage" className="nav-link">{t('footerRentYourGarage')}</NavLink>
+                                                    <NavLink to="/rent-my-parking-space" className="nav-link">{t('footerRentYourParkingSpace')}</NavLink>
+                                                    <NavLink to="/rent-my-warehouse" className="nav-link">{t('footerRentYourWarehouse')}</NavLink>
+                                                    <NavLink to="/rent-my-spare-room" className="nav-link">{t('footerRentYourSpareRoom')}</NavLink>
+                                                    <NavLink to="/rent-my-outhouse" className="nav-link">{t('footerRentYourOutHouse')}</NavLink>
+                                                    <NavLink to="/rent-my-lockup" className="nav-link">{t('footerRentYourLockup')}</NavLink>
+                                                    <NavLink to="/rent-my-loft" className="nav-link">{t('footerRentYourLoft')}</NavLink>
+                                                    <NavLink to="/rent-my-basement" className="nav-link">{t('footerRentYourBasement')}</NavLink>
+                                                    <NavLink to="/rent-my-container" className="nav-link">{t('footerRentYourContainer')}</NavLink>
+
+
                                                 </Nav>
                                             </Accordion.Collapse>
                                         </Accordion>
@@ -148,12 +159,17 @@ function FooterComponent() {
                                             </Accordion.Toggle>
                                             <Accordion.Collapse eventKey="2">
                                                 <Nav className="flex-column">
-                                                    <NavLink to="/" className="nav-link">Home</NavLink>
-                                                    <NavLink to="/about" className="nav-link">About</NavLink>
-                                                    <NavLink to="/FAQS" className="nav-link">FAQs</NavLink>
-                                                    <NavLink to="/manage-your-booking" className="nav-link">Help Centre</NavLink>
-                                                    <NavLink to="/refund-policy" className="nav-link">Cancellations & Refunds Policy</NavLink>
-                                                    <NavLink to="/sitemap" className="nav-link">Sitemap</NavLink>
+
+
+
+                                                    <NavLink to="/" className="nav-link">{t('footerHome')}</NavLink>
+                                                    <NavLink to="/about" className="nav-link">{t('footerAbout')}</NavLink>
+                                                    <NavLink to="/FAQS" className="nav-link">{t('footerFaq')}</NavLink>
+                                                    <NavLink to="/manage-your-booking" className="nav-link">{t('footerHelpCenter')}</NavLink>
+                                                    <NavLink to="/refund-policy" className="nav-link">{t('footerRefundAndCancel')}</NavLink>
+                                                    <NavLink to="/sitemap" className="nav-link">{t('footerSiteMap')}</NavLink>
+
+
                                                 </Nav>
                                             </Accordion.Collapse>
                                         </Accordion>
@@ -173,10 +189,10 @@ function FooterComponent() {
                         <Col lg={6}>
                             <Nav className="justify-content-center justify-content-lg-end">
                                 <Nav.Item as="li">
-                                    <NavLink className="nav-link" to="/">{t('footerTerms')}</NavLink>
+                                    <NavLink className="nav-link" to="/terms">{t('footerTerms')}</NavLink>
                                 </Nav.Item>
                                 <Nav.Item as="li">
-                                    <NavLink className="nav-link" to="/">{t('footerPrivacyPolicy')}</NavLink>
+                                    <NavLink className="nav-link" to="/privacy-policy">{t('footerPrivacyPolicy')}</NavLink>
                                 </Nav.Item>
                             </Nav>
                         </Col>

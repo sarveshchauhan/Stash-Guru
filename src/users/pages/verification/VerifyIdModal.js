@@ -29,7 +29,11 @@ function VerifyIdModal() {
                         <p>You'll only have to do this once.<NavLink to="">Read more.</NavLink> </p>
                     </div>
                 </Modal.Body>
-                <Modal.Footer className=" justify-content-end">
+                <Modal.Footer className="justify-content-end">
+
+                    <Button className="px-5 mdlBtnFooterClose" variant="dark" onClick={() => dispatch(toggleVerifyIdModal(false))}> Close </Button>
+
+
                     <span onClick={() => dispatch(toggleVerifyIdModal(false))}>
                         <Button variant="next" onClick={() => dispatch(toggleDocumentDetailModal(true))}> Next
                             </Button>
