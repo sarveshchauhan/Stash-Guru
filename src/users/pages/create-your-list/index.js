@@ -3,6 +3,9 @@ import { Col, Form, Row, InputGroup, FormControl, Button, Container, Spinner } f
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory } from 'react-router-dom';
 import GoogleMap from '../../../front/common/components/google-map/GoogleMap';
+import GoogleSearch from '../../../front/common/components/GoogleSearch';
+import GoogleSearchListing from '../../../front/common/components/GoogleSearchListing';
+import GoogleSearchV2 from '../../../front/common/components/GoogleSearchV2';
 import { getCoordinates } from '../../../redux';
 import './createList.scss';
 import ManualAddressForm from './ManualAddressForm';
@@ -111,6 +114,12 @@ function UserCreateYourListCtrl() {
     }
 
 
+    const onChangeLocation = (value) => {
+        setSearch(value);
+
+    }
+
+
 
     return (
         <>
@@ -123,7 +132,7 @@ function UserCreateYourListCtrl() {
                             <Form className="py-2">
                                 <Form.Label>Add Your Location</Form.Label>
 
-                                <InputGroup className="Create_list_location_search_bar mb-2">
+                                {/* <InputGroup className="Create_list_location_search_bar mb-2">
                                     <InputGroup.Prepend>
                                         <InputGroup.Text id="">
                                             <i className="fa fa-map-marker"></i>
@@ -135,7 +144,25 @@ function UserCreateYourListCtrl() {
                                             <i className="fa fa-search"></i>
                                         </Button>
                                     </InputGroup.Append>
-                                </InputGroup>
+                                </InputGroup> */}
+
+                                <Form.Group className="location_search_bar">
+                                    {/* <GoogleSearchV2 /> */}
+                                    {/* <GoogleSearch/> */}
+
+                                    <GoogleSearchListing onChangeLocation={onChangeLocation} value={search} />
+
+                                    <InputGroup.Append>
+                                        <Button variant="success" id="searchBtn" onClick={onSearchBtnClick}>
+                                            <i className="fa fa-search"></i>
+                                        </Button>
+                                    </InputGroup.Append>
+
+                                </Form.Group>
+
+
+
+
 
                                 {
                                     coordinatesLoading && <Spinner variant="success" animation="border"></Spinner>

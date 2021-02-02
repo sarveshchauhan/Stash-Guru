@@ -42,6 +42,23 @@ function UserHomeCtrl() {
     }, [dispatch]);
 
 
+    const redirectToListSpace = () => {
+
+        let stepOneData = {
+            location: "Cluj-Napoca, Romania",
+            spaceType: 1
+        };
+
+        localStorage.setItem("listStepOne", JSON.stringify(stepOneData));
+
+        window.location.href = "/create-your-list";
+
+        // history.push('/create-your-list');
+
+
+    }
+
+
     return (
         <>
             <Row>
@@ -123,7 +140,7 @@ function UserHomeCtrl() {
                             <div className="">
                                 <h4>List A Space</h4>
                                 <p>Lorem ipsum dolor sit amet, consetetur</p>
-                                <Button style={{zIndex:'+99',position: 'relative'}} className="btn_milky_grn" onClick={() => history.push('/list-your-space')}>List your Space <i className="fa fa-angle-right" aria-hidden="true"></i></Button>
+                                <Button style={{ zIndex: '+99', position: 'relative' }} className="btn_milky_grn" onClick={() => redirectToListSpace()}>List your Space <i className="fa fa-angle-right" aria-hidden="true"></i></Button>
                             </div>
                         </Card.Body>
                         <span className="dash_hm_card_b_bg_img">

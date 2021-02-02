@@ -137,7 +137,7 @@ function FrontHomeCtrl() {
                 </Container>
             </section>
 
-{/* 
+            {/* 
             <section className="connecting_people">
                 <Container>
                     <Row className="justify-content-center align-items-center">

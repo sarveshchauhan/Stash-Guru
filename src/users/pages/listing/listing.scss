@@ -139,3 +139,18 @@
     text-align: center;
     font-size: 10px;
 }
+
+
+
+.listing_bg{
+    background: linear-gradient(to right,
+    rgba(52, 215, 137, 0.9),
+    rgba(52, 215, 137, 0.02)),
+    url(/images/listing_bg.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: right;
+    padding: 50px 30px;
+    margin-top: 15px;
+    border-radius: 5px;
+}

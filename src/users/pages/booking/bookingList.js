@@ -61,7 +61,7 @@ function UserBookingListCtrl() {
                 (!bookingList || bookingList.length === 0) && <div className="card-body">
                     <div className="row">
                         <div className="col-md-12">
-                            <div className="text-center listing_bg">
+                            <div className="text-center">
                                 <h4><b>No Bookings Yet</b></h4>
                                 <p>You haven't made or received any bookings yet.</p>
                                 <button className="btn btn-success px-4" onClick={() => history.push('/')}>

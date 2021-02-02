@@ -73,6 +73,23 @@ function UserListingtrl() {
     }
 
 
+    const redirectToListSpace = () => {
+
+        let stepOneData = {
+            location: "Cluj-Napoca, Romania",
+            spaceType: 1
+        };
+
+        localStorage.setItem("listStepOne", JSON.stringify(stepOneData));
+
+        window.location.href = "/create-your-list";
+
+        // history.push('/create-your-list');
+
+
+    }
+
+
 
     return (
         <>
@@ -121,7 +138,7 @@ function UserListingtrl() {
                         <div className="col-md-6 text-white">
                             <h2>Create Your First Listing</h2>
                             <p>List your storage or parking space and connect with verified Guests who are looking for spaces to rent</p>
-                            <button className="btn btn-success px-4" onClick={() => history.push('/list-your-space')}>Create A Listing</button>
+                            <button className="btn btn-success px-4" onClick={() => redirectToListSpace()}>Create A Listing</button>
                         </div>
                     </div>
                 </div>

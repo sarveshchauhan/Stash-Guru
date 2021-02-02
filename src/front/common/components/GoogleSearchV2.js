@@ -2,24 +2,22 @@ import React, { useEffect, useState } from 'react'
 import { config } from '../../../config/config';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { Button } from 'react-bootstrap';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
-function GoogleSearchListing(props) {
+
+function GoogleSearchV2() {
 
     const [address, setAddress] = useState("");
+    const { key } = useParams();
+    const history = useHistory();
 
-    useEffect(() => {
-
-        props.onChangeLocation(address);
-
-    }, [address]);
+    const { t } = useTranslation();
 
 
     useEffect(() => {
-
-        setAddress(props.value);
-
-    }, [props.value]);
+        setAddress(key);
+    }, [key]);
 
     const handleChange = address => {
         setAddress(address);
@@ -35,9 +33,16 @@ function GoogleSearchListing(props) {
             .catch(error => console.error('Error', error));
     };
 
-    // const search = () => {
-    //     window.location.href = `/search/${address}`;
-    // }
+    const search = () => {
+        // window.location.href = `/search/${address}`;
+        if (address) {
+            history.push(`/search/${address}`);
+        }
+        else {
+            history.push('/search/Cluj-Napoca, Romania');
+        }
+
+    }
 
 
 
@@ -54,7 +59,7 @@ function GoogleSearchListing(props) {
                         <div>
                             <input
                                 {...getInputProps({
-                                    placeholder: 'Search Places ...',
+                                    placeholder: t('searchPlaceholder'),
                                     className: 'location-search-input',
                                 })}
                             />
@@ -87,8 +92,12 @@ function GoogleSearchListing(props) {
 
             </div>
 
+            <Button variant="success" onClick={search}>
+                <i className="fa fa-search"></i>
+            </Button>
+
         </>
     )
 }
 
-export default GoogleSearchListing
+export default GoogleSearchV2
