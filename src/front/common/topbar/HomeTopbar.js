@@ -34,7 +34,7 @@ function HomeTopbarHeaderComponent() {
     return (
         <>
             <Navbar sticky="top" className={scroll ? "add_search" : "remove_search"}>
-                <div className="nav_container lg_screen_menu">
+                <div className="nav_container my_container lg_screen_menu">
                     <Row className="align-items-center justify-content-between">
                         <div className="col-3 text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">

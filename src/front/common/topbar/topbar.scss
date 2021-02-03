@@ -26,12 +26,21 @@
         // max-width: 1140px;
         max-width: inherit;
     }
+    .my_container {
+        max-width: 1140px;
+    }
 }
+
 .nav_container {
     width: 100%;
     margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
+.my_container {
+    width: 100%;
+}
 .navbar{
     background-color: $milky_color;
 }

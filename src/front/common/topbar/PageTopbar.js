@@ -24,7 +24,7 @@ function PageTopbarHeaderComponent() {
     return (
         <>
             <Navbar sticky="top" style={{ borderBottom: '2px solid rgba(0, 0, 0, 0.03)' }}>
-                <div className="nav_container lg_screen_menu">
+                <div className="nav_container my_container lg_screen_menu">
                     <Row className="align-items-center justify-content-between">
                         <div className="col-4 text-center text-lg-left align-items-center d-flex justify-content-between">
                             <NavLink className="navbar-brand" to="/">
