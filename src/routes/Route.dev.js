@@ -94,6 +94,7 @@ import TermsCtrl from '../front/pages/terms';
 import Contact from '../front/pages/contact';
 import FrontPrivacyPolicyCtrl from '../front/pages/privacy-policy';
 import ReferralTermsCtrl from '../front/pages/referrral-terms';
+import NonDiscriminationPolicyCtrl from '../front/pages/non-descrimination';
 
 
 
@@ -160,6 +161,9 @@ const Root = () => {
 
 
             <Route exact path="/privacy-policy" render={(props) => (< FrontPagesLayoutCtrl children={FrontPrivacyPolicyCtrl} {...props} />)} />
+
+            <Route exact path="/non-descrimination" render={(props) => (< FrontPagesLayoutCtrl children={NonDiscriminationPolicyCtrl} {...props} />)} />
+
 
 
             <Route exact path="/terms" render={(props) => (< FrontPagesLayoutCtrl children={TermsCtrl} {...props} />)} />

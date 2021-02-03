@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
+import { Button, Col, Form, Modal, Row, Spinner } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 
 import not_verified from '../../../assets/users/images/icons/not_verified.png';
@@ -18,8 +18,8 @@ function UserVerificationCtrl() {
 
     const dispatch = useDispatch();
 
-    const { verifyList } = useSelector(state => state.document);
-    const { authResponse } = useSelector(state => state.auth);
+    const { verifyList, verifyListLoading } = useSelector(state => state.document);
+    const { authResponse, loading } = useSelector(state => state.auth);
 
 
     const [idVerified, setIdVerified] = useState("Pending");
@@ -86,124 +86,147 @@ function UserVerificationCtrl() {
                 <h2 className="user_page_hdng_txt">Verification</h2>
             </div>
 
-            { (idVerified === "Verify" && id1Verfied === "Verify" && emailVerified === "Verify" && phoneVerified === "Verify") ? "" : <div className="verificationCard text-center">
-                <div className="verificationCardBody">
-                    <img src={not_verified} alt="" />
-                    <h3 className="text_color_l_orange">Account not verified</h3>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,</p>
-                </div>
-            </div>}
+
+            {
+                (verifyListLoading || loading) ? <div className="text-center">
+
+                    <Spinner animation="border" variant="success" />
+
+                </div> : <>
+
+
+
+                        { (idVerified === "Verify" && id1Verfied === "Verify" && emailVerified === "Verify" && phoneVerified === "Verify") ? "" : <div className="verificationCard text-center">
+                            <div className="verificationCardBody">
+                                <img src={not_verified} alt="" />
+                                <h3 className="text_color_l_orange">Account not verified</h3>
+                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,</p>
+                            </div>
+                        </div>}
 
 
 
 
-            <div className="sg_box_flex_card align-items-center justify-content-between">
-                <div className="">
-                    <h3 className="text_color_zambezi">ID Verification</h3>
-                    <NavLink to="#" className="text_color_deep_skyi">Required for booking ({idVerified})</NavLink>
-                </div>
-                <div>
+                        <div className="sg_box_flex_card align-items-center justify-content-between">
+                            <div className="">
+                                <h3 className="text_color_zambezi">ID Verification</h3>
+                                <NavLink to="#" className="text_color_deep_skyi">Required for booking ({idVerified})</NavLink>
+                            </div>
+                            <div>
 
 
-                    {
-                        !idData && !id1Data && <Button className="btn_l_orange" onClick={() => dispatch(toggleVerifyIdModal(true))}>Verify Account</Button>
-                    }
+                                {
+                                    !idData && !id1Data && <Button className="btn_l_orange" onClick={() => dispatch(toggleVerifyIdModal(true))}>Verify Account</Button>
+                                }
 
-                    {
-                        (idVerified === "Verify" && id1Verfied === "Verify") && <Button variant="success" type="button">Verified</Button>
-                    }
+                                {
+                                    (idVerified === "Verify" && id1Verfied === "Verify") && <Button variant="success" type="button">Verified</Button>
+                                }
 
-                    {
-                        (idVerified === "Pending" || id1Verfied === "Pending") && <Button variant="warning" type="button">Pending</Button>
-                    }
+                                {
+                                    (idVerified === "Pending" || id1Verfied === "Pending") && <Button variant="warning" type="button">Pending</Button>
+                                }
 
-                    {
-                        (idVerified === "Reject" || id1Verfied === "Reject") && <Button className="btn_l_orange" onClick={() => dispatch(toggleDocumentDetailModal(true))}>Verify Account</Button>
-                    }
-
-
-                </div>
-            </div>
-
-            <div className="sg_box_flex_card align-items-center justify-content-between">
-                <div className="">
-                    <h3 className="text_color_zambezi">Phone Number Verification</h3>
-                    <NavLink to="#" className="text_color_shamrock">
+                                {
+                                    (idVerified === "Reject" || id1Verfied === "Reject") && <Button className="btn_l_orange" onClick={() => dispatch(toggleDocumentDetailModal(true))}>Verify Account</Button>
+                                }
 
 
+                            </div>
+                        </div>
+
+                        <div className="sg_box_flex_card align-items-center justify-content-between">
+                            <div className="">
+                                <h3 className="text_color_zambezi">Phone Number Verification</h3>
+                                <NavLink to="#" className="text_color_shamrock">
 
 
 
-                        {
-                            authResponse && authResponse.users && authResponse.users.mobile ?
-                                phoneVerified && phoneVerified === "Verify" ? <NavLink to="" className="text_color_shamrock">Verified</NavLink> : <p className="text-danger">Pending</p>
-                                :
-                                <p className="text-danger">Not Yet</p>
-                        }
 
 
-                    </NavLink>
+                                    {
+                                        authResponse && authResponse.users && authResponse.users.mobile ?
+                                            phoneVerified && phoneVerified === "Verify" ? <NavLink to="" className="text_color_shamrock">Verified</NavLink> : <p className="text-danger">Pending</p>
+                                            :
+                                            <p className="text-danger">Not Yet</p>
+                                    }
+
+
+                                </NavLink>
 
                     &nbsp;
 
                     {
-                        (authResponse && authResponse.users && authResponse.users.mobile) ? <span className="text_color_gray">({authResponse && authResponse.users && `${authResponse.users.country_code}-${authResponse.users.mobile}`})</span> : ""
-                    }
+                                    (authResponse && authResponse.users && authResponse.users.mobile) ? <span className="text_color_gray">({authResponse && authResponse.users && `${authResponse.users.country_code}-${authResponse.users.mobile}`})</span> : ""
+                                }
 
 
 
 
-                </div>
+                            </div>
 
 
-                <div>
+                            <div>
 
-                    {
+                                {
 
-                        phoneVerified && phoneVerified !== "Verify" && <Button className="btn_success" onClick={() => dispatch(toggleMobileVerifyModal(true))}>Verify Number</Button>
+                                    phoneVerified && phoneVerified !== "Verify" && <Button className="btn_success" onClick={() => dispatch(toggleMobileVerifyModal(true))}>Verify Number</Button>
 
-                    }
-
-
-
-                </div>
-            </div>
-
-            <div className="sg_box_flex_card align-items-center justify-content-between">
-                <div className="">
-                    <h3 className="text_color_zambezi">Email Verification</h3>
-
-                    {
-                        emailVerified && emailVerified === "Verify" && <NavLink to="" className="text_color_shamrock">Verified</NavLink>
-                    }
-
-                    {
-                        emailVerified && emailVerified === "Pending" && <p className="text-danger">Pending</p>
-                    }
+                                }
 
 
 
-                    <span className="text_color_gray"> ({authResponse && authResponse.users && authResponse.users.email})</span>
-                </div>
-                <div>
-                    {/* <Button className="btn_success">Change Email</Button> */}
-                </div>
-            </div>
+                            </div>
+                        </div>
 
-            <div>
+                        <div className="sg_box_flex_card align-items-center justify-content-between">
+                            <div className="">
+                                <h3 className="text_color_zambezi">Email Verification</h3>
+
+                                {
+                                    emailVerified && emailVerified === "Verify" && <NavLink to="" className="text_color_shamrock">Verified</NavLink>
+                                }
+
+                                {
+                                    emailVerified && emailVerified === "Pending" && <p className="text-danger">Pending</p>
+                                }
 
 
-                <VerifyIdModal />
 
-                <DocumentDetails />
+                                <span className="text_color_gray"> ({authResponse && authResponse.users && authResponse.users.email})</span>
+                            </div>
+                            <div>
+                                {/* <Button className="btn_success">Change Email</Button> */}
+                            </div>
+                        </div>
 
-                <DocumentDetailsSecond />
+                        <div>
 
-                <DocumentUpload />
 
-                <MobileVerification />
+                            <VerifyIdModal />
 
-            </div>
+                            <DocumentDetails />
+
+                            <DocumentDetailsSecond />
+
+                            <DocumentUpload />
+
+                            <MobileVerification />
+
+                        </div>
+
+
+
+
+                    </>
+
+            }
+
+
+
+
+
+
         </>
     )
 }

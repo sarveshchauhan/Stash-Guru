@@ -1,4 +1,4 @@
-import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILURE, CLEAR_FORGOT_PASSWORD_MESSAGE, CLEAR_RESET_PASSWORD_MESSAGE, SAVE_PROFILE_PIC_REQUEST, SAVE_PROFILE_PIC_SUCCESS, SAVE_PROFILE_PIC_FAILURE, SAVE_PROFILE_REQUEST, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAILURE, TOGGLE_PROFILE_MODAL, GET_COUNTRY_CODE } from "./authTypes"
+import { LOGIN_USER_REQUEST, LOGIN_USER_SUCCESS, LOGIN_USER_FAILURE, GOOGLE_LOGIN_REQUEST, GOOGLE_LOGIN_SUCCESS, GOOGLE_LOGIN_FAILURE, FACEBOOK_LOGIN_REQUEST, FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAILURE, GET_USER_REQUEST, GET_USER_FAILURE, GET_USER_SUCCESS, FORGOT_PASSWORD_REQUEST, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_FAILURE, RESET_PASSWORD_REQUEST, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILURE, CLEAR_FORGOT_PASSWORD_MESSAGE, CLEAR_RESET_PASSWORD_MESSAGE, SAVE_PROFILE_PIC_REQUEST, SAVE_PROFILE_PIC_SUCCESS, SAVE_PROFILE_PIC_FAILURE, SAVE_PROFILE_REQUEST, SAVE_PROFILE_SUCCESS, SAVE_PROFILE_FAILURE, TOGGLE_PROFILE_MODAL, GET_COUNTRY_CODE, DELETE_USER_REQUEST, DELETE_USER_SUCCESS, DELETE_USER_FAILURE } from "./authTypes"
 
 const initialState = {
     loggedIn: false,
@@ -32,6 +32,10 @@ const initialState = {
     saveProfileError: "",
 
     showProfileEditModal: false,
+
+    deleteAccountError: "",
+    deleteAccountResponse: "",
+
 
     countryCodes: []
 }
@@ -259,6 +263,29 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 showProfileEditModal: action.payload
             }
+
+        case DELETE_USER_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+
+        case DELETE_USER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                deleteAccountResponse: action.payload
+            }
+
+        case DELETE_USER_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                deleteAccountFailure: action.payload
+            }
+
+            
+
 
         default:
             return state;

@@ -89,17 +89,6 @@ function PageSideMenuCtrl() {
                         </Accordion.Collapse>
                     </Accordion>
 
-                    {/* <NavLink className="nav-link" to="/listing">
-                        <img className="img_deactive" src={B_listing} />
-                        <img className="img_active" src={G_listing} />
-                        Listing
-                    </NavLink>
-
-                    <NavLink className="nav-link" to="/booked-listing">
-                        <img className="img_deactive" src={B_listing} />
-                        <img className="img_active" src={G_listing} />
-                        Booked Listing
-                    </NavLink> */}
 
                     <NavLink className="nav-link" to="/verification">
                         <img className="img_deactive" src={B_verify} />
@@ -124,6 +113,8 @@ function PageSideMenuCtrl() {
                         <img className="img_active" src={G_payment} />
                         Payment
                     </NavLink>
+
+
 
                     {/* <NavLink className="nav-link" to="/chat/host">
                         <img className="img_deactive" src={B_payment} />

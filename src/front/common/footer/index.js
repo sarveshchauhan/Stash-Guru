@@ -91,12 +91,24 @@ function FooterComponent() {
                                     <Col sm={4} className="footer_links">
                                         <h4 className="mt-3">{t('footerPlatform')}</h4>
                                         <Nav className="flex-column">
+
+
                                             <NavLink to="/" className="nav-link">{t('footerHome')}</NavLink>
                                             <NavLink to="/about" className="nav-link">{t('footerAbout')}</NavLink>
                                             <NavLink to="/FAQS" className="nav-link">{t('footerFaq')}</NavLink>
                                             <NavLink to="/manage-your-booking" className="nav-link">{t('footerHelpCenter')}</NavLink>
+
+                                            <NavLink to="/contact" className="nav-link"> Contact Us </NavLink>
+                                            <NavLink to="/privacy-policy" className="nav-link"> Privacy Policy </NavLink>
+                                            <NavLink to="/terms" className="nav-link"> Terms & Conditions </NavLink>
+
                                             <NavLink to="/refund-policy" className="nav-link">{t('footerRefundAndCancel')}</NavLink>
+
+                                            <NavLink to="/non-descrimination" className="nav-link"> Non-Discrimination </NavLink>
+
                                             <NavLink to="/sitemap" className="nav-link">{t('footerSiteMap')}</NavLink>
+
+
                                         </Nav>
                                     </Col>
                                 </Row>
@@ -166,8 +178,18 @@ function FooterComponent() {
                                                     <NavLink to="/about" className="nav-link">{t('footerAbout')}</NavLink>
                                                     <NavLink to="/FAQS" className="nav-link">{t('footerFaq')}</NavLink>
                                                     <NavLink to="/manage-your-booking" className="nav-link">{t('footerHelpCenter')}</NavLink>
+
+                                                    <NavLink to="/contact" className="nav-link"> Contact Us </NavLink>
+                                                    <NavLink to="/privacy-policy" className="nav-link"> Privacy Policy </NavLink>
+                                                    <NavLink to="/terms" className="nav-link"> Terms & Conditions </NavLink>
+
                                                     <NavLink to="/refund-policy" className="nav-link">{t('footerRefundAndCancel')}</NavLink>
+
+                                                    <NavLink to="/non-descrimination" className="nav-link"> Non-Discrimination </NavLink>
+
                                                     <NavLink to="/sitemap" className="nav-link">{t('footerSiteMap')}</NavLink>
+
+
 
 
                                                 </Nav>

@@ -10,11 +10,6 @@ import './liststep.css';
 
 
 
-
-
-
-
-
 function CreateYourListStepThitdCtrl() {
 
     const dispatch = useDispatch();
@@ -52,6 +47,8 @@ function CreateYourListStepThitdCtrl() {
 
     const [hoveredSpaceType, setHoveredSpaceType] = useState("");
     const [hoveredFeature, setHoveredFeature] = useState("");
+    const [hoveredFloor, setHoveredFloor] = useState("");
+
 
 
     const [specificHours, setSpecificHours] = useState([
@@ -381,13 +378,6 @@ function CreateYourListStepThitdCtrl() {
                             }
 
 
-                            {/* {
-                                spaceTypeList && Array.isArray(spaceTypeList) && spaceTypeList.map((space, index) => (
-
-                                    <Form.Check type="radio" key={index} name="spaceType" label={space.st_name} value={space.st_id} />
-
-                                ))
-                            } */}
 
 
                         </Col>
@@ -412,23 +402,6 @@ function CreateYourListStepThitdCtrl() {
                                     <Button variant="no_bg" className={is_sut_exists(space.sut_id) ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => onChangeSut(space.sut_id)}>{space.sut_name}</Button>
                                 ))
                             }
-
-
-
-                            {/* {
-                                spaceUsedForList && Array.isArray(spaceUsedForList) && spaceUsedForList.map((space, index) => (
-                                    <Button variant="no_bg" className={+space.sut_id === +sut_id ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => set_sut_id(space.sut_id)} >{space.sut_name}</Button>
-                                ))
-                            } */}
-
-
-                            {/* {
-                                    featuresList && Array.isArray(spaceUsedForList) && spaceUsedForList.map((space, index) => (
-                                        <Button variant="no_bg" className={is_sut_exists(space.sut_id) ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => onChangeSut(space.sut_id)}>{space.sut_name}</Button>
-                                    ))
-                                } */}
-
-
 
                         </Col>
                         <Col lg="4" md="5" className="offset-lg-1">
@@ -492,7 +465,27 @@ function CreateYourListStepThitdCtrl() {
 
                             {
                                 floorsList && Array.isArray(floorsList) && floorsList.map((floor, index) => (
-                                    <Button variant="no_bg" className={+floor.fl_id === +floor_id ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"} key={index} onClick={() => set_floor_id(floor.fl_id)}>{floor.fl_name}</Button>
+
+
+                                    <Button
+                                        variant="no_bg"
+                                        className={+floor.fl_id === +floor_id ? "mr-2  mt-2 optionButtonSelected" : "btn_outline_success mr-2  mt-2"}
+                                        key={index}
+                                        onClick={() => set_floor_id(floor.fl_id)}
+                                        onMouseOver={() => setHoveredFloor(floor.fl_id)}
+                                    >
+
+                                        <img
+                                            src={+hoveredFloor === +floor.fl_id || +floor_id === +floor.fl_id ? `${process.env.REACT_APP_API_URL}/floors/${floor.fl_icon_white}` : `${process.env.REACT_APP_API_URL}/floors/${floor.fl_icon}`}
+                                            className="btn-icon"
+                                        />
+
+
+                                        {floor.fl_name}
+
+                                    </Button>
+
+
                                 ))
                             }
 
