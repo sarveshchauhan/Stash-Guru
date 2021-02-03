@@ -23,7 +23,11 @@ import { getHostPaymentList } from '../../../redux/booking/bookingActions';
 import PaymentHostFilter from './PaymentHostFilter';
 
 
+import { useTranslation, Trans } from 'react-i18next';
+
 function UserPaymentHostPayoutListCtrl() {
+
+    const { t } = useTranslation();
 
     const dispatch = useDispatch();
     const { bankList, bankListError, bankListLoading, defaultBankLoading } = useSelector(state => state.payment);
@@ -96,7 +100,7 @@ function UserPaymentHostPayoutListCtrl() {
         <>
             <div className="Payment_Payout">
                 <div className="user_page_hdng justify-content-between align-items-center">
-                    <h2 className="user_page_hdng_txt">Payout</h2>
+                    <h2 className="user_page_hdng_txt">{t('dbPayoutHeading')}</h2>
                 </div>
 
                 <Row>
@@ -105,7 +109,7 @@ function UserPaymentHostPayoutListCtrl() {
                             <div className="paymentPayoutList_CardHeader">
                                 <Row>
                                     <Col md="3">
-                                        <h4 className="m-0">Invoice</h4>
+                                        <h4 className="m-0">{t('dbPayoutInvoice')}</h4>
                                     </Col>
                                     <Col md="9">
                                         <PaymentHostFilter />
@@ -123,11 +127,11 @@ function UserPaymentHostPayoutListCtrl() {
                                             <Table size="sm" className="no_bdr">
                                                 <thead>
                                                     <tr>
-                                                        <th className="text-left">Storage</th>
-                                                        <th className="text-left">Date</th>
-                                                        <th className="text-center">Amount</th>
-                                                        <th className="text-center">Status</th>
-                                                        <th className="text-center">Action</th>
+                                                        <th className="text-left">{t('dbPayoutStorage')}</th>
+                                                        <th className="text-left">{t('dbPayoutDate')}</th>
+                                                        <th className="text-center">{t('dbPayoutAmount')}</th>
+                                                        <th className="text-center">{t('dbPayoutStatus')}</th>
+                                                        <th className="text-center">{t('dbPayoutAction')}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -163,7 +167,7 @@ function UserPaymentHostPayoutListCtrl() {
 
                                             <img src={invoice} />
                                             <br />
-                                            <h2>No any invoice</h2>
+                                            <h2>{t('dbPayoutNoInvoice')}</h2>
                                         </div>
 
 
@@ -182,12 +186,12 @@ function UserPaymentHostPayoutListCtrl() {
                             {
                                 (bankListLoading || defaultBankLoading) ? <div className="text-center mt-2"><Spinner animation="border" variant="success" /></div> : (bankList && Array.isArray(bankList) && bankList.map((bank, index) => (
                                     <div className="box_Card AddBankDetailsBox" key={index}>
-                                        <h6>Bank Details</h6>
+                                        <h6>{t('dbPayoutBankDetail')}</h6>
 
                                         {
                                             bank.localInfo && bank.localInfo.is_default === "Yes" ? <Badge variant="primary">Default</Badge> : <Button className="btn-sm" onClick={() => dispatch(setDefaultBank({
                                                 bank_id: bank.id
-                                            }))}>Set as Default</Button>
+                                            }))}>{t('dbPayoutSetDefault')}</Button>
                                         }
 
 
@@ -200,28 +204,28 @@ function UserPaymentHostPayoutListCtrl() {
                                             <Table size="sm" className="no_bdr">
                                                 <tbody>
                                                     <tr>
-                                                        <th className="pt-2">Name</th>
+                                                        <th className="pt-2">{t('dbPayoutName')}</th>
                                                     </tr>
                                                     <tr>
                                                         <td>{bank.account_holder_name}</td>
                                                     </tr>
 
                                                     <tr>
-                                                        <th className="pt-2">A/C Type</th>
+                                                        <th className="pt-2">{t('dbPayoutAcType')}</th>
                                                     </tr>
                                                     <tr>
                                                         <td>{bank.account_holder_type.toUpperCase()}</td>
                                                     </tr>
 
                                                     <tr>
-                                                        <th className="pt-2">A/C No.</th>
+                                                        <th className="pt-2">{t('dbPayoutAcNo')}</th>
                                                     </tr>
                                                     <tr>
                                                         <td>XXXXXXXXXXXXXXX{bank.last4}</td>
                                                     </tr>
 
                                                     <tr>
-                                                        <th className="pt-2">Bank Name</th>
+                                                        <th className="pt-2">{t('dbPayoutBankName')}</th>
                                                     </tr>
                                                     <tr>
                                                         <td>{bank.bank_name}</td>
@@ -233,9 +237,7 @@ function UserPaymentHostPayoutListCtrl() {
                                                     <Button variant="no_bg" className="px-1 text_color_gray">
                                                         <i className="fa fa-trash-o" onClick={() => deleteTheBank(bank.id)} aria-hidden="true"></i>
                                                     </Button>
-                                                    {/* <Button variant="no_bg" className="px-1 text_color_gray">
-                                                        <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                    </Button> */}
+
                                                 </div>
                                             </div>
                                         </div>
@@ -249,13 +251,13 @@ function UserPaymentHostPayoutListCtrl() {
                                 <div className="d-block w-100">
                                     <div className="text-center">
 
-                                        <h5>Bank Details</h5>
-                                        <p>This is the account your Host payouts will get paid into</p>
+                                        <h5>{t('dbPayoutBankDetail')}</h5>
+                                        <p>{t('dbPayoutBankDetailDesc')}</p>
                                         <img src={bank} className="mb-2" />
 
                                         <br />
 
-                                        <Button className="btn_success px-4" onClick={() => dispatch(toggleBankModal(true))}>+ Add Bank</Button>
+                                        <Button className="btn_success px-4" onClick={() => dispatch(toggleBankModal(true))}>+ {t('dbPayoutAddBank')}</Button>
                                     </div>
                                 </div>
 
@@ -274,7 +276,7 @@ function UserPaymentHostPayoutListCtrl() {
                 </button>
                 <Modal.Header className="justify-content-start">
                     <div className="text-left">
-                        <Modal.Title>Add New Card</Modal.Title>
+                        <Modal.Title>{t('dbPayoutAddCard')}</Modal.Title>
                     </div>
                 </Modal.Header>
                 <Modal.Body>
@@ -283,13 +285,13 @@ function UserPaymentHostPayoutListCtrl() {
                             <Row>
                                 <Col md={12}>
                                     <Form.Group controlId="formBasicPassword">
-                                        <Form.Label>Your Card number</Form.Label>
+                                        <Form.Label>{t('dbPayoutCardNo')}</Form.Label>
                                         <Form.Control className="rectu_form_field" type="text" placeholder="XXXX-XXXX-XXXX-XXXX" />
                                     </Form.Group>
                                 </Col>
                                 <Col md={6}>
                                     <Form.Group controlId="formBasicPassword">
-                                        <Form.Label>Expiry</Form.Label>
+                                        <Form.Label>{t('dbPayoutExp')}</Form.Label>
                                         <Form.Control className="rectu_form_field" type="text" placeholder="10/22" />
                                     </Form.Group>
                                 </Col>
@@ -351,92 +353,6 @@ function UserPaymentHostPayoutListCtrl() {
             <AddBankModal />
 
 
-
-            {/* <Modal className="user_modal" show={AddBankmodal} onHide={handlesetAddBankmodalClose} backdrop="static" keyboard={false}>
-                <button className="user_modal_close_btn" onClick={handlesetAddBankmodalClose}>
-                    <i className="fa fa-times" aria-hidden="true"></i>
-                </button>
-                <Modal.Header className="justify-content-start">
-                    <div className="text-left">
-                        <Modal.Title>Add Bank Account</Modal.Title>
-                    </div>
-                </Modal.Header>
-                <Modal.Body>
-                    <div className="text-left">
-                        <Form>
-                            <Row>
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Account Type</Form.Label>
-                                        <Form.Control className="rectu_form_field" as="select">
-                                            <option>Individual</option>
-                                        </Form.Control>
-                                    </Form.Group>
-                                </Col>
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Country</Form.Label>
-                                        <Form.Control className="rectu_form_field" as="select">
-                                            <option>United Kingdom</option>
-                                            <option>United State</option>
-                                            <option>India</option>
-                                        </Form.Control>
-                                    </Form.Group>
-                                </Col>
-                                <Col md={12}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Date Of Birth</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="01-01-1980" />
-                                    </Form.Group>
-                                </Col>
-
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Account Number</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="1451245754512455" />
-                                    </Form.Group>
-                                </Col>
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Sort Code</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="41451451" />
-                                    </Form.Group>
-                                </Col>
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Address Line 1</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="22 Main Street" />
-                                    </Form.Group>
-                                </Col>
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Address Line 2</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="Lorem ipsum" />
-                                    </Form.Group>
-                                </Col>
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>City</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="London" />
-                                    </Form.Group>
-                                </Col>
-                                <Col md={6}>
-                                    <Form.Group controlId="">
-                                        <Form.Label>Postcode</Form.Label>
-                                        <Form.Control className="rectu_form_field" type="text" placeholder="AS245FV" />
-                                    </Form.Group>
-                                </Col>
-
-
-                                <Col md={12} className="text-center">
-                                    <Button className="btn_success px-5"> Add Bank Account </Button>
-                                </Col>
-                            </Row>
-
-                        </Form>
-                    </div>
-                </Modal.Body>
-            </Modal> */}
 
 
 

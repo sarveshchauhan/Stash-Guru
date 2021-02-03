@@ -11,11 +11,15 @@ import { config } from '../../../config/config';
 import CancelGuestBookingModal from './CancelGuestBookingModal';
 import nothing_here from '../../../assets/users/images/img/nothing_here.png'
 
+import { useTranslation, Trans } from 'react-i18next';
+
 
 function UserBookingListCtrl() {
 
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const { t } = useTranslation();
 
     const { bookingLoading, bookingError, bookingList } = useSelector(state => state.booking);
 
@@ -35,19 +39,8 @@ function UserBookingListCtrl() {
             <CancelGuestBookingModal />
             <div className="user_page_hdng justify-content-between align-items-center">
                 <div className="w-100 d-flex-wrap justify-content-between">
-                    <h2 className="user_page_hdng_txt">Bookings</h2>
+                    <h2 className="user_page_hdng_txt">{t('dbBookingHeading')}</h2>
                     <div className="user_page_hdng_left">
-                        {/* <Form className="d-inline-block float-left" style={{ maxWidth: '350px' }}>
-                            <InputGroup>
-                                <FormControl placeholder="Search Booking" aria-label="Search Booking" aria-describedby="basic-addon2" />
-                                <InputGroup.Append>
-                                    <Button variant="success" className="px-3">
-                                        <i className="fa fa-search"></i>
-                                    </Button>
-                                </InputGroup.Append>
-                            </InputGroup>
-                        </Form> */}
-                        {/* <Button variant="outline-success" className="ml-2" style={{ minWidth: '150px' }}><i className="fa fa-filter" aria-hidden="true"></i> Filters</Button> */}
                     </div>
                 </div>
             </div>
@@ -62,10 +55,10 @@ function UserBookingListCtrl() {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="text-center">
-                                <h4><b>No Bookings Yet</b></h4>
-                                <p>You haven't made or received any bookings yet.</p>
+                                <h4><b>{t('dbBookingNoBookingHeading')}</b></h4>
+                                <p>{t('dbBookingNoBookingDesc')}</p>
                                 <button className="btn btn-success px-4" onClick={() => history.push('/')}>
-                                    Search Spaces <i className="fa fa-search" aria-hidden="true"></i>
+                                    {t('dbBookingSearchBtnLabel')} <i className="fa fa-search" aria-hidden="true"></i>
                                 </button>
                                 <div className="mt-5">
                                     <img src={nothing_here} alt="nothing here" />
@@ -114,7 +107,7 @@ function UserBookingListCtrl() {
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th>Monthly Rental</th>
+                                                                    <th>{t('dbBookingMonthlyRentel')}</th>
                                                                 </tr>
                                                             </tbody>
                                                         </Table>
@@ -130,7 +123,7 @@ function UserBookingListCtrl() {
                                                         </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th>Space used</th>
+                                                                    <th>{t('dbBookingSpaceUsed')}</th>
                                                                 </tr>
                                                             </tbody>
                                                         </Table>
@@ -146,7 +139,7 @@ function UserBookingListCtrl() {
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th>Start Date</th>
+                                                                    <th>{t('dbBookingStartDate')}</th>
                                                                 </tr>
                                                             </tbody>
                                                         </Table>
@@ -166,20 +159,20 @@ function UserBookingListCtrl() {
 
                                     {
                                         booking.booking_status === "PENDING" && <>
-                                            <Button className="btn-block btn_milky_grn" onClick={() => history.push(`/booking/${booking.guid}`)}>Book Space</Button>
-                                            <small className="d-block mt-4">Enquiry will expire in 2 days</small>
+                                            <Button className="btn-block btn_milky_grn" onClick={() => history.push(`/booking/${booking.guid}`)}>{t('dbBookingBookSpace')}</Button>
+                                            <small className="d-block mt-4">{t('dbBookingEnquiryExp')}</small>
                                         </>
                                     }
 
-                                    <Button className="btn-block btn_success_milky_outline" onClick={() => history.push(`/book/${booking.store_id}/${booking.guid}`)}>Send Message</Button>
+                                    <Button className="btn-block btn_success_milky_outline" onClick={() => history.push(`/book/${booking.store_id}/${booking.guid}`)}>{t('dbBookingSendMessage')}</Button>
 
                                     {
-                                        booking.booking_status === "REFUNDED" && <small className="d-block mt-4">Payment received in 24 hours</small>
+                                        booking.booking_status === "REFUNDED" && <small className="d-block mt-4">{t('dbBookingPaymentRec')}</small>
                                     }
 
 
                                     {
-                                        booking.booking_status === "PAID" && <Button className="btn-block btn_milky_grn">Booked</Button>
+                                        booking.booking_status === "PAID" && <Button className="btn-block btn_milky_grn">{t('dbBookingBooked')}</Button>
                                     }
 
                                     {
@@ -190,21 +183,21 @@ function UserBookingListCtrl() {
 
                                             style={{ backgroundColor: "#ec737f", color: "#ffffff" }}
 
-                                        >Cancel Booking</Button>
+                                        >{t('dbBookingCancelBooking')}</Button>
                                     }
 
 
                                     {
-                                        booking.booking_status === "CANCELLED Proccessing" && <Button className="btn-block btn_milky_grn" type="button">Cancellation in process. Refund will be given in 4 to 5 days</Button>
+                                        booking.booking_status === "CANCELLED Proccessing" && <Button className="btn-block btn_milky_grn" type="button">{t('dbBookingCancelProcess')}</Button>
                                     }
 
 
                                     {
-                                        booking.booking_status === "Proccessing" && <Button className="btn-block btn_milky_grn" type="button">Waiting for Host Response</Button>
+                                        booking.booking_status === "Proccessing" && <Button className="btn-block btn_milky_grn" type="button">{t('dbBookingWaitHostResponse')}</Button>
                                     }
 
                                     {
-                                        booking.booking_status === "REFUNDED" && <Button className="btn-block btn_milky_grn">Cancelled by Host</Button>
+                                        booking.booking_status === "REFUNDED" && <Button className="btn-block btn_milky_grn">{t('dbBookingCancelByHost')}</Button>
                                     }
 
                                 </div>
@@ -216,91 +209,6 @@ function UserBookingListCtrl() {
                 ))
             }
 
-            {/* 
-            <div className="space_booking_list disable">
-                <Row className="m-0">
-                    <Col sm="8" className="px-0">
-                        <div className="space_booking_list_header">
-                            <h5 className="m-0">
-                                <i className="fa fa-map-marker" aria-hidden="true"></i> LONDON, E1 7AA
-                            </h5>
-                            <div className="text-center" style={{ lineHeight: '1' }}>
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                <small className="d-block">0</small>
-                            </div>
-                        </div>
-                        <div className="space_booking_list_body">
-                            <div className="space_booking_image">
-                                <img src={dummy1} />
-                            </div>
-                            <div className="pl-3">
-                                <h5>Workspace In Warehouse</h5>
-                                <Table size="sm" className="no_bdr m-0">
-                                    <tbody>
-                                        <tr>
-                                            <td width="120">
-                                                <Table size="sm" className="no_bdr">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <strong>$2500</strong>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Monthly Rental</th>
-                                                        </tr>
-                                                    </tbody>
-                                                </Table>
-                                            </td>
-
-
-                                            <td width="120">
-                                                <Table size="sm" className="no_bdr">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <strong>100 </strong> Sq.ft.
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Space used</th>
-                                                        </tr>
-                                                    </tbody>
-                                                </Table>
-                                            </td>
-
-
-                                            <td width="120">
-                                                <Table size="sm" className="no_bdr">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <strong>08 Nov</strong>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Start Date</th>
-                                                        </tr>
-                                                    </tbody>
-                                                </Table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </Table>
-
-                                <Button size="sm" variant="light_cyan" className="px-4">Archived</Button>
-                            </div>
-                        </div>
-                    </Col>
-                    <Col sm="4" className="px-0 book_space_ctrl text-white text-center ">
-                        <div className="m-4 mx-5 pt-3">
-                            <Button className="btn-block btn_milky_grn">Book Space</Button>
-                            <Button className="btn-block btn_success_milky_outline">Send Message</Button>
-                            <small className="d-block mt-4">Enquiry will expire in 2 days</small>
-                        </div>
-                    </Col>
-                </Row>
-            </div> */}
 
 
 

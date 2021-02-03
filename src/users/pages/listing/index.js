@@ -7,9 +7,12 @@ import LoaderCtrl from '../../../front/common/components/loader';
 import { getDraftStatus, listAllSpace, setListDetailClient } from '../../../redux';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useTranslation, Trans } from 'react-i18next';
 
 
 function UserListingtrl() {
+
+    const { t } = useTranslation();
 
     const dispatch = useDispatch();
     const { listAllSpaceLoading, allSpaceList, allSpaceListDraft, listAllSpaceError, draftStatus, draftStatusError } = useSelector(state => state.listspace);
@@ -94,7 +97,7 @@ function UserListingtrl() {
     return (
         <>
             <div className="user_page_hdng justify-content-between align-items-center">
-                <h2 className="user_page_hdng_txt">Listings</h2>
+                <h2 className="user_page_hdng_txt">{t('dbListingHeading')}</h2>
                 <div className="d-inline-block user_page_hdng_left">
                     <Form className="d-inline-block float-left" style={{ width: '150px' }}>
                         <Form.Group className="mb-0" controlId="" >
@@ -115,7 +118,7 @@ function UserListingtrl() {
 
                         </Form.Group>
                     </Form>
-                    <Button onClick={() => window.location.href = "/list-your-space"} className="float-left ml-2 btn-success" style={{ minWidth: '150px' }}>+ New Listing</Button>
+                    <Button onClick={() => window.location.href = "/list-your-space"} className="float-left ml-2 btn-success" style={{ minWidth: '150px' }}>+ {t('dbListingNewBtnLabel')}</Button>
                 </div>
             </div>
 
@@ -124,9 +127,9 @@ function UserListingtrl() {
                 authResponse && authResponse.users && authResponse.users.verify !== "Yes" && <div className="warning_strip">
 
                     <div>
-                        <p className="m-0"><i className="fa fa-exclamation-triangle pr-2"></i> Please verify your account.</p>
+                        <p className="m-0"><i className="fa fa-exclamation-triangle pr-2"></i> {t('dbListingVerifyAccount')}</p>
                     </div>
-                    <Button className="btn btn-outline-white" onClick={() => window.location.href = "/verification"}>Verify Account</Button>
+                    <Button className="btn btn-outline-white" onClick={() => window.location.href = "/verification"}>{t('dbListingVerifyBtnLabel')}</Button>
                 </div>
 
             }
@@ -136,9 +139,9 @@ function UserListingtrl() {
                 listAllSpaceError && <div className="card-body listing_bg">
                     <div className="row">
                         <div className="col-md-6 text-white">
-                            <h2>Create Your First Listing</h2>
-                            <p>List your storage or parking space and connect with verified Guests who are looking for spaces to rent</p>
-                            <button className="btn btn-success px-4" onClick={() => redirectToListSpace()}>Create A Listing</button>
+                            <h2>{t('dbListingCreateFirstListing')}</h2>
+                            <p>{t('dbListingCreateListingDesc')}</p>
+                            <button className="btn btn-success px-4" onClick={() => redirectToListSpace()}>{t('dbListingCreateListingBtn')}</button>
                         </div>
                     </div>
                 </div>
@@ -158,33 +161,27 @@ function UserListingtrl() {
                             <p><i className="fa fa-exclamation-circle pr-2"></i> {list.store_status}</p>
                             <div className="listing_card_header_righr">
 
-                                {/* {
-                                    list.store_status === "Draft" ? <Button className="btn_milky_grn mr-2" onClick={(e) => get_draft_status(list.store_id, e)}>Finish Listing</Button> : ""
-                                } */}
 
-                                {/* {
-                                    authResponse && authResponse.users && authResponse.users.verify !== "Yes" && <Button className="btn_milky_grn mr-2 btn-danger" onClick={(e) => history.push(`/verification`)}>Verify Account</Button>
-                                } */}
 
                                 {
-                                    getCurrentStep(list.store_id) && getCurrentStep(list.store_id) < 7 ? <Button className="btn_milky_grn mr-2" onClick={(e) => get_draft_status(list.store_id, e)}>Finish Listing</Button> : ""
+                                    getCurrentStep(list.store_id) && getCurrentStep(list.store_id) < 7 ? <Button className="btn_milky_grn mr-2" onClick={(e) => get_draft_status(list.store_id, e)}>{t('dbListingFinishListing')}</Button> : ""
                                 }
 
 
 
                                 <span className="listing_card_header_icon" onClick={() => editListing(list.store_id)}>
                                     <i className="fa fa-pencil-square-o"></i>
-                                    <br /> Edit
-                    </span>
+                                    <br /> {t('dbListingEdit')}
+                                </span>
                                 <span className="listing_card_header_icon" onClick={() => window.open(`/search-details/${list.store_id}?preview=true`)}>
                                     <i className="fa fa-eye"></i>
-                                    <br /> Preview
+                                    <br /> {t('dbListingPreview')}
                                 </span>
 
                                 <span className="listing_card_header_icon">
                                     <i className="fa fa-th-list"></i>
-                                    <br /> Re-List
-                    </span>
+                                    <br /> {t('dbListingReList')}
+                                </span>
                             </div>
                         </Card.Header>
                         <Card.Body>
@@ -201,7 +198,7 @@ function UserListingtrl() {
                                     <div className="listing_deal_area">
                                         <h5>
                                             <strong>${list.store_cost ? list.store_cost : 0}</strong>
-                                            <small>/Month</small>
+                                            <small>/{t('dbListingPerMonth')}</small>
                                         </h5>
                                         <h5>
                                             <strong>{list.store_size ? list.store_size : 0}</strong>
@@ -209,7 +206,7 @@ function UserListingtrl() {
                                         </h5>
                                         <h5>
                                             <strong>1</strong>
-                                            <small>Quantity</small>
+                                            <small>{t('dbListingQty')}</small>
                                         </h5>
                                     </div>
                                 </div>

@@ -13,8 +13,12 @@ import VerifyIdModal from './VerifyIdModal';
 import MobileVerification from './MobileVerification';
 import DocumentDetailsSecond from './DocumentDetailsSecond';
 
+import { useTranslation, Trans } from 'react-i18next';
+
 
 function UserVerificationCtrl() {
+
+    const { t } = useTranslation();
 
     const dispatch = useDispatch();
 
@@ -83,7 +87,7 @@ function UserVerificationCtrl() {
     return (
         <>
             <div className="user_page_hdng justify-content-between align-items-center">
-                <h2 className="user_page_hdng_txt">Verification</h2>
+                <h2 className="user_page_hdng_txt">{t('dbVerifyHeading')}</h2>
             </div>
 
 
@@ -99,8 +103,8 @@ function UserVerificationCtrl() {
                         { (idVerified === "Verify" && id1Verfied === "Verify" && emailVerified === "Verify" && phoneVerified === "Verify") ? "" : <div className="verificationCard text-center">
                             <div className="verificationCardBody">
                                 <img src={not_verified} alt="" />
-                                <h3 className="text_color_l_orange">Account not verified</h3>
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,</p>
+                                <h3 className="text_color_l_orange">{t('dbVerifyNotVerifyHeading')}</h3>
+                                <p>{t('dbVerifyNotVerifyDesc')}</p>
                             </div>
                         </div>}
 
@@ -109,26 +113,26 @@ function UserVerificationCtrl() {
 
                         <div className="sg_box_flex_card align-items-center justify-content-between">
                             <div className="">
-                                <h3 className="text_color_zambezi">ID Verification</h3>
-                                <NavLink to="#" className="text_color_deep_skyi">Required for booking ({idVerified})</NavLink>
+                                <h3 className="text_color_zambezi">{t('dbVerifyIDVerify')}</h3>
+                                <NavLink to="#" className="text_color_deep_skyi">{t('dbVerifyReqForBooking')} ({idVerified})</NavLink>
                             </div>
                             <div>
 
 
                                 {
-                                    !idData && !id1Data && <Button className="btn_l_orange" onClick={() => dispatch(toggleVerifyIdModal(true))}>Verify Account</Button>
+                                    !idData && !id1Data && <Button className="btn_l_orange" onClick={() => dispatch(toggleVerifyIdModal(true))}>{t('dbVerifyVerifyAcc')}</Button>
                                 }
 
                                 {
-                                    (idVerified === "Verify" && id1Verfied === "Verify") && <Button variant="success" type="button">Verified</Button>
+                                    (idVerified === "Verify" && id1Verfied === "Verify") && <Button variant="success" type="button">{t('dbVerifyVerified')}</Button>
                                 }
 
                                 {
-                                    (idVerified === "Pending" || id1Verfied === "Pending") && <Button variant="warning" type="button">Pending</Button>
+                                    (idVerified === "Pending" || id1Verfied === "Pending") && <Button variant="warning" type="button">{t('dbVerifyPending')}</Button>
                                 }
 
                                 {
-                                    (idVerified === "Reject" || id1Verfied === "Reject") && <Button className="btn_l_orange" onClick={() => dispatch(toggleDocumentDetailModal(true))}>Verify Account</Button>
+                                    (idVerified === "Reject" || id1Verfied === "Reject") && <Button className="btn_l_orange" onClick={() => dispatch(toggleDocumentDetailModal(true))}>{t('dbVerifyVerifyPending')}</Button>
                                 }
 
 
@@ -137,7 +141,7 @@ function UserVerificationCtrl() {
 
                         <div className="sg_box_flex_card align-items-center justify-content-between">
                             <div className="">
-                                <h3 className="text_color_zambezi">Phone Number Verification</h3>
+                                <h3 className="text_color_zambezi">{t('dbVerifyPhoneVerification')}</h3>
                                 <NavLink to="#" className="text_color_shamrock">
 
 
@@ -146,9 +150,9 @@ function UserVerificationCtrl() {
 
                                     {
                                         authResponse && authResponse.users && authResponse.users.mobile ?
-                                            phoneVerified && phoneVerified === "Verify" ? <NavLink to="" className="text_color_shamrock">Verified</NavLink> : <p className="text-danger">Pending</p>
+                                            phoneVerified && phoneVerified === "Verify" ? <NavLink to="" className="text_color_shamrock">{t('dbVerifyVerified')}</NavLink> : <p className="text-danger">{t('dbVerifyPending')}</p>
                                             :
-                                            <p className="text-danger">Not Yet</p>
+                                            <p className="text-danger">{t('dbVerifyNotYet')}</p>
                                     }
 
 
@@ -170,7 +174,7 @@ function UserVerificationCtrl() {
 
                                 {
 
-                                    phoneVerified && phoneVerified !== "Verify" && <Button className="btn_success" onClick={() => dispatch(toggleMobileVerifyModal(true))}>Verify Number</Button>
+                                    phoneVerified && phoneVerified !== "Verify" && <Button className="btn_success" onClick={() => dispatch(toggleMobileVerifyModal(true))}>{t('dbVerifyVerifyNo')}</Button>
 
                                 }
 
@@ -181,14 +185,14 @@ function UserVerificationCtrl() {
 
                         <div className="sg_box_flex_card align-items-center justify-content-between">
                             <div className="">
-                                <h3 className="text_color_zambezi">Email Verification</h3>
+                                <h3 className="text_color_zambezi">{t('dbVerifyEmailVerification')}</h3>
 
                                 {
-                                    emailVerified && emailVerified === "Verify" && <NavLink to="" className="text_color_shamrock">Verified</NavLink>
+                                    emailVerified && emailVerified === "Verify" && <NavLink to="" className="text_color_shamrock">{t('dbVerifyVerified')}</NavLink>
                                 }
 
                                 {
-                                    emailVerified && emailVerified === "Pending" && <p className="text-danger">Pending</p>
+                                    emailVerified && emailVerified === "Pending" && <p className="text-danger">{t('dbVerifyPending')}</p>
                                 }
 
 

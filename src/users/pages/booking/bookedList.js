@@ -14,11 +14,14 @@ import BookingTermsModal from '../../common/components/BookingTermsModal';
 import InventoryViewModal from '../../common/components/InventoryViewModal';
 import CancelHostBookingModal from './CancelHostBookingModal';
 
+import { useTranslation, Trans } from 'react-i18next';
 
 function UserBookedListCtrl() {
 
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const { t } = useTranslation();
 
     const { hostBookingListLoading, cancelHostBookingLoading, cancelHostBookingError, hostBookingListError, hostBookingList, updateBookingLoading } = useSelector(state => state.booking);
 
@@ -27,10 +30,6 @@ function UserBookedListCtrl() {
         window.scrollTo(0, 0);
 
     }, [window]);
-
-    // useEffect(() => {
-    //     dispatch(getBookingList({}));
-    // }, [dispatch]);
 
 
     useEffect(() => {
@@ -47,11 +46,11 @@ function UserBookedListCtrl() {
             <CancelHostBookingModal />
             <div className="user_page_hdng justify-content-between align-items-center">
                 <div className="w-100 d-flex-wrap justify-content-between">
-                    <h2 className="user_page_hdng_txt">Bookings</h2>
+                    <h2 className="user_page_hdng_txt">{t('dbBookedListHeading')}</h2>
                     <div className="user_page_hdng_left">
                         <Form className="d-inline-block float-left" style={{ maxWidth: '350px' }}>
                             <InputGroup>
-                                <FormControl placeholder="Search Booking" aria-label="Search Booking" aria-describedby="basic-addon2" />
+                                <FormControl placeholder={t('dbBookedListSearch')} aria-label="Search Booking" aria-describedby="basic-addon2" />
                                 <InputGroup.Append>
                                     <Button variant="success" className="px-3">
                                         <i className="fa fa-search"></i>
@@ -59,7 +58,7 @@ function UserBookedListCtrl() {
                                 </InputGroup.Append>
                             </InputGroup>
                         </Form>
-                        <Button variant="outline-success" className="ml-2" style={{ minWidth: '150px' }}><i className="fa fa-filter" aria-hidden="true"></i> Filters</Button>
+                        <Button variant="outline-success" className="ml-2" style={{ minWidth: '150px' }}><i className="fa fa-filter" aria-hidden="true"></i> {t("dbBookedListFilter")}</Button>
                         {
                             updateBookingLoading && <Spinner animation="border" variant="success" className="ml-2"></Spinner>
                         }
@@ -124,7 +123,7 @@ function UserBookedListCtrl() {
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th>Monthly Rental</th>
+                                                                    <th>{t('dbBookedListMonthRental')}</th>
                                                                 </tr>
                                                             </tbody>
                                                         </Table>
@@ -140,7 +139,7 @@ function UserBookedListCtrl() {
                                                         </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th>Space used</th>
+                                                                    <th>{t('dbBookedListSpaceUsed')}</th>
                                                                 </tr>
                                                             </tbody>
                                                         </Table>
@@ -156,7 +155,7 @@ function UserBookedListCtrl() {
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <th>Start Date</th>
+                                                                    <th>{t('dbBookedListStartDate')}</th>
                                                                 </tr>
                                                             </tbody>
                                                         </Table>
@@ -180,17 +179,17 @@ function UserBookedListCtrl() {
                                             <Button className="btn-block btn_milky_grn" type="button" onClick={() => dispatch(updateBookingStatus({
                                                 booking_id: booking.booking_id,
                                                 status: "accept"
-                                            }))}>Accept</Button>
+                                            }))}>{t('dbBookedListAccept')}</Button>
                                             <Button className="btn-block btn_milky_grn" type="button" onClick={() => dispatch(updateBookingStatus({
                                                 booking_id: booking.booking_id,
                                                 status: "reject"
-                                            }))}>Reject</Button>
+                                            }))}>{t('dbBookedListReject')}</Button>
                                         </>
                                     }
 
                                     {
                                         booking.booking_status === "PAID" && <>
-                                            <Button className="btn-block btn_milky_grn">Confirmed</Button>
+                                            <Button className="btn-block btn_milky_grn">{t('dbBookedListConfirmed')}</Button>
                                         </>
                                     }
                                     {/* planned_start_date */}
@@ -200,14 +199,14 @@ function UserBookedListCtrl() {
                                             <Button className="btn-block btn_milky_grn" style={{ backgroundColor: "#ec737f", color: "#ffffff" }} onClick={() => dispatch(toggleCancelHostBookingModal({
                                                 show: true,
                                                 booking_id: booking.booking_id
-                                            }))}>Cancel Booking</Button>
+                                            }))}>{t('dbBookedListCancelBooking')}</Button>
                                         </>
 
                                     }
 
                                     {
                                         booking.booking_status === "PAID" && ((new Date().getTime()) >= (new Date(booking.planned_start_date).getTime())) && <>
-                                            <Button className="btn-block btn_milky_grn" style={{ backgroundColor: "#ec737f", color: "#ffffff" }}>Notice Period</Button>
+                                            <Button className="btn-block btn_milky_grn" style={{ backgroundColor: "#ec737f", color: "#ffffff" }}>{t('dbBookedListNoticePeriod')}</Button>
                                         </>
 
                                     }
@@ -215,13 +214,13 @@ function UserBookedListCtrl() {
 
                                     {
                                         booking.booking_status === "CANCELLED Proccessing" && <>
-                                            <Button className="btn-block btn_milky_grn">Refund will be processed in 4 to 5 days.</Button>
+                                            <Button className="btn-block btn_milky_grn">{t('dbBookedListRefund')}</Button>
                                         </>
                                     }
 
                                     {
                                         booking.booking_status === "REFUNDED" && <>
-                                            <Button className="btn-block btn_milky_grn">Rejected</Button>
+                                            <Button className="btn-block btn_milky_grn">{t('dbBookedListRejected')}</Button>
                                         </>
                                     }
 
@@ -239,8 +238,8 @@ function UserBookedListCtrl() {
                 ))
                     :
                     <div className="alert alert-warning text-center">
-                        No Bookings.
-                </div>
+                        {t('dbBookedListNoBooking')}
+                    </div>
             }
 
 

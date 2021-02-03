@@ -16,8 +16,14 @@ import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookingCount, getlistingCount } from '../../../redux';
 
+import { useTranslation, Trans } from 'react-i18next';
+
 
 function UserHomeCtrl() {
+
+    const { t } = useTranslation();
+
+
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -68,7 +74,7 @@ function UserHomeCtrl() {
                         bookingCountLoading ? <div className="text-center"><Spinner animation="border" variant="success" /> </div> : <Card className="dash_hm_card_a" onClick={() => history.push('/booking')}>
                             <Card.Body>
                                 <div className="dash_hm_card_a_cntr">
-                                    <p>Booking</p>
+                                    <p>{t('dbHomeBooking')}</p>
                                     <h4>{bookingCount}</h4>
                                 </div>
                             </Card.Body>
@@ -88,7 +94,7 @@ function UserHomeCtrl() {
                         listingCountLoading ? <div className="text-center"><Spinner animation="border" variant="success" /></div> : <Card className="dash_hm_card_a" onClick={() => history.push('/listing')}>
                             <Card.Body>
                                 <div className="dash_hm_card_a_cntr">
-                                    <p>Listing</p>
+                                    <p>{t('dbHomeListing')}</p>
                                     <h4>{listingCount}</h4>
                                 </div>
                             </Card.Body>
@@ -106,8 +112,8 @@ function UserHomeCtrl() {
                     <Card className="dash_hm_card_a" onClick={() => history.push('/profile')}>
                         <Card.Body>
                             <div className="dash_hm_card_a_cntr">
-                                <p>Profile</p>
-                                <small>Welcome</small>
+                                <p>{t('dbHomeProfile')}</p>
+                                <small>{t('dbHomeProfileWelcome')}</small>
                                 <span>{authResponse && authResponse.users && authResponse.users.name}</span>
                             </div>
                         </Card.Body>
@@ -124,9 +130,9 @@ function UserHomeCtrl() {
                     <Card className="dash_hm_card_b">
                         <Card.Body>
                             <div className="">
-                                <h4>Find a Space</h4>
-                                <p>Lorem ipsum dolor sit amet, consetetur</p>
-                                <Button className="btn_milky_bl" onClick={() => history.push('/')}>Start Finding <i className="fa fa-angle-right" aria-hidden="true"></i></Button>
+                                <h4>{t('dbHomeFindSpaceHeading')}</h4>
+                                <p>${t('dbHomeFindSpaceDesc')}</p>
+                                <Button className="btn_milky_bl" onClick={() => history.push('/')}>{t('dbHomeStartFinding')} <i className="fa fa-angle-right" aria-hidden="true"></i></Button>
                             </div>
                         </Card.Body>
                         <span className="dash_hm_card_b_bg_img">
@@ -138,8 +144,8 @@ function UserHomeCtrl() {
                     <Card className="dash_hm_card_b bg_shamrock_color">
                         <Card.Body>
                             <div className="">
-                                <h4>List A Space</h4>
-                                <p>Lorem ipsum dolor sit amet, consetetur</p>
+                                <h4>{t('dbHomeListSpaceHeading')}</h4>
+                                <p>{t('dbHomeListSpaceDesc')}</p>
                                 <Button style={{ zIndex: '+99', position: 'relative' }} className="btn_milky_grn" onClick={() => redirectToListSpace()}>List your Space <i className="fa fa-angle-right" aria-hidden="true"></i></Button>
                             </div>
                         </Card.Body>

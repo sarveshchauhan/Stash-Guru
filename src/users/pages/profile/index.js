@@ -10,9 +10,12 @@ import MobileVerification from '../verification/MobileVerification';
 import ProfileEditModal from './ProfileEditModal';
 import Swal from 'sweetalert2';
 
+import { useTranslation, Trans } from 'react-i18next';
+
+
 function UserProfileCtrl() {
 
-
+    const { t } = useTranslation();
 
     const dispatch = useDispatch();
     const { authResponse, saveProfilePicLoading, loading } = useSelector(state => state.auth);
@@ -166,7 +169,7 @@ function UserProfileCtrl() {
     return (
         <>
             <div className="user_page_hdng justify-content-between align-items-center">
-                <h2 className="user_page_hdng_txt">Profile</h2>
+                <h2 className="user_page_hdng_txt">{t('dbProfileHeading')}</h2>
             </div>
 
             {
@@ -216,12 +219,12 @@ function UserProfileCtrl() {
                                                 <i className="fa fa-user" aria-hidden="true"></i>
                                             </div>
                                             <div>
-                                                <small>Name</small>
+                                                <small>{t('dbProfileName')}</small>
                                                 <h4>{authResponse && authResponse.users && authResponse.users.name}</h4>
                                             </div>
                                             <div>
-                                                <Button className="P_verify_btn" type="button" onClick={() => dispatch(toggleProfileModal(true))}>Edit</Button>
-                                               &nbsp;&nbsp; <Button variant="danger" className="btn-sm" onClick={deleteTheAccount}>Delete My Account</Button>
+                                                <Button className="P_verify_btn" type="button" onClick={() => dispatch(toggleProfileModal(true))}>{t('dbProfileEdit')}</Button>
+                                               &nbsp;&nbsp; <Button variant="danger" className="btn-sm" onClick={deleteTheAccount}>{t('dbProfileDeleteAcc')}</Button>
                                             </div>
                                         </div>
 
@@ -233,7 +236,7 @@ function UserProfileCtrl() {
                                                 <i className="fa fa-phone" aria-hidden="true"></i>
                                             </div>
                                             <div>
-                                                <small>Mobile</small>
+                                                <small>{t('dbProfileMobile')}</small>
                                                 <h4>
 
                                                     {
@@ -242,14 +245,14 @@ function UserProfileCtrl() {
                                                             `${authResponse.users.country_code}-${authResponse.users.mobile}`
                                                             :
 
-                                                            "Not Provided."
+                                                            t('dbProfileNotProvided')
                                                     }
 
 
                                                 </h4>
                                             </div>
                                             <div>
-                                                <Button className="P_verify_btn" onClick={(e) => dispatch(toggleMobileVerifyModal(true))}>Edit</Button>
+                                                <Button className="P_verify_btn" onClick={(e) => dispatch(toggleMobileVerifyModal(true))}>{t('dbProfileEdit')}</Button>
                                                 <MobileVerification />
                                             </div>
                                         </div>
@@ -259,7 +262,7 @@ function UserProfileCtrl() {
                                                 <i className="fa fa-envelope-o" aria-hidden="true"></i>
                                             </div>
                                             <div>
-                                                <small>Email</small>
+                                                <small>{t('dbProfileEmail')}</small>
                                                 <h4>{authResponse && authResponse.users && authResponse.users.email}</h4>
                                             </div>
 
@@ -275,9 +278,9 @@ function UserProfileCtrl() {
                             <div className="align-items-center justify-content-between">
                                 <div className="">
                                     <h3 className="text_color_zambezi user_hdng_2nd">{authResponse && authResponse.users && authResponse.users.name}</h3>
-                                    <h6><strong>About You</strong></h6>
+                                    <h6><strong>{t('dbProfileAbout')}</strong></h6>
                                     <p>
-                                        {(authResponse && authResponse.users && authResponse.users.about) ? authResponse.users.about : "No Information Provided"}
+                                        {(authResponse && authResponse.users && authResponse.users.about) ? authResponse.users.about : t('dbProfileNoInfoProvided')}
                                     </p>
 
 
@@ -290,8 +293,8 @@ function UserProfileCtrl() {
                         <Col lg={4}>
                             <div className="sg_box_flex_card profile_r_card">
                                 <div className="profile_l_body">
-                                    <h5>Account Support</h5>
-                                    <small>Important information about your account, bookings and listings (including account setup, booking alerts and messages).</small>
+                                    <h5>{t('dbProfileAccSupportHeading')}</h5>
+                                    <small>{t('dbProfileAccSupportDesc')}</small>
                                 </div>
                                 <div className="profile_r_body">
                                     <img src={G_profile} />
@@ -336,8 +339,8 @@ function UserProfileCtrl() {
 
                             <div className="sg_box_flex_card profile_r_card">
                                 <div className="profile_l_body">
-                                    <h5>Reminders</h5>
-                                    <small>Prompts and reminders relating to your listings, bookings and other account activity.</small>
+                                    <h5>{t('dbProfileReminderHeading')}</h5>
+                                    <small>{t('dbProfileReminderDesc')}</small>
                                 </div>
                                 <div className="profile_r_body">
                                     <img src={bell} />
@@ -387,8 +390,8 @@ function UserProfileCtrl() {
 
                             <div className="sg_box_flex_card profile_r_card">
                                 <div className="profile_l_body">
-                                    <h5>Marketing</h5>
-                                    <small>Newsletters, promotions, product updates, referral invitations, surveys and helpful tips about storage.</small>
+                                    <h5>{t('dbProfileMarketingHeading')}</h5>
+                                    <small>{t('dbProfileMarketingDesc')}</small>
                                 </div>
                                 <div className="profile_r_body">
                                     <img src={promotion} />
