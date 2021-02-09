@@ -143,7 +143,11 @@ function UserBookingChatCtrl() {
                                 <BookingTermsModal />
 
                                 <div className="d-flex-wrap justify-content-between">
-                                    <Button size="sm" className="btn_milky_grn mt-3">Read More</Button>
+                                    
+                                    {
+                                                                            authResponse && authResponse.users && schDetails && schDetails.u_id && +schDetails.u_id !== +authResponse.users.id && <>
+
+                                                <Button size="sm" className="btn_milky_grn mt-3">Read More</Button>
                                     <Dropdown>
                                         <Dropdown.Toggle size="sm" className="btn_milky_bl mt-3">
                                             Move-in-Checklist
@@ -204,7 +208,6 @@ function UserBookingChatCtrl() {
                                             }
 
 
-
                                             <Dropdown.Item href="#/action-1" onClick={() => history.push(`/search-details/${listId}`)}>
                                                 <img height="15" src={viewLP} />
                                                 View Listing Page
@@ -216,7 +219,12 @@ function UserBookingChatCtrl() {
                                             </Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
+                                    
 
+                                                                            </>
+                                    }
+                                    
+                                
                                 </div>
 
 
