@@ -76,7 +76,10 @@ img{
     color: $shamrock_color;
     border-color: $milky_color;
 }
-
+.bg-success{
+    background-color: $shamrock_color !important;
+    color: #ffffff;
+}
 .btn.btn-success{
     background-color: $shamrock_color;
     border-color: $shamrock_color;
